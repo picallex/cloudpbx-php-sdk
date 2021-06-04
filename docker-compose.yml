@@ -1,0 +1,12 @@
+# Copyright 2021 Picallex Holding Group. All rights reserved.
+#
+# @author (2021) Jovany Leandro G.C <jovany@picallex.com>
+version: '3.4'
+
+services:
+  app:
+    working_dir: /usr/src
+    volumes:
+      - ./:/usr/src
+    build:
+      context: .
