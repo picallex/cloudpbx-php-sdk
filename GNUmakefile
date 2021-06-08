@@ -12,6 +12,7 @@ lint:
 	docker-compose run --rm app composer run-script --dev lint src
 
 test:
+	docker-compose run --rm app composer dump-autoload
 	docker-compose run --rm app composer run-script --dev test
 
 phpstan:
