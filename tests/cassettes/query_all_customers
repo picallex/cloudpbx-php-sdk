@@ -1,0 +1,63 @@
+
+-
+    request:
+        method: GET
+        url: 'http://172.19.0.7:8000//api/v1/management/customers'
+        headers:
+            Host: '172.19.0.7:8000'
+            x-api-key: rQMD7C5xQ2U76vjndGK1nddpYbblYt
+            content-type: application/json
+            accept: 'application/json, plain/text'
+    response:
+        status:
+            http_version: '1.1'
+            code: '200'
+            message: OK
+        headers:
+            cache-control: 'max-age=0, private, must-revalidate'
+            content-length: '356'
+            content-security-policy: 'script-src ''self'''
+            content-type: 'application/json; charset=utf-8'
+            date: 'Tue, 08 Jun 2021 22:00:21 GMT'
+            server: Cowboy
+            x-frame-options: deny
+            x-request-id: Foa6XGJnXInzyFMAAF-m
+        body: '{"data":[{"accountcode":"router","domain":"localpbx.picallex.com","hold_music_sound_id":null,"id":1,"name":"router"},{"accountcode":"localclient1","domain":"localclient1.picallex.com","hold_music_sound_id":null,"id":2,"name":"client1"},{"accountcode":"localclient2","domain":"localclient2.picallex.com","hold_music_sound_id":null,"id":3,"name":"client2"}]}'
+        curl_info:
+            url: 'http://172.19.0.7:8000//api/v1/management/customers'
+            content_type: 'application/json; charset=utf-8'
+            http_code: 200
+            header_size: 295
+            request_size: 182
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.155284
+            namelookup_time: 3.4E-5
+            connect_time: 0.000171
+            pretransfer_time: 0.000217
+            size_upload: !!float 0
+            size_download: !!float 356
+            speed_download: !!float 2296
+            speed_upload: !!float 0
+            download_content_length: !!float 356
+            upload_content_length: !!float -1
+            starttransfer_time: 0.155251
+            redirect_time: !!float 0
+            redirect_url: ''
+            primary_ip: 172.19.0.7
+            certinfo: {  }
+            primary_port: 8000
+            local_ip: 172.19.0.1
+            local_port: 53912
+            http_version: 2
+            protocol: 1
+            ssl_verifyresult: 0
+            scheme: HTTP
+            appconnect_time_us: 0
+            connect_time_us: 171
+            namelookup_time_us: 34
+            pretransfer_time_us: 217
+            redirect_time_us: 0
+            starttransfer_time_us: 155251
+            total_time_us: 155284
