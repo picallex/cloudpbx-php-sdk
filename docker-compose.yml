@@ -10,3 +10,4 @@ services:
       - ./:/usr/src
     build:
       context: .
+    network_mode:  host
