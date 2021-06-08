@@ -14,3 +14,8 @@ if (!file_exists(__DIR__.'/../vendor/autoload.php')) {
 }
 
 require_once __DIR__.'/../vendor/autoload.php';
+
+\VCR\VCR::configure()->setCassettePath('tests/cassettes');
+\VCR\VCR::configure()->enableLibraryHooks(array('curl'));
+\VCR\VCR::configure()
+    ->enableRequestMatchers(array('method', 'url', 'host'));

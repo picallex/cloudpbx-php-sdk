@@ -5,4 +5,3 @@ parameters:
         - tests/Cloudpbx
 includes:
     - vendor/thecodingmachine/phpstan-strict-rules/phpstan-strict-rules.neon
-    - vendor/phpstan/phpstan-beberlei-assert/extension.neon

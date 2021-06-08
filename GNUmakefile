@@ -13,7 +13,7 @@ lint:
 
 test:
 	docker-compose run --rm app composer dump-autoload
-	docker-compose run --rm app composer run-script --dev test
+	docker-compose run $(DOCKER_ARGS) --rm app composer run-script --dev test
 
 phpstan:
 	docker-compose run --rm app composer run-script --dev phpstan
