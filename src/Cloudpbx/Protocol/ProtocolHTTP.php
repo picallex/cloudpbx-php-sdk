@@ -89,6 +89,35 @@ final class ProtocolHTTP implements \Cloudpbx\Sdk\Protocol
         return $data;
     }
 
+    public function create($url, $params = null)
+    {
+        $request = Http\Implementation\RequestFromArray::build('POST', [
+            'body' => !is_null($params) ? json_encode($params) : null,
+            'headers' => $this->setHeaders([]),
+            'url' => $this->api_base . $url
+        ]);
+
+        $response = $this->transport->sendRequest($request);
+
+        $this->checkResponse($response);
+
+        $data = json_decode($response->body(), true)["data"] ?? [];
+        return $data;
+    }
+
+    public function delete($url)
+    {
+        $request = Http\Implementation\RequestFromArray::build('DELETE', [
+            'body' => null,
+            'headers' => $this->setHeaders([]),
+            'url' => $this->api_base . $url
+        ]);
+
+        $response = $this->transport->sendRequest($request);
+
+        $this->checkResponse($response);
+    }
+
     /**
      * @param array<string, mixed> $headers
      *
@@ -99,10 +128,10 @@ final class ProtocolHTTP implements \Cloudpbx\Sdk\Protocol
         Util\Argument::isArray($headers);
 
         return array_merge(
+            ['x-api-key' => $this->api_key,
+             'content-type' => 'application/json',
+             'accept' => 'application/json, plain/text'],
             $headers,
-            ['x-api-key' => $this->api_key],
-            ['content-type' => 'application/json'],
-            ['accept' => 'application/json, plain/text']
         );
     }
 
@@ -115,7 +144,7 @@ final class ProtocolHTTP implements \Cloudpbx\Sdk\Protocol
         $status_code = $response->statusCode();
 
         if ($status_code >= 500) {
-            throw new Error\ServerError($status_code);
+            throw new Error\ServerError($status_code, $response->body());
         }
 
         if ($status_code == 404) {
@@ -123,7 +152,7 @@ final class ProtocolHTTP implements \Cloudpbx\Sdk\Protocol
         }
 
         if ($status_code >= 400) {
-            throw new Error\RequestError($status_code);
+            throw new Error\RequestError($status_code, $response->body());
         }
 
         if ($status_code >= 300) {

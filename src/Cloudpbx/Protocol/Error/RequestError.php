@@ -16,16 +16,24 @@ final class RequestError extends \Exception
     private $http_code;
 
     /**
-     * @param int $http_code
+     * @var string | null
      */
-    public function __construct($http_code)
+    private $response;
+
+    /**
+     * @param int $http_code
+     * @param string | null $response
+     */
+    public function __construct($http_code, $response)
     {
         $this->http_code = $http_code;
+        $this->response = $response;
+
         $this->message = (string)$this;
     }
 
     public function __toString()
     {
-        return __CLASS__ ." : request with http code {$this->http_code} error please check arguments";
+        return __CLASS__ ." : request with http code {$this->http_code} error please check arguments {$this->response}";
     }
 }

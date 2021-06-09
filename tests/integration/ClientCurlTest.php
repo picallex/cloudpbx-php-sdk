@@ -164,4 +164,35 @@ class ClientCurlTest extends TestCase
         $this->assertTrue($ipset->hasAttribute('status'));
         $this->assertTrue($ipset->hasAttribute('cidr_block'));
     }
+
+    /**
+     * @vcr create_firewall_ipset
+     */
+    public function testAddIpToFirewall(): array
+    {
+        $cidr_block = '4.4.4.4/32';
+        $status = 'whitelist';
+
+        $ipset = $this->client->firewallIpSets->create($cidr_block, $status);
+
+        $this->assertTrue($ipset->hasAttribute('cidr_block'));
+        $this->assertTrue($ipset->hasAttribute('status'));
+
+        $this->assertEquals($cidr_block, $ipset->cidr_block);
+        $this->assertEquals($status, $ipset->status);
+
+        return [$cidr_block];
+    }
+
+    /**
+     * @vcr delete_firewall_ipset
+     * @depends testAddIpToFirewall
+     */
+    public function testDeleteIpFromFirewall(array $stack): void
+    {
+        $cidr_block = array_pop($stack);
+        $this->client->firewallIpSets->delete($cidr_block);
+
+        $this->assertTrue(true, 'expected not throw exception');
+    }
 }

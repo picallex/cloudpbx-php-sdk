@@ -16,15 +16,23 @@ final class ServerError extends \Exception
     private $http_code;
 
     /**
-     * @param int $http_code
+     * @var string
      */
-    public function __construct($http_code)
+    private $response;
+
+    /**
+     * @param int $http_code
+     * @param string $response
+     */
+    public function __construct($http_code, $response)
     {
         $this->http_code = $http_code;
+        $this->response = $response;
+        $this->message = (string)$this;
     }
 
     public function __toString()
     {
-        return __CLASS__ ." : server error {$this->http_code}";
+        return __CLASS__ ." : server error {$this->http_code} has {$this->response} ";
     }
 }

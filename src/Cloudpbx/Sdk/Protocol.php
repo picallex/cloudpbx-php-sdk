@@ -28,4 +28,17 @@ interface Protocol
      * @return mixed
      */
     public function one($query);
+
+    /**
+     * @param string $query
+     * @param array<string, mixed> $params
+     * @return mixed
+     */
+    public function create($query, $params);
+
+    /**
+     * @param string $query
+     * @return void
+     */
+    public function delete($query);
 }

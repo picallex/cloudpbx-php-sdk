@@ -16,10 +16,29 @@ class ClientCurl implements Http\Client
 {
     public function sendRequest(Http\Request $request): Http\Response
     {
-        [$body, $http_code] = $this->curlGet(
-            $request->url(),
-            $request->headers()
-        );
+        switch ($request->method()) {
+        case 'GET':
+            [$body, $http_code] = $this->curlGet(
+                $request->url(),
+                $request->headers()
+            );
+            break;
+        case 'POST':
+            [$body, $http_code] = $this->curlPost(
+                $request->url(),
+                $request->headers(),
+                $request->body()
+            );
+            break;
+        case 'DELETE':
+            [$body, $http_code] = $this->curlDelete(
+                $request->url(),
+                $request->headers()
+            );
+            break;
+        default:
+            throw new \RuntimeException("not implementation for method {$request->method()}");
+        }
 
         return $this->buildResponse($body, $http_code);
     }
@@ -33,6 +52,40 @@ class ClientCurl implements Http\Client
     {
         return $this->curl($url, function ($ch) use ($headers) {
             curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $this->buildCurlHeaders($headers));
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            return curl_exec($ch);
+        });
+    }
+
+    /**
+     * @param string $url
+     * @param array<string, mixed> $headers
+     * @param string | null $body
+     * @return array{0: string, 1: int}
+     */
+    private function curlPost($url, $headers, $body = null)
+    {
+        return $this->curl($url, function ($ch) use ($headers, $body) {
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $this->buildCurlHeaders($headers));
+            if (!is_null($body)) {
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
+            }
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            return curl_exec($ch);
+        });
+    }
+
+    /**
+     * @param string $url
+     * @param array<string, mixed> $headers
+     * @return array{0: string, 1: int}
+     */
+    private function curlDelete(string $url, array $headers)
+    {
+        return $this->curl($url, function ($ch) use ($headers) {
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
             curl_setopt($ch, CURLOPT_HTTPHEADER, $this->buildCurlHeaders($headers));
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             return curl_exec($ch);

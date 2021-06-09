@@ -1,0 +1,61 @@
+
+-
+    request:
+        method: DELETE
+        url: 'http://cloudpbxapidev.picallex.com/api/v1/management/firewall/ipset/4.4.4.4%2F32'
+        headers:
+            Host: cloudpbxapidev.picallex.com
+            x-api-key: ''
+            content-type: application/json
+            accept: 'application/json, plain/text'
+    response:
+        status:
+            http_version: '1.1'
+            code: '204'
+            message: 'No Content'
+        headers:
+            Date: 'Wed, 09 Jun 2021 18:15:07 GMT'
+            Connection: keep-alive
+            Server: nginx/1.14.2
+            cache-control: 'max-age=0, private, must-revalidate'
+            content-security-policy: 'script-src ''self'''
+            x-frame-options: deny
+            x-request-id: Fob8pnglilpH0EAAAQvR
+        curl_info:
+            url: 'http://cloudpbxapidev.picallex.com/api/v1/management/firewall/ipset/4.4.4.4%2F32'
+            content_type: null
+            http_code: 204
+            header_size: 265
+            request_size: 220
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.412237
+            namelookup_time: 0.156743
+            connect_time: 0.270882
+            pretransfer_time: 0.271022
+            size_upload: !!float 0
+            size_download: !!float 0
+            speed_download: !!float 0
+            speed_upload: !!float 0
+            download_content_length: !!float 0
+            upload_content_length: !!float -1
+            starttransfer_time: 0.412193
+            redirect_time: !!float 0
+            redirect_url: ''
+            primary_ip: 3.18.140.5
+            certinfo: {  }
+            primary_port: 80
+            local_ip: 192.168.0.104
+            local_port: 50078
+            http_version: 2
+            protocol: 1
+            ssl_verifyresult: 0
+            scheme: HTTP
+            appconnect_time_us: 0
+            connect_time_us: 270882
+            namelookup_time_us: 156743
+            pretransfer_time_us: 271022
+            redirect_time_us: 0
+            starttransfer_time_us: 412193
+            total_time_us: 412237
