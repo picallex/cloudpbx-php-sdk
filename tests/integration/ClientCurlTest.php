@@ -18,9 +18,7 @@ class ClientCurlTest extends TestCase
         $base = Util\Environment::get('test', 'cloudpbx_api_base');
         $api_key = Util\Environment::get('test', 'cloudpbx_api_key');
 
-        $protocol = Protocol\ProtocolHTTP::createWithDefaultClient($base, $api_key);
-
-        $this->client = new \Cloudpbx\Sdk\Client($protocol);
+        $this->client = \Cloudpbx\Sdk::createDefaultClient($base, $api_key);
     }
 
     /**
