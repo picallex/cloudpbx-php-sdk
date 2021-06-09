@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Cloudpbx\Protocol\Error;
 
-final class NotFoundError extends \Exception
+final class NotFoundError extends ProtocolError
 {
     /**
      * @var string

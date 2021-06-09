@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Cloudpbx\Protocol\Error;
 
-final class ServerError extends \Exception
+final class ServerError extends ProtocolError
 {
     /**
      * @var int
