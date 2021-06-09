@@ -37,7 +37,7 @@ class ClientCurl implements Http\Client
             );
             break;
         default:
-            throw new \RuntimeException("not implementation for method {$request->method()}");
+            throw new ClientCurlError("not implementation for method {$request->method()}");
         }
 
         return $this->buildResponse($body, $http_code);
@@ -112,7 +112,7 @@ class ClientCurl implements Http\Client
     {
         $ch = curl_init($url);
         if ($ch === false) {
-            throw new \RuntimeException('failed to curl_init');
+            throw new ClientCurlError('failed to curl_init');
         }
 
         $output = null;
@@ -131,7 +131,7 @@ class ClientCurl implements Http\Client
         }
 
         if ($output === false and $http_code < 100) {
-            throw new \RuntimeException('curl failed ' . $curl_error);
+            throw new ClientCurlError('curl failed ' . $curl_error);
         }
 
         return [$output, $http_code];
