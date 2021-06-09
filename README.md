@@ -1,6 +1,6 @@
 # Cloudpbx PHP SDK
 
-# Requerimientos
+# Requerimientos desarrollo
 
  - docker
  - docker-compose
