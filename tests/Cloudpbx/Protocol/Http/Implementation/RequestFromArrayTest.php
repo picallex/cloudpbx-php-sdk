@@ -5,7 +5,7 @@
 
 declare(strict_types=1);
 
-namespace Cloudpbx\Http\Implementation;
+namespace Cloudpbx\Protocol\Http\Implementation;
 
 use PHPUnit\Framework\TestCase;
 

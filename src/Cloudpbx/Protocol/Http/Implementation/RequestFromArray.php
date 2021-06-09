@@ -6,11 +6,11 @@
 
 declare(strict_types=1);
 
-namespace Cloudpbx\Http\Implementation;
+namespace Cloudpbx\Protocol\Http\Implementation;
 
-use Cloudpbx\Sdk\Util;
+use Cloudpbx\Util;
 
-class RequestFromArray implements \Cloudpbx\Http\Request
+class RequestFromArray implements \Cloudpbx\Protocol\Http\Request
 {
     /**
      * @var string
@@ -36,13 +36,12 @@ class RequestFromArray implements \Cloudpbx\Http\Request
      * @param string $method
      * @param array<string, mixed> $value
      *
-     * @return \Cloudpbx\Http\Request
+     * @return \Cloudpbx\Protocol\Http\Request
      */
     public static function build($method, $value)
     {
-        Util\Argument::keyExists($value, 'body');
-        Util\Argument::keyExists($value, 'headers');
-        Util\Argument::keyExists($value, 'url');
+        Util\Argument::keyWithValue($value, 'headers');
+        Util\Argument::keyWithValue($value, 'url');
         Util\Argument::choice($method, ['GET', 'POST', 'PUT', 'DELETE']);
 
         $obj = new self();

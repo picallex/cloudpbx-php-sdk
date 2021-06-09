@@ -8,24 +8,26 @@ declare(strict_types=1);
 
 namespace Cloudpbx\Sdk;
 
+use Cloudpbx\Util;
+
 final class Customer
 {
     /**
-     * @var \Cloudpbx\Http\Client
+     * @var \Cloudpbx\Sdk\Protocol
      */
-    private $transport;
+    private $protocol;
 
     /**
-     * @param \Cloudpbx\Http\Client $transport
+     * @param \Cloudpbx\Sdk\Protocol $protocol
      *
      * @return self
      */
-    public static function fromTransport($transport)
+    public static function fromTransport($protocol)
     {
-        Util\Argument::isInstanceOf($transport, \Cloudpbx\Http\Client::class);
+        Util\Argument::isInstanceOf($protocol, \Cloudpbx\Sdk\Protocol::class);
 
         $obj = new self();
-        $obj->transport = $transport;
+        $obj->protocol = $protocol;
         return $obj;
     }
 
@@ -34,32 +36,12 @@ final class Customer
      */
     public function all()
     {
-        $request = \Cloudpbx\Http\Implementation\RequestFromArray::build('GET', [
-            'body' => null,
-            'headers' => [],
-            'url' => '/api/v1/management/customers'
-        ]);
+        $query = $this->protocol->prepareQuery('/api/v1/management/customers');
 
-        $response = $this->transport->sendRequest($request);
+        $records = $this->protocol->list(
+            $query
+        );
 
-        $status_code = $response->statusCode();
-        if ($status_code >= 500) {
-            throw new Error\ServerError($status_code);
-        }
-
-        if ($status_code == 404) {
-            throw new Error\NotFoundError('unknown status code');
-        }
-
-        if ($status_code >= 400) {
-            throw new Error\RequestError($status_code);
-        }
-
-        if ($status_code >= 300) {
-            throw new \RuntimeException("not know how to handle status code {$response->statusCode()}");
-        }
-
-        $records = $response->body()['data'];
         return array_map([\Cloudpbx\Sdk\Model\Customer::class, 'fromArray'], $records);
     }
 }

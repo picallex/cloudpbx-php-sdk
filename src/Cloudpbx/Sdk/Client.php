@@ -14,16 +14,16 @@ namespace Cloudpbx\Sdk;
 final class Client
 {
     /**
-     * @var \Cloudpbx\Http\Client
+     * @var \Cloudpbx\Sdk\Protocol
      */
-    private $transport;
+    private $protocol;
 
     /**
-     * @param \Cloudpbx\Http\Client $transport
+     * @param \Cloudpbx\Sdk\Protocol $protocol
      */
-    public function __construct($transport)
+    public function __construct($protocol)
     {
-        $this->transport = $transport;
+        $this->protocol = $protocol;
     }
 
     /**
@@ -31,7 +31,7 @@ final class Client
      */
     public function getCustomers()
     {
-        return Customer::fromTransport($this->transport);
+        return Customer::fromTransport($this->protocol);
     }
 
     public function __get(string $name): object

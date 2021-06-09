@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace Cloudpbx\Http;
+namespace Cloudpbx\Protocol\Http;
 
-use Cloudpbx\Http\Request;
-use Cloudpbx\Http\Response;
+use Cloudpbx\Protocol\Http\Request;
+use Cloudpbx\Protocol\Http\Response;
 
 interface Client
 {

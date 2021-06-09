@@ -7,8 +7,8 @@ declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
 
-use Cloudpbx\Http\Implementation;
-use Cloudpbx\Sdk\Util;
+use Cloudpbx\Protocol;
+use Cloudpbx\Util;
 
 class ClientCurlTest extends TestCase
 {
@@ -18,9 +18,10 @@ class ClientCurlTest extends TestCase
         $base = Util\Environment::get('test', 'cloudpbx_api_base');
         $api_key = Util\Environment::get('test', 'cloudpbx_api_key');
 
-        $protocol = new Implementation\ProtocolJson($api_key);
-        $transport = new Implementation\ClientCurl($base, $protocol);
-        $this->client = new \Cloudpbx\Sdk\Client($transport);
+        $transport = new Protocol\Http\Implementation\ClientCurl();
+        $protocol = new Protocol\ProtocolHTTP($base, $api_key, $transport);
+
+        $this->client = new \Cloudpbx\Sdk\Client($protocol);
     }
 
     /**

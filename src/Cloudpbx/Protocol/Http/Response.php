@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace Cloudpbx\Http;
+namespace Cloudpbx\Protocol\Http;
 
 interface Response
 {

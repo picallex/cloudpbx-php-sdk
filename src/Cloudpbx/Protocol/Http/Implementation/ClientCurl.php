@@ -6,42 +6,22 @@
 
 declare(strict_types=1);
 
-namespace Cloudpbx\Http\Implementation;
+namespace Cloudpbx\Protocol\Http\Implementation;
 
 use Cloudpbx\Sdk\Util;
 
-use Cloudpbx\Http;
+use Cloudpbx\Protocol\Http;
 
 class ClientCurl implements Http\Client
 {
-    /**
-     *@var string
-     */
-    private $base;
-
-    /**
-     *@var Http\Protocol
-     */
-    private $protocol;
-
-    public function __construct(string $base, Http\Protocol $protocol)
-    {
-        Util\Argument::isString($base);
-        Util\Argument::isInstanceOf($protocol, Http\Protocol::class);
-
-        $this->protocol = $protocol;
-        $this->base = $base;
-    }
-
     public function sendRequest(Http\Request $request): Http\Response
     {
-        $url = $this->base . $request->url();
+        [$body, $http_code] = $this->curlGet(
+            $request->url(),
+            $request->headers()
+        );
 
-        $headers = $this->protocol->setHeaders($request->headers());
-
-        [$body, $http_code] = $this->curlGet($url, $headers);
-
-        return $this->protocol->buildResponse($body, $http_code);
+        return $this->buildResponse($body, $http_code);
     }
 
     /**
@@ -102,5 +82,15 @@ class ClientCurl implements Http\Client
         }
 
         return [$output, $http_code];
+    }
+
+    /**
+     * @param string $body
+     * @param int $http_code
+     * @return Http\Response
+     */
+    private function buildResponse($body, $http_code)
+    {
+        return new ResponseFromArray($body, $http_code);
     }
 }

@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Cloudpbx\Sdk;
 
+use Cloudpbx\Util;
+
 /**
  * Model representa un recurso remoto.
  *

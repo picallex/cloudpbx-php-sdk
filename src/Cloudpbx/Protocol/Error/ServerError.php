@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace Cloudpbx\Sdk\Error;
+namespace Cloudpbx\Protocol\Error;
 
 final class ServerError extends \Exception
 {

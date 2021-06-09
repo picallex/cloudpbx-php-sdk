@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace Cloudpbx\Sdk\Util;
+namespace Cloudpbx\Util;
 
 final class Environment
 {
@@ -21,7 +21,7 @@ final class Environment
      */
     public static function get($environment, $name)
     {
-        $root = realpath(join(DIRECTORY_SEPARATOR, [__DIR__, '..', '..', '..', '..']));
+        $root = realpath(join(DIRECTORY_SEPARATOR, [__DIR__, '..', '..', '..']));
 
         if ($root === false) {
             throw new \RuntimeException("can't found root dir");

@@ -6,10 +6,21 @@
 
 declare(strict_types=1);
 
-namespace Cloudpbx\Sdk\Util;
+namespace Cloudpbx\Util;
 
 final class Argument
 {
+    /**
+     * @param array<mixed, mixed> $array
+     * @param mixed $key
+     *
+     * @return void
+     */
+    public static function keyWithValue($array, $key)
+    {
+        self::assert(!is_null($array[$key]), "array not has '{$key}' with valid value");
+    }
+
     /**
      * @param array<mixed, mixed> $array
      * @param mixed $key
