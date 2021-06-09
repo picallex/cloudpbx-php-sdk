@@ -10,27 +10,8 @@ namespace Cloudpbx\Sdk;
 
 use Cloudpbx\Util;
 
-final class Customer
+final class Customer extends Api
 {
-    /**
-     * @var \Cloudpbx\Sdk\Protocol
-     */
-    private $protocol;
-
-    /**
-     * @param \Cloudpbx\Sdk\Protocol $protocol
-     *
-     * @return self
-     */
-    public static function fromTransport($protocol)
-    {
-        Util\Argument::isInstanceOf($protocol, \Cloudpbx\Sdk\Protocol::class);
-
-        $obj = new self();
-        $obj->protocol = $protocol;
-        return $obj;
-    }
-
     /**
      * @return array<\Cloudpbx\Sdk\Model\Customer>
      */
@@ -42,7 +23,7 @@ final class Customer
             $query
         );
 
-        return array_map([\Cloudpbx\Sdk\Model\Customer::class, 'fromArray'], $records);
+        return $this->recordsToModel($records, \Cloudpbx\Sdk\Model\Customer::class);
     }
 
     /**
@@ -54,6 +35,6 @@ final class Customer
         $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}', ['{customer_id}' => $id]);
         $record = $this->protocol->one($query);
 
-        return \Cloudpbx\Sdk\Model\Customer::fromArray($record);
+        return $this->recordToModel($record, \Cloudpbx\Sdk\Model\Customer::class);
     }
 }

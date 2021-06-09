@@ -11,6 +11,16 @@ namespace Cloudpbx\Util;
 final class Argument
 {
     /**
+     * @param string $value
+     *
+     * @return void
+     */
+    public static function isClass($value)
+    {
+        self::assert(class_exists($value), "class '{$value}' not exists");
+    }
+
+    /**
      * @param array<mixed, mixed> $array
      * @param mixed $key
      *
