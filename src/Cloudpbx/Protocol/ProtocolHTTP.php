@@ -39,6 +39,19 @@ final class ProtocolHTTP implements \Cloudpbx\Sdk\Protocol
         $this->transport = $transport;
     }
 
+    /**
+     * Crear protocol con cliente curl.
+     *
+     * @param string $api_base
+     * @param string $api_key
+     * @return self
+     */
+    public static function createWithDefaultClient($api_base, $api_key)
+    {
+        $transport = new Http\Implementation\ClientCurl();
+        return new self($api_base, $api_key, $transport);
+    }
+
     public function prepareQuery($url, $params = [])
     {
         return \strtr($url, $params);

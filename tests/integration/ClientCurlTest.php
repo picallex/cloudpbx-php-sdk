@@ -18,8 +18,7 @@ class ClientCurlTest extends TestCase
         $base = Util\Environment::get('test', 'cloudpbx_api_base');
         $api_key = Util\Environment::get('test', 'cloudpbx_api_key');
 
-        $transport = new Protocol\Http\Implementation\ClientCurl();
-        $protocol = new Protocol\ProtocolHTTP($base, $api_key, $transport);
+        $protocol = Protocol\ProtocolHTTP::createWithDefaultClient($base, $api_key);
 
         $this->client = new \Cloudpbx\Sdk\Client($protocol);
     }
@@ -32,7 +31,7 @@ class ClientCurlTest extends TestCase
         $customers = $this->client->customers->all();
         $this->assertIsArray($customers);
 
-        $customer = array_slice($customers, -1)[0];
+        $customer = $customers[1];
         $this->assertTrue($customer->hasAttribute('id'));
         $this->assertTrue($customer->hasAttribute('name'));
         $this->assertTrue($customer->hasAttribute('domain'));
@@ -127,5 +126,27 @@ class ClientCurlTest extends TestCase
         $this->assertTrue($dialout->hasAttribute('strip'));
         $this->assertTrue($dialout->hasAttribute('prepend'));
         $this->assertTrue($dialout->hasAttribute('weight'));
+    }
+
+    /**
+     * @vcr query_router_dids_by_customer
+     * @depends testQueryAllCustomers
+     */
+    public function testQueryAllRouterDids(array $stack): void
+    {
+        $last_customer = array_pop($stack);
+
+        $routers = $this->client->routerDids->all($last_customer->id);
+        $this->assertIsArray($routers);
+        $this->assertGreaterThan(1, count($routers));
+
+        $router = $routers[0];
+        $this->assertTrue($router->hasAttribute('id'));
+        $this->assertTrue($router->hasAttribute('did'));
+        // optional attributes:
+        // - callcenter_queue_id
+        // - user_id
+        // - ivr_menu_id
+        // - dialout_id
     }
 }
