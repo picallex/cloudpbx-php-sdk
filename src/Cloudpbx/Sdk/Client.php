@@ -13,6 +13,7 @@ namespace Cloudpbx\Sdk;
  * @property User $users
  * @property CallcenterQueue $callcenterQueues
  * @property RouterDid $routerDids
+ * @property FirewallIpSet $firewallIpSets
  */
 final class Client
 {
@@ -67,6 +68,14 @@ final class Client
     public function getRouterDids()
     {
         return RouterDid::fromTransport($this->protocol);
+    }
+
+    /**
+     * @return FirewallIpSet
+     */
+    public function getFirewallIpSets()
+    {
+        return FirewallIpSet::fromTransport($this->protocol);
     }
 
     public function __get(string $name): object

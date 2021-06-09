@@ -24,6 +24,11 @@ abstract class Model
     protected $_id;
 
     /**
+     * @var string
+     */
+    protected static $_primary_key = 'id';
+
+    /**
      *@var array<string, mixed>
      */
     protected $_metadata;
@@ -36,10 +41,10 @@ abstract class Model
      */
     public static function fromArray(array $metadata)
     {
-        Util\Argument::keyExists($metadata, 'id');
+        Util\Argument::keyExists($metadata, static::$_primary_key);
 
         $obj = new static();
-        $obj->_id = intval($metadata['id']);
+        $obj->_id = intval($metadata[static::$_primary_key]);
         $obj->_metadata = (new \ArrayObject($metadata))->getArrayCopy();
 
         return $obj;

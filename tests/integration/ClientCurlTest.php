@@ -149,4 +149,19 @@ class ClientCurlTest extends TestCase
         // - ivr_menu_id
         // - dialout_id
     }
+
+    /**
+     * @vcr query_firewall_ipset
+     */
+    public function testQueryAllFirewallIpSet(): void
+    {
+        $ipsets = $this->client->firewallIpSets->all();
+        $this->assertIsArray($ipsets);
+        $this->assertGreaterThan(0, count($ipsets));
+
+
+        $ipset = $ipsets[0];
+        $this->assertTrue($ipset->hasAttribute('status'));
+        $this->assertTrue($ipset->hasAttribute('cidr_block'));
+    }
 }
