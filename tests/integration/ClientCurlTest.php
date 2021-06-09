@@ -57,7 +57,7 @@ class ClientCurlTest extends TestCase
      * @vcr query_all_users_by_customer
      * @depends testQueryAllCustomers
      */
-    public function testQueryAllUsers(array $stack): void
+    public function testQueryAllUsers(array $stack): array
     {
         $last_customer = array_pop($stack);
 
@@ -71,5 +71,19 @@ class ClientCurlTest extends TestCase
         $this->assertTrue($user->hasAttribute('caller_number'));
         $this->assertTrue($user->hasAttribute('accountcode'));
         $this->assertTrue($user->hasAttribute('alias'));
+
+        return [[$last_customer, $user]];
+    }
+
+    /**
+     * @vcr query_one_user_by_customer
+     * @depends testQueryAllUsers
+     */
+    public function testQueryOneUser(array $stack): void
+    {
+        [$last_customer, $last_user] = array_pop($stack);
+        $user = $this->client->users->show($last_customer->id, $last_user->id);
+
+        $this->assertEquals($user->id, $last_user->id);
     }
 }
