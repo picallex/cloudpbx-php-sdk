@@ -65,8 +65,9 @@ abstract class Model
      * # ejemplo
      *
      * <code>
-     *  $customer = Model\Customer::fromArray(['id' => 3]);
+     *  $customer = Model\Customer::fromArray(['id' => 3, 'name' => 'bob']);
      *  $customer->id;
+     *  $customer->name;
      * </code>
      *
      * @return mixed
