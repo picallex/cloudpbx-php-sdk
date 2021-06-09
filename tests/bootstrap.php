@@ -19,3 +19,12 @@ require_once __DIR__.'/../vendor/autoload.php';
 \VCR\VCR::configure()->enableLibraryHooks(array('curl'));
 \VCR\VCR::configure()
     ->enableRequestMatchers(array('method', 'url', 'host'));
+\allejo\VCR\VCRCleaner::enable(array(
+   'request' => array(
+       'ignoreHostname' => false,
+       'ignoreQueryFields' => array(
+           'apiKey',
+       ),
+       'ignoreHeaders' => array(
+           'x-api-Key',
+       ))));
