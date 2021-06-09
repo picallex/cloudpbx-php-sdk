@@ -86,4 +86,46 @@ class ClientCurlTest extends TestCase
 
         $this->assertEquals($user->id, $last_user->id);
     }
+
+    /**
+     * @vcr query_callcenter_queues_by_customer
+     * @depends testQueryAllCustomers
+     */
+    public function testQueryAllCallcenterQueue(array $stack): void
+    {
+        $last_customer = array_pop($stack);
+
+        $queues = $this->client->callcenterQueues->all($last_customer->id);
+        $this->assertIsArray($queues);
+        $this->assertGreaterThan(1, count($queues));
+
+        $queue = $queues[0];
+        $this->assertTrue($queue->hasAttribute('id'));
+        $this->assertTrue($queue->hasAttribute('alias'));
+        $this->assertTrue($queue->hasAttribute('name'));
+        $this->assertTrue($queue->hasAttribute('strategy'));
+    }
+
+    /**
+     * @vcr query_dialout_by_customer
+     * @depends testQueryAllCustomers
+     */
+    public function testQueryAllDialout(array $stack): void
+    {
+        $last_customer = array_pop($stack);
+
+        $dialouts = $this->client->dialouts->all($last_customer->id);
+        $this->assertIsArray($dialouts);
+        $this->assertGreaterThan(1, count($dialouts));
+
+        $dialout = $dialouts[0];
+
+        $this->assertTrue($dialout->hasAttribute('id'));
+        $this->assertTrue($dialout->hasAttribute('destination'));
+        $this->assertTrue($dialout->hasAttribute('gateway_strategy'));
+        $this->assertTrue($dialout->hasAttribute('callerid_strategy'));
+        $this->assertTrue($dialout->hasAttribute('strip'));
+        $this->assertTrue($dialout->hasAttribute('prepend'));
+        $this->assertTrue($dialout->hasAttribute('weight'));
+    }
 }
