@@ -53,6 +53,7 @@ final class FirewallIpSet extends Api
     /**
      * @param string $cidr_block
      *
+     * @throws \Cloudpbx\Protocol\Error\NotFoundError cuando no se encuentra el recurso
      * @return void
      */
     public function delete($cidr_block)
