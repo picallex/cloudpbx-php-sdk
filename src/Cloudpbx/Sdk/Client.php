@@ -10,6 +10,7 @@ namespace Cloudpbx\Sdk;
 
 /**
  * @property Customer $customers
+ * @property User $users
  */
 final class Client
 {
@@ -32,6 +33,14 @@ final class Client
     public function getCustomers()
     {
         return Customer::fromTransport($this->protocol);
+    }
+
+    /**
+     * @return User
+     */
+    public function getUsers()
+    {
+        return User::fromTransport($this->protocol);
     }
 
     public function __get(string $name): object
