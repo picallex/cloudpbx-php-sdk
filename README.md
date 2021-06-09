@@ -16,9 +16,8 @@
 ver **tests/integration/ClientCurlTest.php** ejemplos de uso.
 
 ~~~php
- $protocol = Protocol\ProtocolHTTP::createWithDefaultClient($base, $api_key);
  // instanciar cliente
- $client = new \Cloudpbx\Sdk\Client($protocol);
+ $client = \Cloudpbx\Sdk::createDefaultClient($base, $api_key);
 
  // consultar customers ver `\Cloudpbx\Sdk\Customer` para mas detalles
  $customers = $client->customers->all();
