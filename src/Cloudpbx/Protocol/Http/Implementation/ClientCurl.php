@@ -77,7 +77,7 @@ class ClientCurl implements Http\Client
             curl_close($ch);
         }
 
-        if ($output === false and $http_code === 0) {
+        if ($output === false and $http_code < 100) {
             throw new \RuntimeException('curl failed ' . $curl_error);
         }
 

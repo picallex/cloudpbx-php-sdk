@@ -22,4 +22,10 @@ interface Protocol
      * @return Array<mixed>
      */
     public function list($query);
+
+    /**
+     * @param string $query
+     * @return mixed
+     */
+    public function one($query);
 }

@@ -27,7 +27,7 @@ class ClientCurlTest extends TestCase
     /**
      * @vcr query_all_customers
      */
-    public function testQueryAllCustomers(): void
+    public function testQueryAllCustomers(): array
     {
         $customers = $this->client->customers->all();
         $this->assertIsArray($customers);
@@ -36,5 +36,20 @@ class ClientCurlTest extends TestCase
         $this->assertTrue($customer->hasAttribute('id'));
         $this->assertTrue($customer->hasAttribute('name'));
         $this->assertTrue($customer->hasAttribute('domain'));
+
+        return [$customer];
+    }
+
+    /**
+     * @vcr query_one_customer
+     * @depends testQueryAllCustomers
+     */
+    public function testQueryOneCustomer(array $stack): void
+    {
+        $last_customer = array_pop($stack);
+        $customer = $this->client->customers->show($last_customer->id);
+
+        $this->assertEquals($last_customer->name, $customer->name);
+        $this->assertEquals($last_customer->id, $customer->id);
     }
 }

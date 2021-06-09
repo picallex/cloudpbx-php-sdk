@@ -44,4 +44,16 @@ final class Customer
 
         return array_map([\Cloudpbx\Sdk\Model\Customer::class, 'fromArray'], $records);
     }
+
+    /**
+     * @param int $id
+     * @return \Cloudpbx\Sdk\Model\Customer
+     */
+    public function show($id)
+    {
+        $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}', ['{customer_id}' => $id]);
+        $record = $this->protocol->one($query);
+
+        return \Cloudpbx\Sdk\Model\Customer::fromArray($record);
+    }
 }

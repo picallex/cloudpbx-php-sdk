@@ -41,7 +41,7 @@ final class ProtocolHTTP implements \Cloudpbx\Sdk\Protocol
 
     public function prepareQuery($url, $params = [])
     {
-        return $url;
+        return \strtr($url, $params);
     }
 
     public function list($url)
@@ -54,22 +54,23 @@ final class ProtocolHTTP implements \Cloudpbx\Sdk\Protocol
 
         $response = $this->transport->sendRequest($request);
 
-        $status_code = $response->statusCode();
-        if ($status_code >= 500) {
-            throw new Error\ServerError($status_code);
-        }
+        $this->checkResponse($response);
 
-        if ($status_code == 404) {
-            throw new Error\NotFoundError('unknown status code');
-        }
+        $data = json_decode($response->body(), true)["data"] ?? [];
+        return $data;
+    }
 
-        if ($status_code >= 400) {
-            throw new Error\RequestError($status_code);
-        }
+    public function one($url)
+    {
+        $request = Http\Implementation\RequestFromArray::build('GET', [
+            'body' => null,
+            'headers' => $this->setHeaders([]),
+            'url' => $this->api_base . $url
+        ]);
 
-        if ($status_code >= 300) {
-            throw new \RuntimeException("not know how to handle status code {$response->statusCode()}");
-        }
+        $response = $this->transport->sendRequest($request);
+
+        $this->checkResponse($response);
 
         $data = json_decode($response->body(), true)["data"] ?? [];
         return $data;
@@ -90,5 +91,30 @@ final class ProtocolHTTP implements \Cloudpbx\Sdk\Protocol
             ['content-type' => 'application/json'],
             ['accept' => 'application/json, plain/text']
         );
+    }
+
+    /**
+     * @param \Cloudpbx\Protocol\Http\Response $response
+     * @return void
+     */
+    private function checkResponse($response)
+    {
+        $status_code = $response->statusCode();
+
+        if ($status_code >= 500) {
+            throw new Error\ServerError($status_code);
+        }
+
+        if ($status_code == 404) {
+            throw new Error\NotFoundError('unknown status code');
+        }
+
+        if ($status_code >= 400) {
+            throw new Error\RequestError($status_code);
+        }
+
+        if ($status_code >= 300) {
+            throw new \RuntimeException("not know how to handle status code {$response->statusCode()}");
+        }
     }
 }
