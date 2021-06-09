@@ -1,0 +1,15 @@
+<phpunit bootstrap="tests/bootstrap.php">
+  <testsuites>
+    <testsuite name="Cloudpbx">
+      <directory>./tests/Cloudpbx</directory>
+    </testsuite>
+
+    <testsuite name="integration">
+      <directory>./tests/integration</directory>
+    </testsuite>
+  </testsuites>
+
+  <listeners>
+      <listener class="VCR\PHPUnit\TestListener\VCRTestListener" file="vendor/php-vcr/phpunit-testlistener-vcr/src/VCRTestListener.php" />
+  </listeners>
+</phpunit>
