@@ -78,6 +78,14 @@ final class Client
         return FirewallIpSet::fromTransport($this->protocol);
     }
 
+    /**
+     * @return FollowMe
+     */
+    public function getFollowMes()
+    {
+        return FollowMe::fromTransport($this->protocol);
+    }
+
     public function __get(string $name): object
     {
         $method = 'get'.ucfirst($name);

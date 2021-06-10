@@ -193,4 +193,22 @@ class ClientCurlTest extends TestCase
 
         $this->assertTrue(true, 'expected not throw exception');
     }
+
+    /**
+     * @vcr query_all_follow_me_by_customer
+     * @depends testQueryAllCustomers
+     */
+    public function testQueryAllFollowMe(array $stack): void
+    {
+        $customer = array_pop($stack);
+
+        $follows = $this->client->followMes->all($customer->id);
+
+        $this->assertIsArray($follows);
+        $this->assertGreaterThan(0, count($follows));
+
+        $follow = $follows[0];
+        $this->assertTrue($follow->hasAttribute('id'));
+        $this->assertTrue($follow->hasAttribute('name'));
+    }
 }
