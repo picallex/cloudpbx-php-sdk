@@ -14,16 +14,16 @@
             code: '200'
             message: OK
         headers:
-            Date: 'Thu, 10 Jun 2021 22:23:25 GMT'
+            Date: 'Tue, 15 Jun 2021 18:07:22 GMT'
             Content-Type: 'application/json; charset=utf-8'
-            Content-Length: '164'
+            Content-Length: '196'
             Connection: keep-alive
             Server: nginx/1.14.2
             cache-control: 'max-age=0, private, must-revalidate'
             content-security-policy: 'script-src ''self'''
             x-frame-options: deny
-            x-request-id: FodYx6-mtqUgEwoAAAZS
-        body: '{"data":[{"id":1,"name":"prueba 1","ringback_sound_id":0,"ringback_type":"fake_ring"},{"id":2,"name":"prueba 1","ringback_sound_id":0,"ringback_type":"fake_ring"}]}'
+            x-request-id: FojTtX5Wyjx_8GgAAAVR
+        body: '{"data":[{"customer_id":2,"id":1,"name":"prueba 1","ringback_sound_id":0,"ringback_type":"fake_ring"},{"customer_id":2,"id":2,"name":"prueba 1","ringback_sound_id":0,"ringback_type":"fake_ring"}]}'
         curl_info:
             url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/follow_me'
             content_type: 'application/json; charset=utf-8'
@@ -33,32 +33,32 @@
             filetime: -1
             ssl_verify_result: 0
             redirect_count: 0
-            total_time: 0.544521
-            namelookup_time: 0.258969
-            connect_time: 0.391949
-            pretransfer_time: 0.392065
+            total_time: 0.486864
+            namelookup_time: 0.209698
+            connect_time: 0.346804
+            pretransfer_time: 0.34691
             size_upload: !!float 0
-            size_download: !!float 164
-            speed_download: !!float 301
+            size_download: !!float 196
+            speed_download: !!float 403
             speed_upload: !!float 0
-            download_content_length: !!float 164
+            download_content_length: !!float 196
             upload_content_length: !!float -1
-            starttransfer_time: 0.544469
+            starttransfer_time: 0.486808
             redirect_time: !!float 0
             redirect_url: ''
             primary_ip: 3.18.140.5
             certinfo: {  }
             primary_port: 80
             local_ip: 192.168.0.104
-            local_port: 35264
+            local_port: 43976
             http_version: 2
             protocol: 1
             ssl_verifyresult: 0
             scheme: HTTP
             appconnect_time_us: 0
-            connect_time_us: 391949
-            namelookup_time_us: 258969
-            pretransfer_time_us: 392065
+            connect_time_us: 346804
+            namelookup_time_us: 209698
+            pretransfer_time_us: 346910
             redirect_time_us: 0
-            starttransfer_time_us: 544469
-            total_time_us: 544521
+            starttransfer_time_us: 486808
+            total_time_us: 486864

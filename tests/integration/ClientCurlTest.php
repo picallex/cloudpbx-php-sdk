@@ -209,6 +209,7 @@ class ClientCurlTest extends TestCase
 
         $follow = $follows[0];
         $this->assertTrue($follow->hasAttribute('id'));
+        $this->assertTrue($follow->hasAttribute('customer_id'));
         $this->assertTrue($follow->hasAttribute('name'));
     }
 }
