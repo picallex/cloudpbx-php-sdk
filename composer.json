@@ -1,8 +1,9 @@
 {
     "name": "picallex/cloudpbx-php-sdk",
+    "type": "library",
     "description": "Cloudpbx PHP SDK",
     "license": "MIT",
-    "version": "0.0.0-dev",
+    "homepage": "https://github.com/picallex/cloudpbx-php-sdk",
     "scripts": {
         "test": "./vendor/bin/phpunit",
         "lint": "./vendor/bin/php-cs-fixer fix --verbose --diff --dry-run",
