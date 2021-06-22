@@ -20,19 +20,14 @@ use Cloudpbx\Util;
 abstract class Model
 {
     /**
-     *@var int
+     * @var mixed
      */
-    protected $_id;
+    public $id;
 
     /**
      * @var string
      */
     protected static $_primary_key = 'id';
-
-    /**
-     *@var array<string, mixed>
-     */
-    protected $_metadata;
 
     abstract public function __construct();
 
@@ -45,8 +40,16 @@ abstract class Model
         Util\Argument::keyExists($metadata, static::$_primary_key);
 
         $obj = new static();
-        $obj->_id = intval($metadata[static::$_primary_key]);
-        $obj->_metadata = (new \ArrayObject($metadata))->getArrayCopy();
+
+        $obj->id = $metadata[static::$_primary_key];
+
+        // populate only public fields
+        $reflect = new \ReflectionClass($obj);
+        $properties = $reflect->getProperties(\ReflectionProperty::IS_PUBLIC);
+        foreach ($properties as $property) {
+            $field_name = $property->getName();
+            $obj->$field_name = $metadata[$field_name];
+        }
 
         return $obj;
     }
@@ -60,30 +63,6 @@ abstract class Model
      */
     public function hasAttribute($name)
     {
-        return array_key_exists($name, $this->_metadata);
-    }
-
-    /**
-     * Acceder a los atributos dinamicamente
-     *
-     * @param string $name
-     *
-     * # ejemplo
-     *
-     * <code>
-     *  $customer = Model\Customer::fromArray(['id' => 3, 'name' => 'bob']);
-     *  $customer->id;
-     *  $customer->name;
-     * </code>
-     *
-     * @return mixed
-     */
-    public function __get($name)
-    {
-        if (array_key_exists($name, $this->_metadata)) {
-            return $this->_metadata[$name];
-        }
-
-        return null;
+        return property_exists($this, $name);
     }
 }

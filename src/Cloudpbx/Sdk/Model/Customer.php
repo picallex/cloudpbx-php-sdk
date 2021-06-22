@@ -11,6 +11,21 @@ namespace Cloudpbx\Sdk\Model;
 
 final class Customer extends \Cloudpbx\Sdk\Model
 {
+    /**
+     * @var integer
+     */
+    public $id;
+
+    /**
+     * @var string
+     */
+    public $name;
+
+    /**
+     * @var string
+     */
+    public $domain;
+
     public function __construct()
     {
     }

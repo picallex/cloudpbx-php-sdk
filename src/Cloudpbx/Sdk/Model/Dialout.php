@@ -11,6 +11,51 @@ namespace Cloudpbx\Sdk\Model;
 
 final class Dialout extends \Cloudpbx\Sdk\Model
 {
+    /**
+     * @var integer
+     */
+    public $id;
+
+    /**
+     * @var integer
+     */
+    public $customer_id;
+
+    /**
+     * @var string
+     */
+    public $name;
+
+    /**
+     * @var string
+     */
+    public $gateway_strategy;
+
+    /**
+     * @var string
+     */
+    public $callerid_strategy;
+
+    /**
+     * @var string
+     */
+    public $destination;
+
+    /**
+     * @var string
+     */
+    public $prepend;
+
+    /**
+     * @var string
+     */
+    public $strip;
+
+    /**
+     * @var integer
+     */
+    public $weight;
+
     public function __construct()
     {
     }

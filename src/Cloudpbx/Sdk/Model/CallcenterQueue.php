@@ -11,6 +11,31 @@ namespace Cloudpbx\Sdk\Model;
 
 final class CallcenterQueue extends \Cloudpbx\Sdk\Model
 {
+    /**
+     * @var integer
+     */
+    public $id;
+
+    /**
+     * @var string
+     */
+    public $name;
+
+    /**
+     * @var string|null
+     */
+    public $alias;
+
+    /**
+     * @var string
+     */
+    public $description;
+
+    /**
+     * @var string
+     */
+    public $strategy;
+
     public function __construct()
     {
     }

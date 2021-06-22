@@ -11,6 +11,36 @@ namespace Cloudpbx\Sdk\Model;
 
 final class RouterDid extends \Cloudpbx\Sdk\Model
 {
+    /**
+     * @var integer
+     */
+    public $id;
+
+    /**
+     * @var string
+     */
+    public $did;
+
+    /**
+     * @var integer|null
+     */
+    public $callcenter_queue_id = null;
+
+    /**
+     * @var integer|null
+     */
+    public $user_id = null;
+
+    /**
+     * @var integer|null
+     */
+    public $ivr_menu_id = null;
+
+    /**
+     * @var integer|null
+     */
+    public $dialout_id = null;
+
     public function __construct()
     {
     }

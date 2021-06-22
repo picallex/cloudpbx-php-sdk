@@ -11,6 +11,36 @@ namespace Cloudpbx\Sdk\Model;
 
 final class User extends \Cloudpbx\Sdk\Model
 {
+    /**
+     * @var integer
+     */
+    public $id;
+
+    /**
+     * @var string
+     */
+    public $alias;
+
+    /**
+     * @var string
+     */
+    public $accountcode;
+
+    /**
+     * @var string
+     */
+    public $caller_name;
+
+    /**
+     * @var string
+     */
+    public $caller_number;
+
+    /**
+     * @var boolean
+     */
+    public $is_webrtc;
+
     public function __construct()
     {
     }

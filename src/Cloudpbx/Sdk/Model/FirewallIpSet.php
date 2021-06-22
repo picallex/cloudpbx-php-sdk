@@ -13,6 +13,16 @@ final class FirewallIpSet extends \Cloudpbx\Sdk\Model
 {
     protected static $_primary_key = 'cidr_block';
 
+    /**
+     * @var string
+     */
+    public $cidr_block;
+
+    /**
+     * @var string
+     */
+    public $status;
+
     public function __construct()
     {
     }

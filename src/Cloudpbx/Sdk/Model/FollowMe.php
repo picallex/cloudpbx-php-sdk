@@ -11,6 +11,26 @@ namespace Cloudpbx\Sdk\Model;
 
 final class FollowMe extends \Cloudpbx\Sdk\Model
 {
+    /**
+     * @var integer
+     */
+    public $id;
+
+    /**
+     * @var integer
+     */
+    public $customer_id;
+
+    /**
+     * @var string
+     */
+    public $name;
+
+    /**
+     * @var string
+     */
+    public $ringback_type;
+
     public function __construct()
     {
     }
