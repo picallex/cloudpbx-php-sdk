@@ -51,7 +51,7 @@ final class Argument
      */
     public static function choice($value, $choices)
     {
-        self::assert(in_array($value, $choices), "value {$value} invalid expected one of ${implode(',', $choices)}");
+        self::assert(in_array($value, $choices), "value {$value} invalid expected one of ". implode(',', $choices));
     }
 
     /**
