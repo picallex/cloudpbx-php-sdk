@@ -48,7 +48,9 @@ abstract class Model
         $properties = $reflect->getProperties(\ReflectionProperty::IS_PUBLIC);
         foreach ($properties as $property) {
             $field_name = $property->getName();
-            $obj->$field_name = $metadata[$field_name];
+            if (key_exists($field_name, $metadata)) {
+                $obj->$field_name = $metadata[$field_name];
+            }
         }
 
         return $obj;

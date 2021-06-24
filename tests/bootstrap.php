@@ -7,6 +7,8 @@
 
 declare(strict_types=1);
 
+error_reporting(E_ALL);
+
 if (!file_exists(__DIR__.'/../vendor/autoload.php')) {
     exit(
         "\n[ERROR] You need to run composer before running the test suite.\n".

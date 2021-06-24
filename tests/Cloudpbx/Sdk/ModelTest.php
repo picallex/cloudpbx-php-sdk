@@ -27,4 +27,29 @@ class ModelTest extends TestCase
         $this->assertEquals('bob', $customer->name);
         $this->assertEquals(3, $customer->id);
     }
+
+    public function testPopulateOnlyFieldsOfModel(): void
+    {
+        $customer = Model\Customer::fromArray(['id' => 3, 'name' => 'bob', 'pokemon' => 'gogo']);
+        $this->assertEquals('bob', $customer->name);
+        $this->assertEquals(3, $customer->id);
+        $this->assertFalse($customer->hasAttribute('pokemon'));
+    }
+
+    public function testPopulateOmitFieldsOfModelNotExists(): void
+    {
+
+        $model = new class extends Model {
+            /**
+             * @var string
+             */
+            public $reference;
+
+            public function __construct()
+            {
+            }
+        };
+        $instance = $model::fromArray(['id' => 3]);
+        $this->assertEquals(3, $instance->id);
+    }
 }

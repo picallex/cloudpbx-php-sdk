@@ -29,7 +29,7 @@ final class Argument
      */
     public static function keyWithValue($array, $key)
     {
-        self::assert(!is_null($array[$key]), "array not has '{$key}' with valid value");
+        @self::assert(!is_null($array[$key]), "array not has '{$key}' with valid value");
     }
 
     /**
