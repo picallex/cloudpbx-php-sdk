@@ -46,6 +46,12 @@ final class RouterDid extends \Cloudpbx\Sdk\Model
     public $dialout_id = null;
 
     /**
+     * @var integer|null
+     * @deprecated since version v0.0.2 use $has_one instead
+     */
+    public $follow_me_id = null;
+
+    /**
      * @var Relation|null
      */
     public $has_one = null;
@@ -60,7 +66,8 @@ final class RouterDid extends \Cloudpbx\Sdk\Model
             'user',
             'ivr_menu',
             'dialout',
-            'callcenter_queue'
+            'callcenter_queue',
+            'follow_me'
         ];
 
         foreach ($relations as $relation) {
