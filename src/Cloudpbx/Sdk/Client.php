@@ -87,6 +87,14 @@ final class Client
         return FollowMe::fromTransport($this->protocol);
     }
 
+    /**
+     * @return IvrMenu
+     */
+    public function getIvrMenus()
+    {
+        return IvrMenu::fromTransport($this->protocol);
+    }
+
     public function __get(string $name): object
     {
         $method = 'get'.ucfirst($name);

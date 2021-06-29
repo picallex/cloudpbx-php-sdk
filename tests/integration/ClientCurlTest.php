@@ -14,11 +14,13 @@ use Cloudpbx\Util;
 
 class ClientCurlTest extends TestCase
 {
+    private static $customer_id;
 
     protected function setUp(): void
     {
         $base = Util\Environment::get('test', 'cloudpbx_api_base');
         $api_key = Util\Environment::get('test', 'cloudpbx_api_key');
+        self::$customer_id = (int)Util\Environment::get('test', 'cloudpbx_customer_id');
 
         $this->client = \Cloudpbx\Sdk::createDefaultClient($base, $api_key);
     }
@@ -50,6 +52,7 @@ class ClientCurlTest extends TestCase
 
         $this->assertEquals($last_customer->name, $customer->name);
         $this->assertEquals($last_customer->id, $customer->id);
+
     }
 
     /**
@@ -218,5 +221,25 @@ class ClientCurlTest extends TestCase
         $this->assertTrue($follow->hasAttribute('id'));
         $this->assertTrue($follow->hasAttribute('customer_id'));
         $this->assertTrue($follow->hasAttribute('name'));
+    }
+
+    /**
+     * @vcr query_all_ivr_menu_by_customer
+     */
+    public function testQueryAllIvrMenu(): void
+    {
+        $this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
+
+        $ivrmenus = $this->client->ivrMenus->all(self::$customer_id);
+
+        $this->assertIsArray($ivrmenus);
+        $this->assertGreaterThan(0, count($ivrmenus));
+
+        $ivrmenu = $ivrmenus[0];
+        $this->assertTrue($ivrmenu->hasAttribute('id'));
+        $this->assertTrue($ivrmenu->hasAttribute('name'));
+        $this->assertEquals(self::$customer_id, $ivrmenu->customer->id);
     }
 }
