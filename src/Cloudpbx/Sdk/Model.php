@@ -53,7 +53,19 @@ abstract class Model
             }
         }
 
+        $obj->setup();
+
         return $obj;
+    }
+
+
+    /**
+     * allow setup model
+     *
+     * @return void
+     */
+    protected function setup()
+    {
     }
 
     /**

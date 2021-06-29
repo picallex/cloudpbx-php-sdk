@@ -143,6 +143,11 @@ class ClientCurlTest extends TestCase
         $router = $routers[0];
         $this->assertTrue($router->hasAttribute('id'));
         $this->assertTrue($router->hasAttribute('did'));
+
+        $this->assertFalse(is_null($router->has_one));
+        $this->assertFalse(is_null($router->has_one->model));
+        $this->assertFalse(is_null($router->has_one->id));
+
         // optional attributes:
         // - callcenter_queue_id
         // - user_id
