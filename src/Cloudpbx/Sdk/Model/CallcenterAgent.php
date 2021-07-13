@@ -56,8 +56,8 @@ final class CallcenterAgent extends \Cloudpbx\Sdk\Model
 
     protected function setup()
     {
-        $this->user = new Relation('user', $this->user_id);
+        $this->user = new Relation('user', $this->user_id, [$this->customer_id]);
         $this->customer = new Relation('customer', $this->customer_id);
-        $this->callcenter_queue = new Relation('callcenter_queue', $this->callcenter_queue_id);
+        $this->callcenter_queue = new Relation('callcenter_queue', $this->callcenter_queue_id, [$this->customer_id]);
     }
 }

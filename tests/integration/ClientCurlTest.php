@@ -302,4 +302,19 @@ class ClientCurlTest extends TestCase
         $this->assertTrue($agent->hasAttribute('autologin'));
     }
 
+    /**
+     * @vcr query_all_agents_preloads
+     * @depends testQueryAllCallcenterQueue
+     */
+    public function testPreloadRelationUsingCallcenterAgent(array $stack): void
+    {
+        [$customer, $queue] = array_pop($stack);
+        $agents = $this->client->callcenterQueues->agents($customer->id, $queue->id);
+
+        $agent = $agents[0];
+        $loaded_customer = $this->client->preload($agent->customer);
+
+        $this->assertEquals($loaded_customer->id, $customer->id);
+        $this->assertEquals($loaded_customer->name, $customer->name);
+    }
 }

@@ -23,15 +23,22 @@ final class Relation
     public $id;
 
     /**
+     * @var array<integer>
+     */
+    public $path_ids;
+
+    /**
      * @param string $model
      * @param integer $id
+     * @param array<integer> $path_ids
      */
-    public function __construct($model, $id)
+    public function __construct($model, $id, $path_ids = [])
     {
         Argument::isString($model);
         Argument::isInteger($id);
 
         $this->model = $model;
         $this->id = $id;
+        $this->path_ids = $path_ids;
     }
 }

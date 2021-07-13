@@ -57,4 +57,28 @@ final class CallcenterQueue extends Api
 
         return $this->recordsToModel($records, Model\CallcenterAgent::class);
     }
+
+    /**
+     * @param integer $customer_id
+     * @param integer $callcenter_queue_id
+     *
+     * @return Model\CallcenterQueue
+     */
+    public function show($customer_id, $callcenter_queue_id)
+    {
+        Argument::isInteger($customer_id);
+        Argument::isInteger($callcenter_queue_id);
+
+        $query = $this->protocol->prepareQuery(
+            '/api/v1/management/customers/{customer_id}/service/callcenter/queues/{callcenter_queue_id}',
+            [
+                '{customer_id}' => $customer_id,
+                '{callcenter_queue_id}' => $callcenter_queue_id
+            ]
+        );
+
+        $record = $this->protocol->one($query);
+
+        return $this->recordToModel($record, Model\CallcenterQueue::class);
+    }
 }

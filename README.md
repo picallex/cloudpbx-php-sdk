@@ -24,6 +24,9 @@ ver **tests/integration/ClientCurlTest.php** ejemplos de uso.
 
  // consultar usuario/extension ver `\Cloudpbx\Sdk\User` para mas detalle
  $users = $client->users->all($customers[0]->id);
+
+ // consultar relacion
+ $customer_of_user = $client->preload($users[0]->customer);
 ~~~
 
 # Contribuir

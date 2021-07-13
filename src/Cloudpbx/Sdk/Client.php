@@ -9,6 +9,8 @@ declare(strict_types=1);
 
 namespace Cloudpbx\Sdk;
 
+use Cloudpbx\Util\Inflector;
+
 /**
  * @property Customer $customers
  * @property User $users
@@ -101,6 +103,28 @@ final class Client
     public function getIvrMenuEntries()
     {
         return IvrMenuEntry::fromTransport($this->protocol);
+    }
+
+    /**
+     * load relation.
+     *
+     * @param Model\Relation $relation
+     *
+     * @return Model
+     */
+    public function preload($relation)
+    {
+        # bit4bit: get by convention need a explict contract
+        $api_action = 'get' . ucfirst(Inflector::apify($relation->model));
+        $api_args = array_merge($relation->path_ids, [$relation->id]);
+
+        # this way allow pass phpstan
+        $api = $this->$api_action();
+        $call = function (...$params) use ($api) {
+            return $api->show(...$params);
+        };
+
+        return call_user_func_array($call, $api_args);
     }
 
     public function __get(string $name): object
