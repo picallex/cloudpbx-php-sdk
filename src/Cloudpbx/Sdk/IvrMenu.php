@@ -21,12 +21,39 @@ final class IvrMenu extends Api
     {
         Argument::isInteger($customer_id);
 
-        $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}/ivr_menus', [
+        $query = $this->protocol->prepareQuery(
+            '/api/v1/management/customers/{customer_id}/ivr_menus',
+            [
             '{customer_id}' => $customer_id
-        ]);
+        ]
+        );
 
         $records = $this->protocol->list($query);
 
         return $this->recordsToModel($records, \Cloudpbx\Sdk\Model\IvrMenu::class);
+    }
+
+    /**
+     * @param integer $customer_id
+     * @param integer $id
+     *
+     * @return Model\IvrMenu
+     */
+    public function show($customer_id, $id)
+    {
+        Argument::isInteger($customer_id);
+        Argument::isInteger($id);
+
+        $query = $this->protocol->prepareQuery(
+            '/api/v1/management/customers/{customer_id}/ivr_menus/{id}',
+            [
+                '{customer_id}' => $customer_id,
+                '{id}' => $id
+            ]
+        );
+
+        $record = $this->protocol->one($query);
+
+        return $this->recordToModel($record, Model\IvrMenu::class);
     }
 }

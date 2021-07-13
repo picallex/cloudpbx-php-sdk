@@ -14,7 +14,7 @@
             code: '200'
             message: OK
         headers:
-            Date: 'Tue, 13 Jul 2021 17:46:45 GMT'
+            Date: 'Tue, 13 Jul 2021 21:45:18 GMT'
             Content-Type: 'application/json; charset=utf-8'
             Content-Length: '1613'
             Connection: keep-alive
@@ -22,7 +22,7 @@
             cache-control: 'max-age=0, private, must-revalidate'
             content-security-policy: 'script-src ''self'''
             x-frame-options: deny
-            x-request-id: FpFq1XkJipvNb6EAAAZh
+            x-request-id: FpF32eXCcCQvvRoAAAZx
         body: '{"data":[{"autologin":false,"callcenter_queue_id":1,"customer_id":2,"id":1,"user_id":1},{"autologin":false,"callcenter_queue_id":1,"customer_id":3,"id":2,"user_id":2},{"autologin":false,"callcenter_queue_id":1,"customer_id":3,"id":4,"user_id":4},{"autologin":false,"callcenter_queue_id":1,"customer_id":3,"id":6,"user_id":6},{"autologin":false,"callcenter_queue_id":1,"customer_id":2,"id":7,"user_id":7},{"autologin":false,"callcenter_queue_id":1,"customer_id":3,"id":8,"user_id":8},{"autologin":false,"callcenter_queue_id":1,"customer_id":3,"id":10,"user_id":10},{"autologin":false,"callcenter_queue_id":1,"customer_id":2,"id":5,"user_id":5},{"autologin":false,"callcenter_queue_id":1,"customer_id":3,"id":12,"user_id":12},{"autologin":false,"callcenter_queue_id":1,"customer_id":3,"id":14,"user_id":14},{"autologin":false,"callcenter_queue_id":1,"customer_id":2,"id":15,"user_id":15},{"autologin":false,"callcenter_queue_id":1,"customer_id":3,"id":16,"user_id":16},{"autologin":false,"callcenter_queue_id":1,"customer_id":2,"id":19,"user_id":20},{"autologin":false,"callcenter_queue_id":1,"customer_id":3,"id":18,"user_id":18},{"autologin":false,"callcenter_queue_id":1,"customer_id":2,"id":44,"user_id":9},{"autologin":false,"callcenter_queue_id":1,"customer_id":2,"id":28,"user_id":43},{"autologin":false,"callcenter_queue_id":1,"customer_id":2,"id":11,"user_id":11},{"autologin":false,"callcenter_queue_id":1,"customer_id":2,"id":3,"user_id":3},{"autologin":false,"callcenter_queue_id":1,"customer_id":2,"id":17,"user_id":17},{"autologin":false,"callcenter_queue_id":1,"customer_id":2,"id":31,"user_id":13}]}'
         curl_info:
             url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/service/callcenter/queues/1/agents'
@@ -33,35 +33,35 @@
             filetime: -1
             ssl_verify_result: 0
             redirect_count: 0
-            total_time: 0.535938
-            namelookup_time: 0.206778
-            connect_time: 0.345644
-            pretransfer_time: 0.34579
+            total_time: 0.596539
+            namelookup_time: 0.256815
+            connect_time: 0.421273
+            pretransfer_time: 0.421373
             size_upload: !!float 0
             size_download: !!float 1613
-            speed_download: !!float 3014
+            speed_download: !!float 2706
             speed_upload: !!float 0
             download_content_length: !!float 1613
             upload_content_length: !!float -1
-            starttransfer_time: 0.535887
+            starttransfer_time: 0.596485
             redirect_time: !!float 0
             redirect_url: ''
             primary_ip: 3.18.140.5
             certinfo: {  }
             primary_port: 80
             local_ip: 192.168.0.104
-            local_port: 41924
+            local_port: 41954
             http_version: 2
             protocol: 1
             ssl_verifyresult: 0
             scheme: HTTP
             appconnect_time_us: 0
-            connect_time_us: 345644
-            namelookup_time_us: 206778
-            pretransfer_time_us: 345790
+            connect_time_us: 421273
+            namelookup_time_us: 256815
+            pretransfer_time_us: 421373
             redirect_time_us: 0
-            starttransfer_time_us: 535887
-            total_time_us: 535938
+            starttransfer_time_us: 596485
+            total_time_us: 596539
 -
     request:
         method: GET
@@ -77,7 +77,7 @@
             code: '200'
             message: OK
         headers:
-            Date: 'Tue, 13 Jul 2021 17:47:32 GMT'
+            Date: 'Tue, 13 Jul 2021 21:45:18 GMT'
             Content-Type: 'application/json; charset=utf-8'
             Content-Length: '120'
             Connection: keep-alive
@@ -85,7 +85,7 @@
             cache-control: 'max-age=0, private, must-revalidate'
             content-security-policy: 'script-src ''self'''
             x-frame-options: deny
-            x-request-id: FpFq4FesMkMKZekAAATC
+            x-request-id: FpF32gmjIf1HibgAAAaR
         body: '{"data":{"accountcode":null,"domain":"cloudpbxclient1.picallex.com","hold_music_sound_id":null,"id":2,"name":"client1"}}'
         curl_info:
             url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2'
@@ -96,32 +96,32 @@
             filetime: -1
             ssl_verify_result: 0
             redirect_count: 0
-            total_time: 0.540796
-            namelookup_time: 0.207375
-            connect_time: 0.378831
-            pretransfer_time: 0.37894
+            total_time: 0.586061
+            namelookup_time: 0.20701
+            connect_time: 0.388284
+            pretransfer_time: 0.388375
             size_upload: !!float 0
             size_download: !!float 120
-            speed_download: !!float 222
+            speed_download: !!float 204
             speed_upload: !!float 0
             download_content_length: !!float 120
             upload_content_length: !!float -1
-            starttransfer_time: 0.540749
+            starttransfer_time: 0.586013
             redirect_time: !!float 0
             redirect_url: ''
-            primary_ip: 18.219.220.239
+            primary_ip: 3.18.140.5
             certinfo: {  }
             primary_port: 80
             local_ip: 192.168.0.104
-            local_port: 39766
+            local_port: 41956
             http_version: 2
             protocol: 1
             ssl_verifyresult: 0
             scheme: HTTP
             appconnect_time_us: 0
-            connect_time_us: 378831
-            namelookup_time_us: 207375
-            pretransfer_time_us: 378940
+            connect_time_us: 388284
+            namelookup_time_us: 207010
+            pretransfer_time_us: 388375
             redirect_time_us: 0
-            starttransfer_time_us: 540749
-            total_time_us: 540796
+            starttransfer_time_us: 586013
+            total_time_us: 586061

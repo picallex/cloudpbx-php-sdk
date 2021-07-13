@@ -30,6 +30,44 @@ final class IvrMenuEntry extends Api
 
         $records = $this->protocol->list($query);
 
-        return $this->recordsToModel($records, \Cloudpbx\Sdk\Model\IvrMenuEntry::class);
+        return $this->recordsToModel(
+            $records,
+            \Cloudpbx\Sdk\Model\IvrMenuEntry::class,
+            [
+                                         'transform' => [
+                                             [$this, 'append_customer_id'],
+                                             [$customer_id]
+                                         ],
+                                     ]
+        );
+    }
+
+    /**
+     * @param integer $customer_id
+     * @param integer $ivr_menu_id
+     * @param integer $id
+     *
+     * @return \Cloudpbx\Sdk\Model\IvrMenuEntry
+     */
+    public function show($customer_id, $ivr_menu_id, $id)
+    {
+        $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}/ivr_menus/{ivrmenu_id}/entries/{id}', [
+            '{customer_id}' => $customer_id,
+            '{ivrmenu_id}' => $ivr_menu_id,
+            '{id}' => $id
+        ]);
+
+        $record = $this->protocol->one($query);
+
+        return $this->recordToModel($record, \Cloudpbx\Sdk\Model\IvrMenuEntry::class);
+    }
+
+    /**
+     * @param array<string, mixed> $record
+     * @param integer $customer_id
+     */
+    private function append_customer_id(&$record, $customer_id): void
+    {
+        $record['customer_id'] = $customer_id;
     }
 }

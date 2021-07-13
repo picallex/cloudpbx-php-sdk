@@ -33,4 +33,25 @@ final class Dialout extends Api
 
         return $this->recordsToModel($records, Model\Dialout::class);
     }
+
+    /**
+     * @param int $customer_id
+     * @param int $id
+     *
+     * @return Model\Dialout
+     */
+    public function show($customer_id, $id)
+    {
+        $query = $this->protocol->prepareQuery(
+            '/api/v1/management/customers/{customer_id}/dialouts/{id}',
+            [
+                '{customer_id}' => $customer_id,
+                '{id}' => $id
+            ]
+        );
+
+        $record = $this->protocol->one($query);
+
+        return $this->recordToModel($record, Model\Dialout::class);
+    }
 }

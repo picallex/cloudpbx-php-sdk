@@ -26,6 +26,17 @@ final class IvrMenuEntry extends \Cloudpbx\Sdk\Model
     public $ivr_menu;
 
     /**
+     * @var integer
+     */
+    public $customer_id;
+
+
+    /**
+     * @var Relation
+     */
+    public $customer;
+
+    /**
      * @var string
      */
     public $digits;
@@ -47,5 +58,6 @@ final class IvrMenuEntry extends \Cloudpbx\Sdk\Model
     public function setup()
     {
         $this->ivr_menu = new Relation('ivr_menu', $this->ivr_menu_id);
+        $this->customer = new Relation('customer', $this->customer_id);
     }
 }

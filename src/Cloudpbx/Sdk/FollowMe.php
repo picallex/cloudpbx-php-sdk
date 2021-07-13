@@ -32,4 +32,28 @@ final class FollowMe extends Api
 
         return $this->recordsToModel($records, \Cloudpbx\Sdk\Model\FollowMe::class);
     }
+
+    /**
+     * @param integer $customer_id
+     * @param integer $id
+     *
+     * @return Model\FollowMe
+     */
+    public function show($customer_id, $id)
+    {
+        Argument::isInteger($customer_id);
+        Argument::isInteger($id);
+
+        $query = $this->protocol->prepareQuery(
+            '/api/v1/management/customers/{customer_id}/follow_me/{id}',
+            [
+                '{customer_id}' => $customer_id,
+                '{id}' => $id
+            ]
+        );
+
+        $record = $this->protocol->one($query);
+
+        return $this->recordToModel($record, \Cloudpbx\Sdk\Model\FollowMe::class);
+    }
 }

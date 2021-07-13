@@ -168,6 +168,8 @@ class ClientCurlTest extends TestCase
         // - user_id
         // - ivr_menu_id
         // - dialout_id
+        $relation = $this->client->preload($router->has_one);
+        $this->assertTrue($relation->hasAttribute('id'));
     }
 
     /**

@@ -17,6 +17,11 @@ final class RouterDid extends \Cloudpbx\Sdk\Model
     public $id;
 
     /**
+     * @var integer
+     */
+    public $customer_id;
+
+    /**
      * @var string
      */
     public $did;
@@ -52,9 +57,9 @@ final class RouterDid extends \Cloudpbx\Sdk\Model
     public $follow_me_id = null;
 
     /**
-     * @var Relation|null
+     * @var Relation
      */
-    public $has_one = null;
+    public $has_one;
 
     public function __construct()
     {
@@ -74,9 +79,15 @@ final class RouterDid extends \Cloudpbx\Sdk\Model
             $relation_field = "{$relation}_id";
             $relation_id = $this->$relation_field;
             if (!is_null($relation_id)) {
-                $this->has_one = new Relation($relation, $relation_id);
+                // ATTENTION(bit4bit): now this works because al relations only belongs to customer
+                $this->has_one = new Relation($relation, $relation_id, [$this->customer_id]);
                 break;
             }
+        }
+
+        //@phpstan-ignore-next-line
+        if (is_null($this->has_one)) {
+            throw new \RuntimeException('not found a relation for has_one');
         }
     }
 }
