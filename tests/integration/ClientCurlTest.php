@@ -226,12 +226,8 @@ class ClientCurlTest extends TestCase
     /**
      * @vcr query_all_ivr_menu_by_customer
      */
-    public function testQueryAllIvrMenu(): void
+    public function testQueryAllIvrMenu(): array
     {
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
-
         $ivrmenus = $this->client->ivrMenus->all(self::$customer_id);
 
         $this->assertIsArray($ivrmenus);
@@ -241,5 +237,27 @@ class ClientCurlTest extends TestCase
         $this->assertTrue($ivrmenu->hasAttribute('id'));
         $this->assertTrue($ivrmenu->hasAttribute('name'));
         $this->assertEquals(self::$customer_id, $ivrmenu->customer->id);
+
+        return [$ivrmenu];
+    }
+
+    /**
+     * @vcr query_all_ivr_menu_entries
+     * @depends testQueryAllIvrMenu
+     */
+    public function testQueryAllIvrMenuEntries(array $stack): void
+    {
+        $ivrmenu = array_pop($stack);
+
+        $entries = $this->client->ivrMenuEntries->all(self::$customer_id, $ivrmenu->id);
+
+        $this->assertIsArray($entries);
+        $this->assertGreaterThan(0, count($entries));
+
+        $entry = $entries[0];
+        $this->assertTrue($entry->hasAttribute('id'));
+        $this->assertTrue($entry->hasAttribute('digits'));
+        $this->assertTrue($entry->hasAttribute('param'));
+        $this->assertTrue($entry->hasAttribute('action'));
     }
 }

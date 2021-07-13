@@ -2,69 +2,6 @@
 -
     request:
         method: GET
-        url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/4/users/21'
-        headers:
-            Host: cloudpbxapidev.picallex.com
-            x-api-key: ''
-            content-type: application/json
-            accept: 'application/json, plain/text'
-    response:
-        status:
-            http_version: '1.1'
-            code: '200'
-            message: OK
-        headers:
-            Date: 'Wed, 09 Jun 2021 16:23:06 GMT'
-            Content-Type: 'application/json; charset=utf-8'
-            Content-Length: '249'
-            Connection: keep-alive
-            Server: nginx/1.14.2
-            cache-control: 'max-age=0, private, must-revalidate'
-            content-security-policy: 'script-src ''self'''
-            x-frame-options: deny
-            x-request-id: Fob2iZctuTOMvgYAAawy
-        body: '{"data":{"accountcode":"","alias":"106","caller_name":"Ext 106","caller_number":"106","dialstring":"user/106@pbxpicallex2.vip2phone.net","dnd_on_sip_unregister":true,"do_not_disturb":false,"id":21,"is_webrtc":false,"name":"106","record_audio":true}}'
-        curl_info:
-            url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/4/users/21'
-            content_type: 'application/json; charset=utf-8'
-            http_code: 200
-            header_size: 325
-            request_size: 210
-            filetime: -1
-            ssl_verify_result: 0
-            redirect_count: 0
-            total_time: 0.358714
-            namelookup_time: 0.156886
-            connect_time: 0.252368
-            pretransfer_time: 0.252488
-            size_upload: !!float 0
-            size_download: !!float 249
-            speed_download: !!float 695
-            speed_upload: !!float 0
-            download_content_length: !!float 249
-            upload_content_length: !!float -1
-            starttransfer_time: 0.358663
-            redirect_time: !!float 0
-            redirect_url: ''
-            primary_ip: 3.18.140.5
-            certinfo: {  }
-            primary_port: 80
-            local_ip: 192.168.0.104
-            local_port: 49260
-            http_version: 2
-            protocol: 1
-            ssl_verifyresult: 0
-            scheme: HTTP
-            appconnect_time_us: 0
-            connect_time_us: 252368
-            namelookup_time_us: 156886
-            pretransfer_time_us: 252488
-            redirect_time_us: 0
-            starttransfer_time_us: 358663
-            total_time_us: 358714
--
-    request:
-        method: GET
         url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/users/1'
         headers:
             Host: cloudpbxapidev.picallex.com
@@ -77,16 +14,16 @@
             code: '200'
             message: OK
         headers:
-            Date: 'Wed, 09 Jun 2021 16:48:36 GMT'
+            Date: 'Tue, 13 Jul 2021 15:37:26 GMT'
             Content-Type: 'application/json; charset=utf-8'
-            Content-Length: '255'
+            Content-Length: '325'
             Connection: keep-alive
             Server: nginx/1.14.2
             cache-control: 'max-age=0, private, must-revalidate'
             content-security-policy: 'script-src ''self'''
             x-frame-options: deny
-            x-request-id: Fob37damXvk9Is8AAQUR
-        body: '{"data":{"accountcode":"","alias":"1001","caller_name":"Ext 1001","caller_number":"1001","dialstring":"user/1001@cloudpbxclient1.picallex.com","dnd_on_sip_unregister":true,"do_not_disturb":false,"id":1,"is_webrtc":false,"name":"1001","record_audio":true}}'
+            x-request-id: FpFjxunFPnvPEOEAAHLR
+        body: '{"data":{"accountcode":"","alias":"1001","available_on_sip_register":false,"caller_name":"Ext 1001","caller_number":"1001","customer_id":2,"dialstring":"user/1001@cloudpbxclient1.picallex.com","dnd_on_sip_unregister":true,"do_not_disturb":false,"follow_me_id":null,"id":1,"is_webrtc":false,"name":"1001","record_audio":true}}'
         curl_info:
             url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/users/1'
             content_type: 'application/json; charset=utf-8'
@@ -96,32 +33,32 @@
             filetime: -1
             ssl_verify_result: 0
             redirect_count: 0
-            total_time: 0.369514
-            namelookup_time: 0.107778
-            connect_time: 0.213437
-            pretransfer_time: 0.213543
+            total_time: 0.671355
+            namelookup_time: 0.25879
+            connect_time: 0.397784
+            pretransfer_time: 0.397881
             size_upload: !!float 0
-            size_download: !!float 255
-            speed_download: !!float 691
+            size_download: !!float 325
+            speed_download: !!float 484
             speed_upload: !!float 0
-            download_content_length: !!float 255
+            download_content_length: !!float 325
             upload_content_length: !!float -1
-            starttransfer_time: 0.369462
+            starttransfer_time: 0.671305
             redirect_time: !!float 0
             redirect_url: ''
-            primary_ip: 3.18.140.5
+            primary_ip: 18.219.220.239
             certinfo: {  }
             primary_port: 80
             local_ip: 192.168.0.104
-            local_port: 49358
+            local_port: 39706
             http_version: 2
             protocol: 1
             ssl_verifyresult: 0
             scheme: HTTP
             appconnect_time_us: 0
-            connect_time_us: 213437
-            namelookup_time_us: 107778
-            pretransfer_time_us: 213543
+            connect_time_us: 397784
+            namelookup_time_us: 258790
+            pretransfer_time_us: 397881
             redirect_time_us: 0
-            starttransfer_time_us: 369462
-            total_time_us: 369514
+            starttransfer_time_us: 671305
+            total_time_us: 671355

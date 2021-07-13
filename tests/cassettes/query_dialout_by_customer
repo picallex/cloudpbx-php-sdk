@@ -2,69 +2,6 @@
 -
     request:
         method: GET
-        url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/4/dialouts'
-        headers:
-            Host: cloudpbxapidev.picallex.com
-            x-api-key: ''
-            content-type: application/json
-            accept: 'application/json, plain/text'
-    response:
-        status:
-            http_version: '1.1'
-            code: '200'
-            message: OK
-        headers:
-            Date: 'Wed, 09 Jun 2021 16:42:45 GMT'
-            Content-Type: 'application/json; charset=utf-8'
-            Content-Length: '524'
-            Connection: keep-alive
-            Server: nginx/1.14.2
-            cache-control: 'max-age=0, private, must-revalidate'
-            content-security-policy: 'script-src ''self'''
-            x-frame-options: deny
-            x-request-id: Fob3nB_zgeqJPngAAQSh
-        body: '{"data":[{"callerid_strategy":"random","customer_id":4,"destination":"1","gateway_strategy":"sequence","id":2,"name":"USA","prepend":"","strip":"","user_id":null,"weight":99},{"callerid_strategy":"random","customer_id":4,"destination":"\\d{11}","gateway_strategy":"sequence","id":3,"name":"Local USA","prepend":"","strip":"","user_id":null,"weight":99},{"callerid_strategy":"random","customer_id":4,"destination":"9","gateway_strategy":"sequence","id":4,"name":"Locales","prepend":"","strip":"","user_id":null,"weight":99}]}'
-        curl_info:
-            url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/4/dialouts'
-            content_type: 'application/json; charset=utf-8'
-            http_code: 200
-            header_size: 325
-            request_size: 210
-            filetime: -1
-            ssl_verify_result: 0
-            redirect_count: 0
-            total_time: 0.485201
-            namelookup_time: 0.207107
-            connect_time: 0.349513
-            pretransfer_time: 0.349628
-            size_upload: !!float 0
-            size_download: !!float 524
-            speed_download: !!float 1080
-            speed_upload: !!float 0
-            download_content_length: !!float 524
-            upload_content_length: !!float -1
-            starttransfer_time: 0.485147
-            redirect_time: !!float 0
-            redirect_url: ''
-            primary_ip: 52.15.96.156
-            certinfo: {  }
-            primary_port: 80
-            local_ip: 192.168.0.104
-            local_port: 42436
-            http_version: 2
-            protocol: 1
-            ssl_verifyresult: 0
-            scheme: HTTP
-            appconnect_time_us: 0
-            connect_time_us: 349513
-            namelookup_time_us: 207107
-            pretransfer_time_us: 349628
-            redirect_time_us: 0
-            starttransfer_time_us: 485147
-            total_time_us: 485201
--
-    request:
-        method: GET
         url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/dialouts'
         headers:
             Host: cloudpbxapidev.picallex.com
@@ -77,7 +14,7 @@
             code: '200'
             message: OK
         headers:
-            Date: 'Wed, 09 Jun 2021 16:48:37 GMT'
+            Date: 'Tue, 13 Jul 2021 15:37:27 GMT'
             Content-Type: 'application/json; charset=utf-8'
             Content-Length: '545'
             Connection: keep-alive
@@ -85,7 +22,7 @@
             cache-control: 'max-age=0, private, must-revalidate'
             content-security-policy: 'script-src ''self'''
             x-frame-options: deny
-            x-request-id: Fob37gM69DT0w4wAAhDR
+            x-request-id: FpFjxypFYTQGXT8AAHMB
         body: '{"data":[{"callerid_strategy":"random","customer_id":2,"destination":"99000.","gateway_strategy":"sequence","id":1,"name":"default out","prepend":"","strip":"","user_id":null,"weight":99},{"callerid_strategy":"random","customer_id":2,"destination":"1XXXXXXXXXX","gateway_strategy":"sequence","id":5,"name":"USA Local","prepend":"","strip":"","user_id":null,"weight":99},{"callerid_strategy":"random","customer_id":2,"destination":"57X.","gateway_strategy":"sequence","id":6,"name":"Colombia","prepend":"","strip":"","user_id":null,"weight":99}]}'
         curl_info:
             url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/dialouts'
@@ -96,32 +33,32 @@
             filetime: -1
             ssl_verify_result: 0
             redirect_count: 0
-            total_time: 0.393647
-            namelookup_time: 0.156833
-            connect_time: 0.267923
-            pretransfer_time: 0.268032
+            total_time: 0.543808
+            namelookup_time: 0.208267
+            connect_time: 0.369083
+            pretransfer_time: 0.369176
             size_upload: !!float 0
             size_download: !!float 545
-            speed_download: !!float 1386
+            speed_download: !!float 1003
             speed_upload: !!float 0
             download_content_length: !!float 545
             upload_content_length: !!float -1
-            starttransfer_time: 0.393596
+            starttransfer_time: 0.543758
             redirect_time: !!float 0
             redirect_url: ''
-            primary_ip: 52.15.96.156
+            primary_ip: 3.18.140.5
             certinfo: {  }
             primary_port: 80
             local_ip: 192.168.0.104
-            local_port: 42482
+            local_port: 41850
             http_version: 2
             protocol: 1
             ssl_verifyresult: 0
             scheme: HTTP
             appconnect_time_us: 0
-            connect_time_us: 267923
-            namelookup_time_us: 156833
-            pretransfer_time_us: 268032
+            connect_time_us: 369083
+            namelookup_time_us: 208267
+            pretransfer_time_us: 369176
             redirect_time_us: 0
-            starttransfer_time_us: 393596
-            total_time_us: 393647
+            starttransfer_time_us: 543758
+            total_time_us: 543808
