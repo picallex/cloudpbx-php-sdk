@@ -14,7 +14,7 @@
             code: '200'
             message: OK
         headers:
-            Date: 'Tue, 13 Jul 2021 15:37:26 GMT'
+            Date: 'Tue, 13 Jul 2021 17:14:41 GMT'
             Content-Type: 'application/json; charset=utf-8'
             Content-Length: '325'
             Connection: keep-alive
@@ -22,7 +22,7 @@
             cache-control: 'max-age=0, private, must-revalidate'
             content-security-policy: 'script-src ''self'''
             x-frame-options: deny
-            x-request-id: FpFjxunFPnvPEOEAAHLR
+            x-request-id: FpFpFZL0yPpfo1IAAAfS
         body: '{"data":{"accountcode":"","alias":"1001","available_on_sip_register":false,"caller_name":"Ext 1001","caller_number":"1001","customer_id":2,"dialstring":"user/1001@cloudpbxclient1.picallex.com","dnd_on_sip_unregister":true,"do_not_disturb":false,"follow_me_id":null,"id":1,"is_webrtc":false,"name":"1001","record_audio":true}}'
         curl_info:
             url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/users/1'
@@ -33,32 +33,32 @@
             filetime: -1
             ssl_verify_result: 0
             redirect_count: 0
-            total_time: 0.671355
-            namelookup_time: 0.25879
-            connect_time: 0.397784
-            pretransfer_time: 0.397881
+            total_time: 0.605113
+            namelookup_time: 0.257492
+            connect_time: 0.409271
+            pretransfer_time: 0.409382
             size_upload: !!float 0
             size_download: !!float 325
-            speed_download: !!float 484
+            speed_download: !!float 537
             speed_upload: !!float 0
             download_content_length: !!float 325
             upload_content_length: !!float -1
-            starttransfer_time: 0.671305
+            starttransfer_time: 0.605032
             redirect_time: !!float 0
             redirect_url: ''
             primary_ip: 18.219.220.239
             certinfo: {  }
             primary_port: 80
             local_ip: 192.168.0.104
-            local_port: 39706
+            local_port: 39752
             http_version: 2
             protocol: 1
             ssl_verifyresult: 0
             scheme: HTTP
             appconnect_time_us: 0
-            connect_time_us: 397784
-            namelookup_time_us: 258790
-            pretransfer_time_us: 397881
+            connect_time_us: 409271
+            namelookup_time_us: 257492
+            pretransfer_time_us: 409382
             redirect_time_us: 0
-            starttransfer_time_us: 671305
-            total_time_us: 671355
+            starttransfer_time_us: 605032
+            total_time_us: 605113

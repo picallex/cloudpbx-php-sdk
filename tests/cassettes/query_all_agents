@@ -1,0 +1,190 @@
+
+-
+    request:
+        method: GET
+        url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/service/callcenter/queues/16/agents'
+        headers:
+            Host: cloudpbxapidev.picallex.com
+            x-api-key: ''
+            content-type: application/json
+            accept: 'application/json, plain/text'
+    response:
+        status:
+            http_version: '1.1'
+            code: '200'
+            message: OK
+        headers:
+            Date: 'Tue, 13 Jul 2021 17:14:47 GMT'
+            Content-Type: 'application/json; charset=utf-8'
+            Content-Length: '11'
+            Connection: keep-alive
+            Server: nginx/1.14.2
+            cache-control: 'max-age=0, private, must-revalidate'
+            content-security-policy: 'script-src ''self'''
+            x-frame-options: deny
+            x-request-id: FpFpFuXCfN87g60AAAYi
+        body: '{"data":[]}'
+        curl_info:
+            url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/service/callcenter/queues/16/agents'
+            content_type: 'application/json; charset=utf-8'
+            http_code: 200
+            header_size: 324
+            request_size: 237
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.553325
+            namelookup_time: 0.207176
+            connect_time: 0.33854
+            pretransfer_time: 0.33865
+            size_upload: !!float 0
+            size_download: !!float 11
+            speed_download: !!float 19
+            speed_upload: !!float 0
+            download_content_length: !!float 11
+            upload_content_length: !!float -1
+            starttransfer_time: 0.553275
+            redirect_time: !!float 0
+            redirect_url: ''
+            primary_ip: 3.18.140.5
+            certinfo: {  }
+            primary_port: 80
+            local_ip: 192.168.0.104
+            local_port: 41918
+            http_version: 2
+            protocol: 1
+            ssl_verifyresult: 0
+            scheme: HTTP
+            appconnect_time_us: 0
+            connect_time_us: 338540
+            namelookup_time_us: 207176
+            pretransfer_time_us: 338650
+            redirect_time_us: 0
+            starttransfer_time_us: 553275
+            total_time_us: 553325
+-
+    request:
+        method: GET
+        url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/service/callcenter/queues/17/agents'
+        headers:
+            Host: cloudpbxapidev.picallex.com
+            x-api-key: ''
+            content-type: application/json
+            accept: 'application/json, plain/text'
+    response:
+        status:
+            http_version: '1.1'
+            code: '200'
+            message: OK
+        headers:
+            Date: 'Tue, 13 Jul 2021 17:17:28 GMT'
+            Content-Type: 'application/json; charset=utf-8'
+            Content-Length: '11'
+            Connection: keep-alive
+            Server: nginx/1.14.2
+            cache-control: 'max-age=0, private, must-revalidate'
+            content-security-policy: 'script-src ''self'''
+            x-frame-options: deny
+            x-request-id: FpFpPFyhq5ZAG2EAAAbC
+        body: '{"data":[]}'
+        curl_info:
+            url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/service/callcenter/queues/17/agents'
+            content_type: 'application/json; charset=utf-8'
+            http_code: 200
+            header_size: 324
+            request_size: 237
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.48918
+            namelookup_time: 0.156452
+            connect_time: 0.305737
+            pretransfer_time: 0.305846
+            size_upload: !!float 0
+            size_download: !!float 11
+            speed_download: !!float 22
+            speed_upload: !!float 0
+            download_content_length: !!float 11
+            upload_content_length: !!float -1
+            starttransfer_time: 0.489116
+            redirect_time: !!float 0
+            redirect_url: ''
+            primary_ip: 3.18.140.5
+            certinfo: {  }
+            primary_port: 80
+            local_ip: 192.168.0.104
+            local_port: 41920
+            http_version: 2
+            protocol: 1
+            ssl_verifyresult: 0
+            scheme: HTTP
+            appconnect_time_us: 0
+            connect_time_us: 305737
+            namelookup_time_us: 156452
+            pretransfer_time_us: 305846
+            redirect_time_us: 0
+            starttransfer_time_us: 489116
+            total_time_us: 489180
+-
+    request:
+        method: GET
+        url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/service/callcenter/queues/1/agents'
+        headers:
+            Host: cloudpbxapidev.picallex.com
+            x-api-key: ''
+            content-type: application/json
+            accept: 'application/json, plain/text'
+    response:
+        status:
+            http_version: '1.1'
+            code: '200'
+            message: OK
+        headers:
+            Date: 'Tue, 13 Jul 2021 17:18:09 GMT'
+            Content-Type: 'application/json; charset=utf-8'
+            Content-Length: '1613'
+            Connection: keep-alive
+            Server: nginx/1.14.2
+            cache-control: 'max-age=0, private, must-revalidate'
+            content-security-policy: 'script-src ''self'''
+            x-frame-options: deny
+            x-request-id: FpFpReCVoISuNyIAAALB
+        body: '{"data":[{"autologin":false,"callcenter_queue_id":1,"customer_id":2,"id":1,"user_id":1},{"autologin":false,"callcenter_queue_id":1,"customer_id":3,"id":2,"user_id":2},{"autologin":false,"callcenter_queue_id":1,"customer_id":3,"id":4,"user_id":4},{"autologin":false,"callcenter_queue_id":1,"customer_id":3,"id":6,"user_id":6},{"autologin":false,"callcenter_queue_id":1,"customer_id":2,"id":7,"user_id":7},{"autologin":false,"callcenter_queue_id":1,"customer_id":3,"id":8,"user_id":8},{"autologin":false,"callcenter_queue_id":1,"customer_id":3,"id":10,"user_id":10},{"autologin":false,"callcenter_queue_id":1,"customer_id":2,"id":5,"user_id":5},{"autologin":false,"callcenter_queue_id":1,"customer_id":3,"id":12,"user_id":12},{"autologin":false,"callcenter_queue_id":1,"customer_id":3,"id":14,"user_id":14},{"autologin":false,"callcenter_queue_id":1,"customer_id":2,"id":15,"user_id":15},{"autologin":false,"callcenter_queue_id":1,"customer_id":3,"id":16,"user_id":16},{"autologin":false,"callcenter_queue_id":1,"customer_id":2,"id":19,"user_id":20},{"autologin":false,"callcenter_queue_id":1,"customer_id":3,"id":18,"user_id":18},{"autologin":false,"callcenter_queue_id":1,"customer_id":2,"id":44,"user_id":9},{"autologin":false,"callcenter_queue_id":1,"customer_id":2,"id":28,"user_id":43},{"autologin":false,"callcenter_queue_id":1,"customer_id":2,"id":11,"user_id":11},{"autologin":false,"callcenter_queue_id":1,"customer_id":2,"id":3,"user_id":3},{"autologin":false,"callcenter_queue_id":1,"customer_id":2,"id":17,"user_id":17},{"autologin":false,"callcenter_queue_id":1,"customer_id":2,"id":31,"user_id":13}]}'
+        curl_info:
+            url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/service/callcenter/queues/1/agents'
+            content_type: 'application/json; charset=utf-8'
+            http_code: 200
+            header_size: 326
+            request_size: 236
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.46108
+            namelookup_time: 0.156654
+            connect_time: 0.300913
+            pretransfer_time: 0.30101
+            size_upload: !!float 0
+            size_download: !!float 1613
+            speed_download: !!float 3498
+            speed_upload: !!float 0
+            download_content_length: !!float 1613
+            upload_content_length: !!float -1
+            starttransfer_time: 0.461005
+            redirect_time: !!float 0
+            redirect_url: ''
+            primary_ip: 3.18.140.5
+            certinfo: {  }
+            primary_port: 80
+            local_ip: 192.168.0.104
+            local_port: 41922
+            http_version: 2
+            protocol: 1
+            ssl_verifyresult: 0
+            scheme: HTTP
+            appconnect_time_us: 0
+            connect_time_us: 300913
+            namelookup_time_us: 156654
+            pretransfer_time_us: 301010
+            redirect_time_us: 0
+            starttransfer_time_us: 461005
+            total_time_us: 461080

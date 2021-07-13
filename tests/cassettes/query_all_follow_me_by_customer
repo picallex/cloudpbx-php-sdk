@@ -14,7 +14,7 @@
             code: '200'
             message: OK
         headers:
-            Date: 'Tue, 13 Jul 2021 15:37:31 GMT'
+            Date: 'Tue, 13 Jul 2021 17:14:46 GMT'
             Content-Type: 'application/json; charset=utf-8'
             Content-Length: '196'
             Connection: keep-alive
@@ -22,7 +22,7 @@
             cache-control: 'max-age=0, private, must-revalidate'
             content-security-policy: 'script-src ''self'''
             x-frame-options: deny
-            x-request-id: FpFjyADFdkg1On0AAGxy
+            x-request-id: FpFpFp0h2wMuxvAAAAgC
         body: '{"data":[{"customer_id":2,"id":1,"name":"prueba 1","ringback_sound_id":0,"ringback_type":"fake_ring"},{"customer_id":2,"id":2,"name":"prueba 1","ringback_sound_id":0,"ringback_type":"fake_ring"}]}'
         curl_info:
             url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/follow_me'
@@ -33,32 +33,32 @@
             filetime: -1
             ssl_verify_result: 0
             redirect_count: 0
-            total_time: 0.468673
-            namelookup_time: 0.156808
-            connect_time: 0.308713
-            pretransfer_time: 0.308885
+            total_time: 0.773393
+            namelookup_time: 0.25708
+            connect_time: 0.601576
+            pretransfer_time: 0.601691
             size_upload: !!float 0
             size_download: !!float 196
-            speed_download: !!float 418
+            speed_download: !!float 253
             speed_upload: !!float 0
             download_content_length: !!float 196
             upload_content_length: !!float -1
-            starttransfer_time: 0.468573
+            starttransfer_time: 0.773341
             redirect_time: !!float 0
             redirect_url: ''
             primary_ip: 3.18.140.5
             certinfo: {  }
             primary_port: 80
             local_ip: 192.168.0.104
-            local_port: 41856
+            local_port: 41914
             http_version: 2
             protocol: 1
             ssl_verifyresult: 0
             scheme: HTTP
             appconnect_time_us: 0
-            connect_time_us: 308713
-            namelookup_time_us: 156808
-            pretransfer_time_us: 308885
+            connect_time_us: 601576
+            namelookup_time_us: 257080
+            pretransfer_time_us: 601691
             redirect_time_us: 0
-            starttransfer_time_us: 468573
-            total_time_us: 468673
+            starttransfer_time_us: 773341
+            total_time_us: 773393

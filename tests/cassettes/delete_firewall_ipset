@@ -14,13 +14,13 @@
             code: '204'
             message: 'No Content'
         headers:
-            Date: 'Tue, 13 Jul 2021 15:37:30 GMT'
+            Date: 'Tue, 13 Jul 2021 17:14:45 GMT'
             Connection: keep-alive
             Server: nginx/1.14.2
             cache-control: 'max-age=0, private, must-revalidate'
             content-security-policy: 'script-src ''self'''
             x-frame-options: deny
-            x-request-id: FpFjx-WBkRGHhAsAAGxS
+            x-request-id: FpFpFm7PKIGbAO0AAAfy
         curl_info:
             url: 'http://cloudpbxapidev.picallex.com/api/v1/management/firewall/ipset/4.4.4.4%2F32'
             content_type: null
@@ -30,32 +30,32 @@
             filetime: -1
             ssl_verify_result: 0
             redirect_count: 0
-            total_time: 0.724695
-            namelookup_time: 0.257364
-            connect_time: 0.401515
-            pretransfer_time: 0.401612
+            total_time: 0.580194
+            namelookup_time: 0.206601
+            connect_time: 0.460051
+            pretransfer_time: 0.460159
             size_upload: !!float 0
             size_download: !!float 0
             speed_download: !!float 0
             speed_upload: !!float 0
             download_content_length: !!float 0
             upload_content_length: !!float -1
-            starttransfer_time: 0.724646
+            starttransfer_time: 0.580146
             redirect_time: !!float 0
             redirect_url: ''
             primary_ip: 18.219.220.239
             certinfo: {  }
             primary_port: 80
             local_ip: 192.168.0.104
-            local_port: 39712
+            local_port: 39758
             http_version: 2
             protocol: 1
             ssl_verifyresult: 0
             scheme: HTTP
             appconnect_time_us: 0
-            connect_time_us: 401515
-            namelookup_time_us: 257364
-            pretransfer_time_us: 401612
+            connect_time_us: 460051
+            namelookup_time_us: 206601
+            pretransfer_time_us: 460159
             redirect_time_us: 0
-            starttransfer_time_us: 724646
-            total_time_us: 724695
+            starttransfer_time_us: 580146
+            total_time_us: 580194

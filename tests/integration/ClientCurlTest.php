@@ -15,12 +15,14 @@ use Cloudpbx\Util;
 class ClientCurlTest extends TestCase
 {
     private static $customer_id;
+    private static $callcenter_queue_id = 0;
 
     protected function setUp(): void
     {
         $base = Util\Environment::get('test', 'cloudpbx_api_base');
         $api_key = Util\Environment::get('test', 'cloudpbx_api_key');
         self::$customer_id = (int)Util\Environment::get('test', 'cloudpbx_customer_id');
+        self::$callcenter_queue_id = (int)Util\Environment::get('test', 'cloudpbx_callcenter_queue_id', 0);
 
         $this->client = \Cloudpbx\Sdk::createDefaultClient($base, $api_key);
     }
@@ -43,21 +45,20 @@ class ClientCurlTest extends TestCase
 
     /**
      * @vcr query_one_customer
-     * @depends testQueryAllCustomers
      */
-    public function testQueryOneCustomer(array $stack): void
+    public function testQueryOneCustomer(): array
     {
-        $last_customer = array_pop($stack);
-        $customer = $this->client->customers->show($last_customer->id);
+        $customer = $this->client->customers->show(self::$customer_id);
 
-        $this->assertEquals($last_customer->name, $customer->name);
-        $this->assertEquals($last_customer->id, $customer->id);
+        $this->assertTrue($customer->hasAttribute('id'));
+        $this->assertTrue($customer->hasAttribute('name'));
 
+        return [$customer];
     }
 
     /**
      * @vcr query_all_users_by_customer
-     * @depends testQueryAllCustomers
+     * @depends testQueryOneCustomer
      */
     public function testQueryAllUsers(array $stack): array
     {
@@ -91,9 +92,9 @@ class ClientCurlTest extends TestCase
 
     /**
      * @vcr query_callcenter_queues_by_customer
-     * @depends testQueryAllCustomers
+     * @depends testQueryOneCustomer
      */
-    public function testQueryAllCallcenterQueue(array $stack): void
+    public function testQueryAllCallcenterQueue(array $stack): array
     {
         $last_customer = array_pop($stack);
 
@@ -106,11 +107,22 @@ class ClientCurlTest extends TestCase
         $this->assertTrue($queue->hasAttribute('alias'));
         $this->assertTrue($queue->hasAttribute('name'));
         $this->assertTrue($queue->hasAttribute('strategy'));
+
+
+        if (self::$callcenter_queue_id > 0) {
+            foreach ($queues as $found_queue) {
+                if ($found_queue->id == self::$callcenter_queue_id) {
+                    $queue = $found_queue;
+                    break;
+                }
+            }
+        }
+        return [[$last_customer, $queue]];
     }
 
     /**
      * @vcr query_dialout_by_customer
-     * @depends testQueryAllCustomers
+     * @depends testQueryOneCustomer
      */
     public function testQueryAllDialout(array $stack): void
     {
@@ -133,7 +145,7 @@ class ClientCurlTest extends TestCase
 
     /**
      * @vcr query_router_dids_by_customer
-     * @depends testQueryAllCustomers
+     * @depends testQueryOneCustomer
      */
     public function testQueryAllRouterDids(array $stack): void
     {
@@ -206,7 +218,7 @@ class ClientCurlTest extends TestCase
 
     /**
      * @vcr query_all_follow_me_by_customer
-     * @depends testQueryAllCustomers
+     * @depends testQueryOneCustomer
      */
     public function testQueryAllFollowMe(array $stack): void
     {
@@ -228,6 +240,10 @@ class ClientCurlTest extends TestCase
      */
     public function testQueryAllIvrMenu(): array
     {
+        $this->markTestIncomplete(
+            'This test not have staging environment'
+        );
+
         $ivrmenus = $this->client->ivrMenus->all(self::$customer_id);
 
         $this->assertIsArray($ivrmenus);
@@ -247,6 +263,10 @@ class ClientCurlTest extends TestCase
      */
     public function testQueryAllIvrMenuEntries(array $stack): void
     {
+        $this->markTestIncomplete(
+            'This test not have staging environment'
+        );
+
         $ivrmenu = array_pop($stack);
 
         $entries = $this->client->ivrMenuEntries->all(self::$customer_id, $ivrmenu->id);
@@ -260,4 +280,26 @@ class ClientCurlTest extends TestCase
         $this->assertTrue($entry->hasAttribute('param'));
         $this->assertTrue($entry->hasAttribute('action'));
     }
+
+    /**
+     * @vcr query_all_agents
+     * @depends testQueryAllCallcenterQueue
+     */
+    public function testQuerayAllAgents(array $stack): void
+    {
+        [$customer, $queue] = array_pop($stack);
+
+        $agents = $this->client->callcenterQueues->agents($customer->id, $queue->id);
+
+        $this->assertIsArray($agents);
+        $this->assertGreaterThan(0, count($agents));
+
+        $agent = $agents[0];
+        $this->assertTrue($agent->hasAttribute('id'));
+        $this->assertTrue($agent->hasAttribute('user_id'));
+        $this->assertTrue($agent->hasAttribute('customer_id'));
+        $this->assertTrue($agent->hasAttribute('callcenter_queue_id'));
+        $this->assertTrue($agent->hasAttribute('autologin'));
+    }
+
 }

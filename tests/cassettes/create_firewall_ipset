@@ -15,7 +15,7 @@
             code: '201'
             message: Created
         headers:
-            Date: 'Tue, 13 Jul 2021 15:37:29 GMT'
+            Date: 'Tue, 13 Jul 2021 17:14:44 GMT'
             Content-Type: 'application/json; charset=utf-8'
             Content-Length: '57'
             Connection: keep-alive
@@ -23,7 +23,7 @@
             cache-control: 'max-age=0, private, must-revalidate'
             content-security-policy: 'script-src ''self'''
             x-frame-options: deny
-            x-request-id: FpFjx7Yh7zdH0uoAAHMR
+            x-request-id: FpFpFkjzB4Ku6hQAAAPR
         body: '{"data":{"cidr_block":"4.4.4.4/32","status":"whitelist"}}'
         curl_info:
             url: 'http://cloudpbxapidev.picallex.com/api/v1/management/firewall/ipset'
@@ -34,32 +34,32 @@
             filetime: -1
             ssl_verify_result: 0
             redirect_count: 0
-            total_time: 0.794616
-            namelookup_time: 0.150535
-            connect_time: 0.581066
-            pretransfer_time: 0.58118
+            total_time: 0.592451
+            namelookup_time: 0.206584
+            connect_time: 0.347243
+            pretransfer_time: 0.347358
             size_upload: !!float 49
             size_download: !!float 57
-            speed_download: !!float 71
-            speed_upload: !!float 61
+            speed_download: !!float 96
+            speed_upload: !!float 82
             download_content_length: !!float 57
             upload_content_length: !!float 49
-            starttransfer_time: 0.794567
+            starttransfer_time: 0.592374
             redirect_time: !!float 0
             redirect_url: ''
             primary_ip: 3.18.140.5
             certinfo: {  }
             primary_port: 80
             local_ip: 192.168.0.104
-            local_port: 41854
+            local_port: 41912
             http_version: 2
             protocol: 1
             ssl_verifyresult: 0
             scheme: HTTP
             appconnect_time_us: 0
-            connect_time_us: 581066
-            namelookup_time_us: 150535
-            pretransfer_time_us: 581180
+            connect_time_us: 347243
+            namelookup_time_us: 206584
+            pretransfer_time_us: 347358
             redirect_time_us: 0
-            starttransfer_time_us: 794567
-            total_time_us: 794616
+            starttransfer_time_us: 592374
+            total_time_us: 592451

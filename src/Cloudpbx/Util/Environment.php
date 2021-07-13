@@ -16,11 +16,12 @@ final class Environment
      *
      * @param string $environment
      * @param string $name
+     * @param mixed $default
      *
      * @throws \RuntimeException if not found environment variable
      * @return string
      */
-    public static function get($environment, $name)
+    public static function get($environment, $name, $default = null)
     {
         $root = realpath(join(DIRECTORY_SEPARATOR, [__DIR__, '..', '..', '..']));
 
@@ -31,9 +32,9 @@ final class Environment
         $dotenv = \Dotenv\Dotenv::createImmutable($root, ".env.{$environment}");
         $dotenv->load();
 
-        $value = $_ENV[$name] ?? false;
+        $value = $_ENV[$name] ?? ($default ?? false);
 
-        if ($value === false) {
+        if ($value === false && $default === null) {
             throw new \RuntimeException("not found environment variable {$name}");
         }
 
