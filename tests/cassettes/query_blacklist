@@ -1,0 +1,190 @@
+
+-
+    request:
+        method: GET
+        url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customer/2/blacklists'
+        headers:
+            Host: cloudpbxapidev.picallex.com
+            x-api-key: ''
+            content-type: application/json
+            accept: 'application/json, plain/text'
+    response:
+        status:
+            http_version: '1.1'
+            code: '404'
+            message: 'Not Found'
+        headers:
+            Date: 'Wed, 14 Jul 2021 14:32:37 GMT'
+            Content-Type: 'application/json; charset=utf-8'
+            Content-Length: '33'
+            Connection: keep-alive
+            Server: nginx/1.14.2
+            cache-control: 'max-age=0, private, must-revalidate'
+            content-security-policy: 'script-src ''self'''
+            x-frame-options: deny
+            x-request-id: FpGu0gebFFaf_tUAAGzx
+        body: '{"errors":{"detail":"Not Found"}}'
+        curl_info:
+            url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customer/2/blacklists'
+            content_type: 'application/json; charset=utf-8'
+            http_code: 404
+            header_size: 331
+            request_size: 211
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 2.229169
+            namelookup_time: 0.257358
+            connect_time: 0.730335
+            pretransfer_time: 0.730463
+            size_upload: !!float 0
+            size_download: !!float 33
+            speed_download: !!float 14
+            speed_upload: !!float 0
+            download_content_length: !!float 33
+            upload_content_length: !!float -1
+            starttransfer_time: 2.229091
+            redirect_time: !!float 0
+            redirect_url: ''
+            primary_ip: 3.18.140.5
+            certinfo: {  }
+            primary_port: 80
+            local_ip: 10.11.83.2
+            local_port: 47602
+            http_version: 2
+            protocol: 1
+            ssl_verifyresult: 0
+            scheme: HTTP
+            appconnect_time_us: 0
+            connect_time_us: 730335
+            namelookup_time_us: 257358
+            pretransfer_time_us: 730463
+            redirect_time_us: 0
+            starttransfer_time_us: 2229091
+            total_time_us: 2229169
+-
+    request:
+        method: GET
+        url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/blacklists'
+        headers:
+            Host: cloudpbxapidev.picallex.com
+            x-api-key: ''
+            content-type: application/json
+            accept: 'application/json, plain/text'
+    response:
+        status:
+            http_version: '1.1'
+            code: '200'
+            message: OK
+        headers:
+            Date: 'Wed, 14 Jul 2021 14:33:20 GMT'
+            Content-Type: 'application/json; charset=utf-8'
+            Content-Length: '15113'
+            Connection: keep-alive
+            Server: nginx/1.14.2
+            cache-control: 'max-age=0, private, must-revalidate'
+            content-security-policy: 'script-src ''self'''
+            x-frame-options: deny
+            x-request-id: FpGu3AN37Gnr7FUAAEoC
+        body: '{"data":[{"customer_id":2,"id":5,"number":"1111123331"},{"customer_id":2,"id":9,"number":"13155596691"},{"customer_id":2,"id":10,"number":"3104934686"},{"customer_id":2,"id":11,"number":"6263838057"},{"customer_id":2,"id":12,"number":"3523168077"},{"customer_id":2,"id":13,"number":"16318558436"},{"customer_id":2,"id":14,"number":"13477262880"},{"customer_id":2,"id":15,"number":"18138678668"},{"customer_id":2,"id":16,"number":"12103931711"},{"customer_id":2,"id":17,"number":"16784975462"},{"customer_id":2,"id":18,"number":"3232233240"},{"customer_id":2,"id":19,"number":"14089915665"},{"customer_id":2,"id":20,"number":"5093933447"},{"customer_id":2,"id":21,"number":"3312624718"},{"customer_id":2,"id":22,"number":"15098317050"},{"customer_id":2,"id":23,"number":"17818030932"},{"customer_id":2,"id":24,"number":"6314240892"},{"customer_id":2,"id":25,"number":"19188501012"},{"customer_id":2,"id":26,"number":"17792101924"},{"customer_id":2,"id":27,"number":"19564295950"},{"customer_id":2,"id":28,"number":"3478671466"},{"customer_id":2,"id":29,"number":"13523168077"},{"customer_id":2,"id":30,"number":"17578317365"},{"customer_id":2,"id":31,"number":"17025172472"},{"customer_id":2,"id":32,"number":"8302207061"},{"customer_id":2,"id":33,"number":"13477060055"},{"customer_id":2,"id":34,"number":"19512695887"},{"customer_id":2,"id":35,"number":"6505211514"},{"customer_id":2,"id":36,"number":"6104589368"},{"customer_id":2,"id":37,"number":"6264288944"},{"customer_id":2,"id":38,"number":"3477262880"},{"customer_id":2,"id":39,"number":"6784975462"},{"customer_id":2,"id":40,"number":"7876494878"},{"customer_id":2,"id":41,"number":"9563127072"},{"customer_id":2,"id":42,"number":"9255327827"},{"customer_id":2,"id":43,"number":"19396407782"},{"customer_id":2,"id":44,"number":"13179608990"},{"customer_id":2,"id":45,"number":"9562574690"},{"customer_id":2,"id":46,"number":"17326499726"},{"customer_id":2,"id":47,"number":"7873751770"},{"customer_id":2,"id":48,"number":"13526426066"},{"customer_id":2,"id":49,"number":"6827191374"},{"customer_id":2,"id":50,"number":"8175266073"},{"customer_id":2,"id":51,"number":"6122616201"},{"customer_id":2,"id":52,"number":"9082674635"},{"customer_id":2,"id":53,"number":"12533441628"},{"customer_id":2,"id":54,"number":"13312624718"},{"customer_id":2,"id":55,"number":"17863897125"},{"customer_id":2,"id":56,"number":"16626391311"},{"customer_id":2,"id":57,"number":"3608295477"},{"customer_id":2,"id":58,"number":"19548058236"},{"customer_id":2,"id":59,"number":"12065036805"},{"customer_id":2,"id":60,"number":"7875437099"},{"customer_id":2,"id":61,"number":"9397753617"},{"customer_id":2,"id":62,"number":"16264288944"},{"customer_id":2,"id":63,"number":"3479980280"},{"customer_id":2,"id":64,"number":"16083701529"},{"customer_id":2,"id":65,"number":"7792101924"},{"customer_id":2,"id":66,"number":"2403707092"},{"customer_id":2,"id":67,"number":"13232233240"},{"customer_id":2,"id":68,"number":"2158884384"},{"customer_id":2,"id":69,"number":"17868063002"},{"customer_id":2,"id":70,"number":"6193664230"},{"customer_id":2,"id":71,"number":"16024840192"},{"customer_id":2,"id":72,"number":"17329380320"},{"customer_id":2,"id":73,"number":"9312098619"},{"customer_id":2,"id":74,"number":"5054902312"},{"customer_id":2,"id":75,"number":"7868063002"},{"customer_id":2,"id":76,"number":"3477060055"},{"customer_id":2,"id":77,"number":"3526426066"},{"customer_id":2,"id":78,"number":"15599350678"},{"customer_id":2,"id":79,"number":"18325082840"},{"customer_id":2,"id":80,"number":"9099000350"},{"customer_id":2,"id":81,"number":"9396407782"},{"customer_id":2,"id":82,"number":"6463745039"},{"customer_id":2,"id":83,"number":"2126865369"},{"customer_id":2,"id":84,"number":"8325082840"},{"customer_id":2,"id":85,"number":"6613729385"},{"customer_id":2,"id":86,"number":"4132408125"},{"customer_id":2,"id":87,"number":"17872953120"},{"customer_id":2,"id":88,"number":"18302651181"},{"customer_id":2,"id":89,"number":"5094803384"},{"customer_id":2,"id":90,"number":"9548058236"},{"customer_id":2,"id":91,"number":"8592706589"},{"customer_id":2,"id":92,"number":"7866065374"},{"customer_id":2,"id":93,"number":"13083858518"},{"customer_id":2,"id":94,"number":"19515701116"},{"customer_id":2,"id":95,"number":"16507715426"},{"customer_id":2,"id":96,"number":"19082674635"},{"customer_id":2,"id":97,"number":"2096758792"},{"customer_id":2,"id":98,"number":"3232433199"},{"customer_id":2,"id":99,"number":"8573330658"},{"customer_id":2,"id":100,"number":"4326341446"},{"customer_id":2,"id":101,"number":"9569619541"},{"customer_id":2,"id":102,"number":"18016803788"},{"customer_id":2,"id":103,"number":"16312452838"},{"customer_id":2,"id":104,"number":"8302651181"},{"customer_id":2,"id":105,"number":"15616281662"},{"customer_id":2,"id":106,"number":"18032717013"},{"customer_id":2,"id":107,"number":"5599350678"},{"customer_id":2,"id":108,"number":"7073638774"},{"customer_id":2,"id":113,"number":"7605003149"},{"customer_id":2,"id":117,"number":"9519909391"},{"customer_id":2,"id":122,"number":"19098154885"},{"customer_id":2,"id":109,"number":"2566410408"},{"customer_id":2,"id":110,"number":"16463745039"},{"customer_id":2,"id":114,"number":"8323926852"},{"customer_id":2,"id":119,"number":"16316082692"},{"customer_id":2,"id":111,"number":"3156638274"},{"customer_id":2,"id":115,"number":"5617675076"},{"customer_id":2,"id":120,"number":"9087643510"},{"customer_id":2,"id":112,"number":"9033317254"},{"customer_id":2,"id":116,"number":"7879257526"},{"customer_id":2,"id":118,"number":"12096758792"},{"customer_id":2,"id":121,"number":"18313596894"},{"customer_id":2,"id":123,"number":"16122616201"},{"customer_id":2,"id":124,"number":"15592011361"},{"customer_id":2,"id":125,"number":"5596557647"},{"customer_id":2,"id":126,"number":"19562574690"},{"customer_id":2,"id":127,"number":"8182884638"},{"customer_id":2,"id":128,"number":"17873751770"},{"customer_id":2,"id":129,"number":"13479980280"},{"customer_id":2,"id":130,"number":"7737251601"},{"customer_id":2,"id":131,"number":"5756403675"},{"customer_id":2,"id":132,"number":"2533441628"},{"customer_id":2,"id":133,"number":"15054902312"},{"customer_id":2,"id":134,"number":"8016803788"},{"customer_id":2,"id":135,"number":"7329654524"},{"customer_id":2,"id":136,"number":"18175266073"},{"customer_id":2,"id":137,"number":"14326341446"},{"customer_id":2,"id":138,"number":"19099000350"},{"customer_id":2,"id":139,"number":"17132989199"},{"customer_id":2,"id":140,"number":"12158884384"},{"customer_id":2,"id":141,"number":"18573330658"},{"customer_id":2,"id":142,"number":"13054470674"},{"customer_id":2,"id":143,"number":"9107693136"},{"customer_id":2,"id":144,"number":"16314240892"},{"customer_id":2,"id":145,"number":"3473659774"},{"customer_id":2,"id":146,"number":"19163204508"},{"customer_id":2,"id":147,"number":"15756403675"},{"customer_id":2,"id":148,"number":"7326499726"},{"customer_id":2,"id":149,"number":"17037310507"},{"customer_id":2,"id":150,"number":"6787912411"},{"customer_id":2,"id":151,"number":"18326598152"},{"customer_id":2,"id":152,"number":"17204778980"},{"customer_id":2,"id":153,"number":"5098317050"},{"customer_id":2,"id":154,"number":"17862671947"},{"customer_id":2,"id":155,"number":"5616281662"},{"customer_id":2,"id":156,"number":"16313217168"},{"customer_id":2,"id":157,"number":"8329845066"},{"customer_id":2,"id":158,"number":"5404870059"},{"customer_id":2,"id":159,"number":"2145054759"},{"customer_id":2,"id":160,"number":"18709182770"},{"customer_id":2,"id":161,"number":"15624196995"},{"customer_id":2,"id":162,"number":"12604662724"},{"customer_id":2,"id":163,"number":"19545510701"},{"customer_id":2,"id":164,"number":"17872499428"},{"customer_id":2,"id":165,"number":"9564295950"},{"customer_id":2,"id":166,"number":"13474083428"},{"customer_id":2,"id":167,"number":"3172575112"},{"customer_id":2,"id":168,"number":"17879257526"},{"customer_id":2,"id":169,"number":"13608295477"},{"customer_id":2,"id":170,"number":"7818030932"},{"customer_id":2,"id":171,"number":"13474308870"},{"customer_id":2,"id":172,"number":"8326598152"},{"customer_id":2,"id":173,"number":"9392403129"},{"customer_id":2,"id":174,"number":"17866065374"},{"customer_id":2,"id":175,"number":"14029842151"},{"customer_id":2,"id":176,"number":"12126865369"},{"customer_id":2,"id":177,"number":"16198085487"},{"customer_id":2,"id":178,"number":"7062608287"},{"customer_id":2,"id":179,"number":"18034414187"},{"customer_id":2,"id":180,"number":"3055480452"},{"customer_id":2,"id":181,"number":"13054015219"},{"customer_id":2,"id":182,"number":"19255327827"},{"customer_id":2,"id":183,"number":"16827191374"},{"customer_id":2,"id":184,"number":"9515701116"},{"customer_id":2,"id":185,"number":"9545510701"},{"customer_id":2,"id":186,"number":"4076667759"},{"customer_id":2,"id":187,"number":"3155596691"},{"customer_id":2,"id":188,"number":"19017799883"},{"customer_id":2,"id":189,"number":"12129617728"},{"customer_id":2,"id":190,"number":"13156638274"},{"customer_id":2,"id":191,"number":"19034930865"},{"customer_id":2,"id":192,"number":"19519909391"},{"customer_id":2,"id":193,"number":"2129617728"},{"customer_id":2,"id":194,"number":"8032717013"},{"customer_id":2,"id":195,"number":"5632103440"},{"customer_id":2,"id":196,"number":"19563127072"},{"customer_id":2,"id":197,"number":"15094803384"},{"customer_id":2,"id":198,"number":"8034414187"},{"customer_id":2,"id":199,"number":"2103931711"},{"customer_id":2,"id":200,"number":"17329654524"},{"customer_id":2,"id":201,"number":"13478671466"},{"customer_id":2,"id":202,"number":"7132989199"},{"customer_id":2,"id":203,"number":"3053316211"},{"customer_id":2,"id":204,"number":"9782598427"},{"customer_id":2,"id":205,"number":"13104934686"},{"customer_id":2,"id":206,"number":"16263838057"},{"customer_id":2,"id":207,"number":"13022819126"},{"customer_id":2,"id":208,"number":"6626391311"},{"customer_id":2,"id":209,"number":"5624196995"},{"customer_id":2,"id":210,"number":"19392403129"},{"customer_id":2,"id":211,"number":"13172575112"},{"customer_id":2,"id":212,"number":"18327390031"},{"customer_id":2,"id":213,"number":"3083858518"},{"customer_id":2,"id":214,"number":"7863897125"},{"customer_id":2,"id":215,"number":"6198085487"},{"customer_id":2,"id":216,"number":"16787912411"},{"customer_id":2,"id":217,"number":"2034607104"},{"customer_id":2,"id":218,"number":"9083133915"},{"customer_id":2,"id":219,"number":"17875437099"},{"customer_id":2,"id":220,"number":"18302998182"},{"customer_id":2,"id":221,"number":"14077919389"},{"customer_id":2,"id":222,"number":"6024840192"},{"customer_id":2,"id":223,"number":"9098154885"},{"customer_id":2,"id":224,"number":"19087643510"},{"customer_id":2,"id":225,"number":"19312098619"},{"customer_id":2,"id":226,"number":"7037310507"},{"customer_id":2,"id":231,"number":"15093933447"},{"customer_id":2,"id":236,"number":"4029842151"},{"customer_id":2,"id":240,"number":"16613729385"},{"customer_id":2,"id":245,"number":"2065036805"},{"customer_id":2,"id":249,"number":"19367602951"},{"customer_id":2,"id":253,"number":"7025172472"},{"customer_id":2,"id":258,"number":"15596557647"},{"customer_id":2,"id":227,"number":"6316082692"},{"customer_id":2,"id":232,"number":"18302207061"},{"customer_id":2,"id":237,"number":"12566410408"},{"customer_id":2,"id":241,"number":"17736791914"},{"customer_id":2,"id":246,"number":"3022819126"},{"customer_id":2,"id":228,"number":"7736791914"},{"customer_id":2,"id":233,"number":"2604662724"},{"customer_id":2,"id":238,"number":"6313217168"},{"customer_id":2,"id":242,"number":"17543682591"},{"customer_id":2,"id":247,"number":"8327390031"},{"customer_id":2,"id":229,"number":"17073638774"},{"customer_id":2,"id":234,"number":"18329845066"},{"customer_id":2,"id":243,"number":"18323926852"},{"customer_id":2,"id":230,"number":"2086047079"},{"customer_id":2,"id":235,"number":"15404870059"},{"customer_id":2,"id":239,"number":"14132408125"},{"customer_id":2,"id":244,"number":"7578317365"},{"customer_id":2,"id":248,"number":"8709182770"},{"customer_id":2,"id":250,"number":"19739028425"},{"customer_id":2,"id":251,"number":"13053316211"},{"customer_id":2,"id":252,"number":"13175973085"},{"customer_id":2,"id":254,"number":"3472210263"},{"customer_id":2,"id":255,"number":"6083701529"},{"customer_id":2,"id":256,"number":"3238736375"},{"customer_id":2,"id":257,"number":"4077919389"},{"customer_id":2,"id":259,"number":"16505211514"},{"customer_id":2,"id":260,"number":"3054470674"},{"customer_id":2,"id":261,"number":"13232433199"},{"customer_id":2,"id":262,"number":"17876494878"},{"customer_id":2,"id":263,"number":"15617675076"},{"customer_id":2,"id":264,"number":"19569619541"},{"customer_id":2,"id":265,"number":"19782598427"},{"customer_id":2,"id":266,"number":"9163204508"},{"customer_id":2,"id":267,"number":"9188501012"},{"customer_id":2,"id":268,"number":"16104589368"},{"customer_id":2,"id":269,"number":"6318558436"},{"customer_id":2,"id":270,"number":"19517321471"},{"customer_id":2,"id":271,"number":"7862671947"},{"customer_id":2,"id":272,"number":"6097127576"},{"customer_id":2,"id":273,"number":"13473659774"},{"customer_id":2,"id":274,"number":"18592706589"},{"customer_id":2,"id":275,"number":"13055480452"},{"customer_id":2,"id":276,"number":"3175973085"},{"customer_id":2,"id":277,"number":"17605003149"},{"customer_id":2,"id":278,"number":"4089915665"},{"customer_id":2,"id":279,"number":"19397753617"},{"customer_id":2,"id":280,"number":"8302998182"},{"customer_id":2,"id":281,"number":"13472210263"},{"customer_id":2,"id":282,"number":"3474083428"},{"customer_id":2,"id":283,"number":"19107693136"},{"customer_id":2,"id":284,"number":"8049710246"},{"customer_id":2,"id":285,"number":"12086047079"},{"customer_id":2,"id":286,"number":"9034930865"},{"customer_id":2,"id":287,"number":"16097127576"},{"customer_id":2,"id":288,"number":"17737251601"},{"customer_id":2,"id":289,"number":"9512695887"},{"customer_id":2,"id":290,"number":"13238736375"},{"customer_id":2,"id":291,"number":"16193664230"},{"customer_id":2,"id":292,"number":"19083133915"},{"customer_id":2,"id":293,"number":"7872499428"},{"customer_id":2,"id":294,"number":"9739028425"},{"customer_id":2,"id":295,"number":"5592011361"},{"customer_id":2,"id":296,"number":"3474308870"},{"customer_id":2,"id":297,"number":"3179608990"},{"customer_id":2,"id":298,"number":"7543682591"},{"customer_id":2,"id":299,"number":"7872953120"},{"customer_id":2,"id":300,"number":"19033317254"},{"customer_id":2,"id":301,"number":"9367602951"},{"customer_id":2,"id":302,"number":"6312452838"},{"customer_id":2,"id":303,"number":"6507715426"},{"customer_id":2,"id":304,"number":"18182884638"},{"customer_id":2,"id":305,"number":"3054015219"},{"customer_id":2,"id":306,"number":"7329380320"},{"customer_id":2,"id":307,"number":"12034607104"},{"customer_id":2,"id":308,"number":"9368288277"},{"customer_id":2,"id":309,"number":"19368288277"},{"customer_id":2,"id":310,"number":"17062608287"},{"customer_id":2,"id":311,"number":"12403707092"},{"customer_id":2,"id":313,"number":"15632103440"},{"customer_id":2,"id":314,"number":"9517321471"},{"customer_id":2,"id":315,"number":"12145054759"}]}'
+        curl_info:
+            url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/blacklists'
+            content_type: 'application/json; charset=utf-8'
+            http_code: 200
+            header_size: 327
+            request_size: 212
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 1.108896
+            namelookup_time: 0.206856
+            connect_time: 0.504482
+            pretransfer_time: 0.504617
+            size_upload: !!float 0
+            size_download: !!float 15113
+            speed_download: !!float 13639
+            speed_upload: !!float 0
+            download_content_length: !!float 15113
+            upload_content_length: !!float -1
+            starttransfer_time: 0.798834
+            redirect_time: !!float 0
+            redirect_url: ''
+            primary_ip: 18.219.220.239
+            certinfo: {  }
+            primary_port: 80
+            local_ip: 10.11.83.2
+            local_port: 42154
+            http_version: 2
+            protocol: 1
+            ssl_verifyresult: 0
+            scheme: HTTP
+            appconnect_time_us: 0
+            connect_time_us: 504482
+            namelookup_time_us: 206856
+            pretransfer_time_us: 504617
+            redirect_time_us: 0
+            starttransfer_time_us: 798834
+            total_time_us: 1108896
+-
+    request:
+        method: GET
+        url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2'
+        headers:
+            Host: cloudpbxapidev.picallex.com
+            x-api-key: ''
+            content-type: application/json
+            accept: 'application/json, plain/text'
+    response:
+        status:
+            http_version: '1.1'
+            code: '200'
+            message: OK
+        headers:
+            Date: 'Wed, 14 Jul 2021 14:33:21 GMT'
+            Content-Type: 'application/json; charset=utf-8'
+            Content-Length: '120'
+            Connection: keep-alive
+            Server: nginx/1.14.2
+            cache-control: 'max-age=0, private, must-revalidate'
+            content-security-policy: 'script-src ''self'''
+            x-frame-options: deny
+            x-request-id: FpGu3FQaSWBNj2EAAG0B
+        body: '{"data":{"accountcode":null,"domain":"cloudpbxclient1.picallex.com","hold_music_sound_id":null,"id":2,"name":"client1"}}'
+        curl_info:
+            url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2'
+            content_type: 'application/json; charset=utf-8'
+            http_code: 200
+            header_size: 325
+            request_size: 201
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 1.01972
+            namelookup_time: 0.457984
+            connect_time: 0.683538
+            pretransfer_time: 0.683658
+            size_upload: !!float 0
+            size_download: !!float 120
+            speed_download: !!float 117
+            speed_upload: !!float 0
+            download_content_length: !!float 120
+            upload_content_length: !!float -1
+            starttransfer_time: 1.019657
+            redirect_time: !!float 0
+            redirect_url: ''
+            primary_ip: 3.18.140.5
+            certinfo: {  }
+            primary_port: 80
+            local_ip: 10.11.83.2
+            local_port: 47604
+            http_version: 2
+            protocol: 1
+            ssl_verifyresult: 0
+            scheme: HTTP
+            appconnect_time_us: 0
+            connect_time_us: 683538
+            namelookup_time_us: 457984
+            pretransfer_time_us: 683658
+            redirect_time_us: 0
+            starttransfer_time_us: 1019657
+            total_time_us: 1019720

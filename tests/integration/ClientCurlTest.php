@@ -319,4 +319,23 @@ class ClientCurlTest extends TestCase
         $this->assertEquals($loaded_customer->id, $customer->id);
         $this->assertEquals($loaded_customer->name, $customer->name);
     }
+
+    /**
+     * @vcr query_blacklist
+     */
+    public function testQueryAllBlacklist(): void
+    {
+        $lists = $this->client->blacklists->all(self::$customer_id);
+
+        $this->assertIsArray($lists);
+        $this->assertGreaterThan(0, count($lists));
+
+        $blacklist = $lists[0];
+        $this->assertTrue($blacklist->hasAttribute('id'));
+        $this->assertTrue($blacklist->hasAttribute('customer_id'));
+        $this->assertTrue($blacklist->hasAttribute('number'));
+
+        $customer = $this->client->preload($blacklist->customer);
+        $this->assertEquals($customer->id, self::$customer_id);
+    }
 }

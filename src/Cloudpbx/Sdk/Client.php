@@ -17,6 +17,7 @@ use Cloudpbx\Util\Inflector;
  * @property CallcenterQueue $callcenterQueues
  * @property RouterDid $routerDids
  * @property FirewallIpSet $firewallIpSets
+ * @property Blacklist $blacklists
  */
 final class Client
 {
@@ -103,6 +104,14 @@ final class Client
     public function getIvrMenuEntries()
     {
         return IvrMenuEntry::fromTransport($this->protocol);
+    }
+
+    /**
+     * @return Blacklist
+     */
+    public function getBlacklists()
+    {
+        return Blacklist::fromTransport($this->protocol);
     }
 
     /**
