@@ -383,4 +383,20 @@ class ClientCurlTest extends TestCase
         $this->assertEquals($new_sound->id, $sound->id);
         $this->assertEquals($new_sound->customer_id, $sound->customer_id);
     }
+
+    /**
+     * @vcr query_all_supervisors
+     */
+    public function testQueryAllSupervisor(): void
+    {
+        $supervisors = $this->client->supervisors->all(self::$customer_id);
+
+        $this->assertIsArray($supervisors);
+        $this->assertGreaterThan(0, count($supervisors));
+
+        $supervisor = $supervisors[0];
+        $this->assertTrue($supervisor->hasAttribute('id'));
+        $this->assertTrue($supervisor->hasAttribute('customer_id'));
+        $this->assertTrue($supervisor->hasAttribute('user_id'));
+    }
 }

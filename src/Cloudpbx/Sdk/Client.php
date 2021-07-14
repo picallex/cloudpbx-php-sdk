@@ -132,6 +132,14 @@ final class Client
     }
 
     /**
+     * @return Supervisor
+     */
+    public function getSupervisors()
+    {
+        return Supervisor::fromTransport($this->protocol);
+    }
+
+    /**
      * load relation.
      *
      * @param Model\Relation $relation
