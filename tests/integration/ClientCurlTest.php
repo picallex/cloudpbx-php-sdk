@@ -143,6 +143,9 @@ class ClientCurlTest extends TestCase
         $this->assertTrue($dialout->hasAttribute('strip'));
         $this->assertTrue($dialout->hasAttribute('prepend'));
         $this->assertTrue($dialout->hasAttribute('weight'));
+
+        $customer = $this->client->preload($dialout->customer);
+        $this->assertEquals($customer->id, $last_customer->id);
     }
 
     /**

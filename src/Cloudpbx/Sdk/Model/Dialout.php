@@ -22,6 +22,11 @@ final class Dialout extends \Cloudpbx\Sdk\Model
     public $customer_id;
 
     /**
+     * @var Relation
+     */
+    public $customer;
+
+    /**
      * @var string
      */
     public $name;
@@ -58,5 +63,10 @@ final class Dialout extends \Cloudpbx\Sdk\Model
 
     public function __construct()
     {
+    }
+
+    protected function setup()
+    {
+        $this->customer = new Relation('customer', $this->customer_id);
     }
 }
