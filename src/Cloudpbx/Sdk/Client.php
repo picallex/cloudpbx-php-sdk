@@ -18,6 +18,7 @@ use Cloudpbx\Util\Inflector;
  * @property RouterDid $routerDids
  * @property FirewallIpSet $firewallIpSets
  * @property Blacklist $blacklists
+ * @property Sound $sounds
  */
 final class Client
 {
@@ -120,6 +121,14 @@ final class Client
     public function getFollowMeEntries()
     {
         return FollowMeEntry::fromTransport($this->protocol);
+    }
+
+    /**
+     * @return Sound
+     */
+    public function getSounds()
+    {
+        return Sound::fromTransport($this->protocol);
     }
 
     /**

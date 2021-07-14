@@ -361,4 +361,26 @@ class ClientCurlTest extends TestCase
         $customer = $this->client->preload($blacklist->customer);
         $this->assertEquals($customer->id, self::$customer_id);
     }
+
+    /**
+     * @vcr query_all_sounds
+     */
+    public function testQueryAllSound(): void
+    {
+        $sounds = $this->client->sounds->all(self::$customer_id);
+
+        $this->assertIsArray($sounds);
+        $this->assertGreaterThan(0, count($sounds));
+
+        $sound = $sounds[0];
+        $this->assertTrue($sound->hasAttribute('id'));
+        $this->assertTrue($sound->hasAttribute('customer_id'));
+        $this->assertTrue($sound->hasAttribute('name'));
+        $this->assertTrue($sound->hasAttribute('template'));
+        $this->assertTrue($sound->hasAttribute('usage'));
+
+        $new_sound = $this->client->sounds->show(self::$customer_id, $sound->id);
+        $this->assertEquals($new_sound->id, $sound->id);
+        $this->assertEquals($new_sound->customer_id, $sound->customer_id);
+    }
 }

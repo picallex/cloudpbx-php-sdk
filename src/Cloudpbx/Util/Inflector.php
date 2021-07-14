@@ -23,11 +23,13 @@ final class Inflector
         $convert = [
             'customer' => 'Customers',
             'user' => 'Users',
+            'sound' => 'Sounds',
             'dialout' => 'Dialouts',
             'callcenter_queue' => 'CallcenterQueues',
             'ivr_menu' => 'IvrMenus',
             'ivr_menu_entry' => 'IvrMenuEntries',
-            'follow_me' => 'FollowMes'
+            'follow_me' => 'FollowMes',
+            'follow_me_entry' => 'FollowMeEntries'
         ];
 
         return $convert[$word];

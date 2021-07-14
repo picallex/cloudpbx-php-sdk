@@ -11,6 +11,9 @@ namespace Cloudpbx\Sdk;
 
 use Cloudpbx\Util;
 
+/**
+ * @phpstan-type RecordTransformer array{0: Callable, 1: array<mixed>}
+ */
 abstract class Api
 {
     /**
@@ -56,7 +59,7 @@ abstract class Api
     /**
      * @param array<mixed> $records
      * @param string $model
-     * @param array{'transform'?: array{0: Callable, 1: array<mixed>} } $options
+     * @param array{'transform'?: RecordTransformer } $options
      *
      * @return array<mixed>
      */
