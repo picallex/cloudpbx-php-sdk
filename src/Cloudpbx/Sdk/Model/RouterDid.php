@@ -58,6 +58,8 @@ final class RouterDid extends \Cloudpbx\Sdk\Model
 
     /**
      * @var Relation
+     *
+     * @see \Cloudpbx\Sdk\Client::preload for loading this relation as model
      */
     public $has_one;
 
