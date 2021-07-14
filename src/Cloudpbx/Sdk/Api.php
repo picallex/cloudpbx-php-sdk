@@ -89,7 +89,7 @@ abstract class Api
         list($cb, $args) = $options['transform'];
 
         return function (&$record) use ($cb, $args) {
-            call_user_func_array($cb, array_merge([$record], $args));
+            call_user_func_array($cb, array_merge([&$record], $args));
         };
     }
 
@@ -101,6 +101,6 @@ abstract class Api
      */
     private function applyTransform(&$record, $transform)
     {
-        call_user_func_array($transform, [$record]);
+        call_user_func_array($transform, [&$record]);
     }
 }

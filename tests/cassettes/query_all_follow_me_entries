@@ -1,0 +1,190 @@
+
+-
+    request:
+        method: GET
+        url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/follow_me/1/entries'
+        headers:
+            Host: cloudpbxapidev.picallex.com
+            x-api-key: ''
+            content-type: application/json
+            accept: 'application/json, plain/text'
+    response:
+        status:
+            http_version: '1.1'
+            code: '200'
+            message: OK
+        headers:
+            Date: 'Wed, 14 Jul 2021 15:59:42 GMT'
+            Content-Type: 'application/json; charset=utf-8'
+            Content-Length: '11'
+            Connection: keep-alive
+            Server: nginx/1.14.2
+            cache-control: 'max-age=0, private, must-revalidate'
+            content-security-policy: 'script-src ''self'''
+            x-frame-options: deny
+            x-request-id: FpGzkojTCqLCvxgAAHTR
+        body: '{"data":[]}'
+        curl_info:
+            url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/follow_me/1/entries'
+            content_type: 'application/json; charset=utf-8'
+            http_code: 200
+            header_size: 324
+            request_size: 221
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 1.091723
+            namelookup_time: 0.204013
+            connect_time: 0.401857
+            pretransfer_time: 0.401997
+            size_upload: !!float 0
+            size_download: !!float 11
+            speed_download: !!float 10
+            speed_upload: !!float 0
+            download_content_length: !!float 11
+            upload_content_length: !!float -1
+            starttransfer_time: 1.091673
+            redirect_time: !!float 0
+            redirect_url: ''
+            primary_ip: 3.18.140.5
+            certinfo: {  }
+            primary_port: 80
+            local_ip: 192.168.42.136
+            local_port: 51172
+            http_version: 2
+            protocol: 1
+            ssl_verifyresult: 0
+            scheme: HTTP
+            appconnect_time_us: 0
+            connect_time_us: 401857
+            namelookup_time_us: 204013
+            pretransfer_time_us: 401997
+            redirect_time_us: 0
+            starttransfer_time_us: 1091673
+            total_time_us: 1091723
+-
+    request:
+        method: GET
+        url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/follow_me/3/entries'
+        headers:
+            Host: cloudpbxapidev.picallex.com
+            x-api-key: ''
+            content-type: application/json
+            accept: 'application/json, plain/text'
+    response:
+        status:
+            http_version: '1.1'
+            code: '200'
+            message: OK
+        headers:
+            Date: 'Wed, 14 Jul 2021 16:00:19 GMT'
+            Content-Type: 'application/json; charset=utf-8'
+            Content-Length: '100'
+            Connection: keep-alive
+            Server: nginx/1.14.2
+            cache-control: 'max-age=0, private, must-revalidate'
+            content-security-policy: 'script-src ''self'''
+            x-frame-options: deny
+            x-request-id: FpGzmzhPcjVFq6EAAHUB
+        body: '{"data":[{"call_timeout":30,"follow_me_id":3,"id":1,"priority":96,"sound_id":6,"time_of_day":null}]}'
+        curl_info:
+            url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/follow_me/3/entries'
+            content_type: 'application/json; charset=utf-8'
+            http_code: 200
+            header_size: 325
+            request_size: 221
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.303871
+            namelookup_time: 0.002995
+            connect_time: 0.140577
+            pretransfer_time: 0.140703
+            size_upload: !!float 0
+            size_download: !!float 100
+            speed_download: !!float 330
+            speed_upload: !!float 0
+            download_content_length: !!float 100
+            upload_content_length: !!float -1
+            starttransfer_time: 0.303818
+            redirect_time: !!float 0
+            redirect_url: ''
+            primary_ip: 18.219.220.239
+            certinfo: {  }
+            primary_port: 80
+            local_ip: 192.168.42.136
+            local_port: 59728
+            http_version: 2
+            protocol: 1
+            ssl_verifyresult: 0
+            scheme: HTTP
+            appconnect_time_us: 0
+            connect_time_us: 140577
+            namelookup_time_us: 2995
+            pretransfer_time_us: 140703
+            redirect_time_us: 0
+            starttransfer_time_us: 303818
+            total_time_us: 303871
+-
+    request:
+        method: GET
+        url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/follow_me/3'
+        headers:
+            Host: cloudpbxapidev.picallex.com
+            x-api-key: ''
+            content-type: application/json
+            accept: 'application/json, plain/text'
+    response:
+        status:
+            http_version: '1.1'
+            code: '200'
+            message: OK
+        headers:
+            Date: 'Wed, 14 Jul 2021 16:08:40 GMT'
+            Content-Type: 'application/json; charset=utf-8'
+            Content-Length: '112'
+            Connection: keep-alive
+            Server: nginx/1.14.2
+            cache-control: 'max-age=0, private, must-revalidate'
+            content-security-policy: 'script-src ''self'''
+            x-frame-options: deny
+            x-request-id: FpG0D7-oTF5SYsoAAFCy
+        body: '{"data":{"customer_id":2,"id":3,"name":"Followme Audio Play","ringback_sound_id":0,"ringback_type":"fake_ring"}}'
+        curl_info:
+            url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/follow_me/3'
+            content_type: 'application/json; charset=utf-8'
+            http_code: 200
+            header_size: 325
+            request_size: 213
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.626333
+            namelookup_time: 0.256951
+            connect_time: 0.44963
+            pretransfer_time: 0.449755
+            size_upload: !!float 0
+            size_download: !!float 112
+            speed_download: !!float 178
+            speed_upload: !!float 0
+            download_content_length: !!float 112
+            upload_content_length: !!float -1
+            starttransfer_time: 0.626275
+            redirect_time: !!float 0
+            redirect_url: ''
+            primary_ip: 18.219.220.239
+            certinfo: {  }
+            primary_port: 80
+            local_ip: 192.168.42.136
+            local_port: 59730
+            http_version: 2
+            protocol: 1
+            ssl_verifyresult: 0
+            scheme: HTTP
+            appconnect_time_us: 0
+            connect_time_us: 449630
+            namelookup_time_us: 256951
+            pretransfer_time_us: 449755
+            redirect_time_us: 0
+            starttransfer_time_us: 626275
+            total_time_us: 626333

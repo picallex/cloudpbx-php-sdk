@@ -16,6 +16,7 @@ class ClientCurlTest extends TestCase
 {
     private static $customer_id;
     private static $callcenter_queue_id = 0;
+    private static $follow_me_id = 0;
 
     protected function setUp(): void
     {
@@ -23,6 +24,7 @@ class ClientCurlTest extends TestCase
         $api_key = Util\Environment::get('test', 'cloudpbx_api_key');
         self::$customer_id = (int)Util\Environment::get('test', 'cloudpbx_customer_id');
         self::$callcenter_queue_id = (int)Util\Environment::get('test', 'cloudpbx_callcenter_queue_id', 0);
+        self::$follow_me_id = (int)Util\Environment::get('test', 'cloudpbx_follow_me_id', 0);
 
         $this->client = \Cloudpbx\Sdk::createDefaultClient($base, $api_key);
     }
@@ -222,7 +224,7 @@ class ClientCurlTest extends TestCase
      * @vcr query_all_follow_me_by_customer
      * @depends testQueryOneCustomer
      */
-    public function testQueryAllFollowMe(array $stack): void
+    public function testQueryAllFollowMe(array $stack): array
     {
         $customer = array_pop($stack);
 
@@ -235,6 +237,24 @@ class ClientCurlTest extends TestCase
         $this->assertTrue($follow->hasAttribute('id'));
         $this->assertTrue($follow->hasAttribute('customer_id'));
         $this->assertTrue($follow->hasAttribute('name'));
+
+        return [$follow];
+    }
+
+    /**
+     * @vcr query_all_follow_me_entries
+     * @depends testQueryAllFollowMe
+     */
+    public function testQueryAllFollowMeEntries(): void
+    {
+        $entries = $this->client->followMeEntries->all(self::$customer_id, self::$follow_me_id);
+
+        $this->assertIsArray($entries);
+        $this->assertGreaterThan(0, count($entries));
+
+        $entry = $entries[0];
+        $this->assertTrue($entry->hasAttribute('id'));
+        $this->assertTrue($entry->hasAttribute('follow_me_id'));
     }
 
     /**

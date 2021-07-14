@@ -41,4 +41,29 @@ final class Relation
         $this->id = $id;
         $this->path_ids = $path_ids;
     }
+
+    /**
+     * @param array<string, integer|null> $descriptors
+     * @param array<integer> $path_ids
+     *
+     * @return Relation
+     */
+    public static function fromDescriptor($descriptors, $path_ids =[])
+    {
+        $model = null;
+        $id = null;
+        foreach ($descriptors as $model => $id) {
+            if (is_null($id)) {
+                continue;
+            } else {
+                break;
+            }
+        }
+
+        if (is_null($id)) {
+            throw new \RuntimeException('not found a relation for has_one');
+        }
+
+        return new Relation($model, $id, $path_ids);
+    }
 }

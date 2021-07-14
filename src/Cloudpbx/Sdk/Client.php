@@ -115,6 +115,14 @@ final class Client
     }
 
     /**
+     * @return FollowMeEntry
+     */
+    public function getFollowMeEntries()
+    {
+        return FollowMeEntry::fromTransport($this->protocol);
+    }
+
+    /**
      * load relation.
      *
      * @param Model\Relation $relation
