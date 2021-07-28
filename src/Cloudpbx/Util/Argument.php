@@ -85,6 +85,23 @@ final class Argument
     }
 
     /**
+     * @param mixed $value
+     * @param string $assertion name of assertion
+     * @param array<mixed> $rest
+     *
+     * @return bool
+     */
+    public static function optional($value, $assertion, ...$rest): bool
+    {
+        if (!is_null($value)) {
+            self::$assertion(...array_merge([$value], $rest));
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
      *
      * @param mixed $value
      * @param mixed $klass

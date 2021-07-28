@@ -316,6 +316,27 @@ class ClientCurlTest extends TestCase
     {
         [$customer, $queue] = array_pop($stack);
 
+        $agents = $this->client->callcenterQueues->agents($customer->id);
+
+        $this->assertIsArray($agents);
+        $this->assertGreaterThan(0, count($agents));
+
+        $agent = $agents[0];
+        $this->assertTrue($agent->hasAttribute('id'));
+        $this->assertTrue($agent->hasAttribute('user_id'));
+        $this->assertTrue($agent->hasAttribute('customer_id'));
+        $this->assertTrue($agent->hasAttribute('callcenter_queue_id'));
+        $this->assertTrue($agent->hasAttribute('autologin'));
+    }
+
+    /**
+     * @vcr query_all_agents_by_queue
+     * @depends testQueryAllCallcenterQueue
+     */
+    public function testQuerayAllAgentsByQueue(array $stack): void
+    {
+        [$customer, $queue] = array_pop($stack);
+
         $agents = $this->client->callcenterQueues->agents($customer->id, $queue->id);
 
         $this->assertIsArray($agents);

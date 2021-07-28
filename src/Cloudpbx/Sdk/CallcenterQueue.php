@@ -36,22 +36,31 @@ final class CallcenterQueue extends Api
 
     /**
      * @param int $customer_id
-     * @param int $callcenter_queue_id
+     * @param int|null $callcenter_queue_id if not set query all agents
      *
      * @return array<\Cloudpbx\Sdk\Model\CallcenterAgent>
      */
-    public function agents($customer_id, $callcenter_queue_id)
+    public function agents($customer_id, $callcenter_queue_id = null)
     {
         Argument::isInteger($customer_id);
-        Argument::isInteger($callcenter_queue_id);
+        $has_callcenter_queue = Argument::optional($callcenter_queue_id, 'isInteger');
 
-        $query = $this->protocol->prepareQuery(
-            '/api/v1/management/customers/{customer_id}/service/callcenter/queues/{callcenter_queue_id}/agents',
-            [
-                '{customer_id}' => $customer_id,
-                '{callcenter_queue_id}' => $callcenter_queue_id
-            ]
-        );
+        if ($has_callcenter_queue) {
+            $query = $this->protocol->prepareQuery(
+                '/api/v1/management/customers/{customer_id}/service/callcenter/queues/{callcenter_queue_id}/agents',
+                [
+                    '{customer_id}' => $customer_id,
+                    '{callcenter_queue_id}' => $callcenter_queue_id
+                ]
+            );
+        } else {
+            $query = $this->protocol->prepareQuery(
+                '/api/v1/management/customers/{customer_id}/callcenter/agents',
+                [
+                    '{customer_id}' => $customer_id
+                ]
+            );
+        }
 
         $records = $this->protocol->list($query);
 
