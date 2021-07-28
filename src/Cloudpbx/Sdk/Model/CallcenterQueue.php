@@ -36,6 +36,11 @@ final class CallcenterQueue extends \Cloudpbx\Sdk\Model
      */
     public $strategy;
 
+    /**
+     * @var int
+     */
+    public $max_wait_time;
+
     public function __construct()
     {
     }

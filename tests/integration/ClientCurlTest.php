@@ -109,7 +109,9 @@ class ClientCurlTest extends TestCase
         $this->assertTrue($queue->hasAttribute('alias'));
         $this->assertTrue($queue->hasAttribute('name'));
         $this->assertTrue($queue->hasAttribute('strategy'));
+        $this->assertTrue($queue->hasAttribute('max_wait_time'));
 
+        $this->assertGreaterThanOrEqual(0, $queue->max_wait_time);
 
         if (self::$callcenter_queue_id > 0) {
             foreach ($queues as $found_queue) {
