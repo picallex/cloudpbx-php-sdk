@@ -106,6 +106,7 @@ class ClientCurlTest extends TestCase
 
         $queue = $queues[0];
         $this->assertTrue($queue->hasAttribute('id'));
+        $this->assertTrue($queue->hasAttribute('customer_id'));
         $this->assertTrue($queue->hasAttribute('alias'));
         $this->assertTrue($queue->hasAttribute('name'));
         $this->assertTrue($queue->hasAttribute('strategy'));

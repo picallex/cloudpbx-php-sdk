@@ -14,16 +14,16 @@
             code: '200'
             message: OK
         headers:
-            Date: 'Tue, 13 Jul 2021 21:45:13 GMT'
+            Date: 'Thu, 29 Jul 2021 15:01:54 GMT'
             Content-Type: 'application/json; charset=utf-8'
-            Content-Length: '4846'
+            Content-Length: '5041'
             Connection: keep-alive
             Server: nginx/1.14.2
             cache-control: 'max-age=0, private, must-revalidate'
             content-security-policy: 'script-src ''self'''
             x-frame-options: deny
-            x-request-id: FpF32MtOq8FMuAYAAANi
-        body: '{"data":[{"alias":null,"description":"Otra queue 22","discard_abandoned_after":14400,"id":16,"max_wait_time":0,"max_wait_time_with_no_agent":120,"max_wait_time_with_no_agent_time_reached":5,"moh_sound_id":null,"moh_sound_usage":"callcenter_moh","name":"7001","skip_agent_with_external_calls":true,"strategy":"round-robin","tier_rule_wait_multiply_level":true,"tier_rule_wait_second":300,"tier_rules_apply":false},{"alias":null,"description":"Otra queue 22","discard_abandoned_after":14400,"id":17,"max_wait_time":0,"max_wait_time_with_no_agent":120,"max_wait_time_with_no_agent_time_reached":5,"moh_sound_id":null,"moh_sound_usage":"callcenter_moh","name":"7002","skip_agent_with_external_calls":true,"strategy":"round-robin","tier_rule_wait_multiply_level":true,"tier_rule_wait_second":300,"tier_rules_apply":false},{"alias":null,"description":"Otra queue 22","discard_abandoned_after":14400,"id":18,"max_wait_time":0,"max_wait_time_with_no_agent":120,"max_wait_time_with_no_agent_time_reached":5,"moh_sound_id":null,"moh_sound_usage":"callcenter_moh","name":"7003","skip_agent_with_external_calls":true,"strategy":"round-robin","tier_rule_wait_multiply_level":true,"tier_rule_wait_second":300,"tier_rules_apply":false},{"alias":null,"description":"Otra queue 22","discard_abandoned_after":14400,"id":19,"max_wait_time":0,"max_wait_time_with_no_agent":120,"max_wait_time_with_no_agent_time_reached":5,"moh_sound_id":null,"moh_sound_usage":"callcenter_moh","name":"7004","skip_agent_with_external_calls":true,"strategy":"round-robin","tier_rule_wait_multiply_level":true,"tier_rule_wait_second":300,"tier_rules_apply":false},{"alias":null,"description":"Otra queue 22","discard_abandoned_after":14400,"id":20,"max_wait_time":0,"max_wait_time_with_no_agent":120,"max_wait_time_with_no_agent_time_reached":5,"moh_sound_id":null,"moh_sound_usage":"callcenter_moh","name":"7005","skip_agent_with_external_calls":true,"strategy":"round-robin","tier_rule_wait_multiply_level":true,"tier_rule_wait_second":300,"tier_rules_apply":false},{"alias":null,"description":"Otra queue 22","discard_abandoned_after":14400,"id":21,"max_wait_time":0,"max_wait_time_with_no_agent":120,"max_wait_time_with_no_agent_time_reached":5,"moh_sound_id":null,"moh_sound_usage":"callcenter_moh","name":"7006","skip_agent_with_external_calls":true,"strategy":"round-robin","tier_rule_wait_multiply_level":true,"tier_rule_wait_second":300,"tier_rules_apply":false},{"alias":null,"description":"Otra queue 22","discard_abandoned_after":14400,"id":22,"max_wait_time":0,"max_wait_time_with_no_agent":120,"max_wait_time_with_no_agent_time_reached":5,"moh_sound_id":null,"moh_sound_usage":"callcenter_moh","name":"7007","skip_agent_with_external_calls":true,"strategy":"round-robin","tier_rule_wait_multiply_level":true,"tier_rule_wait_second":300,"tier_rules_apply":false},{"alias":null,"description":"Otra queue 22","discard_abandoned_after":14400,"id":23,"max_wait_time":0,"max_wait_time_with_no_agent":120,"max_wait_time_with_no_agent_time_reached":5,"moh_sound_id":null,"moh_sound_usage":"callcenter_moh","name":"7008","skip_agent_with_external_calls":true,"strategy":"round-robin","tier_rule_wait_multiply_level":true,"tier_rule_wait_second":300,"tier_rules_apply":false},{"alias":null,"description":"Otra queue 22","discard_abandoned_after":14400,"id":24,"max_wait_time":0,"max_wait_time_with_no_agent":120,"max_wait_time_with_no_agent_time_reached":5,"moh_sound_id":null,"moh_sound_usage":"callcenter_moh","name":"7009","skip_agent_with_external_calls":true,"strategy":"round-robin","tier_rule_wait_multiply_level":true,"tier_rule_wait_second":300,"tier_rules_apply":false},{"alias":null,"description":"Otra queue 22","discard_abandoned_after":14400,"id":25,"max_wait_time":0,"max_wait_time_with_no_agent":120,"max_wait_time_with_no_agent_time_reached":5,"moh_sound_id":null,"moh_sound_usage":"callcenter_moh","name":"7010","skip_agent_with_external_calls":true,"strategy":"round-robin","tier_rule_wait_multiply_level":true,"tier_rule_wait_second":300,"tier_rules_apply":false},{"alias":null,"description":"8888","discard_abandoned_after":14400,"id":1,"max_wait_time":0,"max_wait_time_with_no_agent":120,"max_wait_time_with_no_agent_time_reached":5,"moh_sound_id":null,"moh_sound_usage":"callcenter_moh","name":"8888","skip_agent_with_external_calls":true,"strategy":"round-robin","tier_rule_wait_multiply_level":false,"tier_rule_wait_second":300,"tier_rules_apply":false},{"alias":null,"description":"Otra queue","discard_abandoned_after":14400,"id":15,"max_wait_time":0,"max_wait_time_with_no_agent":120,"max_wait_time_with_no_agent_time_reached":5,"moh_sound_id":null,"moh_sound_usage":"callcenter_moh","name":"9999","skip_agent_with_external_calls":true,"strategy":"round-robin","tier_rule_wait_multiply_level":true,"tier_rule_wait_second":300,"tier_rules_apply":false}]}'
+            x-request-id: FpZLH7Jt6weS9MoAAARS
+        body: '{"data":[{"alias":null,"customer_id":2,"description":"Otra queue","discard_abandoned_after":14400,"id":15,"max_wait_time":0,"max_wait_time_with_no_agent":120,"max_wait_time_with_no_agent_time_reached":5,"moh_sound_id":null,"moh_sound_usage":"callcenter_moh","name":"9999","skip_agent_with_external_calls":true,"strategy":"round-robin","tier_rule_wait_multiply_level":true,"tier_rule_wait_second":300,"tier_rules_apply":false},{"alias":null,"customer_id":2,"description":"Otra queue 22","discard_abandoned_after":14400,"id":17,"max_wait_time":0,"max_wait_time_with_no_agent":120,"max_wait_time_with_no_agent_time_reached":5,"moh_sound_id":null,"moh_sound_usage":"callcenter_moh","name":"7002","skip_agent_with_external_calls":true,"strategy":"round-robin","tier_rule_wait_multiply_level":true,"tier_rule_wait_second":300,"tier_rules_apply":false},{"alias":null,"customer_id":2,"description":"Otra queue 22","discard_abandoned_after":14400,"id":18,"max_wait_time":0,"max_wait_time_with_no_agent":120,"max_wait_time_with_no_agent_time_reached":5,"moh_sound_id":null,"moh_sound_usage":"callcenter_moh","name":"7003","skip_agent_with_external_calls":true,"strategy":"round-robin","tier_rule_wait_multiply_level":true,"tier_rule_wait_second":300,"tier_rules_apply":false},{"alias":null,"customer_id":2,"description":"Otra queue 22","discard_abandoned_after":14400,"id":21,"max_wait_time":0,"max_wait_time_with_no_agent":120,"max_wait_time_with_no_agent_time_reached":5,"moh_sound_id":null,"moh_sound_usage":"callcenter_moh","name":"7006","skip_agent_with_external_calls":true,"strategy":"round-robin","tier_rule_wait_multiply_level":true,"tier_rule_wait_second":300,"tier_rules_apply":false},{"alias":null,"customer_id":2,"description":"Otra queue 22","discard_abandoned_after":14400,"id":22,"max_wait_time":0,"max_wait_time_with_no_agent":120,"max_wait_time_with_no_agent_time_reached":5,"moh_sound_id":null,"moh_sound_usage":"callcenter_moh","name":"7007","skip_agent_with_external_calls":true,"strategy":"round-robin","tier_rule_wait_multiply_level":true,"tier_rule_wait_second":300,"tier_rules_apply":false},{"alias":null,"customer_id":2,"description":"Otra queue 22","discard_abandoned_after":14400,"id":23,"max_wait_time":0,"max_wait_time_with_no_agent":120,"max_wait_time_with_no_agent_time_reached":5,"moh_sound_id":null,"moh_sound_usage":"callcenter_moh","name":"7008","skip_agent_with_external_calls":true,"strategy":"round-robin","tier_rule_wait_multiply_level":true,"tier_rule_wait_second":300,"tier_rules_apply":false},{"alias":null,"customer_id":2,"description":"Otra queue 22","discard_abandoned_after":14400,"id":24,"max_wait_time":0,"max_wait_time_with_no_agent":120,"max_wait_time_with_no_agent_time_reached":5,"moh_sound_id":null,"moh_sound_usage":"callcenter_moh","name":"7009","skip_agent_with_external_calls":true,"strategy":"round-robin","tier_rule_wait_multiply_level":true,"tier_rule_wait_second":300,"tier_rules_apply":false},{"alias":null,"customer_id":2,"description":"Otra queue 22","discard_abandoned_after":14400,"id":25,"max_wait_time":0,"max_wait_time_with_no_agent":120,"max_wait_time_with_no_agent_time_reached":5,"moh_sound_id":null,"moh_sound_usage":"callcenter_moh","name":"7010","skip_agent_with_external_calls":true,"strategy":"round-robin","tier_rule_wait_multiply_level":true,"tier_rule_wait_second":300,"tier_rules_apply":false},{"alias":null,"customer_id":2,"description":"8888","discard_abandoned_after":14400,"id":1,"max_wait_time":0,"max_wait_time_with_no_agent":120,"max_wait_time_with_no_agent_time_reached":5,"moh_sound_id":null,"moh_sound_usage":"callcenter_moh","name":"8888","skip_agent_with_external_calls":true,"strategy":"round-robin","tier_rule_wait_multiply_level":false,"tier_rule_wait_second":300,"tier_rules_apply":false},{"alias":null,"customer_id":2,"description":"Otra queue 22","discard_abandoned_after":14400,"id":16,"max_wait_time":20,"max_wait_time_with_no_agent":120,"max_wait_time_with_no_agent_time_reached":5,"moh_sound_id":null,"moh_sound_usage":"callcenter_moh","name":"7001","skip_agent_with_external_calls":true,"strategy":"round-robin","tier_rule_wait_multiply_level":true,"tier_rule_wait_second":300,"tier_rules_apply":false},{"alias":null,"customer_id":2,"description":"Otra queue 22","discard_abandoned_after":14400,"id":20,"max_wait_time":15,"max_wait_time_with_no_agent":120,"max_wait_time_with_no_agent_time_reached":5,"moh_sound_id":null,"moh_sound_usage":"callcenter_moh","name":"7005","skip_agent_with_external_calls":true,"strategy":"round-robin","tier_rule_wait_multiply_level":true,"tier_rule_wait_second":300,"tier_rules_apply":false},{"alias":null,"customer_id":2,"description":"Otra queue 22","discard_abandoned_after":14400,"id":19,"max_wait_time":18,"max_wait_time_with_no_agent":120,"max_wait_time_with_no_agent_time_reached":5,"moh_sound_id":null,"moh_sound_usage":"callcenter_moh","name":"7004","skip_agent_with_external_calls":true,"strategy":"round-robin","tier_rule_wait_multiply_level":true,"tier_rule_wait_second":300,"tier_rules_apply":false}]}'
         curl_info:
             url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/service/callcenter/queues'
             content_type: 'application/json; charset=utf-8'
@@ -33,32 +33,32 @@
             filetime: -1
             ssl_verify_result: 0
             redirect_count: 0
-            total_time: 0.656551
-            namelookup_time: 0.256802
-            connect_time: 0.407465
-            pretransfer_time: 0.407561
+            total_time: 0.762479
+            namelookup_time: 0.460563
+            connect_time: 0.588451
+            pretransfer_time: 0.588575
             size_upload: !!float 0
-            size_download: !!float 4846
-            speed_download: !!float 7387
+            size_download: !!float 5041
+            speed_download: !!float 6615
             speed_upload: !!float 0
-            download_content_length: !!float 4846
+            download_content_length: !!float 5041
             upload_content_length: !!float -1
-            starttransfer_time: 0.656335
+            starttransfer_time: 0.762229
             redirect_time: !!float 0
             redirect_url: ''
             primary_ip: 3.18.140.5
             certinfo: {  }
             primary_port: 80
-            local_ip: 192.168.0.104
-            local_port: 41942
+            local_ip: 192.168.0.105
+            local_port: 44772
             http_version: 2
             protocol: 1
             ssl_verifyresult: 0
             scheme: HTTP
             appconnect_time_us: 0
-            connect_time_us: 407465
-            namelookup_time_us: 256802
-            pretransfer_time_us: 407561
+            connect_time_us: 588451
+            namelookup_time_us: 460563
+            pretransfer_time_us: 588575
             redirect_time_us: 0
-            starttransfer_time_us: 656335
-            total_time_us: 656551
+            starttransfer_time_us: 762229
+            total_time_us: 762479
