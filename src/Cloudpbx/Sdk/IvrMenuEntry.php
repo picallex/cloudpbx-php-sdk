@@ -35,7 +35,9 @@ final class IvrMenuEntry extends Api
             \Cloudpbx\Sdk\Model\IvrMenuEntry::class,
             [
                                          'transform' => [
-                                             [$this, 'append_customer_id'],
+                                             function (&$record, $customer_id) {
+                                                 $record['customer_id'] = $customer_id;
+                                             },
                                              [$customer_id]
                                          ],
                                      ]
@@ -60,14 +62,5 @@ final class IvrMenuEntry extends Api
         $record = $this->protocol->one($query);
 
         return $this->recordToModel($record, \Cloudpbx\Sdk\Model\IvrMenuEntry::class);
-    }
-
-    /**
-     * @param array<string, mixed> $record
-     * @param integer $customer_id
-     */
-    private function append_customer_id(&$record, $customer_id): void
-    {
-        $record['customer_id'] = $customer_id;
     }
 }

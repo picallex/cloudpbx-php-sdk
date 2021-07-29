@@ -19,6 +19,7 @@ use Cloudpbx\Util\Inflector;
  * @property FirewallIpSet $firewallIpSets
  * @property Blacklist $blacklists
  * @property Sound $sounds
+ * @property CallcenterAgent $callcenterAgents
  */
 final class Client
 {
@@ -57,6 +58,14 @@ final class Client
     public function getCallcenterQueues()
     {
         return CallcenterQueue::fromTransport($this->protocol);
+    }
+
+    /**
+     * @return CallcenterAgent
+     */
+    public function getCallcenterAgents()
+    {
+        return CallcenterAgent::fromTransport($this->protocol);
     }
 
     /**

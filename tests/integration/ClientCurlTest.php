@@ -316,7 +316,7 @@ class ClientCurlTest extends TestCase
     {
         [$customer, $queue] = array_pop($stack);
 
-        $agents = $this->client->callcenterQueues->agents($customer->id);
+        $agents = $this->client->callcenterAgents->all($customer->id);
 
         $this->assertIsArray($agents);
         $this->assertGreaterThan(0, count($agents));
