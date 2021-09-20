@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace Cloudpbx\Sdk;
 
 use Cloudpbx\Util\Inflector;
+use Cloudpbx\Util\Argument;
 
 /**
  * @property Customer $customers

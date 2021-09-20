@@ -36,16 +36,6 @@ final class CallcenterAgent extends \Cloudpbx\Sdk\Model
     public $customer;
 
     /**
-     * @var integer
-     */
-    public $callcenter_queue_id;
-
-    /**
-     * @var Relation
-     */
-    public $callcenter_queue;
-
-    /**
      * @var boolean
      */
     public $autologin;
@@ -58,6 +48,5 @@ final class CallcenterAgent extends \Cloudpbx\Sdk\Model
     {
         $this->user = new Relation('user', $this->user_id, [$this->customer_id]);
         $this->customer = new Relation('customer', $this->customer_id);
-        $this->callcenter_queue = new Relation('callcenter_queue', $this->callcenter_queue_id, [$this->customer_id]);
     }
 }

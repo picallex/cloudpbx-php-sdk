@@ -326,7 +326,6 @@ class ClientCurlTest extends TestCase
         $this->assertTrue($agent->hasAttribute('id'));
         $this->assertTrue($agent->hasAttribute('user_id'));
         $this->assertTrue($agent->hasAttribute('customer_id'));
-        $this->assertTrue($agent->hasAttribute('callcenter_queue_id'));
         $this->assertTrue($agent->hasAttribute('autologin'));
     }
 
@@ -347,7 +346,6 @@ class ClientCurlTest extends TestCase
         $this->assertTrue($agent->hasAttribute('id'));
         $this->assertTrue($agent->hasAttribute('user_id'));
         $this->assertTrue($agent->hasAttribute('customer_id'));
-        $this->assertTrue($agent->hasAttribute('callcenter_queue_id'));
         $this->assertTrue($agent->hasAttribute('autologin'));
     }
 
