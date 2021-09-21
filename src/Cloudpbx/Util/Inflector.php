@@ -26,6 +26,7 @@ final class Inflector
             'sound' => 'Sounds',
             'dialout' => 'Dialouts',
             'callcenter_queue' => 'CallcenterQueues',
+            'callcenter_agent' => 'CallcenterAgents',
             'ivr_menu' => 'IvrMenus',
             'ivr_menu_entry' => 'IvrMenuEntries',
             'follow_me' => 'FollowMes',

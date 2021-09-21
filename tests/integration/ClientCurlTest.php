@@ -310,6 +310,25 @@ class ClientCurlTest extends TestCase
     }
 
     /**
+     * @vcr query_all_tiers
+     * @depends testQueryOneCustomer
+     */
+    public function testQueryAllTiers(array $stack): void
+    {
+        $customer = array_pop($stack);
+
+        $tiers = $this->client->callcenterQueues->tiers($customer->id);
+        $this->assertIsArray($tiers);
+        $this->assertGreaterThan(0, count($tiers));
+
+        $tier = $tiers[0];
+        $this->assertTrue($tier->hasAttribute('id'));
+        $this->assertTrue($tier->hasAttribute('customer_id'));
+        $this->assertTrue($tier->hasAttribute('callcenter_queue_id'));
+        $this->assertTrue($tier->hasAttribute('callcenter_agent_id'));
+    }
+
+    /**
      * @vcr query_all_agents
      * @depends testQueryAllCallcenterQueue
      */

@@ -14,7 +14,7 @@
             code: '200'
             message: OK
         headers:
-            Date: 'Tue, 13 Jul 2021 21:45:14 GMT'
+            Date: 'Thu, 19 Aug 2021 14:06:14 GMT'
             Content-Type: 'application/json; charset=utf-8'
             Content-Length: '545'
             Connection: keep-alive
@@ -22,7 +22,7 @@
             cache-control: 'max-age=0, private, must-revalidate'
             content-security-policy: 'script-src ''self'''
             x-frame-options: deny
-            x-request-id: FpF32PJ-GYCBllwAAAYh
+            x-request-id: Fpy6ReO4ott29UoAAD1R
         body: '{"data":[{"callerid_strategy":"random","customer_id":2,"destination":"99000.","gateway_strategy":"sequence","id":1,"name":"default out","prepend":"","strip":"","user_id":null,"weight":99},{"callerid_strategy":"random","customer_id":2,"destination":"1XXXXXXXXXX","gateway_strategy":"sequence","id":5,"name":"USA Local","prepend":"","strip":"","user_id":null,"weight":99},{"callerid_strategy":"random","customer_id":2,"destination":"57X.","gateway_strategy":"sequence","id":6,"name":"Colombia","prepend":"","strip":"","user_id":null,"weight":99}]}'
         curl_info:
             url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/dialouts'
@@ -33,35 +33,35 @@
             filetime: -1
             ssl_verify_result: 0
             redirect_count: 0
-            total_time: 0.635015
-            namelookup_time: 0.206367
-            connect_time: 0.382648
-            pretransfer_time: 0.382738
+            total_time: 0.46769
+            namelookup_time: 0.207381
+            connect_time: 0.321181
+            pretransfer_time: 0.321283
             size_upload: !!float 0
             size_download: !!float 545
-            speed_download: !!float 858
+            speed_download: !!float 1167
             speed_upload: !!float 0
             download_content_length: !!float 545
             upload_content_length: !!float -1
-            starttransfer_time: 0.634965
+            starttransfer_time: 0.467619
             redirect_time: !!float 0
             redirect_url: ''
-            primary_ip: 3.18.140.5
+            primary_ip: 18.219.220.239
             certinfo: {  }
             primary_port: 80
-            local_ip: 192.168.0.104
-            local_port: 41944
+            local_ip: 192.168.0.109
+            local_port: 46776
             http_version: 2
             protocol: 1
             ssl_verifyresult: 0
             scheme: HTTP
             appconnect_time_us: 0
-            connect_time_us: 382648
-            namelookup_time_us: 206367
-            pretransfer_time_us: 382738
+            connect_time_us: 321181
+            namelookup_time_us: 207381
+            pretransfer_time_us: 321283
             redirect_time_us: 0
-            starttransfer_time_us: 634965
-            total_time_us: 635015
+            starttransfer_time_us: 467619
+            total_time_us: 467690
 -
     request:
         method: GET
@@ -77,16 +77,16 @@
             code: '200'
             message: OK
         headers:
-            Date: 'Wed, 14 Jul 2021 16:14:59 GMT'
+            Date: 'Thu, 19 Aug 2021 14:06:15 GMT'
             Content-Type: 'application/json; charset=utf-8'
-            Content-Length: '120'
+            Content-Length: '146'
             Connection: keep-alive
             Server: nginx/1.14.2
             cache-control: 'max-age=0, private, must-revalidate'
             content-security-policy: 'script-src ''self'''
             x-frame-options: deny
-            x-request-id: FpG0aAmvUg7BHcwAAHeB
-        body: '{"data":{"accountcode":null,"domain":"cloudpbxclient1.picallex.com","hold_music_sound_id":null,"id":2,"name":"client1"}}'
+            x-request-id: Fpy6RgCyVCotPLwAAD1h
+        body: '{"data":{"accountcode":null,"domain":"cloudpbxclient1.picallex.com","hold_music_sound_id":null,"id":2,"limit_external_calls":10,"name":"client1"}}'
         curl_info:
             url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2'
             content_type: 'application/json; charset=utf-8'
@@ -96,32 +96,32 @@
             filetime: -1
             ssl_verify_result: 0
             redirect_count: 0
-            total_time: 0.493268
-            namelookup_time: 0.201757
-            connect_time: 0.346699
-            pretransfer_time: 0.346849
+            total_time: 0.503411
+            namelookup_time: 0.156125
+            connect_time: 0.294454
+            pretransfer_time: 0.294574
             size_upload: !!float 0
-            size_download: !!float 120
-            speed_download: !!float 243
+            size_download: !!float 146
+            speed_download: !!float 290
             speed_upload: !!float 0
-            download_content_length: !!float 120
+            download_content_length: !!float 146
             upload_content_length: !!float -1
-            starttransfer_time: 0.493216
+            starttransfer_time: 0.50336
             redirect_time: !!float 0
             redirect_url: ''
-            primary_ip: 3.18.140.5
+            primary_ip: 18.219.220.239
             certinfo: {  }
             primary_port: 80
-            local_ip: 192.168.42.136
-            local_port: 51174
+            local_ip: 192.168.0.109
+            local_port: 46778
             http_version: 2
             protocol: 1
             ssl_verifyresult: 0
             scheme: HTTP
             appconnect_time_us: 0
-            connect_time_us: 346699
-            namelookup_time_us: 201757
-            pretransfer_time_us: 346849
+            connect_time_us: 294454
+            namelookup_time_us: 156125
+            pretransfer_time_us: 294574
             redirect_time_us: 0
-            starttransfer_time_us: 493216
-            total_time_us: 493268
+            starttransfer_time_us: 503360
+            total_time_us: 503411

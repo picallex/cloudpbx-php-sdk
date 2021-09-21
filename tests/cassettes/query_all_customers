@@ -14,16 +14,16 @@
             code: '200'
             message: OK
         headers:
-            Date: 'Tue, 13 Jul 2021 21:45:11 GMT'
+            Date: 'Thu, 19 Aug 2021 14:06:12 GMT'
             Content-Type: 'application/json; charset=utf-8'
-            Content-Length: '468'
+            Content-Length: '572'
             Connection: keep-alive
             Server: nginx/1.14.2
             cache-control: 'max-age=0, private, must-revalidate'
             content-security-policy: 'script-src ''self'''
             x-frame-options: deny
-            x-request-id: FpF32D_5AhnC2pYAAAXB
-        body: '{"data":[{"accountcode":null,"domain":"cloudpbxdev.picallex.com","hold_music_sound_id":null,"id":1,"name":"router"},{"accountcode":null,"domain":"cloudpbxclient1.picallex.com","hold_music_sound_id":null,"id":2,"name":"client1"},{"accountcode":null,"domain":"cloudpbxclient2.picallex.com","hold_music_sound_id":null,"id":3,"name":"client2"},{"accountcode":null,"domain":"pbxpicallex4.vip2phone.net","hold_music_sound_id":null,"id":4,"name":"Picallex Devs 3 cambio 2"}]}'
+            x-request-id: Fpy6RVd5NhXJjr4AAClC
+        body: '{"data":[{"accountcode":null,"domain":"cloudpbxdev.picallex.com","hold_music_sound_id":null,"id":1,"limit_external_calls":10,"name":"router"},{"accountcode":null,"domain":"cloudpbxclient1.picallex.com","hold_music_sound_id":null,"id":2,"limit_external_calls":10,"name":"client1"},{"accountcode":null,"domain":"cloudpbxclient2.picallex.com","hold_music_sound_id":null,"id":3,"limit_external_calls":10,"name":"client2"},{"accountcode":null,"domain":"pbxpicallex4.vip2phone.net","hold_music_sound_id":null,"id":4,"limit_external_calls":10,"name":"Picallex Devs 3 cambio 2"}]}'
         curl_info:
             url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers'
             content_type: 'application/json; charset=utf-8'
@@ -33,32 +33,32 @@
             filetime: -1
             ssl_verify_result: 0
             redirect_count: 0
-            total_time: 0.418827
-            namelookup_time: 0.156289
-            connect_time: 0.277979
-            pretransfer_time: 0.278092
+            total_time: 0.416486
+            namelookup_time: 0.15934
+            connect_time: 0.260043
+            pretransfer_time: 0.260158
             size_upload: !!float 0
-            size_download: !!float 468
-            speed_download: !!float 1119
+            size_download: !!float 572
+            speed_download: !!float 1375
             speed_upload: !!float 0
-            download_content_length: !!float 468
+            download_content_length: !!float 572
             upload_content_length: !!float -1
-            starttransfer_time: 0.418773
+            starttransfer_time: 0.416436
             redirect_time: !!float 0
             redirect_url: ''
-            primary_ip: 3.18.140.5
+            primary_ip: 18.219.220.239
             certinfo: {  }
             primary_port: 80
-            local_ip: 192.168.0.104
-            local_port: 41932
+            local_ip: 192.168.0.109
+            local_port: 46770
             http_version: 2
             protocol: 1
             ssl_verifyresult: 0
             scheme: HTTP
             appconnect_time_us: 0
-            connect_time_us: 277979
-            namelookup_time_us: 156289
-            pretransfer_time_us: 278092
+            connect_time_us: 260043
+            namelookup_time_us: 159340
+            pretransfer_time_us: 260158
             redirect_time_us: 0
-            starttransfer_time_us: 418773
-            total_time_us: 418827
+            starttransfer_time_us: 416436
+            total_time_us: 416486
