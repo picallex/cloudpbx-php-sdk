@@ -62,3 +62,65 @@
             redirect_time_us: 0
             starttransfer_time_us: 416436
             total_time_us: 416486
+-
+    request:
+        method: GET
+        url: 'http://172.20.0.7:8000/api/v1/management/customers'
+        headers:
+            Host: '172.20.0.7:8000'
+            x-api-key: ''
+            content-type: application/json
+            accept: 'application/json, plain/text'
+    response:
+        status:
+            http_version: '1.1'
+            code: '200'
+            message: OK
+        headers:
+            cache-control: 'max-age=0, private, must-revalidate'
+            content-length: '432'
+            content-security-policy: 'script-src ''self'''
+            content-type: 'application/json; charset=utf-8'
+            date: 'Thu, 30 Sep 2021 21:38:44 GMT'
+            server: Cowboy
+            x-frame-options: deny
+            x-request-id: Fqm3Vy0OORDHeQsAABFi
+        body: '{"data":[{"accountcode":"router","domain":"localpbx.picallex.com","hold_music_sound_id":null,"id":1,"limit_external_calls":10,"name":"router"},{"accountcode":"localclient1","domain":"localclient1.picallex.com","hold_music_sound_id":null,"id":2,"limit_external_calls":1,"name":"client1"},{"accountcode":"localclient2","domain":"localclient2.picallex.com","hold_music_sound_id":null,"id":3,"limit_external_calls":1,"name":"client2"}]}'
+        curl_info:
+            url: 'http://172.20.0.7:8000/api/v1/management/customers'
+            content_type: 'application/json; charset=utf-8'
+            http_code: 200
+            header_size: 295
+            request_size: 181
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.334784
+            namelookup_time: 3.5E-5
+            connect_time: 0.000176
+            pretransfer_time: 0.000231
+            size_upload: !!float 0
+            size_download: !!float 432
+            speed_download: !!float 1293
+            speed_upload: !!float 0
+            download_content_length: !!float 432
+            upload_content_length: !!float -1
+            starttransfer_time: 0.334753
+            redirect_time: !!float 0
+            redirect_url: ''
+            primary_ip: 172.20.0.7
+            certinfo: {  }
+            primary_port: 8000
+            local_ip: 172.20.0.1
+            local_port: 54814
+            http_version: 2
+            protocol: 1
+            ssl_verifyresult: 0
+            scheme: HTTP
+            appconnect_time_us: 0
+            connect_time_us: 176
+            namelookup_time_us: 35
+            pretransfer_time_us: 231
+            redirect_time_us: 0
+            starttransfer_time_us: 334753
+            total_time_us: 334784

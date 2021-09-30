@@ -125,3 +125,127 @@
             redirect_time_us: 0
             starttransfer_time_us: 503360
             total_time_us: 503411
+-
+    request:
+        method: GET
+        url: 'http://172.20.0.7:8000/api/v1/management/customers/2/dialouts'
+        headers:
+            Host: '172.20.0.7:8000'
+            x-api-key: ''
+            content-type: application/json
+            accept: 'application/json, plain/text'
+    response:
+        status:
+            http_version: '1.1'
+            code: '200'
+            message: OK
+        headers:
+            cache-control: 'max-age=0, private, must-revalidate'
+            content-length: '819'
+            content-security-policy: 'script-src ''self'''
+            content-type: 'application/json; charset=utf-8'
+            date: 'Thu, 30 Sep 2021 21:38:44 GMT'
+            server: Cowboy
+            x-frame-options: deny
+            x-request-id: Fqm3Vz4n3tRDyroAABKi
+        body: '{"data":[{"callerid_group_id":1,"callerid_strategy":"random","customer_id":2,"destination":"9191.","gateway_strategy":"sequence","id":1,"name":"carrier","prepend":"","strip":"","user_id":null,"weight":99},{"callerid_group_id":2,"callerid_strategy":"random","customer_id":2,"destination":"97000.","gateway_strategy":"sequence","id":2,"name":"default out","prepend":"","strip":"","user_id":null,"weight":99},{"callerid_group_id":3,"callerid_strategy":"random","customer_id":2,"destination":"99000.","gateway_strategy":"sequence","id":3,"name":"default out","prepend":"","strip":"","user_id":null,"weight":99},{"callerid_group_id":4,"callerid_strategy":"random","customer_id":2,"destination":"98000XXXX","gateway_strategy":"sequence","id":4,"name":"default out regexp","prepend":"","strip":"","user_id":null,"weight":99}]}'
+        curl_info:
+            url: 'http://172.20.0.7:8000/api/v1/management/customers/2/dialouts'
+            content_type: 'application/json; charset=utf-8'
+            http_code: 200
+            header_size: 295
+            request_size: 192
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.022929
+            namelookup_time: 3.3E-5
+            connect_time: 0.000201
+            pretransfer_time: 0.000251
+            size_upload: !!float 0
+            size_download: !!float 819
+            speed_download: !!float 37227
+            speed_upload: !!float 0
+            download_content_length: !!float 819
+            upload_content_length: !!float -1
+            starttransfer_time: 0.022897
+            redirect_time: !!float 0
+            redirect_url: ''
+            primary_ip: 172.20.0.7
+            certinfo: {  }
+            primary_port: 8000
+            local_ip: 172.20.0.1
+            local_port: 54826
+            http_version: 2
+            protocol: 1
+            ssl_verifyresult: 0
+            scheme: HTTP
+            appconnect_time_us: 0
+            connect_time_us: 201
+            namelookup_time_us: 33
+            pretransfer_time_us: 251
+            redirect_time_us: 0
+            starttransfer_time_us: 22897
+            total_time_us: 22929
+-
+    request:
+        method: GET
+        url: 'http://172.20.0.7:8000/api/v1/management/customers/2'
+        headers:
+            Host: '172.20.0.7:8000'
+            x-api-key: ''
+            content-type: application/json
+            accept: 'application/json, plain/text'
+    response:
+        status:
+            http_version: '1.1'
+            code: '200'
+            message: OK
+        headers:
+            cache-control: 'max-age=0, private, must-revalidate'
+            content-length: '152'
+            content-security-policy: 'script-src ''self'''
+            content-type: 'application/json; charset=utf-8'
+            date: 'Thu, 30 Sep 2021 21:38:44 GMT'
+            server: Cowboy
+            x-frame-options: deny
+            x-request-id: Fqm3V0B1wswhEB4AABLC
+        body: '{"data":{"accountcode":"localclient1","domain":"localclient1.picallex.com","hold_music_sound_id":null,"id":2,"limit_external_calls":1,"name":"client1"}}'
+        curl_info:
+            url: 'http://172.20.0.7:8000/api/v1/management/customers/2'
+            content_type: 'application/json; charset=utf-8'
+            http_code: 200
+            header_size: 295
+            request_size: 183
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.007878
+            namelookup_time: 3.7E-5
+            connect_time: 0.000191
+            pretransfer_time: 0.000254
+            size_upload: !!float 0
+            size_download: !!float 152
+            speed_download: !!float 21714
+            speed_upload: !!float 0
+            download_content_length: !!float 152
+            upload_content_length: !!float -1
+            starttransfer_time: 0.007851
+            redirect_time: !!float 0
+            redirect_url: ''
+            primary_ip: 172.20.0.7
+            certinfo: {  }
+            primary_port: 8000
+            local_ip: 172.20.0.1
+            local_port: 54828
+            http_version: 2
+            protocol: 1
+            ssl_verifyresult: 0
+            scheme: HTTP
+            appconnect_time_us: 0
+            connect_time_us: 191
+            namelookup_time_us: 37
+            pretransfer_time_us: 254
+            redirect_time_us: 0
+            starttransfer_time_us: 7851
+            total_time_us: 7878

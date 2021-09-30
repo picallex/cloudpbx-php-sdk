@@ -63,3 +63,66 @@
             redirect_time_us: 0
             starttransfer_time_us: 448660
             total_time_us: 448709
+-
+    request:
+        method: POST
+        url: 'http://172.20.0.7:8000/api/v1/management/firewall/ipset'
+        headers:
+            Host: '172.20.0.7:8000'
+            x-api-key: ''
+            content-type: application/json
+            accept: 'application/json, plain/text'
+        body: '{"cidr_block":"4.4.4.4\/32","status":"whitelist"}'
+    response:
+        status:
+            http_version: '1.1'
+            code: '201'
+            message: Created
+        headers:
+            cache-control: 'max-age=0, private, must-revalidate'
+            content-length: '57'
+            content-security-policy: 'script-src ''self'''
+            content-type: 'application/json; charset=utf-8'
+            date: 'Thu, 30 Sep 2021 21:38:44 GMT'
+            server: Cowboy
+            x-frame-options: deny
+            x-request-id: Fqm3V0hMLRwA66IAAAYE
+        body: '{"data":{"cidr_block":"4.4.4.4/32","status":"whitelist"}}'
+        curl_info:
+            url: 'http://172.20.0.7:8000/api/v1/management/firewall/ipset'
+            content_type: 'application/json; charset=utf-8'
+            http_code: 201
+            header_size: 299
+            request_size: 256
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.140547
+            namelookup_time: 3.2E-5
+            connect_time: 0.000182
+            pretransfer_time: 0.000238
+            size_upload: !!float 49
+            size_download: !!float 57
+            speed_download: !!float 407
+            speed_upload: !!float 350
+            download_content_length: !!float 57
+            upload_content_length: !!float 49
+            starttransfer_time: 0.140514
+            redirect_time: !!float 0
+            redirect_url: ''
+            primary_ip: 172.20.0.7
+            certinfo: {  }
+            primary_port: 8000
+            local_ip: 172.20.0.1
+            local_port: 54836
+            http_version: 2
+            protocol: 1
+            ssl_verifyresult: 0
+            scheme: HTTP
+            appconnect_time_us: 0
+            connect_time_us: 182
+            namelookup_time_us: 32
+            pretransfer_time_us: 238
+            redirect_time_us: 0
+            starttransfer_time_us: 140514
+            total_time_us: 140547

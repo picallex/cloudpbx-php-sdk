@@ -38,4 +38,18 @@ final class Customer extends Api
 
         return $this->recordToModel($record, \Cloudpbx\Sdk\Model\Customer::class);
     }
+
+    /**
+     * See **ClientCurlTest** for details.
+     *
+     * @param array<string,mixed> $params
+     * @return \Cloudpbx\Sdk\Model\Customer
+     */
+    public function create($params)
+    {
+        $query = $this->protocol->prepareQuery('/api/v1/management/customers');
+        $record = $this->protocol->create($query, ['customer' => $params]);
+
+        return $this->recordToModel($record, \Cloudpbx\Sdk\Model\Customer::class);
+    }
 }

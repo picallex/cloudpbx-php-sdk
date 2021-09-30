@@ -440,4 +440,41 @@ class ClientCurlTest extends TestCase
         $this->assertTrue($supervisor->hasAttribute('customer_id'));
         $this->assertTrue($supervisor->hasAttribute('user_id'));
     }
+
+
+    /**
+     * @vcr create_customer
+     */
+    public function testCreateCustomerWithMinimalData(): void
+    {
+        $customer = $this->client->customers->create([
+            'name' => 'bob',
+            'domain' => 'bob.org'
+        ]);
+
+        $this->assertInstanceOf(\Cloudpbx\Sdk\Model\Customer::class, $customer);
+        $this->assertTrue($customer->hasAttribute('id'));
+        $this->assertTrue($customer->id > 0);
+        $this->assertTrue($customer->name == 'bob');
+        $this->assertTrue($customer->domain == 'bob.org');
+    }
+
+    /**
+     * @vcr create_full_customer
+     */
+    public function testCreateCustomerWithFullData(): void
+    {
+        $customer = $this->client->customers->create([
+            'name' => 'bobfull',
+            'domain' => 'bobfull.org',
+            'limit_external_calls' => 22,
+            'account' => 'BOBABC'
+        ]);
+
+        $this->assertInstanceOf(\Cloudpbx\Sdk\Model\Customer::class, $customer);
+        $this->assertTrue($customer->hasAttribute('id'));
+        $this->assertTrue($customer->id > 0);
+        $this->assertTrue($customer->name == 'bobfull');
+        $this->assertTrue($customer->domain == 'bobfull.org');
+    }
 }

@@ -62,3 +62,65 @@
             redirect_time_us: 0
             starttransfer_time_us: 432670
             total_time_us: 432722
+-
+    request:
+        method: GET
+        url: 'http://172.20.0.7:8000/api/v1/management/customers/2/follow_me/3/entries'
+        headers:
+            Host: '172.20.0.7:8000'
+            x-api-key: ''
+            content-type: application/json
+            accept: 'application/json, plain/text'
+    response:
+        status:
+            http_version: '1.1'
+            code: '500'
+            message: 'Internal Server Error'
+        headers:
+            cache-control: 'max-age=0, private, must-revalidate'
+            content-length: '2659'
+            content-security-policy: 'script-src ''self'''
+            content-type: 'text/markdown; charset=utf-8'
+            date: 'Thu, 30 Sep 2021 21:38:45 GMT'
+            server: Cowboy
+            x-frame-options: deny
+            x-request-id: Fqm3V1MR6PJ80IQAABaB
+        body: "# Protocol.UndefinedError at GET /api/v1/management/customers/2/follow_me/3/entries\n\nException:\n\n    ** (Protocol.UndefinedError) protocol Enumerable not implemented for {:error, :not_found} of type Tuple. This protocol is implemented for the following type(s): Ecto.Adapters.SQL.Stream, Postgrex.Stream, DBConnection.PrepareStream, DBConnection.Stream, Timex.Interval, IO.Stream, HashDict, Stream, File.Stream, List, HashSet, GenEvent.Stream, Function, Map, Range, Date.Range, MapSet\n        (elixir 1.12.1) lib/enum.ex:1: Enumerable.impl_for!/1\n        (elixir 1.12.1) lib/enum.ex:141: Enumerable.reduce/3\n        (elixir 1.12.1) lib/enum.ex:3923: Enum.map/2\n        (cloudpbx_admin_api 0.1.0) lib/cloudpbx_admin_api_web/views/follow_me/follow_me_entry_view.ex:17: CloudpbxAdminApiWeb.FollowMeEntryView.render/2\n        (phoenix 1.5.9) lib/phoenix/view.ex:472: Phoenix.View.render_to_iodata/3\n        (phoenix 1.5.9) lib/phoenix/controller.ex:776: Phoenix.Controller.render_and_send/4\n        (cloudpbx_admin_api 0.1.0) lib/cloudpbx_admin_api_web/controllers/follow_me/follow_me_entry_controller.ex:4: CloudpbxAdminApiWeb.FollowMeEntryController.action/2\n        (cloudpbx_admin_api 0.1.0) lib/cloudpbx_admin_api_web/controllers/follow_me/follow_me_entry_controller.ex:4: CloudpbxAdminApiWeb.FollowMeEntryController.phoenix_controller_pipeline/2\n        (phoenix 1.5.9) lib/phoenix/router.ex:352: Phoenix.Router.__call__/2\n        (cloudpbx_admin_api 0.1.0) lib/cloudpbx_admin_api_web/endpoint.ex:1: CloudpbxAdminApiWeb.Endpoint.plug_builder_call/2\n        (cloudpbx_admin_api 0.1.0) lib/plug/debugger.ex:136: CloudpbxAdminApiWeb.Endpoint.\"call (overridable 3)\"/2\n        (cloudpbx_admin_api 0.1.0) lib/cloudpbx_admin_api_web/endpoint.ex:1: CloudpbxAdminApiWeb.Endpoint.call/2\n        (phoenix 1.5.9) lib/phoenix/endpoint/cowboy2_handler.ex:65: Phoenix.Endpoint.Cowboy2Handler.init/4\n        (cowboy 2.9.0) /usr/src/deps/cowboy/src/cowboy_handler.erl:37: :cowboy_handler.execute/2\n        (cowboy 2.9.0) /usr/src/deps/cowboy/src/cowboy_stream_h.erl:306: :cowboy_stream_h.execute/3\n        (cowboy 2.9.0) /usr/src/deps/cowboy/src/cowboy_stream_h.erl:295: :cowboy_stream_h.request_process/3\n        (stdlib 3.15.1) proc_lib.erl:226: :proc_lib.init_p_do_apply/3\n    \n\n## Connection details\n\n### Params\n\n    %{\"customer_id\" => \"2\", \"follow_me_id\" => \"3\"}\n\n### Request info\n\n  * URI: http://172.20.0.7:8000/api/v1/management/customers/2/follow_me/3/entries\n  * Query string: \n\n### Headers\n  \n  * accept: application/json, plain/text\n  * content-type: application/json\n  * host: 172.20.0.7:8000\n  * x-api-key: rQMD7C5xQ2U76vjndGK1nddpYbblYt\n\n### Session\n\n    %{}\n"
+        curl_info:
+            url: 'http://172.20.0.7:8000/api/v1/management/customers/2/follow_me/3/entries'
+            content_type: 'text/markdown; charset=utf-8'
+            http_code: 500
+            header_size: 312
+            request_size: 203
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.056518
+            namelookup_time: 3.1E-5
+            connect_time: 0.000148
+            pretransfer_time: 0.000203
+            size_upload: !!float 0
+            size_download: !!float 2659
+            speed_download: !!float 47482
+            speed_upload: !!float 0
+            download_content_length: !!float 2659
+            upload_content_length: !!float -1
+            starttransfer_time: 0.056481
+            redirect_time: !!float 0
+            redirect_url: ''
+            primary_ip: 172.20.0.7
+            certinfo: {  }
+            primary_port: 8000
+            local_ip: 172.20.0.1
+            local_port: 54842
+            http_version: 2
+            protocol: 1
+            ssl_verifyresult: 0
+            scheme: HTTP
+            appconnect_time_us: 0
+            connect_time_us: 148
+            namelookup_time_us: 31
+            pretransfer_time_us: 203
+            redirect_time_us: 0
+            starttransfer_time_us: 56481
+            total_time_us: 56518
