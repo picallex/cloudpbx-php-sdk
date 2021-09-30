@@ -465,16 +465,18 @@ class ClientCurlTest extends TestCase
     public function testCreateCustomerWithFullData(): void
     {
         $customer = $this->client->customers->create([
-            'name' => 'bobfull',
-            'domain' => 'bobfull.org',
+            'name' => 'bobfull2',
+            'domain' => 'bobfull2.org',
             'limit_external_calls' => 22,
-            'account' => 'BOBABC'
+            'accountcode' => 'BOBABCD'
         ]);
 
         $this->assertInstanceOf(\Cloudpbx\Sdk\Model\Customer::class, $customer);
         $this->assertTrue($customer->hasAttribute('id'));
         $this->assertTrue($customer->id > 0);
-        $this->assertTrue($customer->name == 'bobfull');
-        $this->assertTrue($customer->domain == 'bobfull.org');
+        $this->assertTrue($customer->name == 'bobfull2');
+        $this->assertTrue($customer->domain == 'bobfull2.org');
+        $this->assertTrue($customer->limit_external_calls == 22);
+        $this->assertTrue($customer->accountcode == 'BOBABCD');
     }
 }

@@ -8,59 +8,59 @@
             x-api-key: ''
             content-type: application/json
             accept: 'application/json, plain/text'
-        body: '{"customer":{"name":"bobfull","domain":"bobfull.org","limit_external_calls":22,"account":"BOBABC"}}'
+        body: '{"customer":{"name":"bobfull2","domain":"bobfull2.org","limit_external_calls":22,"accountcode":"BOBABCD"}}'
     response:
         status:
             http_version: '1.1'
             code: '201'
             message: Created
         headers:
-            Date: 'Thu, 30 Sep 2021 21:56:41 GMT'
+            Date: 'Thu, 30 Sep 2021 22:05:46 GMT'
             Content-Type: 'application/json; charset=utf-8'
-            Content-Length: '130'
+            Content-Length: '137'
             Connection: keep-alive
             Server: nginx/1.14.2
             cache-control: 'max-age=0, private, must-revalidate'
             content-security-policy: 'script-src ''self'''
-            location: /api/v1/management/customers/35
+            location: /api/v1/management/customers/37
             x-frame-options: deny
-            x-request-id: Fqm4Ub_ZjAZAp6MAABcC
-        body: '{"data":{"accountcode":null,"domain":"bobfull.org","hold_music_sound_id":null,"id":35,"limit_external_calls":22,"name":"bobfull"}}'
+            x-request-id: Fqm40J1RzYppirUAABhC
+        body: '{"data":{"accountcode":"BOBABCD","domain":"bobfull2.org","hold_music_sound_id":null,"id":37,"limit_external_calls":22,"name":"bobfull2"}}'
         curl_info:
             url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers'
             content_type: 'application/json; charset=utf-8'
             http_code: 201
             header_size: 373
-            request_size: 319
+            request_size: 327
             filetime: -1
             ssl_verify_result: 0
             redirect_count: 0
-            total_time: 0.39605
-            namelookup_time: 0.156616
-            connect_time: 0.262541
-            pretransfer_time: 0.262653
-            size_upload: !!float 99
-            size_download: !!float 130
-            speed_download: !!float 328
-            speed_upload: !!float 250
-            download_content_length: !!float 130
-            upload_content_length: !!float 99
-            starttransfer_time: 0.396
+            total_time: 0.4676
+            namelookup_time: 0.15438
+            connect_time: 0.280811
+            pretransfer_time: 0.280915
+            size_upload: !!float 106
+            size_download: !!float 137
+            speed_download: !!float 293
+            speed_upload: !!float 226
+            download_content_length: !!float 137
+            upload_content_length: !!float 106
+            starttransfer_time: 0.467549
             redirect_time: !!float 0
             redirect_url: ''
             primary_ip: 3.140.41.83
             certinfo: {  }
             primary_port: 80
             local_ip: 192.168.0.109
-            local_port: 56926
+            local_port: 56930
             http_version: 2
             protocol: 1
             ssl_verifyresult: 0
             scheme: HTTP
             appconnect_time_us: 0
-            connect_time_us: 262541
-            namelookup_time_us: 156616
-            pretransfer_time_us: 262653
+            connect_time_us: 280811
+            namelookup_time_us: 154380
+            pretransfer_time_us: 280915
             redirect_time_us: 0
-            starttransfer_time_us: 396000
-            total_time_us: 396050
+            starttransfer_time_us: 467549
+            total_time_us: 467600
