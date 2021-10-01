@@ -499,4 +499,24 @@ class ClientCurlTest extends TestCase
         $this->assertTrue($customer->limit_external_calls == 22);
         $this->assertTrue($customer->accountcode == 'BOBABCD');
     }
+
+    /**
+     * @vcr create_user
+     * @depends testCreateCustomerWithMinimalData
+     */
+    public function testCreateUserWithMinimalData($stack): void
+    {
+        $customer = array_pop($stack);
+
+        $user = $this->client->users->create($customer->id, [
+            'name' => 'simpon',
+            'password' => 'insecure537537',
+            'is_webrtc' => false
+        ]);
+
+        $this->assertInstanceOf(\Cloudpbx\Sdk\Model\User::class, $user);
+        $this->assertTrue($user->id > 0);
+        $this->assertEquals('simpon', $user->name);
+        $this->assertEquals(false, $user->is_webrtc);
+    }
 }

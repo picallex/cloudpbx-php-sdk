@@ -19,6 +19,11 @@ final class User extends \Cloudpbx\Sdk\Model
     /**
      * @var string
      */
+    public $name;
+
+    /**
+     * @var string
+     */
     public $alias;
 
     /**

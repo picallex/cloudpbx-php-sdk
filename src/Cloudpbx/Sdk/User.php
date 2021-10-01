@@ -52,4 +52,24 @@ final class User extends Api
 
         return $this->recordToModel($record, Model\User::class);
     }
+
+    /**
+     * @param int $customer_id
+     * @param array<string,mixed> $params
+     *
+     * @return \Cloudpbx\Sdk\Model\User
+     */
+    public function create($customer_id, $params)
+    {
+        Argument::isInteger($customer_id);
+        Argument::isArray($params);
+
+        $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}/users', [
+            '{customer_id}' => $customer_id
+        ]);
+
+        $record = $this->protocol->create($query, ['user' => $params]);
+
+        return $this->recordToModel($record, Model\User::class);
+    }
 }
