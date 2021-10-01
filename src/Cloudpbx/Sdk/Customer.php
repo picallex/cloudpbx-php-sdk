@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace Cloudpbx\Sdk;
 
-use Cloudpbx\Util;
+use Cloudpbx\Util\Argument;
 
 final class Customer extends Api
 {
@@ -47,6 +47,8 @@ final class Customer extends Api
      */
     public function create($params)
     {
+        Argument::isParams($params);
+
         $query = $this->protocol->prepareQuery('/api/v1/management/customers');
         $record = $this->protocol->create($query, ['customer' => $params]);
 
@@ -62,6 +64,9 @@ final class Customer extends Api
      */
     public function update($id, $params)
     {
+        Argument::isInteger($id);
+        Argument::isParams($params);
+
         $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}', ['{customer_id}' => $id]);
         $record = $this->protocol->update($query, ['customer' => $params]);
 

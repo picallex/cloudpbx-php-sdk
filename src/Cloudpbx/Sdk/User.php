@@ -62,7 +62,7 @@ final class User extends Api
     public function create($customer_id, $params)
     {
         Argument::isInteger($customer_id);
-        Argument::isArray($params);
+        Argument::isParams($params);
 
         $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}/users', [
             '{customer_id}' => $customer_id

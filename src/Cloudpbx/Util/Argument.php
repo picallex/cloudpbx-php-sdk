@@ -69,6 +69,21 @@ final class Argument
      *
      * @return void
      */
+    public static function isParams($value)
+    {
+        self::isArray($value);
+        array_walk_recursive($value, function ($item, $key) {
+            $value_type = gettype($item);
+            $valid = in_array($value_type, ['integer', 'string', 'boolean']);
+            self::assert($valid, "not allowed value of $value_type in key $key, only allows integer, string, boolean");
+        });
+    }
+
+    /**
+     * @param mixed $value
+     *
+     * @return void
+     */
     public static function isInteger($value)
     {
         self::assert(gettype($value) === "integer", 'expected integer');
