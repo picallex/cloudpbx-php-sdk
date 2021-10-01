@@ -53,7 +53,10 @@ final class User extends Api
         return $this->recordToModel($record, Model\User::class);
     }
 
+
     /**
+     * See **ClientCurlTest** for details.
+     *
      * @param int $customer_id
      * @param array<string,mixed> $params
      *
@@ -74,6 +77,8 @@ final class User extends Api
     }
 
     /**
+     * See **ClientCurlTest** for details.
+     *
      * @param int $customer_id
      * @param int $id
      * @param array<string,mixed> $params
@@ -94,5 +99,28 @@ final class User extends Api
         $record = $this->protocol->update($query, ['user' => $params]);
 
         return $this->recordToModel($record, Model\User::class);
+    }
+
+    /**
+     * See **ClientCurlTest** for details.
+     *
+     * @param int $customer_id
+     * @param int $id
+     *
+     * @return void
+     */
+    public function delete($customer_id, $id)
+    {
+        Argument::isInteger($customer_id);
+        Argument::isInteger($id);
+
+        $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}/users/{user_id}', [
+            '{customer_id}' => $customer_id,
+            '{user_id}' => $id
+        ]);
+
+        $this->protocol->delete($query);
+
+        return;
     }
 }

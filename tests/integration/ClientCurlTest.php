@@ -573,4 +573,27 @@ class ClientCurlTest extends TestCase
         $this->assertEquals('new alias', $user_updated->alias);
     }
 
+    /**
+     * @vcr delete_user
+     * @depends testCreateCustomerWithMinimalData
+     */
+    public function testDeleteUser(array $stack): void
+    {
+        $customer = array_pop($stack);
+
+        $user = $this->client->users->create($customer->id, [
+            'name' => 'simpondelete',
+            'password' => 'insecure537537',
+            'is_webrtc' => false
+        ]);
+
+        $this->client->users->delete($user->customer_id, $user->id);
+
+        try {
+            $this->client->users->show($user->customer_id, $user->id);
+        } catch(Exception $e) {
+            $this->assertInstanceOf(\Cloudpbx\Protocol\Error\NotFoundError::class, $e);
+        }
+    }
+
 }

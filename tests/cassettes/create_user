@@ -1,0 +1,65 @@
+
+-
+    request:
+        method: POST
+        url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/34/users'
+        headers:
+            Host: cloudpbxapidev.picallex.com
+            x-api-key: ''
+            content-type: application/json
+            accept: 'application/json, plain/text'
+        body: '{"user":{"name":"simpon","password":"insecure537537","is_webrtc":false}}'
+    response:
+        status:
+            http_version: '1.1'
+            code: '201'
+            message: Created
+        headers:
+            Date: 'Fri, 01 Oct 2021 19:32:33 GMT'
+            Content-Type: 'application/json; charset=utf-8'
+            Content-Length: '356'
+            Connection: keep-alive
+            Server: nginx/1.14.2
+            cache-control: 'max-age=0, private, must-revalidate'
+            content-security-policy: 'script-src ''self'''
+            x-frame-options: deny
+            x-request-id: Fqn_COFcuwSLD6wAABSx
+        body: '{"data":{"accountcode":null,"alias":"simpon","allow_multiple_registrations":false,"available_on_sip_register":false,"caller_name":"Ext simpon","caller_number":"simpon","customer_id":34,"dialstring":"user/simpon@bob.org","dnd_on_sip_unregister":true,"do_not_disturb":false,"follow_me_id":null,"id":226,"is_webrtc":false,"name":"simpon","record_audio":null}}'
+        curl_info:
+            url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/34/users'
+            content_type: 'application/json; charset=utf-8'
+            http_code: 201
+            header_size: 330
+            request_size: 301
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.465956
+            namelookup_time: 0.206584
+            connect_time: 0.317976
+            pretransfer_time: 0.318082
+            size_upload: !!float 72
+            size_download: !!float 356
+            speed_download: !!float 765
+            speed_upload: !!float 154
+            download_content_length: !!float 356
+            upload_content_length: !!float 72
+            starttransfer_time: 0.465906
+            redirect_time: !!float 0
+            redirect_url: ''
+            primary_ip: 3.140.41.83
+            certinfo: {  }
+            primary_port: 80
+            local_ip: 192.168.0.109
+            local_port: 48284
+            http_version: 2
+            protocol: 1
+            ssl_verifyresult: 0
+            scheme: HTTP
+            appconnect_time_us: 0
+            connect_time_us: 317976
+            namelookup_time_us: 206584
+            pretransfer_time_us: 318082
+            redirect_time_us: 0
+            starttransfer_time_us: 465906
+            total_time_us: 465956
