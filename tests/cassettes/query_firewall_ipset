@@ -124,3 +124,65 @@
             redirect_time_us: 0
             starttransfer_time_us: 10015
             total_time_us: 10045
+-
+    request:
+        method: GET
+        url: 'http://172.23.0.4:8000/api/v1/management/firewall/ipset'
+        headers:
+            Host: '172.23.0.4:8000'
+            x-api-key: ''
+            content-type: application/json
+            accept: 'application/json, plain/text'
+    response:
+        status:
+            http_version: '1.1'
+            code: '200'
+            message: OK
+        headers:
+            cache-control: 'max-age=0, private, must-revalidate'
+            content-length: '11'
+            content-security-policy: 'script-src ''self'''
+            content-type: 'application/json; charset=utf-8'
+            date: 'Fri, 01 Oct 2021 18:54:52 GMT'
+            server: Cowboy
+            x-frame-options: deny
+            x-request-id: Fqn8-oHuyWLHzkIAAAZB
+        body: '{"data":[]}'
+        curl_info:
+            url: 'http://172.23.0.4:8000/api/v1/management/firewall/ipset'
+            content_type: 'application/json; charset=utf-8'
+            http_code: 200
+            header_size: 294
+            request_size: 186
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.057795
+            namelookup_time: 2.8E-5
+            connect_time: 0.000157
+            pretransfer_time: 0.000215
+            size_upload: !!float 0
+            size_download: !!float 11
+            speed_download: !!float 192
+            speed_upload: !!float 0
+            download_content_length: !!float 11
+            upload_content_length: !!float -1
+            starttransfer_time: 0.057748
+            redirect_time: !!float 0
+            redirect_url: ''
+            primary_ip: 172.23.0.4
+            certinfo: {  }
+            primary_port: 8000
+            local_ip: 172.23.0.1
+            local_port: 51512
+            http_version: 2
+            protocol: 1
+            ssl_verifyresult: 0
+            scheme: HTTP
+            appconnect_time_us: 0
+            connect_time_us: 157
+            namelookup_time_us: 28
+            pretransfer_time_us: 215
+            redirect_time_us: 0
+            starttransfer_time_us: 57748
+            total_time_us: 57795

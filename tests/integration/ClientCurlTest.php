@@ -445,7 +445,7 @@ class ClientCurlTest extends TestCase
     /**
      * @vcr create_customer
      */
-    public function testCreateCustomerWithMinimalData(): void
+    public function testCreateCustomerWithMinimalData(): array
     {
         $customer = $this->client->customers->create([
             'name' => 'bob',
@@ -457,6 +457,26 @@ class ClientCurlTest extends TestCase
         $this->assertTrue($customer->id > 0);
         $this->assertTrue($customer->name == 'bob');
         $this->assertTrue($customer->domain == 'bob.org');
+
+        return [$customer];
+    }
+
+    /**
+     * @vcr update_customer
+     * @depends testCreateCustomerWithMinimalData
+     */
+    public function testUpdateCustomer(array $stack): void
+    {
+        $customer = array_pop($stack);
+
+        $customer_updated = $this->client->customers->update($customer->id, [
+            'limit_external_calls' => 66
+        ]);
+
+        $this->assertInstanceOf(\Cloudpbx\Sdk\Model\Customer::class, $customer_updated);
+        $this->assertEquals(66, $customer_updated->limit_external_calls);
+        $this->assertEquals($customer->name, $customer_updated->name);
+        $this->assertEquals($customer->domain, $customer_updated->domain);
     }
 
     /**

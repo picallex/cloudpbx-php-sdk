@@ -249,3 +249,127 @@
             redirect_time_us: 0
             starttransfer_time_us: 14947
             total_time_us: 14980
+-
+    request:
+        method: GET
+        url: 'http://172.23.0.4:8000/api/v1/management/customers/2/routers/dids'
+        headers:
+            Host: '172.23.0.4:8000'
+            x-api-key: ''
+            content-type: application/json
+            accept: 'application/json, plain/text'
+    response:
+        status:
+            http_version: '1.1'
+            code: '200'
+            message: OK
+        headers:
+            cache-control: 'max-age=0, private, must-revalidate'
+            content-length: '188'
+            content-security-policy: 'script-src ''self'''
+            content-type: 'application/json; charset=utf-8'
+            date: 'Fri, 01 Oct 2021 18:54:52 GMT'
+            server: Cowboy
+            x-frame-options: deny
+            x-request-id: Fqn8-npTXJJLujYAAAlj
+        body: '{"data":[{"callcenter_queue_id":1,"customer_id":2,"did":"1234567","id":1},{"customer_id":2,"did":"222333","id":2,"ivr_menu_id":1},{"customer_id":2,"did":"333222","follow_me_id":1,"id":3}]}'
+        curl_info:
+            url: 'http://172.23.0.4:8000/api/v1/management/customers/2/routers/dids'
+            content_type: 'application/json; charset=utf-8'
+            http_code: 200
+            header_size: 295
+            request_size: 196
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.068155
+            namelookup_time: 3.5E-5
+            connect_time: 0.000174
+            pretransfer_time: 0.000226
+            size_upload: !!float 0
+            size_download: !!float 188
+            speed_download: !!float 2764
+            speed_upload: !!float 0
+            download_content_length: !!float 188
+            upload_content_length: !!float -1
+            starttransfer_time: 0.068114
+            redirect_time: !!float 0
+            redirect_url: ''
+            primary_ip: 172.23.0.4
+            certinfo: {  }
+            primary_port: 8000
+            local_ip: 172.23.0.1
+            local_port: 51508
+            http_version: 2
+            protocol: 1
+            ssl_verifyresult: 0
+            scheme: HTTP
+            appconnect_time_us: 0
+            connect_time_us: 174
+            namelookup_time_us: 35
+            pretransfer_time_us: 226
+            redirect_time_us: 0
+            starttransfer_time_us: 68114
+            total_time_us: 68155
+-
+    request:
+        method: GET
+        url: 'http://172.23.0.4:8000/api/v1/management/customers/2/service/callcenter/queues/1'
+        headers:
+            Host: '172.23.0.4:8000'
+            x-api-key: ''
+            content-type: application/json
+            accept: 'application/json, plain/text'
+    response:
+        status:
+            http_version: '1.1'
+            code: '200'
+            message: OK
+        headers:
+            cache-control: 'max-age=0, private, must-revalidate'
+            content-length: '412'
+            content-security-policy: 'script-src ''self'''
+            content-type: 'application/json; charset=utf-8'
+            date: 'Fri, 01 Oct 2021 18:54:52 GMT'
+            server: Cowboy
+            x-frame-options: deny
+            x-request-id: Fqn8-n-8XIheGNIAAAYh
+        body: '{"data":{"alias":null,"customer_id":2,"description":"8888","discard_abandoned_after":900,"id":1,"max_wait_time":5,"max_wait_time_with_no_agent":90,"max_wait_time_with_no_agent_time_reached":5,"moh_sound_id":2,"moh_sound_usage":"callcenter_moh","name":"8888","skip_agent_with_external_calls":true,"strategy":"round-robin","tier_rule_wait_multiply_level":false,"tier_rule_wait_second":30,"tier_rules_apply":false}}'
+        curl_info:
+            url: 'http://172.23.0.4:8000/api/v1/management/customers/2/service/callcenter/queues/1'
+            content_type: 'application/json; charset=utf-8'
+            http_code: 200
+            header_size: 295
+            request_size: 211
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.021903
+            namelookup_time: 3.5E-5
+            connect_time: 0.000177
+            pretransfer_time: 0.000242
+            size_upload: !!float 0
+            size_download: !!float 412
+            speed_download: !!float 19619
+            speed_upload: !!float 0
+            download_content_length: !!float 412
+            upload_content_length: !!float -1
+            starttransfer_time: 0.021865
+            redirect_time: !!float 0
+            redirect_url: ''
+            primary_ip: 172.23.0.4
+            certinfo: {  }
+            primary_port: 8000
+            local_ip: 172.23.0.1
+            local_port: 51510
+            http_version: 2
+            protocol: 1
+            ssl_verifyresult: 0
+            scheme: HTTP
+            appconnect_time_us: 0
+            connect_time_us: 177
+            namelookup_time_us: 35
+            pretransfer_time_us: 242
+            redirect_time_us: 0
+            starttransfer_time_us: 21865
+            total_time_us: 21903

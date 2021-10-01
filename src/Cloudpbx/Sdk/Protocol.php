@@ -39,6 +39,13 @@ interface Protocol
 
     /**
      * @param string $query
+     * @param array<string, mixed> $params
+     * @return mixed
+     */
+    public function update($query, $params);
+
+    /**
+     * @param string $query
      * @return void
      */
     public function delete($query);

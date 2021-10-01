@@ -31,6 +31,13 @@ class ClientCurl implements Http\Client
                 $request->body()
             );
             break;
+        case 'PUT':
+            [$body, $http_code] = $this->curlPut(
+                $request->url(),
+                $request->headers(),
+                $request->body()
+            );
+            break;
         case 'DELETE':
             [$body, $http_code] = $this->curlDelete(
                 $request->url(),
@@ -68,6 +75,26 @@ class ClientCurl implements Http\Client
     private function curlPost($url, $headers, $body = null)
     {
         return $this->curl($url, function ($ch) use ($headers, $body) {
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $this->buildCurlHeaders($headers));
+            if (!is_null($body)) {
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
+            }
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            return curl_exec($ch);
+        });
+    }
+
+    /**
+     * @param string $url
+     * @param array<string, mixed> $headers
+     * @param string | null $body
+     * @return array{0: string, 1: int}
+     */
+    private function curlPut($url, $headers, $body = null)
+    {
+        return $this->curl($url, function ($ch) use ($headers, $body) {
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
             curl_setopt($ch, CURLOPT_POST, true);
             curl_setopt($ch, CURLOPT_HTTPHEADER, $this->buildCurlHeaders($headers));
             if (!is_null($body)) {

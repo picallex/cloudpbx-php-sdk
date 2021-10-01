@@ -92,18 +92,17 @@ final class ProtocolHTTP implements \Cloudpbx\Sdk\Protocol
 
     public function create($url, $params = null)
     {
-        $request = Http\Implementation\RequestFromArray::build('POST', [
-            'body' => !is_null($params) ? json_encode($params) : null,
-            'headers' => $this->setHeaders([]),
-            'url' => $this->api_base . $url
-        ]);
+        return $this->do_request('POST', $url, $params);
+    }
 
-        $response = $this->transport->sendRequest($request);
-
-        $this->checkResponse($response);
-
-        $data = json_decode($response->body(), true)["data"] ?? [];
-        return $data;
+    /**
+     * @param string $url
+     * @param array<string,mixed> $params
+     * @return array<string, mixed>
+     */
+    public function update($url, $params = null)
+    {
+        return $this->do_request('PUT', $url, $params);
     }
 
     public function delete($url)
@@ -117,6 +116,28 @@ final class ProtocolHTTP implements \Cloudpbx\Sdk\Protocol
         $response = $this->transport->sendRequest($request);
 
         $this->checkResponse($response);
+    }
+
+    /**
+     * @param string $method
+     * @param string $url
+     * @param array<string,mixed>|null $params
+     * @return array<string, mixed>
+     */
+    private function do_request($method, $url, $params = null)
+    {
+        $request = Http\Implementation\RequestFromArray::build($method, [
+            'body' => !is_null($params) ? json_encode($params) : null,
+            'headers' => $this->setHeaders([]),
+            'url' => $this->api_base . $url
+        ]);
+
+        $response = $this->transport->sendRequest($request);
+
+        $this->checkResponse($response);
+
+        $data = json_decode($response->body(), true)["data"] ?? [];
+        return $data;
     }
 
     /**
