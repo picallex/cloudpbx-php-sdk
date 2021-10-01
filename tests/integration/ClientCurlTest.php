@@ -504,7 +504,7 @@ class ClientCurlTest extends TestCase
      * @vcr create_user
      * @depends testCreateCustomerWithMinimalData
      */
-    public function testCreateUserWithMinimalData($stack): void
+    public function testCreateUserWithMinimalData($stack): array
     {
         $customer = array_pop($stack);
 
@@ -518,5 +518,59 @@ class ClientCurlTest extends TestCase
         $this->assertTrue($user->id > 0);
         $this->assertEquals('simpon', $user->name);
         $this->assertEquals(false, $user->is_webrtc);
+
+        return [$user];
     }
+
+    /**
+     * @vcr create_full_user
+     * @depends testCreateCustomerWithMinimalData
+     */
+    public function testCreateUserWithFullData($stack): void
+    {
+        $customer = array_pop($stack);
+
+        $user = $this->client->users->create($customer->id, [
+            'name' => 'simpon5full',
+            'password' => 'insecure537537',
+            'alias' => 'description',
+            'accountcode' => 'invoice',
+            'caller_name' => 'caller-name',
+            'caller_number' => 'caller-number',
+            'dnd_on_sip_unregister' => true,
+            'available_on_sip_register' => true,
+            'is_webrtc' => true
+        ]);
+
+        $this->assertInstanceOf(\Cloudpbx\Sdk\Model\User::class, $user);
+        $this->assertTrue($user->id > 0);
+        $this->assertEquals('simpon5full', $user->name);
+        $this->assertEquals(true, $user->is_webrtc);
+        $this->assertEquals('description', $user->alias);
+        $this->assertEquals('invoice', $user->accountcode);
+        $this->assertEquals('caller-name', $user->caller_name);
+        $this->assertEquals('caller-number', $user->caller_number);
+        $this->assertEquals(true, $user->dnd_on_sip_unregister);
+        $this->assertEquals(true, $user->available_on_sip_register);
+    }
+
+    /**
+     * @vcr update_user
+     * @depends testCreateUserWithMinimalData
+     */
+    public function testUpdateUser($stack): void
+    {
+        $user = array_pop($stack);
+
+        $user_updated = $this->client->users->update($user->customer_id, $user->id, [
+
+            'alias' => 'new alias'
+        ]);
+
+        $this->assertInstanceOf(\Cloudpbx\Sdk\Model\User::class, $user);
+        $this->assertTrue($user->id > 0);
+        $this->assertEquals($user->name, $user_updated->name);
+        $this->assertEquals('new alias', $user_updated->alias);
+    }
+
 }

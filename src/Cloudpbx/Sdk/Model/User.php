@@ -17,6 +17,16 @@ final class User extends \Cloudpbx\Sdk\Model
     public $id;
 
     /**
+     * @var integer
+     */
+    public $customer_id;
+
+    /**
+     * @var Relation
+     */
+    public $customer;
+
+    /**
      * @var string
      */
     public $name;
@@ -46,7 +56,22 @@ final class User extends \Cloudpbx\Sdk\Model
      */
     public $is_webrtc;
 
+    /**
+     * @var boolean
+     */
+    public $dnd_on_sip_unregister;
+
+    /**
+     * @var boolean
+     */
+    public $available_on_sip_register;
+
     public function __construct()
     {
+    }
+
+    protected function setup()
+    {
+        $this->customer = new Relation('customer', $this->customer_id);
     }
 }
