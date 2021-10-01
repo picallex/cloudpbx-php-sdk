@@ -92,7 +92,7 @@ final class ProtocolHTTP implements \Cloudpbx\Sdk\Protocol
 
     public function create($url, $params = null)
     {
-        return $this->do_request('POST', $url, $params);
+        return $this->doRequest('POST', $url, $params);
     }
 
     /**
@@ -102,7 +102,7 @@ final class ProtocolHTTP implements \Cloudpbx\Sdk\Protocol
      */
     public function update($url, $params = null)
     {
-        return $this->do_request('PUT', $url, $params);
+        return $this->doRequest('PUT', $url, $params);
     }
 
     public function delete($url)
@@ -124,7 +124,7 @@ final class ProtocolHTTP implements \Cloudpbx\Sdk\Protocol
      * @param array<string,mixed>|null $params
      * @return array<string, mixed>
      */
-    private function do_request($method, $url, $params = null)
+    private function doRequest($method, $url, $params = null)
     {
         $request = Http\Implementation\RequestFromArray::build($method, [
             'body' => !is_null($params) ? json_encode($params) : null,
