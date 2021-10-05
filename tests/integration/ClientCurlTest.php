@@ -695,6 +695,26 @@ class ClientCurlTest extends TestCase
     }
 
     /**
+     * @vcr create_router_did_to_ivr_menu
+     * @depends testQueryOneCustomer
+     */
+    public function testCreateRouterDidToIvrMenu(array $stack): void
+    {
+        $customer = array_pop($stack);
+        $ivr = $this->client->ivrMenus->create($customer->id, [
+            'name' => 'test-ivr-mune-route-did',
+            'description' => 'test ivr menu'
+        ]);
+
+        $route = $this->client->routerDids->route_to_ivr_menu($customer->id, $ivr->id, '1234567890');
+
+        $this->assertInstanceOf(\Cloudpbx\Sdk\Model\RouterDid::class, $route);
+        $this->assertEquals('1234567890', $route->did);
+        $this->assertEquals($ivr->id, $route->ivr_menu_id);
+        $this->assertEquals($customer->id, $route->customer_id);
+    }
+
+    /**
      * @vcr delete_router_did
      * @depends testQueryOneCustomer
      */

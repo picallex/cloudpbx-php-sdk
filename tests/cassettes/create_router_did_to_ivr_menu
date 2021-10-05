@@ -1,0 +1,129 @@
+
+-
+    request:
+        method: POST
+        url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/ivr_menus'
+        headers:
+            Host: cloudpbxapidev.picallex.com
+            x-api-key: ''
+            content-type: application/json
+            accept: 'application/json, plain/text'
+        body: '{"ivr_menu":{"name":"test-ivr-mune-route-did","description":"test ivr menu"}}'
+    response:
+        status:
+            http_version: '1.1'
+            code: '201'
+            message: Created
+        headers:
+            Date: 'Tue, 05 Oct 2021 21:59:52 GMT'
+            Content-Type: 'application/json; charset=utf-8'
+            Content-Length: '450'
+            Connection: keep-alive
+            Server: nginx/1.14.2
+            cache-control: 'max-age=0, private, must-revalidate'
+            content-security-policy: 'script-src ''self'''
+            x-frame-options: deny
+            x-request-id: FqtBZRDTuo9IeLoAAA_h
+        body: '{"data":{"customer_id":2,"description":"test ivr menu","digit_len":null,"exit_sound_id":null,"exit_sound_usage":"ivr_exit","greet_long_sound_id":null,"greet_long_sound_usage":"ivr_greet_long","greet_short_sound_id":null,"greet_short_sound_usage":"ivr_greet_short","id":36,"inter_digit_timeout":null,"invalid_sound_id":null,"invalid_sound_usage":"ivr_invalid","max_failures":null,"name":"test-ivr-mune-route-did","template_sound":null,"timeout":null}}'
+        curl_info:
+            url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/ivr_menus'
+            content_type: 'application/json; charset=utf-8'
+            http_code: 201
+            header_size: 330
+            request_size: 309
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.584438
+            namelookup_time: 0.208377
+            connect_time: 0.374902
+            pretransfer_time: 0.37501
+            size_upload: !!float 77
+            size_download: !!float 450
+            speed_download: !!float 770
+            speed_upload: !!float 131
+            download_content_length: !!float 450
+            upload_content_length: !!float 77
+            starttransfer_time: 0.584395
+            redirect_time: !!float 0
+            redirect_url: ''
+            primary_ip: 3.143.187.222
+            certinfo: {  }
+            primary_port: 80
+            local_ip: 192.168.0.109
+            local_port: 37442
+            http_version: 2
+            protocol: 1
+            ssl_verifyresult: 0
+            scheme: HTTP
+            appconnect_time_us: 0
+            connect_time_us: 374902
+            namelookup_time_us: 208377
+            pretransfer_time_us: 375010
+            redirect_time_us: 0
+            starttransfer_time_us: 584395
+            total_time_us: 584438
+-
+    request:
+        method: POST
+        url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/routers/dids/36/ivr_menu'
+        headers:
+            Host: cloudpbxapidev.picallex.com
+            x-api-key: ''
+            content-type: application/json
+            accept: 'application/json, plain/text'
+        body: '{"did":"1234567890"}'
+    response:
+        status:
+            http_version: '1.1'
+            code: '201'
+            message: Created
+        headers:
+            Date: 'Tue, 05 Oct 2021 21:59:52 GMT'
+            Content-Type: 'application/json; charset=utf-8'
+            Content-Length: '70'
+            Connection: keep-alive
+            Server: nginx/1.14.2
+            cache-control: 'max-age=0, private, must-revalidate'
+            content-security-policy: 'script-src ''self'''
+            x-frame-options: deny
+            x-request-id: FqtBZTUlKnHj_gIAAA_x
+        body: '{"data":{"customer_id":2,"did":"1234567890","id":70,"ivr_menu_id":36}}'
+        curl_info:
+            url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/routers/dids/36/ivr_menu'
+            content_type: 'application/json; charset=utf-8'
+            http_code: 201
+            header_size: 329
+            request_size: 267
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.616566
+            namelookup_time: 0.206701
+            connect_time: 0.362856
+            pretransfer_time: 0.362939
+            size_upload: !!float 20
+            size_download: !!float 70
+            speed_download: !!float 113
+            speed_upload: !!float 32
+            download_content_length: !!float 70
+            upload_content_length: !!float 20
+            starttransfer_time: 0.616497
+            redirect_time: !!float 0
+            redirect_url: ''
+            primary_ip: 3.140.41.83
+            certinfo: {  }
+            primary_port: 80
+            local_ip: 192.168.0.109
+            local_port: 60596
+            http_version: 2
+            protocol: 1
+            ssl_verifyresult: 0
+            scheme: HTTP
+            appconnect_time_us: 0
+            connect_time_us: 362856
+            namelookup_time_us: 206701
+            pretransfer_time_us: 362939
+            redirect_time_us: 0
+            starttransfer_time_us: 616497
+            total_time_us: 616566

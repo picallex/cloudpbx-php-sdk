@@ -45,20 +45,7 @@ final class RouterDid extends Api
      */
     public function route_to_user($customer_id, $user_id, $did)
     {
-        Argument::isInteger($customer_id);
-        Argument::isInteger($user_id);
-        Argument::isFormat($did, '/\d+/');
-
-        $query = $this->protocol->prepareQuery(
-            '/api/v1/management/customers/{customer_id}/routers/dids/{user_id}/user',
-            [
-                '{customer_id}' => $customer_id,
-                '{user_id}' => $user_id
-            ]
-        );
-
-        $record = $this->protocol->create($query, ['did' => $did]);
-        return $this->recordToModel($record, Model\RouterDid::class);
+        return $this->route_to_resource('/api/v1/management/customers/{customer_id}/routers/dids/{resource_id}/user', $customer_id, $user_id, $did);
     }
 
     /**
@@ -72,20 +59,21 @@ final class RouterDid extends Api
      */
     public function route_to_callcenter_queue($customer_id, $callcenter_queue_id, $did)
     {
-        Argument::isInteger($customer_id);
-        Argument::isInteger($callcenter_queue_id);
-        Argument::isFormat($did, '/\d+/');
+        return $this->route_to_resource('/api/v1/management/customers/{customer_id}/routers/dids/{resource_id}/callcenter_queue', $customer_id, $callcenter_queue_id, $did);
+    }
 
-        $query = $this->protocol->prepareQuery(
-            '/api/v1/management/customers/{customer_id}/routers/dids/{callcenter_queue_id}/callcenter_queue',
-            [
-                '{customer_id}' => $customer_id,
-                '{callcenter_queue_id}' => $callcenter_queue_id
-            ]
-        );
-
-        $record = $this->protocol->create($query, ['did' => $did]);
-        return $this->recordToModel($record, Model\RouterDid::class);
+    /**
+         * See **ClientCurlTest** for details.
+         *
+         * @param int $customer_id
+         * @param int $ivr_menu_id
+         * @param string $did
+         *
+         * @return Model\RouterDid
+         */
+    public function route_to_ivr_menu($customer_id, $ivr_menu_id, $did)
+    {
+        return $this->route_to_resource('/api/v1/management/customers/{customer_id}/routers/dids/{resource_id}/ivr_menu', $customer_id, $ivr_menu_id, $did);
     }
 
     /**
@@ -112,5 +100,32 @@ final class RouterDid extends Api
         $this->protocol->delete($query);
 
         return;
+    }
+
+    /**
+     *
+     * @param string $query
+     * @param int $customer_id
+     * @param int $resource_id
+     * @param string $did
+     *
+     * @return Model\RouterDid
+     */
+    private function route_to_resource($query, $customer_id, $resource_id, $did)
+    {
+        Argument::isInteger($customer_id);
+        Argument::isInteger($resource_id);
+        Argument::isFormat($did, '/\d+/');
+
+        $url = $this->protocol->prepareQuery(
+            $query,
+            [
+                '{customer_id}' => $customer_id,
+                '{resource_id}' => $resource_id
+            ]
+        );
+
+        $record = $this->protocol->create($url, ['did' => $did]);
+        return $this->recordToModel($record, Model\RouterDid::class);
     }
 }
