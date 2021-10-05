@@ -782,4 +782,44 @@ class ClientCurlTest extends TestCase
             $this->assertInstanceOf(\Cloudpbx\Protocol\Error\NotFoundError::class, $e);
         }
     }
+
+    /**
+     * @vcr create_follow_me
+     * @depends testQueryOneCustomer
+     */
+    public function testCreateFollowMe(array $stack): void
+    {
+        $customer = array_pop($stack);
+
+        $me = $this->client->followMes->create($customer->id, [
+            'name' => 'test-follow-me',
+            'ringback_type' => 'fake_ring', //bridge_media
+        ]);
+
+        $this->assertInstanceOf(\Cloudpbx\Sdk\Model\FollowMe::class, $me);
+        $this->assertTrue($me->id > 0);
+        $this->assertEquals('test-follow-me', $me->name);
+        $this->assertEquals($customer->id, $me->customer_id);
+    }
+
+    /**
+     * @vcr delete_follow_me
+     * @depends testQueryOneCustomer
+     */
+    public function testDeleteFollowMe(array $stack): void
+    {
+        $customer = array_pop($stack);
+
+        $me = $this->client->followMes->create($customer->id, [
+            'name' => 'test-follow-me-delete',
+        ]);
+
+        $this->client->followMes->delete($customer->id, $me->id);
+
+        try {
+            $this->client->followMes->show($customer->id, $me->id);
+        } catch(Exception $e) {
+            $this->assertInstanceOf(\Cloudpbx\Protocol\Error\NotFoundError::class, $e);
+        }
+    }
 }

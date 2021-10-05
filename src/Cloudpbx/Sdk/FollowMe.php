@@ -56,4 +56,49 @@ final class FollowMe extends Api
 
         return $this->recordToModel($record, \Cloudpbx\Sdk\Model\FollowMe::class);
     }
+
+    /**
+     * See **ClientCurlTest** for details.
+     *
+     * @param int $customer_id
+     * @param array<string,mixed> $params
+     *
+     * @return Model\FollowMe
+     */
+    public function create($customer_id, $params)
+    {
+        Argument::isInteger($customer_id);
+        Argument::isParams($params);
+
+        $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}/follow_me', [
+            '{customer_id}' => $customer_id
+        ]);
+
+        $record = $this->protocol->create($query, ['follow_me' => $params]);
+
+        return $this->recordToModel($record, Model\FollowMe::class);
+    }
+
+    /**
+     * See **ClientCurlTest** for details.
+     *
+     * @param int $customer_id
+     * @param int $id
+     *
+     * @return void
+     */
+    public function delete($customer_id, $id)
+    {
+        Argument::isInteger($customer_id);
+        Argument::isInteger($id);
+
+        $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}/follow_me/{id}', [
+            '{customer_id}' => $customer_id,
+            '{id}' => $id
+        ]);
+
+        $this->protocol->delete($query);
+
+        return;
+    }
 }
