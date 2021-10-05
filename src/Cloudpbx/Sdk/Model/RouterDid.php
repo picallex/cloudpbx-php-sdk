@@ -57,6 +57,11 @@ final class RouterDid extends \Cloudpbx\Sdk\Model
     public $follow_me_id = null;
 
     /**
+     * @var string|null
+     */
+    public $destination_number;
+
+    /**
      * @var Relation
      *
      * @see \Cloudpbx\Sdk\Client::preload for loading this relation as model
@@ -88,7 +93,7 @@ final class RouterDid extends \Cloudpbx\Sdk\Model
         }
 
         //@phpstan-ignore-next-line
-        if (is_null($this->has_one)) {
+        if (is_null($this->has_one) && is_null($this->destination_number)) {
             throw new \RuntimeException('not found a relation for has_one');
         }
     }

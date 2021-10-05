@@ -90,6 +90,33 @@ final class RouterDid extends Api
         return $this->route_to_resource('/api/v1/management/customers/{customer_id}/routers/dids/{resource_id}/follow_me', $customer_id, $follow_me_id, $did);
     }
 
+
+    /**
+     * See **ClientCurlTest** for details.
+     *
+     * @param int $customer_id
+     * @param string $did
+     * @param string $destination
+     *
+     * @return Model\RouterDid
+     */
+    public function route_to_destination_number($customer_id, $did, $destination)
+    {
+        Argument::isInteger($customer_id);
+        Argument::isFormat($did, '/\d+/');
+        Argument::isFormat($destination, '/\d+/');
+
+        $url = $this->protocol->prepareQuery(
+            '/api/v1/management/customers/{customer_id}/routers/dids/destination',
+            [
+                '{customer_id}' => $customer_id,
+            ]
+        );
+
+        $record = $this->protocol->create($url, ['did' => $did, 'destination_number' => $destination]);
+        return $this->recordToModel($record, Model\RouterDid::class);
+    }
+
     /**
      * See **ClientCurlTest** for details.
      *

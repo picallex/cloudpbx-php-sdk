@@ -734,6 +734,22 @@ class ClientCurlTest extends TestCase
     }
 
     /**
+     * @vcr create_router_did_to_destination_number
+     * @depends testQueryOneCustomer
+     */
+    public function testCreateRouterDidToDestination(array $stack): void
+    {
+        $customer = array_pop($stack);
+
+        $route = $this->client->routerDids->route_to_destination_number($customer->id, '12345678901', '656565');
+
+        $this->assertInstanceOf(\Cloudpbx\Sdk\Model\RouterDid::class, $route);
+        $this->assertEquals('12345678901', $route->did);
+        $this->assertEquals('656565', $route->destination_number);
+        $this->assertEquals($customer->id, $route->customer_id);
+    }
+
+    /**
      * @vcr delete_router_did
      * @depends testQueryOneCustomer
      */
