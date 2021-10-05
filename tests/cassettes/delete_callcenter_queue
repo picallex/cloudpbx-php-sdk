@@ -1,0 +1,188 @@
+
+-
+    request:
+        method: POST
+        url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/service/callcenter/queues'
+        headers:
+            Host: cloudpbxapidev.picallex.com
+            x-api-key: ''
+            content-type: application/json
+            accept: 'application/json, plain/text'
+        body: '{"callcenter_queue":{"name":"superqueue53535","strategy":"random","max_wait_time":5,"description":"a super queue","alias":"queuesuper"}}'
+    response:
+        status:
+            http_version: '1.1'
+            code: '201'
+            message: Created
+        headers:
+            Date: 'Tue, 05 Oct 2021 21:41:05 GMT'
+            Content-Type: 'application/json; charset=utf-8'
+            Content-Length: '439'
+            Connection: keep-alive
+            Server: nginx/1.14.2
+            cache-control: 'max-age=0, private, must-revalidate'
+            content-security-policy: 'script-src ''self'''
+            x-frame-options: deny
+            x-request-id: FqtAXsZ5-UnmYKcAABHR
+        body: '{"data":{"alias":"queuesuper","customer_id":2,"description":"a super queue","discard_abandoned_after":900,"id":36,"max_wait_time":5,"max_wait_time_with_no_agent":90,"max_wait_time_with_no_agent_time_reached":5,"moh_sound_id":null,"moh_sound_usage":"callcenter_moh","name":"superqueue53535","skip_agent_with_external_calls":true,"strategy":"random","tier_rule_wait_multiply_level":false,"tier_rule_wait_second":30,"tier_rules_apply":false}}'
+        curl_info:
+            url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/service/callcenter/queues'
+            content_type: 'application/json; charset=utf-8'
+            http_code: 201
+            header_size: 330
+            request_size: 385
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 1.310803
+            namelookup_time: 0.458035
+            connect_time: 0.661154
+            pretransfer_time: 0.661263
+            size_upload: !!float 136
+            size_download: !!float 439
+            speed_download: !!float 335
+            speed_upload: !!float 103
+            download_content_length: !!float 439
+            upload_content_length: !!float 136
+            starttransfer_time: 1.310747
+            redirect_time: !!float 0
+            redirect_url: ''
+            primary_ip: 3.140.41.83
+            certinfo: {  }
+            primary_port: 80
+            local_ip: 192.168.0.109
+            local_port: 60586
+            http_version: 2
+            protocol: 1
+            ssl_verifyresult: 0
+            scheme: HTTP
+            appconnect_time_us: 0
+            connect_time_us: 661154
+            namelookup_time_us: 458035
+            pretransfer_time_us: 661263
+            redirect_time_us: 0
+            starttransfer_time_us: 1310747
+            total_time_us: 1310803
+-
+    request:
+        method: DELETE
+        url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/service/callcenter/queues/36'
+        headers:
+            Host: cloudpbxapidev.picallex.com
+            x-api-key: ''
+            content-type: application/json
+            accept: 'application/json, plain/text'
+    response:
+        status:
+            http_version: '1.1'
+            code: '204'
+            message: 'No Content'
+        headers:
+            Date: 'Tue, 05 Oct 2021 21:41:06 GMT'
+            Connection: keep-alive
+            Server: nginx/1.14.2
+            cache-control: 'max-age=0, private, must-revalidate'
+            content-security-policy: 'script-src ''self'''
+            x-frame-options: deny
+            x-request-id: FqtAXwUx3tw3z6UAAA-C
+        curl_info:
+            url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/service/callcenter/queues/36'
+            content_type: null
+            http_code: 204
+            header_size: 265
+            request_size: 233
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.548353
+            namelookup_time: 0.15844
+            connect_time: 0.364246
+            pretransfer_time: 0.364341
+            size_upload: !!float 0
+            size_download: !!float 0
+            speed_download: !!float 0
+            speed_upload: !!float 0
+            download_content_length: !!float 0
+            upload_content_length: !!float -1
+            starttransfer_time: 0.548307
+            redirect_time: !!float 0
+            redirect_url: ''
+            primary_ip: 3.140.41.83
+            certinfo: {  }
+            primary_port: 80
+            local_ip: 192.168.0.109
+            local_port: 60588
+            http_version: 2
+            protocol: 1
+            ssl_verifyresult: 0
+            scheme: HTTP
+            appconnect_time_us: 0
+            connect_time_us: 364246
+            namelookup_time_us: 158440
+            pretransfer_time_us: 364341
+            redirect_time_us: 0
+            starttransfer_time_us: 548307
+            total_time_us: 548353
+-
+    request:
+        method: GET
+        url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/service/callcenter/queues/36'
+        headers:
+            Host: cloudpbxapidev.picallex.com
+            x-api-key: ''
+            content-type: application/json
+            accept: 'application/json, plain/text'
+    response:
+        status:
+            http_version: '1.1'
+            code: '404'
+            message: 'Not Found'
+        headers:
+            Date: 'Tue, 05 Oct 2021 21:41:07 GMT'
+            Content-Type: 'application/json; charset=utf-8'
+            Content-Length: '33'
+            Connection: keep-alive
+            Server: nginx/1.14.2
+            cache-control: 'max-age=0, private, must-revalidate'
+            content-security-policy: 'script-src ''self'''
+            x-frame-options: deny
+            x-request-id: FqtAXyaRnq8lIeIAAA-i
+        body: '{"errors":{"detail":"Not Found"}}'
+        curl_info:
+            url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/service/callcenter/queues/36'
+            content_type: 'application/json; charset=utf-8'
+            http_code: 404
+            header_size: 331
+            request_size: 230
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.519807
+            namelookup_time: 0.158787
+            connect_time: 0.326499
+            pretransfer_time: 0.326597
+            size_upload: !!float 0
+            size_download: !!float 33
+            speed_download: !!float 63
+            speed_upload: !!float 0
+            download_content_length: !!float 33
+            upload_content_length: !!float -1
+            starttransfer_time: 0.519753
+            redirect_time: !!float 0
+            redirect_url: ''
+            primary_ip: 3.143.187.222
+            certinfo: {  }
+            primary_port: 80
+            local_ip: 192.168.0.109
+            local_port: 37434
+            http_version: 2
+            protocol: 1
+            ssl_verifyresult: 0
+            scheme: HTTP
+            appconnect_time_us: 0
+            connect_time_us: 326499
+            namelookup_time_us: 158787
+            pretransfer_time_us: 326597
+            redirect_time_us: 0
+            starttransfer_time_us: 519753
+            total_time_us: 519807

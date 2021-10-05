@@ -102,4 +102,55 @@ final class CallcenterQueue extends Api
 
         return $this->recordsToModel($records, Model\CallcenterTier::class);
     }
+
+    /**
+     * See **ClientCurlTest** for details.
+     *
+     * @param int $customer_id
+     * @param array<string,mixed> $params
+     *
+     * @return Model\CallcenterQueue
+     */
+    public function create($customer_id, $params)
+    {
+        Argument::isInteger($customer_id);
+        Argument::isParams($params);
+
+        $query = $this->protocol->prepareQuery(
+            '/api/v1/management/customers/{customer_id}/service/callcenter/queues',
+            [
+                '{customer_id}' => $customer_id,
+            ]
+        );
+
+        $record = $this->protocol->create($query, ['callcenter_queue' => $params]);
+
+        return $this->recordToModel($record, Model\CallcenterQueue::class);
+    }
+
+    /**
+     * See **ClientCurlTest** for details.
+     *
+     * @param int $customer_id
+     * @param int $id;
+     *
+     * @return void
+     */
+    public function delete($customer_id, $id)
+    {
+        Argument::isInteger($customer_id);
+        Argument::isInteger($id);
+
+        $query = $this->protocol->prepareQuery(
+            '/api/v1/management/customers/{customer_id}/service/callcenter/queues/{id}',
+            [
+                '{customer_id}' => $customer_id,
+                '{id}' => $id
+            ]
+        );
+
+        $this->protocol->delete($query);
+
+        return;
+    }
 }

@@ -126,6 +126,55 @@ class ClientCurlTest extends TestCase
     }
 
     /**
+     * @vcr create_callcenter_queue
+     * @depends testQueryOneCustomer
+     */
+    public function testCreateCallcenterQueue(array $stack): void
+    {
+        $customer = array_pop($stack);
+
+        $queue = $this->client->callcenterQueues->create($customer->id, [
+            'name' => 'superqueue',
+            'strategy' => 'random', //round-robin, ring-all
+            'max_wait_time' => 5,
+            'description' => 'a super queue',
+            'alias' => 'queuesuper'
+        ]);
+
+        $this->assertInstanceOf(\Cloudpbx\Sdk\Model\CallcenterQueue::class, $queue);
+        $this->assertEquals('superqueue', $queue->name);
+        $this->assertEquals('random', $queue->strategy);
+        $this->assertEquals(5, $queue->max_wait_time);
+        $this->assertEquals('a super queue', $queue->description);
+        $this->assertEquals('queuesuper', $queue->alias);
+    }
+
+    /**
+     * @vcr delete_callcenter_queue
+     * @depends testQueryOneCustomer
+     */
+    public function testDeleteCallcenterQueue(array $stack): void
+    {
+        $customer = array_pop($stack);
+
+        $queue = $this->client->callcenterQueues->create($customer->id, [
+            'name' => 'superqueue53535',
+            'strategy' => 'random', //round-robin, ring-all
+            'max_wait_time' => 5,
+            'description' => 'a super queue',
+            'alias' => 'queuesuper'
+        ]);
+
+
+        $this->client->callcenterQueues->delete($customer->id, $queue->id);
+        try {
+            $this->client->callcenterQueues->show($customer->id, $queue->id);
+        } catch(Exception $e) {
+            $this->assertInstanceOf(\Cloudpbx\Protocol\Error\NotFoundError::class, $e);
+        }
+    }
+
+    /**
      * @vcr query_dialout_by_customer
      * @depends testQueryOneCustomer
      */
