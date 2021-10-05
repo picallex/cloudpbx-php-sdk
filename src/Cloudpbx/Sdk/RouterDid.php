@@ -65,6 +65,33 @@ final class RouterDid extends Api
      * See **ClientCurlTest** for details.
      *
      * @param int $customer_id
+     * @param int $callcenter_queue_id
+     * @param string $did
+     *
+     * @return Model\RouterDid
+     */
+    public function route_to_callcenter_queue($customer_id, $callcenter_queue_id, $did)
+    {
+        Argument::isInteger($customer_id);
+        Argument::isInteger($callcenter_queue_id);
+        Argument::isFormat($did, '/\d+/');
+
+        $query = $this->protocol->prepareQuery(
+            '/api/v1/management/customers/{customer_id}/routers/dids/{callcenter_queue_id}/callcenter_queue',
+            [
+                '{customer_id}' => $customer_id,
+                '{callcenter_queue_id}' => $callcenter_queue_id
+            ]
+        );
+
+        $record = $this->protocol->create($query, ['did' => $did]);
+        return $this->recordToModel($record, Model\RouterDid::class);
+    }
+
+    /**
+     * See **ClientCurlTest** for details.
+     *
+     * @param int $customer_id
      * @param int $id
      *
      * @return void

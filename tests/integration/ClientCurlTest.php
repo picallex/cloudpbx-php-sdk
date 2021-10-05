@@ -672,6 +672,29 @@ class ClientCurlTest extends TestCase
     }
 
     /**
+     * @vcr create_router_did_to_callcenter_queue
+     * @depends testQueryOneCustomer
+     */
+    public function testCreateRouterDidToCallcenterQueue(array $stack): void
+    {
+        $customer = array_pop($stack);
+        $queue = $this->client->callcenterQueues->create($customer->id, [
+            'name' => 'superqueue53535routerdid',
+            'strategy' => 'random', //round-robin, ring-all
+            'max_wait_time' => 5,
+            'description' => 'a super queue',
+            'alias' => 'queuesuper'
+        ]);
+
+        $route = $this->client->routerDids->route_to_callcenter_queue($customer->id, $queue->id, '123456789');
+
+        $this->assertInstanceOf(\Cloudpbx\Sdk\Model\RouterDid::class, $route);
+        $this->assertEquals('123456789', $route->did);
+        $this->assertEquals($queue->id, $route->callcenter_queue_id);
+        $this->assertEquals($customer->id, $route->customer_id);
+    }
+
+    /**
      * @vcr delete_router_did
      * @depends testQueryOneCustomer
      */
