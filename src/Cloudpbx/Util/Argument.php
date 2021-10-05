@@ -129,6 +129,18 @@ final class Argument
     }
 
     /**
+     *
+     * @param mixed $value
+     * @param string $format
+     *
+     * @return void
+     */
+    public static function isFormat($value, $format)
+    {
+        self::assert(preg_match($format, $value), "expected format {$format}");
+    }
+
+    /**
      * @param mixed $value
      * @param mixed $message
      *

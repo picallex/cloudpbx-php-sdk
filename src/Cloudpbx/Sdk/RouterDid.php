@@ -33,4 +33,57 @@ final class RouterDid extends Api
 
         return $this->recordsToModel($records, Model\RouterDid::class);
     }
+
+    /**
+     * See **ClientCurlTest** for details.
+     *
+     * @param int $customer_id
+     * @param int $user_id
+     * @param string $did
+     *
+     * @return Model\RouterDid
+     */
+    public function route_to_user($customer_id, $user_id, $did)
+    {
+        Argument::isInteger($customer_id);
+        Argument::isInteger($user_id);
+        Argument::isFormat($did, '/\d+/');
+
+        $query = $this->protocol->prepareQuery(
+            '/api/v1/management/customers/{customer_id}/routers/dids/{user_id}/user',
+            [
+                '{customer_id}' => $customer_id,
+                '{user_id}' => $user_id
+            ]
+        );
+
+        $record = $this->protocol->create($query, ['did' => $did]);
+        return $this->recordToModel($record, Model\RouterDid::class);
+    }
+
+    /**
+     * See **ClientCurlTest** for details.
+     *
+     * @param int $customer_id
+     * @param int $id
+     *
+     * @return void
+     */
+    public function delete($customer_id, $id)
+    {
+        Argument::isInteger($customer_id);
+        Argument::isInteger($id);
+
+        $query = $this->protocol->prepareQuery(
+            '/api/v1/management/customers/{customer_id}/routers/dids/{id}',
+            [
+                '{customer_id}' => $customer_id,
+                '{id}' => $id
+            ]
+        );
+
+        $this->protocol->delete($query);
+
+        return;
+    }
 }

@@ -596,4 +596,57 @@ class ClientCurlTest extends TestCase
         }
     }
 
+    /**
+     * @vcr create_router_did_to_user
+     * @depends testQueryOneCustomer
+     */
+    public function testCreateRouterDidToUser(array $stack): void
+    {
+        $customer = array_pop($stack);
+
+        $user = $this->client->users->create($customer->id, [
+            'name' => 'simpon5fullrouter',
+            'password' => 'insecure537537',
+            'alias' => 'description',
+            'accountcode' => 'invoice',
+            'caller_name' => 'caller-name',
+            'caller_number' => 'caller-number',
+            'dnd_on_sip_unregister' => true,
+            'available_on_sip_register' => true,
+            'is_webrtc' => true
+        ]);
+
+        $route = $this->client->routerDids->route_to_user($customer->id, $user->id, '12345678');
+        $this->assertEquals('12345678', $route->did);
+        $this->assertEquals($user->id, $route->user_id);
+        $this->assertEquals($customer->id, $route->customer_id);
+    }
+
+    /**
+     * @vcr delete_router_did
+     * @depends testQueryOneCustomer
+     */
+    public function testDeleteRouterDid(array $stack): void
+    {
+        // Given a route
+        $customer = array_pop($stack);
+        $user = $this->client->users->create($customer->id, [
+            'name' => 'simpon5fullrouterdelete',
+            'password' => 'insecure537537',
+            'alias' => 'description',
+            'accountcode' => 'invoice',
+            'caller_name' => 'caller-name',
+            'caller_number' => 'caller-number',
+            'dnd_on_sip_unregister' => true,
+            'available_on_sip_register' => true,
+            'is_webrtc' => true
+        ]);
+
+        // When route exists
+        $route = $this->client->routerDids->route_to_user($customer->id, $user->id, '12345678');
+
+        // Then delete it
+        $this->client->routerDids->delete($customer->id, $route->id);
+        $this->assertTrue(true);
+    }
 }
