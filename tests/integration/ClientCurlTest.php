@@ -721,4 +721,45 @@ class ClientCurlTest extends TestCase
         $this->client->routerDids->delete($customer->id, $route->id);
         $this->assertTrue(true);
     }
+
+    /**
+     * @vcr create_ivr_menu
+     * @depends testQueryOneCustomer
+     */
+    public function testCreateIvrMenu(array $stack): void
+    {
+        $customer = array_pop($stack);
+
+        $ivr = $this->client->ivrMenus->create($customer->id, [
+            'name' => 'test-ivr-mune',
+            'description' => 'test ivr menu'
+        ]);
+
+        $this->assertInstanceOf(\Cloudpbx\Sdk\Model\IvrMenu::class, $ivr);
+        $this->assertTrue($ivr->id > 0);
+        $this->assertEquals('test-ivr-mune', $ivr->name);
+        $this->assertEquals('test ivr menu', $ivr->description);
+    }
+
+    /**
+     * @vcr delete_ivr_menu
+     * @depends testQueryOneCustomer
+     */
+    public function testDeleteIvrMenu(array $stack): void
+    {
+        $customer = array_pop($stack);
+
+        $ivr = $this->client->ivrMenus->create($customer->id, [
+            'name' => 'test-ivr-mune-delete',
+            'description' => 'test ivr menu'
+        ]);
+
+        $this->client->ivrMenus->delete($customer->id, $ivr->id);
+
+        try {
+            $this->client->ivrMenus->show($customer->id, $ivr->id);
+        } catch(Exception $e) {
+            $this->assertInstanceOf(\Cloudpbx\Protocol\Error\NotFoundError::class, $e);
+        }
+    }
 }
