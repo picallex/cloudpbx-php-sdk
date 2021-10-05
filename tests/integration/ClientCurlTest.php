@@ -715,6 +715,25 @@ class ClientCurlTest extends TestCase
     }
 
     /**
+     * @vcr create_router_did_to_follow_me
+     * @depends testQueryOneCustomer
+     */
+    public function testCreateRouterDidToFollowMe(array $stack): void
+    {
+        $customer = array_pop($stack);
+        $me = $this->client->followMes->create($customer->id, [
+            'name' => 'test-follow-me-route-did',
+        ]);
+
+        $route = $this->client->routerDids->route_to_follow_me($customer->id, $me->id, '12345678901');
+
+        $this->assertInstanceOf(\Cloudpbx\Sdk\Model\RouterDid::class, $route);
+        $this->assertEquals('12345678901', $route->did);
+        $this->assertEquals($me->id, $route->follow_me_id);
+        $this->assertEquals($customer->id, $route->customer_id);
+    }
+
+    /**
      * @vcr delete_router_did
      * @depends testQueryOneCustomer
      */

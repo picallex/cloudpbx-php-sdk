@@ -80,6 +80,20 @@ final class RouterDid extends Api
      * See **ClientCurlTest** for details.
      *
      * @param int $customer_id
+     * @param int $follow_me_id
+     * @param string $did
+     *
+     * @return Model\RouterDid
+     */
+    public function route_to_follow_me($customer_id, $follow_me_id, $did)
+    {
+        return $this->route_to_resource('/api/v1/management/customers/{customer_id}/routers/dids/{resource_id}/follow_me', $customer_id, $follow_me_id, $did);
+    }
+
+    /**
+     * See **ClientCurlTest** for details.
+     *
+     * @param int $customer_id
      * @param int $id
      *
      * @return void
