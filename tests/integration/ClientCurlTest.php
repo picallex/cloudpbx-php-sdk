@@ -750,6 +750,32 @@ class ClientCurlTest extends TestCase
     }
 
     /**
+     * @vcr create_router_did_to_dialout
+     * @depends testQueryOneCustomer
+     */
+    public function testCreateRouterDidToDialout(array $stack): void
+    {
+        $customer = array_pop($stack);
+
+        $dialout = $this->client->dialouts->create($customer->id, [
+            'weight' => 100,
+            'strip' => '999',
+            'prepend' => '8888',
+            'name' => 'international-route',
+            'destination' => '1XXXXX.',
+            'gateway_strategy' => 'sequence',
+            'callerid_strategy' => 'random'
+        ]);
+
+        $route = $this->client->routerDids->route_to_dialout($customer->id, $dialout->id, '6565655', '17885566');
+
+        $this->assertInstanceOf(\Cloudpbx\Sdk\Model\RouterDid::class, $route);
+        $this->assertEquals('6565655', $route->did);
+        $this->assertEquals('17885566', $route->destination_number);
+        $this->assertEquals($customer->id, $route->customer_id);
+    }
+
+    /**
      * @vcr delete_router_did
      * @depends testQueryOneCustomer
      */
@@ -857,4 +883,59 @@ class ClientCurlTest extends TestCase
             $this->assertInstanceOf(\Cloudpbx\Protocol\Error\NotFoundError::class, $e);
         }
     }
+
+    /**
+     * @vcr create_dialout
+     * @depends testQueryOneCustomer
+     */
+    public function testCreateDialout(array $stack): void
+    {
+        $customer = array_pop($stack);
+
+        $dialout = $this->client->dialouts->create($customer->id, [
+            'weight' => 100,
+            'strip' => '999',
+            'prepend' => '8888',
+            'name' => 'international',
+            'destination' => '1XXXXX.',
+            'gateway_strategy' => 'sequence',
+            'callerid_strategy' => 'random'
+        ]);
+
+        $this->assertInstanceOf(\Cloudpbx\Sdk\Model\Dialout::class, $dialout);
+        $this->assertTrue($dialout->id > 0);
+        $this->assertEquals('international', $dialout->name);
+        $this->assertEquals('1XXXXX.', $dialout->destination);
+        $this->assertEquals('sequence', $dialout->gateway_strategy);
+        $this->assertEquals('random', $dialout->callerid_strategy);
+    }
+
+
+    /**
+     * @vcr delete_dialout
+     * @depends testQueryOneCustomer
+     */
+    public function testDeleteDialout(array $stack): void
+    {
+        $customer = array_pop($stack);
+
+        $dialout = $this->client->dialouts->create($customer->id, [
+            'weight' => 100,
+            'strip' => '999',
+            'prepend' => '8888',
+            'name' => 'international-delete',
+            'destination' => '1XXXXX.',
+            'gateway_strategy' => 'sequence',
+            'callerid_strategy' => 'random'
+        ]);
+
+
+        $this->client->dialouts->delete($customer->id, $dialout->id);
+        try {
+            $this->client->dialouts->show($customer->id, $dialout->id);
+        } catch (Exception $e) {
+            $this->assertInstanceOf(\Cloudpbx\Protocol\Error\NotFoundError::class, $e);
+        }
+    }
+
 }

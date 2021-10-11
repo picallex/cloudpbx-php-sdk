@@ -54,4 +54,49 @@ final class Dialout extends Api
 
         return $this->recordToModel($record, Model\Dialout::class);
     }
+
+    /**
+     * See **ClientCurlTest** for details.
+     *
+     * @param int $customer_id
+     * @param array<string,mixed> $params
+     *
+     * @return Model\Dialout
+     */
+    public function create($customer_id, $params)
+    {
+        Argument::isInteger($customer_id);
+        Argument::isParams($params);
+
+        $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}/dialouts', [
+            '{customer_id}' => $customer_id
+        ]);
+
+        $record = $this->protocol->create($query, ['dialout' => $params]);
+
+        return $this->recordToModel($record, Model\Dialout::class);
+    }
+
+    /**
+     * See **ClientCurlTest** for details.
+     *
+     * @param int $customer_id
+     * @param int $id
+     *
+     * @return void
+     */
+    public function delete($customer_id, $id)
+    {
+        Argument::isInteger($customer_id);
+        Argument::isInteger($id);
+
+        $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}/dialouts/{id}', [
+            '{customer_id}' => $customer_id,
+            '{id}' => $id
+        ]);
+
+        $this->protocol->delete($query);
+
+        return;
+    }
 }

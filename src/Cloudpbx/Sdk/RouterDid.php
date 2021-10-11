@@ -90,6 +90,31 @@ final class RouterDid extends Api
         return $this->route_to_resource('/api/v1/management/customers/{customer_id}/routers/dids/{resource_id}/follow_me', $customer_id, $follow_me_id, $did);
     }
 
+    /**
+     * See **ClientCurlTest** for details.
+     *
+     * @param int $customer_id
+     * @param int $dialout_id
+     * @param string $did
+     * @param string $destination_number
+     *
+     * @return Model\RouterDid
+     */
+    public function route_to_dialout($customer_id, $dialout_id, $did, $destination_number)
+    {
+        Argument::isInteger($customer_id);
+        Argument::isInteger($dialout_id);
+        Argument::isString($did);
+        Argument::isString($destination_number);
+
+        return $this->route_to_resource_with_body(
+            '/api/v1/management/customers/{customer_id}/routers/dids/{resource_id}/dialout',
+            ['{customer_id}' => $customer_id,
+                                         '{resource_id}' => $dialout_id],
+            ['did' => $did, 'destination_number' => $destination_number]
+        );
+    }
+
 
     /**
      * See **ClientCurlTest** for details.
@@ -167,6 +192,26 @@ final class RouterDid extends Api
         );
 
         $record = $this->protocol->create($url, ['did' => $did]);
+        return $this->recordToModel($record, Model\RouterDid::class);
+    }
+
+    /**
+     *
+     * @param string $query
+     * @param array<string,mixed> $query_params
+     * @param array<string,mixed> $body
+     *
+     * @return Model\RouterDid
+     */
+    private function route_to_resource_with_body($query, $query_params, $body)
+    {
+        Argument::isString($query);
+        Argument::isParams($query_params);
+        Argument::isParams($body);
+
+        $url = $this->protocol->prepareQuery($query, $query_params);
+
+        $record = $this->protocol->create($url, $body);
         return $this->recordToModel($record, Model\RouterDid::class);
     }
 }
