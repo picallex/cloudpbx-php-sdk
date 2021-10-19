@@ -150,6 +150,14 @@ final class Client
     }
 
     /**
+     * @return CalleridGroup
+     */
+    public function getCalleridGroups()
+    {
+        return CalleridGroup::fromTransport($this->protocol);
+    }
+
+    /**
      * load relation.
      *
      * @param Model\Relation $relation

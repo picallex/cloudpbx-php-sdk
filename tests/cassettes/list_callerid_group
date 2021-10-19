@@ -1,0 +1,128 @@
+
+-
+    request:
+        method: POST
+        url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/callerid_groups'
+        headers:
+            Host: cloudpbxapidev.picallex.com
+            x-api-key: ''
+            content-type: application/json
+            accept: 'application/json, plain/text'
+        body: '{"callerid_group":{"name":"bob callerid list"}}'
+    response:
+        status:
+            http_version: '1.1'
+            code: '201'
+            message: Created
+        headers:
+            Date: 'Tue, 19 Oct 2021 18:40:36 GMT'
+            Content-Type: 'application/json; charset=utf-8'
+            Content-Length: '61'
+            Connection: keep-alive
+            Server: nginx/1.14.2
+            cache-control: 'max-age=0, private, must-revalidate'
+            content-security-policy: 'script-src ''self'''
+            x-frame-options: deny
+            x-request-id: Fq-CpVKrCmnYuSAAAAJx
+        body: '{"data":{"customer_id":2,"id":36,"name":"bob callerid list"}}'
+        curl_info:
+            url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/callerid_groups'
+            content_type: 'application/json; charset=utf-8'
+            http_code: 201
+            header_size: 329
+            request_size: 285
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.492762
+            namelookup_time: 0.162187
+            connect_time: 0.311496
+            pretransfer_time: 0.311618
+            size_upload: !!float 47
+            size_download: !!float 61
+            speed_download: !!float 123
+            speed_upload: !!float 95
+            download_content_length: !!float 61
+            upload_content_length: !!float 47
+            starttransfer_time: 0.492706
+            redirect_time: !!float 0
+            redirect_url: ''
+            primary_ip: 3.140.41.83
+            certinfo: {  }
+            primary_port: 80
+            local_ip: 192.168.0.105
+            local_port: 56380
+            http_version: 2
+            protocol: 1
+            ssl_verifyresult: 0
+            scheme: HTTP
+            appconnect_time_us: 0
+            connect_time_us: 311496
+            namelookup_time_us: 162187
+            pretransfer_time_us: 311618
+            redirect_time_us: 0
+            starttransfer_time_us: 492706
+            total_time_us: 492762
+-
+    request:
+        method: GET
+        url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/callerid_groups'
+        headers:
+            Host: cloudpbxapidev.picallex.com
+            x-api-key: ''
+            content-type: application/json
+            accept: 'application/json, plain/text'
+    response:
+        status:
+            http_version: '1.1'
+            code: '200'
+            message: OK
+        headers:
+            Date: 'Tue, 19 Oct 2021 18:41:55 GMT'
+            Content-Type: 'application/json; charset=utf-8'
+            Content-Length: '111'
+            Connection: keep-alive
+            Server: nginx/1.14.2
+            cache-control: 'max-age=0, private, must-revalidate'
+            content-security-policy: 'script-src ''self'''
+            x-frame-options: deny
+            x-request-id: Fq-Ct66sgq1edbsAAALB
+        body: '{"data":[{"customer_id":2,"id":35,"name":"bob callerid"},{"customer_id":2,"id":36,"name":"bob callerid list"}]}'
+        curl_info:
+            url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/callerid_groups'
+            content_type: 'application/json; charset=utf-8'
+            http_code: 200
+            header_size: 325
+            request_size: 217
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 1.513201
+            namelookup_time: 0.256161
+            connect_time: 1.37269
+            pretransfer_time: 1.37279
+            size_upload: !!float 0
+            size_download: !!float 111
+            speed_download: !!float 73
+            speed_upload: !!float 0
+            download_content_length: !!float 111
+            upload_content_length: !!float -1
+            starttransfer_time: 1.513144
+            redirect_time: !!float 0
+            redirect_url: ''
+            primary_ip: 3.140.41.83
+            certinfo: {  }
+            primary_port: 80
+            local_ip: 192.168.0.105
+            local_port: 56382
+            http_version: 2
+            protocol: 1
+            ssl_verifyresult: 0
+            scheme: HTTP
+            appconnect_time_us: 0
+            connect_time_us: 1372690
+            namelookup_time_us: 256161
+            pretransfer_time_us: 1372790
+            redirect_time_us: 0
+            starttransfer_time_us: 1513144
+            total_time_us: 1513201

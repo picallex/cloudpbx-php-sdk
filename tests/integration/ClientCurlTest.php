@@ -938,4 +938,86 @@ class ClientCurlTest extends TestCase
         }
     }
 
+
+    /**
+     * @vcr create_callerid_group
+     * @depends testQueryOneCustomer
+     */
+    public function testCreateCalleridGroup(array $stack): void
+    {
+        $customer = array_pop($stack);
+
+        $record = $this->client->calleridGroups->create($customer->id, [
+            'name' => 'bob callerid'
+        ]);
+
+        $this->assertInstanceOf(\Cloudpbx\Sdk\Model\CalleridGroup::class, $record);
+        $this->assertTrue($record->id > 0);
+        $this->assertEquals('bob callerid', $record->name);
+
+        $remote_record = $this->client->calleridGroups->show($customer->id, $record->id);
+        $this->assertEquals($record->id, $remote_record->id);
+    }
+
+    /**
+     * @vcr update_callerid_group
+     * @depends testQueryOneCustomer
+     */
+    public function testUpdateCalleridGroup(array $stack): void
+    {
+        $customer = array_pop($stack);
+
+        $record = $this->client->calleridGroups->create($customer->id, [
+            'name' => 'bob callerid new'
+        ]);
+
+        $new_record = $this->client->calleridGroups->update($customer->id, $record->id, ['name' => 'bob callerid updated']);
+
+        $this->assertInstanceOf(\Cloudpbx\Sdk\Model\CalleridGroup::class, $new_record);
+        $this->assertEquals($record->id, $new_record->id);
+        $this->assertEquals('bob callerid updated', $new_record->name);
+    }
+
+    /**
+     * @vcr delete_callerid_group
+     * @depends testQueryOneCustomer
+     */
+    public function testDeleteCalleridGroup(array $stack): void
+    {
+        $customer = array_pop($stack);
+
+        $record = $this->client->calleridGroups->create($customer->id, [
+            'name' => 'bob callerid to delete'
+        ]);
+
+        $this->client->calleridGroups->delete($customer->id, $record->id);
+
+        try {
+            $this->client->calleridGroups->show($customer->id, $record->id);
+        } catch(Exception $e) {
+            $this->assertInstanceOf(\Cloudpbx\Protocol\Error\NotFoundError::class, $e);
+        }
+    }
+
+
+    /**
+     * @vcr list_callerid_group
+     * @depends testQueryOneCustomer
+     */
+    public function testListCalleridGroup(array $stack): void
+    {
+        $customer = array_pop($stack);
+
+        $this->client->calleridGroups->create($customer->id, [
+            'name' => 'bob callerid list'
+        ]);
+
+        $records = $this->client->calleridGroups->all($customer->id);
+
+        $this->assertTrue(count($records) > 0);
+
+        $record = $records[0];
+        $this->assertInstanceOf(\Cloudpbx\Sdk\Model\CalleridGroup::class, $record);
+    }
+
 }
