@@ -1,0 +1,253 @@
+
+-
+    request:
+        method: POST
+        url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/callerid_groups'
+        headers:
+            Host: cloudpbxapidev.picallex.com
+            x-api-key: ''
+            content-type: application/json
+            accept: 'application/json, plain/text'
+        body: '{"callerid_group":{"name":"bob callerid for callerid delete"}}'
+    response:
+        status:
+            http_version: '1.1'
+            code: '201'
+            message: Created
+        headers:
+            Date: 'Tue, 19 Oct 2021 21:31:46 GMT'
+            Content-Type: 'application/json; charset=utf-8'
+            Content-Length: '76'
+            Connection: keep-alive
+            Server: nginx/1.14.2
+            cache-control: 'max-age=0, private, must-revalidate'
+            content-security-policy: 'script-src ''self'''
+            x-frame-options: deny
+            x-request-id: Fq-L_H_vWrrh8EwAAAYB
+        body: '{"data":{"customer_id":2,"id":43,"name":"bob callerid for callerid delete"}}'
+        curl_info:
+            url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/callerid_groups'
+            content_type: 'application/json; charset=utf-8'
+            http_code: 201
+            header_size: 329
+            request_size: 300
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.427947
+            namelookup_time: 0.156222
+            connect_time: 0.277271
+            pretransfer_time: 0.27739
+            size_upload: !!float 62
+            size_download: !!float 76
+            speed_download: !!float 177
+            speed_upload: !!float 145
+            download_content_length: !!float 76
+            upload_content_length: !!float 62
+            starttransfer_time: 0.427892
+            redirect_time: !!float 0
+            redirect_url: ''
+            primary_ip: 3.140.41.83
+            certinfo: {  }
+            primary_port: 80
+            local_ip: 192.168.0.105
+            local_port: 56414
+            http_version: 2
+            protocol: 1
+            ssl_verifyresult: 0
+            scheme: HTTP
+            appconnect_time_us: 0
+            connect_time_us: 277271
+            namelookup_time_us: 156222
+            pretransfer_time_us: 277390
+            redirect_time_us: 0
+            starttransfer_time_us: 427892
+            total_time_us: 427947
+-
+    request:
+        method: POST
+        url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/callerid_groups/43/callerids'
+        headers:
+            Host: cloudpbxapidev.picallex.com
+            x-api-key: ''
+            content-type: application/json
+            accept: 'application/json, plain/text'
+        body: '{"callerid":{"name":"callerid name new","number":"callerid number new","weight":100}}'
+    response:
+        status:
+            http_version: '1.1'
+            code: '201'
+            message: Created
+        headers:
+            Date: 'Tue, 19 Oct 2021 21:31:46 GMT'
+            Content-Type: 'application/json; charset=utf-8'
+            Content-Length: '112'
+            Connection: keep-alive
+            Server: nginx/1.14.2
+            cache-control: 'max-age=0, private, must-revalidate'
+            content-security-policy: 'script-src ''self'''
+            x-frame-options: deny
+            x-request-id: Fq-L_Je3b2ed-DEAAARC
+        body: '{"data":{"callerid_group_id":43,"id":38,"name":"callerid name new","number":"callerid number new","weight":100}}'
+        curl_info:
+            url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/callerid_groups/43/callerids'
+            content_type: 'application/json; charset=utf-8'
+            http_code: 201
+            header_size: 330
+            request_size: 336
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.394514
+            namelookup_time: 0.100386
+            connect_time: 0.206946
+            pretransfer_time: 0.207069
+            size_upload: !!float 85
+            size_download: !!float 112
+            speed_download: !!float 284
+            speed_upload: !!float 215
+            download_content_length: !!float 112
+            upload_content_length: !!float 85
+            starttransfer_time: 0.39446
+            redirect_time: !!float 0
+            redirect_url: ''
+            primary_ip: 3.143.187.222
+            certinfo: {  }
+            primary_port: 80
+            local_ip: 192.168.0.105
+            local_port: 43060
+            http_version: 2
+            protocol: 1
+            ssl_verifyresult: 0
+            scheme: HTTP
+            appconnect_time_us: 0
+            connect_time_us: 206946
+            namelookup_time_us: 100386
+            pretransfer_time_us: 207069
+            redirect_time_us: 0
+            starttransfer_time_us: 394460
+            total_time_us: 394514
+-
+    request:
+        method: DELETE
+        url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/callerid_groups/43/callerids/38'
+        headers:
+            Host: cloudpbxapidev.picallex.com
+            x-api-key: ''
+            content-type: application/json
+            accept: 'application/json, plain/text'
+    response:
+        status:
+            http_version: '1.1'
+            code: '204'
+            message: 'No Content'
+        headers:
+            Date: 'Tue, 19 Oct 2021 21:31:47 GMT'
+            Connection: keep-alive
+            Server: nginx/1.14.2
+            cache-control: 'max-age=0, private, must-revalidate'
+            content-security-policy: 'script-src ''self'''
+            x-cloudpbx-warning: 'ENDPOINT DEPRECATED WILL BE DELETE SOON'
+            x-frame-options: deny
+            x-request-id: Fq-L_Kzm9m9I7skAAARB
+        curl_info:
+            url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/callerid_groups/43/callerids/38'
+            content_type: null
+            http_code: 204
+            header_size: 326
+            request_size: 236
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.349313
+            namelookup_time: 0.062977
+            connect_time: 0.189672
+            pretransfer_time: 0.189763
+            size_upload: !!float 0
+            size_download: !!float 0
+            speed_download: !!float 0
+            speed_upload: !!float 0
+            download_content_length: !!float 0
+            upload_content_length: !!float -1
+            starttransfer_time: 0.349264
+            redirect_time: !!float 0
+            redirect_url: ''
+            primary_ip: 3.140.41.83
+            certinfo: {  }
+            primary_port: 80
+            local_ip: 192.168.0.105
+            local_port: 56416
+            http_version: 2
+            protocol: 1
+            ssl_verifyresult: 0
+            scheme: HTTP
+            appconnect_time_us: 0
+            connect_time_us: 189672
+            namelookup_time_us: 62977
+            pretransfer_time_us: 189763
+            redirect_time_us: 0
+            starttransfer_time_us: 349264
+            total_time_us: 349313
+-
+    request:
+        method: GET
+        url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/callerid_groups/43/callerids/38'
+        headers:
+            Host: cloudpbxapidev.picallex.com
+            x-api-key: ''
+            content-type: application/json
+            accept: 'application/json, plain/text'
+    response:
+        status:
+            http_version: '1.1'
+            code: '404'
+            message: 'Not Found'
+        headers:
+            Date: 'Tue, 19 Oct 2021 21:32:59 GMT'
+            Content-Type: 'application/json; charset=utf-8'
+            Content-Length: '33'
+            Connection: keep-alive
+            Server: nginx/1.14.2
+            cache-control: 'max-age=0, private, must-revalidate'
+            content-security-policy: 'script-src ''self'''
+            x-frame-options: deny
+            x-request-id: Fq-MDZN9Ey3hzakAAARS
+        body: '{"errors":{"detail":"Not Found"}}'
+        curl_info:
+            url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/callerid_groups/43/callerids/38'
+            content_type: 'application/json; charset=utf-8'
+            http_code: 404
+            header_size: 331
+            request_size: 233
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.472878
+            namelookup_time: 0.144101
+            connect_time: 0.267771
+            pretransfer_time: 0.26787
+            size_upload: !!float 0
+            size_download: !!float 33
+            speed_download: !!float 69
+            speed_upload: !!float 0
+            download_content_length: !!float 33
+            upload_content_length: !!float -1
+            starttransfer_time: 0.472827
+            redirect_time: !!float 0
+            redirect_url: ''
+            primary_ip: 3.140.41.83
+            certinfo: {  }
+            primary_port: 80
+            local_ip: 192.168.0.105
+            local_port: 56418
+            http_version: 2
+            protocol: 1
+            ssl_verifyresult: 0
+            scheme: HTTP
+            appconnect_time_us: 0
+            connect_time_us: 267771
+            namelookup_time_us: 144101
+            pretransfer_time_us: 267870
+            redirect_time_us: 0
+            starttransfer_time_us: 472827
+            total_time_us: 472878

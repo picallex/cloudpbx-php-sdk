@@ -61,6 +61,16 @@ final class Dialout extends \Cloudpbx\Sdk\Model
      */
     public $weight;
 
+    /**
+     * @var ?integer
+     */
+    public $callerid_group_id = null;
+
+    /**
+     * @var ?Relation
+     */
+    public $callerid_group = null;
+
     public function __construct()
     {
     }
@@ -68,5 +78,9 @@ final class Dialout extends \Cloudpbx\Sdk\Model
     protected function setup()
     {
         $this->customer = new Relation('customer', $this->customer_id);
+
+        if (is_numeric($this->callerid_group_id)) {
+            $this->callerid_group = new Relation('callerid_group', $this->callerid_group_id, [$this->customer_id]);
+        }
     }
 }

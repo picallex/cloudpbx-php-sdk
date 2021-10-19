@@ -30,7 +30,8 @@ final class Inflector
             'ivr_menu' => 'IvrMenus',
             'ivr_menu_entry' => 'IvrMenuEntries',
             'follow_me' => 'FollowMes',
-            'follow_me_entry' => 'FollowMeEntries'
+            'follow_me_entry' => 'FollowMeEntries',
+            'callerid_group' => 'CalleridGroups'
         ];
 
         return $convert[$word];

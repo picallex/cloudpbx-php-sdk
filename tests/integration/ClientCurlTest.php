@@ -1017,7 +1017,159 @@ class ClientCurlTest extends TestCase
         $this->assertTrue(count($records) > 0);
 
         $record = $records[0];
-        $this->assertInstanceOf(\Cloudpbx\Sdk\Model\CalleridGroup::class, $record);
+        $this->assertInstanceOf(\Cloudpbx\Sdk\Model\CalleridGroup::class,
+ $record);
+    }
+
+    /**
+     * @vcr create_callerid
+     * @depends testQueryOneCustomer
+     */
+    public function testCreateCallerid(array $stack): void
+    {
+        $customer = array_pop($stack);
+
+        $callerid_group = $this->client->calleridGroups->create($customer->id, [
+            'name' => 'bob callerid for callerid'
+        ]);
+
+
+        $callerid = $this->client->callerids->create($customer->id, $callerid_group->id, [
+            'name' => 'callerid name',
+            'number' => 'callerid number',
+            'weight' => 100
+        ]);
+
+        $this->assertInstanceOf(\Cloudpbx\Sdk\Model\Callerid::class, $callerid);
+        $this->assertTrue($callerid->id > 0);
+        $this->assertEquals($callerid_group->id, $callerid->callerid_group_id);
+        $this->assertEquals('callerid number', $callerid->number);
+        $this->assertEquals('callerid name', $callerid->name);
+        $this->assertEquals(100, $callerid->weight);
+    }
+
+
+    /**
+     * @vcr update_callerid
+     * @depends testQueryOneCustomer
+     */
+    public function testUpdateCallerid(array $stack): void
+    {
+        $customer = array_pop($stack);
+
+        $callerid_group = $this->client->calleridGroups->create($customer->id, [
+            'name' => 'bob callerid for callerid update'
+        ]);
+
+
+        $callerid = $this->client->callerids->create($customer->id, $callerid_group->id, [
+            'name' => 'callerid name new',
+            'number' => 'callerid number new',
+            'weight' => 100
+        ]);
+
+        $callerid_updated = $this->client->callerids->update($customer->id, $callerid_group->id, $callerid->id, [
+            'name' => 'callerid name updated',
+            'number' => 'callerid number updated',
+            'weight' => 88
+        ]);
+
+        $this->assertEquals($callerid->id, $callerid_updated->id);
+        $this->assertEquals('callerid name updated', $callerid_updated->name);
+        $this->assertEquals('callerid number updated', $callerid_updated->number);
+        $this->assertEquals(88, $callerid_updated->weight);
+    }
+
+
+    /**
+     * @vcr delete_callerid
+     * @depends testQueryOneCustomer
+     */
+    public function testDeleteCallerid(array $stack): void
+    {
+        $customer = array_pop($stack);
+
+        $callerid_group = $this->client->calleridGroups->create($customer->id, [
+            'name' => 'bob callerid for callerid delete'
+        ]);
+
+
+        $callerid = $this->client->callerids->create($customer->id, $callerid_group->id, [
+            'name' => 'callerid name new',
+            'number' => 'callerid number new',
+            'weight' => 100
+        ]);
+
+        $this->client->callerids->delete($customer->id, $callerid_group->id, $callerid->id);
+
+        try {
+            $this->client->callerids->show($customer->id, $callerid_group->id, $callerid->id);
+        } catch(Exception $e) {
+            $this->assertInstanceOf(\Cloudpbx\Protocol\Error\NotFoundError::class, $e);
+        }
+    }
+
+    /**
+     * @vcr create_callerid
+     * @depends testQueryOneCustomer
+     */
+    public function testListCallerid(array $stack): void
+    {
+        $customer = array_pop($stack);
+
+        $callerid_group = $this->client->calleridGroups->create($customer->id, [
+            'name' => 'bob callerid for callerid list'
+        ]);
+
+
+        $this->client->callerids->create($customer->id, $callerid_group->id, [
+            'name' => 'callerid name list',
+            'number' => 'callerid number list',
+            'weight' => 100
+        ]);
+
+        $records = $this->client->callerids->all($customer->id, $callerid_group->id);
+
+        $this->assertTrue(count($records) > 0);
+
+        $record = $records[0];
+        $this->assertInstanceOf(\Cloudpbx\Sdk\Model\Callerid::class,
+ $record);
+    }
+
+
+    /**
+     *
+     * @vcr create_dialout_with_callerid_group
+     * @depends testQueryOneCustomer
+     */
+    public function testCreateDialoutWithCalleridGroup(array $stack): void
+    {
+
+        $customer = array_pop($stack);
+
+        $callerid_group = $this->client->calleridGroups->create($customer->id, [
+            'name' => 'bob callerid for callerid dialout'
+        ]);
+
+        $dialout = $this->client->dialouts->create($customer->id, [
+            'weight' => 100,
+            'strip' => '999',
+            'prepend' => '8888',
+            'name' => 'international',
+            'destination' => '1XXXXX.',
+            'gateway_strategy' => 'sequence',
+            'callerid_strategy' => 'random',
+            'callerid_group_id' => $callerid_group->id
+        ]);
+
+        $this->assertInstanceOf(\Cloudpbx\Sdk\Model\Dialout::class, $dialout);
+        $this->assertTrue($dialout->id > 0);
+        $this->assertEquals($callerid_group->id, $dialout->callerid_group_id);
+
+        $cidg = $this->client->preload($dialout->callerid_group);
+        $this->assertInstanceOf(\Cloudpbx\Sdk\Model\CalleridGroup::class, $cidg);
+        $this->assertEquals($cidg->id, $dialout->callerid_group_id);
     }
 
 }
