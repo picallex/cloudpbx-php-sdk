@@ -105,26 +105,19 @@ final class ProtocolHTTP implements \Cloudpbx\Sdk\Protocol
         return $this->doRequest('PUT', $url, $params);
     }
 
-    public function delete($url)
+    public function delete($url, $params = null)
     {
-        $request = Http\Implementation\RequestFromArray::build('DELETE', [
-            'body' => null,
-            'headers' => $this->setHeaders([]),
-            'url' => $this->api_base . $url
-        ]);
-
-        $response = $this->transport->sendRequest($request);
-
-        $this->checkResponse($response);
+        $this->doRequest('DELETE', $url, $params, false);
     }
 
     /**
      * @param string $method
      * @param string $url
      * @param array<string,mixed>|null $params
-     * @return array<string, mixed>
+     * @param boolean $must_process_data
+     * @return array<string, mixed>|null
      */
-    private function doRequest($method, $url, $params = null)
+    private function doRequest($method, $url, $params = null, $must_process_data = true)
     {
         $request = Http\Implementation\RequestFromArray::build($method, [
             'body' => !is_null($params) ? json_encode($params) : null,
@@ -136,8 +129,12 @@ final class ProtocolHTTP implements \Cloudpbx\Sdk\Protocol
 
         $this->checkResponse($response);
 
-        $data = json_decode($response->body(), true)["data"] ?? [];
-        return $data;
+        if ($must_process_data) {
+            $data = json_decode($response->body(), true)["data"] ?? [];
+            return $data;
+        } else {
+            return null;
+        }
     }
 
     /**

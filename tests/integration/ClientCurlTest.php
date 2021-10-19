@@ -1289,4 +1289,41 @@ class ClientCurlTest extends TestCase
         $this->assertTrue(true);
     }
 
+
+    /**
+     *
+     * @vcr attach_to_dialout_callerid_group
+     * @depends testQueryOneCustomer
+     */
+    public function testAttachToDialoutCalleridGroup(array $stack): void
+    {
+
+        $customer = array_pop($stack);
+
+        $group = $this->client->groups->create($customer->id, [
+            'name' => 'group id attach',
+            'alias' => 'group id attach'
+        ]);
+
+        $callerid_group = $this->client->calleridGroups->create($customer->id, [
+            'name' => 'bob callerid for callerid attach dialout callerid'
+        ]);
+
+        $dialout = $this->client->dialouts->create($customer->id, [
+            'weight' => 100,
+            'strip' => '9998',
+            'prepend' => '8888',
+            'name' => 'international',
+            'destination' => '1XXXXX.',
+            'gateway_strategy' => 'sequence',
+            'callerid_strategy' => 'random',
+        ]);
+
+        $this->client->dialouts->attach_callerid_group($customer->id, $group->id, $dialout->id, $callerid_group->id);
+        $this->client->dialouts->detach_callerid_group($customer->id, $group->id, $dialout->id, $callerid_group->id);
+
+
+        $this->assertTrue(true);
+    }
+
 }

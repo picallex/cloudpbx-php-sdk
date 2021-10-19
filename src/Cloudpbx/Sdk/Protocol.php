@@ -46,7 +46,9 @@ interface Protocol
 
     /**
      * @param string $query
+     * @param array<string, mixed>|null $params
+     *
      * @return void
      */
-    public function delete($query);
+    public function delete($query, $params = null);
 }

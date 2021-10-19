@@ -41,7 +41,8 @@ class ClientCurl implements Http\Client
         case 'DELETE':
             [$body, $http_code] = $this->curlDelete(
                 $request->url(),
-                $request->headers()
+                $request->headers(),
+                $request->body()
             );
             break;
         default:
@@ -91,16 +92,12 @@ class ClientCurl implements Http\Client
     /**
      * @param string $url
      * @param array<string, mixed> $headers
+     * @param string | null $body
      * @return array{0: string, 1: int}
      */
-    private function curlDelete(string $url, array $headers)
+    private function curlDelete(string $url, array $headers, $body = null)
     {
-        return $this->curl($url, function ($ch) use ($headers) {
-            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
-            curl_setopt($ch, CURLOPT_HTTPHEADER, $this->buildCurlHeaders($headers));
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            return curl_exec($ch);
-        });
+        return $this->curlRequest('DELETE', $url, $headers, $body);
     }
 
     /**
