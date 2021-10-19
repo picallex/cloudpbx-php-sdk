@@ -1,0 +1,193 @@
+
+-
+    request:
+        method: POST
+        url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/groups'
+        headers:
+            Host: cloudpbxapidev.picallex.com
+            x-api-key: ''
+            content-type: application/json
+            accept: 'application/json, plain/text'
+        body: '{"group":{"name":"system-name-group new","alias":"bob group new"}}'
+    response:
+        status:
+            http_version: '1.1'
+            code: '201'
+            message: Created
+        headers:
+            Date: 'Tue, 19 Oct 2021 22:02:08 GMT'
+            Content-Type: 'application/json; charset=utf-8'
+            Content-Length: '99'
+            Connection: keep-alive
+            Server: nginx/1.14.2
+            cache-control: 'max-age=0, private, must-revalidate'
+            content-security-policy: 'script-src ''self'''
+            x-frame-options: deny
+            x-request-id: Fq-NpLcdPVYFsEQAAAPR
+        body: '{"data":{"alias":"bob group new","customer_id":2,"id":3,"name":"system-name-group new","users":[]}}'
+        curl_info:
+            url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/groups'
+            content_type: 'application/json; charset=utf-8'
+            http_code: 201
+            header_size: 329
+            request_size: 295
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.5159
+            namelookup_time: 0.210002
+            connect_time: 0.378203
+            pretransfer_time: 0.378312
+            size_upload: !!float 66
+            size_download: !!float 99
+            speed_download: !!float 192
+            speed_upload: !!float 128
+            download_content_length: !!float 99
+            upload_content_length: !!float 66
+            starttransfer_time: 0.515849
+            redirect_time: !!float 0
+            redirect_url: ''
+            primary_ip: 3.143.187.222
+            certinfo: {  }
+            primary_port: 80
+            local_ip: 192.168.0.105
+            local_port: 43066
+            http_version: 2
+            protocol: 1
+            ssl_verifyresult: 0
+            scheme: HTTP
+            appconnect_time_us: 0
+            connect_time_us: 378203
+            namelookup_time_us: 210002
+            pretransfer_time_us: 378312
+            redirect_time_us: 0
+            starttransfer_time_us: 515849
+            total_time_us: 515900
+-
+    request:
+        method: PUT
+        url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/users/3'
+        headers:
+            Host: cloudpbxapidev.picallex.com
+            x-api-key: ''
+            content-type: application/json
+            accept: 'application/json, plain/text'
+        body: '{"user":{"name":"system name updated","alias":"bob group updated"}}'
+    response:
+        status:
+            http_version: '1.1'
+            code: '200'
+            message: OK
+        headers:
+            Date: 'Tue, 19 Oct 2021 22:02:08 GMT'
+            Content-Type: 'application/json; charset=utf-8'
+            Content-Length: '417'
+            Connection: keep-alive
+            Server: nginx/1.14.2
+            cache-control: 'max-age=0, private, must-revalidate'
+            content-security-policy: 'script-src ''self'''
+            x-frame-options: deny
+            x-request-id: Fq-NpNBCFMTaOIEAAAJS
+        body: '{"data":{"accountcode":"","alias":"bob group updated","allow_multiple_registrations":false,"available_on_sip_register":true,"caller_name":"Ext ","caller_number":"1002","customer_id":2,"dialstring":"user/@cloudpbxclient1.picallex.com","dnd_on_sip_unregister":true,"do_not_disturb":true,"follow_me_id":null,"force_contact":"none","id":3,"is_webrtc":false,"name":"1002","password_mechanism":"plain","record_audio":true}}'
+        curl_info:
+            url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/users/3'
+            content_type: 'application/json; charset=utf-8'
+            http_code: 200
+            header_size: 325
+            request_size: 296
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.409089
+            namelookup_time: 0.17452
+            connect_time: 0.283438
+            pretransfer_time: 0.283548
+            size_upload: !!float 67
+            size_download: !!float 417
+            speed_download: !!float 1019
+            speed_upload: !!float 163
+            download_content_length: !!float 417
+            upload_content_length: !!float 67
+            starttransfer_time: 0.40892
+            redirect_time: !!float 0
+            redirect_url: ''
+            primary_ip: 3.140.41.83
+            certinfo: {  }
+            primary_port: 80
+            local_ip: 192.168.0.105
+            local_port: 56434
+            http_version: 2
+            protocol: 1
+            ssl_verifyresult: 0
+            scheme: HTTP
+            appconnect_time_us: 0
+            connect_time_us: 283438
+            namelookup_time_us: 174520
+            pretransfer_time_us: 283548
+            redirect_time_us: 0
+            starttransfer_time_us: 408920
+            total_time_us: 409089
+-
+    request:
+        method: PUT
+        url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/groups/3'
+        headers:
+            Host: cloudpbxapidev.picallex.com
+            x-api-key: ''
+            content-type: application/json
+            accept: 'application/json, plain/text'
+        body: '{"group":{"name":"system name updated","alias":"bob group updated"}}'
+    response:
+        status:
+            http_version: '1.1'
+            code: '200'
+            message: OK
+        headers:
+            Date: 'Tue, 19 Oct 2021 22:02:18 GMT'
+            Content-Type: 'application/json; charset=utf-8'
+            Content-Length: '101'
+            Connection: keep-alive
+            Server: nginx/1.14.2
+            cache-control: 'max-age=0, private, must-revalidate'
+            content-security-policy: 'script-src ''self'''
+            x-frame-options: deny
+            x-request-id: Fq-Npy90ji7EXrYAAAJh
+        body: '{"data":{"alias":"bob group updated","customer_id":2,"id":3,"name":"system name updated","users":[]}}'
+        curl_info:
+            url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/groups/3'
+            content_type: 'application/json; charset=utf-8'
+            http_code: 200
+            header_size: 325
+            request_size: 298
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.432077
+            namelookup_time: 0.155384
+            connect_time: 0.2737
+            pretransfer_time: 0.273827
+            size_upload: !!float 68
+            size_download: !!float 101
+            speed_download: !!float 233
+            speed_upload: !!float 157
+            download_content_length: !!float 101
+            upload_content_length: !!float 68
+            starttransfer_time: 0.432002
+            redirect_time: !!float 0
+            redirect_url: ''
+            primary_ip: 3.143.187.222
+            certinfo: {  }
+            primary_port: 80
+            local_ip: 192.168.0.105
+            local_port: 43068
+            http_version: 2
+            protocol: 1
+            ssl_verifyresult: 0
+            scheme: HTTP
+            appconnect_time_us: 0
+            connect_time_us: 273700
+            namelookup_time_us: 155384
+            pretransfer_time_us: 273827
+            redirect_time_us: 0
+            starttransfer_time_us: 432002
+            total_time_us: 432077

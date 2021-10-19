@@ -166,6 +166,14 @@ final class Client
     }
 
     /**
+     * @return Group
+     */
+    public function getGroups()
+    {
+        return Group::fromTransport($this->protocol);
+    }
+
+    /**
      * load relation.
      *
      * @param Model\Relation $relation

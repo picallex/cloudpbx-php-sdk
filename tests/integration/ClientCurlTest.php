@@ -1139,6 +1139,8 @@ class ClientCurlTest extends TestCase
 
 
     /**
+     * if the system not found DialoutGroup, then use callerid_group
+     * from dialout.
      *
      * @vcr create_dialout_with_callerid_group
      * @depends testQueryOneCustomer
@@ -1170,6 +1172,121 @@ class ClientCurlTest extends TestCase
         $cidg = $this->client->preload($dialout->callerid_group);
         $this->assertInstanceOf(\Cloudpbx\Sdk\Model\CalleridGroup::class, $cidg);
         $this->assertEquals($cidg->id, $dialout->callerid_group_id);
+    }
+
+    /**
+     * @vcr create_group
+     * @depends testQueryOneCustomer
+     */
+    public function testCreateGroup(array $stack): void
+    {
+        $customer = array_pop($stack);
+
+        $group = $this->client->groups->create($customer->id, [
+            'name' => 'system-name-group',
+            'alias' => 'bob group'
+        ]);
+
+        $this->assertInstanceOf(\Cloudpbx\Sdk\Model\Group::class, $group);
+        $this->assertTrue($group->id > 0);
+        $this->assertEquals('system-name-group', $group->name);
+        $this->assertEquals('bob group', $group->alias);
+    }
+
+    /**
+     * @vcr update_group
+     * @depends testQueryOneCustomer
+     */
+    public function testUpdateGroup($stack): void
+    {
+        $customer = array_pop($stack);
+
+        $group = $this->client->groups->create($customer->id, [
+            'name' => 'system-name-group new',
+            'alias' => 'bob group new'
+        ]);
+
+        $group_updated = $this->client->groups->update($group->customer_id, $group->id, [
+            'name' => 'system name updated',
+            'alias' => 'bob group updated'
+        ]);
+
+        $this->assertInstanceOf(\Cloudpbx\Sdk\Model\Group::class, $group);
+        $this->assertEquals($group->id, $group_updated->id);
+        $this->assertEquals('system name updated', $group_updated->name);
+        $this->assertEquals('bob group updated', $group_updated->alias);
+    }
+
+    /**
+     * @vcr delete_group
+     * @depends testQueryOneCustomer
+     */
+    public function testDeleteGroup(array $stack): void
+    {
+        $customer = array_pop($stack);
+
+        $group = $this->client->groups->create($customer->id, [
+            'name' => 'system-name-group create',
+            'alias' => 'bob group create'
+        ]);
+
+        $this->client->groups->delete($customer->id, $group->id);
+
+        try {
+            $this->client->groups->show($customer->id, $group->id);
+        } catch(Exception $e) {
+            $this->assertInstanceOf(\Cloudpbx\Protocol\Error\NotFoundError::class, $e);
+        }
+    }
+
+    /**
+     * @vcr list_group
+     * @depends testQueryOneCustomer
+     */
+    public function testListGroup(array $stack): void
+    {
+        $customer = array_pop($stack);
+
+        $group = $this->client->groups->create($customer->id, [
+            'name' => 'system-name-group list',
+            'alias' => 'bob group list'
+        ]);
+
+        $records = $this->client->groups->all($customer->id);
+        $this->assertTrue(count($records) > 0);
+
+
+        $record = $records[0];
+        $this->assertInstanceOf(\Cloudpbx\Sdk\Model\Group::class, $record);
+    }
+
+    /**
+     * @vcr create_user
+     * @depends testCreateCustomerWithMinimalData
+     */
+    public function testAttachDetachUserToOrFromGroup(array $stack): void
+    {
+        $customer = array_pop($stack);
+
+        $user = $this->client->users->create($customer->id, [
+            'name' => 'user to attach',
+            'password' => 'insecure537537ThEuhoecru5353}',
+            'is_webrtc' => false
+        ]);
+
+        $group = $this->client->groups->create($customer->id, [
+            'name' => 'group example attach',
+        ]);
+
+        $this->client->groups->attach_user($customer->id, $group->id, $user->id);
+        $this->client->groups->detach_user($customer->id, $group->id, $user->id);
+
+        try {
+            $this->client->groups->detach_user($customer->id, $group->id, $user->id);
+        } catch(Exception $e) {
+            $this->assertInstanceOf(\Cloudpbx\Protocol\Error\NotFoundError::class, $e);
+        }
+        $this->assertTrue(true);
     }
 
 }
