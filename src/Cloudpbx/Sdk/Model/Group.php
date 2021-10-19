@@ -35,6 +35,16 @@ final class Group extends \Cloudpbx\Sdk\Model
      */
     public $customer;
 
+    /**
+     * @var array<int>
+     */
+    public $users = [];
+
+    /**
+     * @var array<Relation>
+     */
+    public $users_relation = [];
+
     public function __construct()
     {
     }
@@ -42,5 +52,9 @@ final class Group extends \Cloudpbx\Sdk\Model
     protected function setup()
     {
         $this->customer = new Relation('customer', $this->customer_id);
+
+        $this->users_relation = array_map(function (array $user_data) {
+            return new Relation('user', $user_data['id'], [$this->customer_id]);
+        }, $this->users);
     }
 }

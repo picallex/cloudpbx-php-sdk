@@ -1261,7 +1261,34 @@ class ClientCurlTest extends TestCase
     }
 
     /**
-     * @vcr create_user
+     * @vcr list_users_of_group
+     * @depends testCreateCustomerWithMinimalData
+     */
+    public function testListUsersOfGroup(array $stack): void
+    {
+        $customer = array_pop($stack);
+
+        $user = $this->client->users->create($customer->id, [
+            'name' => 'useringroup',
+            'password' => 'insecureaoeuu537537ThEuhoecru5353}',
+            'is_webrtc' => false
+        ]);
+
+        $group = $this->client->groups->create($customer->id, [
+            'name' => 'group example list',
+        ]);
+
+        $this->client->groups->attach_user($customer->id, $group->id, $user->id);
+
+        $group_with_users = $this->client->groups->show($customer->id, $group->id);
+
+        $users = $group_with_users->users_relation;
+        $user_relation = $this->client->preload($users[0]);
+        $this->assertEquals($user->id, $user_relation->id);
+    }
+
+    /**
+     * @vcr attach_detach_user_of_group
      * @depends testCreateCustomerWithMinimalData
      */
     public function testAttachDetachUserToOrFromGroup(array $stack): void
@@ -1269,16 +1296,17 @@ class ClientCurlTest extends TestCase
         $customer = array_pop($stack);
 
         $user = $this->client->users->create($customer->id, [
-            'name' => 'user to attach',
-            'password' => 'insecure537537ThEuhoecru5353}',
+            'name' => 'usertooattachdetachbosreul',
+            'password' => 'insoei{}ecure537537ThEuhoecru5353}',
             'is_webrtc' => false
         ]);
 
         $group = $this->client->groups->create($customer->id, [
-            'name' => 'group example attach',
+            'name' => 'group example attach-detach-detach',
         ]);
 
         $this->client->groups->attach_user($customer->id, $group->id, $user->id);
+
         $this->client->groups->detach_user($customer->id, $group->id, $user->id);
 
         try {

@@ -1,0 +1,250 @@
+
+-
+    request:
+        method: POST
+        url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/34/users'
+        headers:
+            Host: cloudpbxapidev.picallex.com
+            x-api-key: ''
+            content-type: application/json
+            accept: 'application/json, plain/text'
+        body: '{"user":{"name":"usertooattachdetachbosreul","password":"insoei{}ecure537537ThEuhoecru5353}","is_webrtc":false}}'
+    response:
+        status:
+            http_version: '1.1'
+            code: '201'
+            message: Created
+        headers:
+            Date: 'Tue, 19 Oct 2021 23:41:06 GMT'
+            Content-Type: 'application/json; charset=utf-8'
+            Content-Length: '508'
+            Connection: keep-alive
+            Server: nginx/1.14.2
+            cache-control: 'max-age=0, private, must-revalidate'
+            content-security-policy: 'script-src ''self'''
+            x-frame-options: deny
+            x-request-id: Fq-TCy8a8yc4GBUAAAjy
+        body: '{"data":{"accountcode":null,"alias":"usertooattachdetachbosreul","allow_multiple_registrations":false,"available_on_sip_register":false,"caller_name":"Ext usertooattachdetachbosreul","caller_number":"usertooattachdetachbosreul","customer_id":34,"dialstring":"user/usertooattachdetachbosreul@bob.org","dnd_on_sip_unregister":true,"do_not_disturb":false,"follow_me_id":null,"force_contact":"none","id":326,"is_webrtc":false,"name":"usertooattachdetachbosreul","password_mechanism":"plain","record_audio":null}}'
+        curl_info:
+            url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/34/users'
+            content_type: 'application/json; charset=utf-8'
+            http_code: 201
+            header_size: 330
+            request_size: 342
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.546195
+            namelookup_time: 0.132035
+            connect_time: 0.29578
+            pretransfer_time: 0.295905
+            size_upload: !!float 112
+            size_download: !!float 508
+            speed_download: !!float 930
+            speed_upload: !!float 205
+            download_content_length: !!float 508
+            upload_content_length: !!float 112
+            starttransfer_time: 0.546142
+            redirect_time: !!float 0
+            redirect_url: ''
+            primary_ip: 3.140.41.83
+            certinfo: {  }
+            primary_port: 80
+            local_ip: 192.168.0.105
+            local_port: 56494
+            http_version: 2
+            protocol: 1
+            ssl_verifyresult: 0
+            scheme: HTTP
+            appconnect_time_us: 0
+            connect_time_us: 295780
+            namelookup_time_us: 132035
+            pretransfer_time_us: 295905
+            redirect_time_us: 0
+            starttransfer_time_us: 546142
+            total_time_us: 546195
+-
+    request:
+        method: POST
+        url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/34/groups'
+        headers:
+            Host: cloudpbxapidev.picallex.com
+            x-api-key: ''
+            content-type: application/json
+            accept: 'application/json, plain/text'
+        body: '{"group":{"name":"group example attach-detach-detach"}}'
+    response:
+        status:
+            http_version: '1.1'
+            code: '201'
+            message: Created
+        headers:
+            Date: 'Tue, 19 Oct 2021 23:41:06 GMT'
+            Content-Type: 'application/json; charset=utf-8'
+            Content-Length: '103'
+            Connection: keep-alive
+            Server: nginx/1.14.2
+            cache-control: 'max-age=0, private, must-revalidate'
+            content-security-policy: 'script-src ''self'''
+            x-frame-options: deny
+            x-request-id: Fq-TC0qXFlEv6uAAAA4R
+        body: '{"data":{"alias":null,"customer_id":34,"id":12,"name":"group example attach-detach-detach","users":[]}}'
+        curl_info:
+            url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/34/groups'
+            content_type: 'application/json; charset=utf-8'
+            http_code: 201
+            header_size: 330
+            request_size: 285
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.440734
+            namelookup_time: 0.130818
+            connect_time: 0.283092
+            pretransfer_time: 0.283195
+            size_upload: !!float 55
+            size_download: !!float 103
+            speed_download: !!float 234
+            speed_upload: !!float 125
+            download_content_length: !!float 103
+            upload_content_length: !!float 55
+            starttransfer_time: 0.440678
+            redirect_time: !!float 0
+            redirect_url: ''
+            primary_ip: 3.143.187.222
+            certinfo: {  }
+            primary_port: 80
+            local_ip: 192.168.0.105
+            local_port: 43100
+            http_version: 2
+            protocol: 1
+            ssl_verifyresult: 0
+            scheme: HTTP
+            appconnect_time_us: 0
+            connect_time_us: 283092
+            namelookup_time_us: 130818
+            pretransfer_time_us: 283195
+            redirect_time_us: 0
+            starttransfer_time_us: 440678
+            total_time_us: 440734
+-
+    request:
+        method: POST
+        url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/34/groups/12/attach/user/326'
+        headers:
+            Host: cloudpbxapidev.picallex.com
+            x-api-key: ''
+            content-type: application/json
+            accept: 'application/json, plain/text'
+        body: '[]'
+    response:
+        status:
+            http_version: '1.1'
+            code: '204'
+            message: 'No Content'
+        headers:
+            Date: 'Tue, 19 Oct 2021 23:41:06 GMT'
+            Connection: keep-alive
+            Server: nginx/1.14.2
+            cache-control: 'max-age=0, private, must-revalidate'
+            content-security-policy: 'script-src ''self'''
+            x-frame-options: deny
+            x-request-id: Fq-TC2abIjphQjYAAAjy
+        curl_info:
+            url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/34/groups/12/attach/user/326'
+            content_type: null
+            http_code: 204
+            header_size: 265
+            request_size: 250
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.457395
+            namelookup_time: 0.10084
+            connect_time: 0.26508
+            pretransfer_time: 0.265195
+            size_upload: !!float 2
+            size_download: !!float 0
+            speed_download: !!float 0
+            speed_upload: !!float 4
+            download_content_length: !!float 0
+            upload_content_length: !!float 2
+            starttransfer_time: 0.457313
+            redirect_time: !!float 0
+            redirect_url: ''
+            primary_ip: 3.140.41.83
+            certinfo: {  }
+            primary_port: 80
+            local_ip: 192.168.0.105
+            local_port: 56496
+            http_version: 2
+            protocol: 1
+            ssl_verifyresult: 0
+            scheme: HTTP
+            appconnect_time_us: 0
+            connect_time_us: 265080
+            namelookup_time_us: 100840
+            pretransfer_time_us: 265195
+            redirect_time_us: 0
+            starttransfer_time_us: 457313
+            total_time_us: 457395
+-
+    request:
+        method: DELETE
+        url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/34/groups/12/detach/user/326'
+        headers:
+            Host: cloudpbxapidev.picallex.com
+            x-api-key: ''
+            content-type: application/json
+            accept: 'application/json, plain/text'
+    response:
+        status:
+            http_version: '1.1'
+            code: '204'
+            message: 'No Content'
+        headers:
+            Date: 'Tue, 19 Oct 2021 23:41:07 GMT'
+            Connection: keep-alive
+            Server: nginx/1.14.2
+            cache-control: 'max-age=0, private, must-revalidate'
+            content-security-policy: 'script-src ''self'''
+            x-frame-options: deny
+            x-request-id: Fq-TC4UxWC1f8TEAAA4h
+        curl_info:
+            url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/34/groups/12/detach/user/326'
+            content_type: null
+            http_code: 204
+            header_size: 265
+            request_size: 231
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.519773
+            namelookup_time: 0.189097
+            connect_time: 0.331744
+            pretransfer_time: 0.331847
+            size_upload: !!float 0
+            size_download: !!float 0
+            speed_download: !!float 0
+            speed_upload: !!float 0
+            download_content_length: !!float 0
+            upload_content_length: !!float -1
+            starttransfer_time: 0.519713
+            redirect_time: !!float 0
+            redirect_url: ''
+            primary_ip: 3.143.187.222
+            certinfo: {  }
+            primary_port: 80
+            local_ip: 192.168.0.105
+            local_port: 43102
+            http_version: 2
+            protocol: 1
+            ssl_verifyresult: 0
+            scheme: HTTP
+            appconnect_time_us: 0
+            connect_time_us: 331744
+            namelookup_time_us: 189097
+            pretransfer_time_us: 331847
+            redirect_time_us: 0
+            starttransfer_time_us: 519713
+            total_time_us: 519773
