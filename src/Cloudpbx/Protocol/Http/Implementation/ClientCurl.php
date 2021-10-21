@@ -75,7 +75,13 @@ class ClientCurl implements Http\Client
      */
     private function curlPost($url, $headers, $body = null)
     {
-        return $this->curlRequest('POST', $url, $headers, $body);
+        return $this->curlRequest(
+            'POST',
+            $url,
+            $headers,
+            $body,
+            $this->curlOption(CURLOPT_POST, true)
+        );
     }
 
     /**
@@ -86,7 +92,13 @@ class ClientCurl implements Http\Client
      */
     private function curlPut($url, $headers, $body = null)
     {
-        return $this->curlRequest('PUT', $url, $headers, $body);
+        return $this->curlRequest(
+            'PUT',
+            $url,
+            $headers,
+            $body,
+            $this->curlOption(CURLOPT_POST, true)
+        );
     }
 
     /**
@@ -105,18 +117,22 @@ class ClientCurl implements Http\Client
      * @param string $url
      * @param array<string, mixed> $headers
      * @param string | null $body
+     * @param callable(mixed $curl_resource): void $options
      * @return array{0: string, 1: int}
      */
-    private function curlRequest($method, $url, $headers, $body = null)
+    private function curlRequest($method, $url, $headers, $body = null, ...$options)
     {
-        return $this->curl($url, function ($ch) use ($method, $headers, $body) {
+        return $this->curl($url, function ($ch) use ($method, $headers, $body, $options) {
             curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
-            curl_setopt($ch, CURLOPT_POST, true);
             curl_setopt($ch, CURLOPT_HTTPHEADER, $this->buildCurlHeaders($headers));
             if (!is_null($body)) {
                 curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
             }
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+            foreach ($options as $option) {
+                $option($ch);
+            }
             return curl_exec($ch);
         });
     }
@@ -174,5 +190,16 @@ class ClientCurl implements Http\Client
     private function buildResponse($body, $http_code)
     {
         return new ResponseFromArray($body, $http_code);
+    }
+
+    /**
+     * @param mixed $opts
+     * @return callable(mixed $curl_resource): void
+     */
+    private function curlOption(...$opts)
+    {
+        return function ($ch) use ($opts) {
+            call_user_func_array('curl_setopt', array_merge([$ch], $opts));
+        };
     }
 }
