@@ -55,16 +55,17 @@ class ClientCurl implements Http\Client
     /**
      * @param string $url
      * @param array<string, mixed> $headers
+     * @param string | null $body
      * @return array{0: string, 1: int}
      */
-    private function curlGet(string $url, array $headers)
+    private function curlGet(string $url, array $headers, $body = null)
     {
-        return $this->curl($url, function ($ch) use ($headers) {
-            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
-            curl_setopt($ch, CURLOPT_HTTPHEADER, $this->buildCurlHeaders($headers));
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            return curl_exec($ch);
-        });
+        return $this->curlRequest(
+            'GET',
+            $url,
+            $headers,
+            $body
+        );
     }
 
     /**
