@@ -17,37 +17,23 @@ class ClientCurl implements Http\Client
 {
     public function sendRequest(Http\Request $request): Http\Response
     {
-        switch ($request->method()) {
-        case 'GET':
-            [$body, $http_code] = $this->curlGet(
-                $request->url(),
-                $request->headers()
-            );
-            break;
-        case 'POST':
-            [$body, $http_code] = $this->curlPost(
-                $request->url(),
-                $request->headers(),
-                $request->body()
-            );
-            break;
-        case 'PUT':
-            [$body, $http_code] = $this->curlPut(
-                $request->url(),
-                $request->headers(),
-                $request->body()
-            );
-            break;
-        case 'DELETE':
-            [$body, $http_code] = $this->curlDelete(
-                $request->url(),
-                $request->headers(),
-                $request->body()
-            );
-            break;
-        default:
+        $requester_of = [
+            'GET' => 'curlGet',
+            'POST' => 'curlPost',
+            'PUT' => 'curlPut',
+            'DELETE' => 'curlDelete'
+        ];
+
+        if (!in_array($request->method(), array_keys($requester_of))) {
             throw new ClientCurlError("not implementation for method {$request->method()}");
         }
+
+        $requester = $requester_of[$request->method()];
+        [$body, $http_code] = $this->$requester(
+            $request->url(),
+            $request->headers(),
+            $request->body()
+        );
 
         return $this->buildResponse($body, $http_code);
     }
