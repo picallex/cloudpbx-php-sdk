@@ -8,184 +8,58 @@
             x-api-key: ''
             content-type: application/json
             accept: 'application/json, plain/text'
-        body: '{"cidr_block":"4.4.4.4\/32","status":"whitelist"}'
+        body: '{"cidr_block":"32.62.128.192\/32","status":"whitelist"}'
     response:
         status:
             http_version: '1.1'
             code: '201'
             message: Created
         headers:
-            Date: 'Thu, 19 Aug 2021 14:06:16 GMT'
+            Date: 'Thu, 21 Oct 2021 19:50:09 GMT'
             Content-Type: 'application/json; charset=utf-8'
-            Content-Length: '57'
+            Content-Length: '63'
             Connection: keep-alive
             Server: nginx/1.14.2
             cache-control: 'max-age=0, private, must-revalidate'
             content-security-policy: 'script-src ''self'''
             x-frame-options: deny
-            x-request-id: Fpy6RmcG6XSCEPYAAD1x
-        body: '{"data":{"cidr_block":"4.4.4.4/32","status":"whitelist"}}'
+            x-request-id: FrAjmitCF-LhBagAAKhS
+        body: '{"data":{"cidr_block":"32.62.128.192/32","status":"whitelist"}}'
         curl_info:
             url: 'http://cloudpbxapidev.picallex.com/api/v1/management/firewall/ipset'
             content_type: 'application/json; charset=utf-8'
             http_code: 201
             header_size: 329
-            request_size: 274
+            request_size: 280
             filetime: -1
             ssl_verify_result: 0
             redirect_count: 0
-            total_time: 0.448709
-            namelookup_time: 0.207167
-            connect_time: 0.326351
-            pretransfer_time: 0.326488
-            size_upload: !!float 49
-            size_download: !!float 57
-            speed_download: !!float 127
-            speed_upload: !!float 109
-            download_content_length: !!float 57
-            upload_content_length: !!float 49
-            starttransfer_time: 0.44866
+            total_time: 0.398543
+            namelookup_time: 0.15688
+            connect_time: 0.271228
+            pretransfer_time: 0.271388
+            size_upload: !!float 55
+            size_download: !!float 63
+            speed_download: !!float 158
+            speed_upload: !!float 138
+            download_content_length: !!float 63
+            upload_content_length: !!float 55
+            starttransfer_time: 0.398493
             redirect_time: !!float 0
             redirect_url: ''
-            primary_ip: 18.219.220.239
+            primary_ip: 3.140.41.83
             certinfo: {  }
             primary_port: 80
-            local_ip: 192.168.0.109
-            local_port: 46782
+            local_ip: 192.168.0.105
+            local_port: 43188
             http_version: 2
             protocol: 1
             ssl_verifyresult: 0
             scheme: HTTP
             appconnect_time_us: 0
-            connect_time_us: 326351
-            namelookup_time_us: 207167
-            pretransfer_time_us: 326488
+            connect_time_us: 271228
+            namelookup_time_us: 156880
+            pretransfer_time_us: 271388
             redirect_time_us: 0
-            starttransfer_time_us: 448660
-            total_time_us: 448709
--
-    request:
-        method: POST
-        url: 'http://172.20.0.7:8000/api/v1/management/firewall/ipset'
-        headers:
-            Host: '172.20.0.7:8000'
-            x-api-key: ''
-            content-type: application/json
-            accept: 'application/json, plain/text'
-        body: '{"cidr_block":"4.4.4.4\/32","status":"whitelist"}'
-    response:
-        status:
-            http_version: '1.1'
-            code: '201'
-            message: Created
-        headers:
-            cache-control: 'max-age=0, private, must-revalidate'
-            content-length: '57'
-            content-security-policy: 'script-src ''self'''
-            content-type: 'application/json; charset=utf-8'
-            date: 'Thu, 30 Sep 2021 21:38:44 GMT'
-            server: Cowboy
-            x-frame-options: deny
-            x-request-id: Fqm3V0hMLRwA66IAAAYE
-        body: '{"data":{"cidr_block":"4.4.4.4/32","status":"whitelist"}}'
-        curl_info:
-            url: 'http://172.20.0.7:8000/api/v1/management/firewall/ipset'
-            content_type: 'application/json; charset=utf-8'
-            http_code: 201
-            header_size: 299
-            request_size: 256
-            filetime: -1
-            ssl_verify_result: 0
-            redirect_count: 0
-            total_time: 0.140547
-            namelookup_time: 3.2E-5
-            connect_time: 0.000182
-            pretransfer_time: 0.000238
-            size_upload: !!float 49
-            size_download: !!float 57
-            speed_download: !!float 407
-            speed_upload: !!float 350
-            download_content_length: !!float 57
-            upload_content_length: !!float 49
-            starttransfer_time: 0.140514
-            redirect_time: !!float 0
-            redirect_url: ''
-            primary_ip: 172.20.0.7
-            certinfo: {  }
-            primary_port: 8000
-            local_ip: 172.20.0.1
-            local_port: 54836
-            http_version: 2
-            protocol: 1
-            ssl_verifyresult: 0
-            scheme: HTTP
-            appconnect_time_us: 0
-            connect_time_us: 182
-            namelookup_time_us: 32
-            pretransfer_time_us: 238
-            redirect_time_us: 0
-            starttransfer_time_us: 140514
-            total_time_us: 140547
--
-    request:
-        method: POST
-        url: 'http://172.23.0.4:8000/api/v1/management/firewall/ipset'
-        headers:
-            Host: '172.23.0.4:8000'
-            x-api-key: ''
-            content-type: application/json
-            accept: 'application/json, plain/text'
-        body: '{"cidr_block":"4.4.4.4\/32","status":"whitelist"}'
-    response:
-        status:
-            http_version: '1.1'
-            code: '201'
-            message: Created
-        headers:
-            cache-control: 'max-age=0, private, must-revalidate'
-            content-length: '57'
-            content-security-policy: 'script-src ''self'''
-            content-type: 'application/json; charset=utf-8'
-            date: 'Fri, 01 Oct 2021 18:54:52 GMT'
-            server: Cowboy
-            x-frame-options: deny
-            x-request-id: Fqn8-oXyEScI8QQAAAaB
-        body: '{"data":{"cidr_block":"4.4.4.4/32","status":"whitelist"}}'
-        curl_info:
-            url: 'http://172.23.0.4:8000/api/v1/management/firewall/ipset'
-            content_type: 'application/json; charset=utf-8'
-            http_code: 201
-            header_size: 299
-            request_size: 256
-            filetime: -1
-            ssl_verify_result: 0
-            redirect_count: 0
-            total_time: 0.160183
-            namelookup_time: 2.9E-5
-            connect_time: 0.000153
-            pretransfer_time: 0.000205
-            size_upload: !!float 49
-            size_download: !!float 57
-            speed_download: !!float 356
-            speed_upload: !!float 306
-            download_content_length: !!float 57
-            upload_content_length: !!float 49
-            starttransfer_time: 0.160126
-            redirect_time: !!float 0
-            redirect_url: ''
-            primary_ip: 172.23.0.4
-            certinfo: {  }
-            primary_port: 8000
-            local_ip: 172.23.0.1
-            local_port: 51514
-            http_version: 2
-            protocol: 1
-            ssl_verifyresult: 0
-            scheme: HTTP
-            appconnect_time_us: 0
-            connect_time_us: 153
-            namelookup_time_us: 29
-            pretransfer_time_us: 205
-            redirect_time_us: 0
-            starttransfer_time_us: 160126
-            total_time_us: 160183
+            starttransfer_time_us: 398493
+            total_time_us: 398543

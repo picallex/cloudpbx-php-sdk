@@ -15,16 +15,16 @@
             code: '201'
             message: Created
         headers:
-            Date: 'Tue, 19 Oct 2021 22:03:16 GMT'
+            Date: 'Thu, 21 Oct 2021 19:47:35 GMT'
             Content-Type: 'application/json; charset=utf-8'
-            Content-Length: '105'
+            Content-Length: '106'
             Connection: keep-alive
             Server: nginx/1.14.2
             cache-control: 'max-age=0, private, must-revalidate'
             content-security-policy: 'script-src ''self'''
             x-frame-options: deny
-            x-request-id: Fq-NtHv1IHvy418AAAKy
-        body: '{"data":{"alias":"bob group create","customer_id":2,"id":4,"name":"system-name-group create","users":[]}}'
+            x-request-id: FrAjdj3fhJw8AwEAAMex
+        body: '{"data":{"alias":"bob group create","customer_id":2,"id":14,"name":"system-name-group create","users":[]}}'
         curl_info:
             url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/groups'
             content_type: 'application/json; charset=utf-8'
@@ -34,39 +34,39 @@
             filetime: -1
             ssl_verify_result: 0
             redirect_count: 0
-            total_time: 0.452829
-            namelookup_time: 0.139712
-            connect_time: 0.27368
-            pretransfer_time: 0.273809
+            total_time: 0.342472
+            namelookup_time: 0.107317
+            connect_time: 0.210939
+            pretransfer_time: 0.211065
             size_upload: !!float 72
-            size_download: !!float 105
-            speed_download: !!float 232
-            speed_upload: !!float 159
-            download_content_length: !!float 105
+            size_download: !!float 106
+            speed_download: !!float 309
+            speed_upload: !!float 210
+            download_content_length: !!float 106
             upload_content_length: !!float 72
-            starttransfer_time: 0.452758
+            starttransfer_time: 0.342419
             redirect_time: !!float 0
             redirect_url: ''
-            primary_ip: 3.140.41.83
+            primary_ip: 3.143.187.222
             certinfo: {  }
             primary_port: 80
             local_ip: 192.168.0.105
-            local_port: 56436
+            local_port: 49614
             http_version: 2
             protocol: 1
             ssl_verifyresult: 0
             scheme: HTTP
             appconnect_time_us: 0
-            connect_time_us: 273680
-            namelookup_time_us: 139712
-            pretransfer_time_us: 273809
+            connect_time_us: 210939
+            namelookup_time_us: 107317
+            pretransfer_time_us: 211065
             redirect_time_us: 0
-            starttransfer_time_us: 452758
-            total_time_us: 452829
+            starttransfer_time_us: 342419
+            total_time_us: 342472
 -
     request:
         method: DELETE
-        url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/groups/4'
+        url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/groups/14'
         headers:
             Host: cloudpbxapidev.picallex.com
             x-api-key: ''
@@ -78,55 +78,55 @@
             code: '204'
             message: 'No Content'
         headers:
-            Date: 'Tue, 19 Oct 2021 22:03:31 GMT'
+            Date: 'Thu, 21 Oct 2021 19:47:35 GMT'
             Connection: keep-alive
             Server: nginx/1.14.2
             cache-control: 'max-age=0, private, must-revalidate'
             content-security-policy: 'script-src ''self'''
             x-frame-options: deny
-            x-request-id: Fq-NuC8ocaVCS9UAAALi
+            x-request-id: FrAjdlSX8vPPRxAAAMfB
         curl_info:
-            url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/groups/4'
+            url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/groups/14'
             content_type: null
             http_code: 204
             header_size: 265
-            request_size: 213
+            request_size: 214
             filetime: -1
             ssl_verify_result: 0
             redirect_count: 0
-            total_time: 0.361586
-            namelookup_time: 0.105124
-            connect_time: 0.226475
-            pretransfer_time: 0.226592
+            total_time: 0.366028
+            namelookup_time: 0.108567
+            connect_time: 0.223937
+            pretransfer_time: 0.22404
             size_upload: !!float 0
             size_download: !!float 0
             speed_download: !!float 0
             speed_upload: !!float 0
             download_content_length: !!float 0
             upload_content_length: !!float -1
-            starttransfer_time: 0.361539
+            starttransfer_time: 0.365982
             redirect_time: !!float 0
             redirect_url: ''
-            primary_ip: 3.143.187.222
+            primary_ip: 3.140.41.83
             certinfo: {  }
             primary_port: 80
             local_ip: 192.168.0.105
-            local_port: 43070
+            local_port: 43180
             http_version: 2
             protocol: 1
             ssl_verifyresult: 0
             scheme: HTTP
             appconnect_time_us: 0
-            connect_time_us: 226475
-            namelookup_time_us: 105124
-            pretransfer_time_us: 226592
+            connect_time_us: 223937
+            namelookup_time_us: 108567
+            pretransfer_time_us: 224040
             redirect_time_us: 0
-            starttransfer_time_us: 361539
-            total_time_us: 361586
+            starttransfer_time_us: 365982
+            total_time_us: 366028
 -
     request:
         method: GET
-        url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/groups/4'
+        url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/groups/14'
         headers:
             Host: cloudpbxapidev.picallex.com
             x-api-key: ''
@@ -138,7 +138,7 @@
             code: '404'
             message: 'Not Found'
         headers:
-            Date: 'Tue, 19 Oct 2021 22:03:32 GMT'
+            Date: 'Thu, 21 Oct 2021 19:47:36 GMT'
             Content-Type: 'application/json; charset=utf-8'
             Content-Length: '33'
             Connection: keep-alive
@@ -146,43 +146,43 @@
             cache-control: 'max-age=0, private, must-revalidate'
             content-security-policy: 'script-src ''self'''
             x-frame-options: deny
-            x-request-id: Fq-NuErc4NS8W0MAAAMC
+            x-request-id: FrAjdmWl3vCGsPgAAKfi
         body: '{"errors":{"detail":"Not Found"}}'
         curl_info:
-            url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/groups/4'
+            url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/groups/14'
             content_type: 'application/json; charset=utf-8'
             http_code: 404
             header_size: 331
-            request_size: 210
+            request_size: 211
             filetime: -1
             ssl_verify_result: 0
             redirect_count: 0
-            total_time: 0.483064
-            namelookup_time: 0.163894
-            connect_time: 0.318496
-            pretransfer_time: 0.318609
+            total_time: 0.264815
+            namelookup_time: 0.038125
+            connect_time: 0.151903
+            pretransfer_time: 0.152007
             size_upload: !!float 0
             size_download: !!float 33
-            speed_download: !!float 68
+            speed_download: !!float 125
             speed_upload: !!float 0
             download_content_length: !!float 33
             upload_content_length: !!float -1
-            starttransfer_time: 0.483012
+            starttransfer_time: 0.26476
             redirect_time: !!float 0
             redirect_url: ''
-            primary_ip: 3.140.41.83
+            primary_ip: 3.143.187.222
             certinfo: {  }
             primary_port: 80
             local_ip: 192.168.0.105
-            local_port: 56438
+            local_port: 49618
             http_version: 2
             protocol: 1
             ssl_verifyresult: 0
             scheme: HTTP
             appconnect_time_us: 0
-            connect_time_us: 318496
-            namelookup_time_us: 163894
-            pretransfer_time_us: 318609
+            connect_time_us: 151903
+            namelookup_time_us: 38125
+            pretransfer_time_us: 152007
             redirect_time_us: 0
-            starttransfer_time_us: 483012
-            total_time_us: 483064
+            starttransfer_time_us: 264760
+            total_time_us: 264815

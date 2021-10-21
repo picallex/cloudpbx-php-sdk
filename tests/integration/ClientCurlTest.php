@@ -249,7 +249,7 @@ class ClientCurlTest extends TestCase
      */
     public function testAddIpToFirewall(): array
     {
-        $cidr_block = '4.4.4.4/32';
+        $cidr_block = "32.62.128.192/32";
         $status = 'whitelist';
 
         $ipset = $this->client->firewallIpSets->create($cidr_block, $status);
@@ -632,7 +632,7 @@ class ClientCurlTest extends TestCase
 
         $user = $this->client->users->create($customer->id, [
             'name' => 'simpondelete',
-            'password' => 'insecure537537',
+            'password' => 'insecuABC@re537537',
             'is_webrtc' => false
         ]);
 
@@ -785,7 +785,7 @@ class ClientCurlTest extends TestCase
         $customer = array_pop($stack);
         $user = $this->client->users->create($customer->id, [
             'name' => 'simpon5fullrouterdelete',
-            'password' => 'insecure537537',
+            'password' => 'insecBARCO@ure537537',
             'alias' => 'description',
             'accountcode' => 'invoice',
             'caller_name' => 'caller-name',
