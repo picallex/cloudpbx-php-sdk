@@ -1354,4 +1354,39 @@ class ClientCurlTest extends TestCase
         $this->assertTrue(true);
     }
 
+    /**
+     * @vcr query_capabilities_of_customer
+     * @depends testQueryOneCustomer
+     */
+    public function testQueryCapabilitiesOfCustomer(array $stack): void
+    {
+        $customer = array_pop($stack);
+
+        $caps = $this->client->customers->capabilities($customer->id);
+        $this->assertIsArray($caps);
+        $this->assertGreaterThan(1, count($caps));
+
+        $cap = $caps[0];
+        $this->assertTrue($cap->hasAttribute('id'));
+        $this->assertTrue($cap->hasAttribute('customer_id'));
+        $this->assertTrue($cap->hasAttribute('capability'));
+        $this->assertTrue($cap->hasAttribute('allowed'));
+    }
+
+    /**
+     * @vcr query_capabilities_of_customer
+     * @depends testQueryOneCustomer
+     */
+    public function testQueryChangeCapabilitiesOfCustomer(array $stack): void
+    {
+        $customer = array_pop($stack);
+
+        $cap_enabled = $this->client->customers->enable_capability($customer->id, "inbound_calls");
+        $cap_disabled = $this->client->customers->disable_capability($customer->id, "inbound_calls");
+
+        $this->assertEquals($cap_enabled->id, $cap_disabled->id);
+        $this->assertEquals($cap_enabled->allowed, true);
+        $this->assertEquals($cap_disabled->allowed, false);
+    }
+
 }

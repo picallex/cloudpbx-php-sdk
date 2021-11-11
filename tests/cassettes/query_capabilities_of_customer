@@ -1,0 +1,255 @@
+
+-
+    request:
+        method: GET
+        url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2'
+        headers:
+            Host: cloudpbxapidev.picallex.com
+            x-api-key: ''
+            content-type: application/json
+            accept: 'application/json, plain/text'
+    response:
+        status:
+            http_version: '1.1'
+            code: '200'
+            message: OK
+        headers:
+            Date: 'Thu, 11 Nov 2021 14:29:32 GMT'
+            Content-Type: 'application/json; charset=utf-8'
+            Content-Length: '146'
+            Connection: keep-alive
+            Server: nginx/1.14.2
+            cache-control: 'max-age=0, private, must-revalidate'
+            content-security-policy: 'script-src ''self'''
+            x-frame-options: deny
+            x-request-id: FraESwGcQGX5Xh4AADpi
+        body: '{"data":{"accountcode":null,"domain":"cloudpbxclient1.picallex.com","hold_music_sound_id":null,"id":2,"limit_external_calls":10,"name":"client1"}}'
+        curl_info:
+            url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2'
+            content_type: 'application/json; charset=utf-8'
+            http_code: 200
+            header_size: 325
+            request_size: 201
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.420139
+            namelookup_time: 0.209836
+            connect_time: 0.307217
+            pretransfer_time: 0.307365
+            size_upload: !!float 0
+            size_download: !!float 146
+            speed_download: !!float 347
+            speed_upload: !!float 0
+            download_content_length: !!float 146
+            upload_content_length: !!float -1
+            starttransfer_time: 0.420089
+            redirect_time: !!float 0
+            redirect_url: ''
+            primary_ip: 3.140.41.83
+            certinfo: {  }
+            primary_port: 80
+            local_ip: 192.168.0.105
+            local_port: 57284
+            http_version: 2
+            protocol: 1
+            ssl_verifyresult: 0
+            scheme: HTTP
+            appconnect_time_us: 0
+            connect_time_us: 307217
+            namelookup_time_us: 209836
+            pretransfer_time_us: 307365
+            redirect_time_us: 0
+            starttransfer_time_us: 420089
+            total_time_us: 420139
+-
+    request:
+        method: GET
+        url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/capabilities'
+        headers:
+            Host: cloudpbxapidev.picallex.com
+            x-api-key: ''
+            content-type: application/json
+            accept: 'application/json, plain/text'
+    response:
+        status:
+            http_version: '1.1'
+            code: '200'
+            message: OK
+        headers:
+            Date: 'Thu, 11 Nov 2021 14:31:31 GMT'
+            Content-Type: 'application/json; charset=utf-8'
+            Content-Length: '150'
+            Connection: keep-alive
+            Server: nginx/1.14.2
+            cache-control: 'max-age=0, private, must-revalidate'
+            content-security-policy: 'script-src ''self'''
+            x-frame-options: deny
+            x-request-id: FraEZqaxDki3Wk4AAFkx
+        body: '{"data":[{"allowed":true,"capability":"inbound_calls","customer_id":2,"id":2},{"allowed":true,"capability":"outbound_calls","customer_id":2,"id":11}]}'
+        curl_info:
+            url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/capabilities'
+            content_type: 'application/json; charset=utf-8'
+            http_code: 200
+            header_size: 325
+            request_size: 214
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.448831
+            namelookup_time: 0.216113
+            connect_time: 0.321367
+            pretransfer_time: 0.321507
+            size_upload: !!float 0
+            size_download: !!float 150
+            speed_download: !!float 334
+            speed_upload: !!float 0
+            download_content_length: !!float 150
+            upload_content_length: !!float -1
+            starttransfer_time: 0.448778
+            redirect_time: !!float 0
+            redirect_url: ''
+            primary_ip: 52.15.238.158
+            certinfo: {  }
+            primary_port: 80
+            local_ip: 192.168.0.105
+            local_port: 34622
+            http_version: 2
+            protocol: 1
+            ssl_verifyresult: 0
+            scheme: HTTP
+            appconnect_time_us: 0
+            connect_time_us: 321367
+            namelookup_time_us: 216113
+            pretransfer_time_us: 321507
+            redirect_time_us: 0
+            starttransfer_time_us: 448778
+            total_time_us: 448831
+-
+    request:
+        method: PUT
+        url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/capabilities/enable'
+        headers:
+            Host: cloudpbxapidev.picallex.com
+            x-api-key: ''
+            content-type: application/json
+            accept: 'application/json, plain/text'
+        body: '{"capability":"inbound_calls"}'
+    response:
+        status:
+            http_version: '1.1'
+            code: '200'
+            message: OK
+        headers:
+            Date: 'Thu, 11 Nov 2021 14:34:16 GMT'
+            Content-Type: 'application/json; charset=utf-8'
+            Content-Length: '77'
+            Connection: keep-alive
+            Server: nginx/1.14.2
+            cache-control: 'max-age=0, private, must-revalidate'
+            content-security-policy: 'script-src ''self'''
+            x-frame-options: deny
+            x-request-id: FraEjTzjpNlvuX0AADtS
+        body: '{"data":{"allowed":true,"capability":"inbound_calls","customer_id":2,"id":2}}'
+        curl_info:
+            url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/capabilities/enable'
+            content_type: 'application/json; charset=utf-8'
+            http_code: 200
+            header_size: 324
+            request_size: 271
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.38287
+            namelookup_time: 0.167974
+            connect_time: 0.269923
+            pretransfer_time: 0.270072
+            size_upload: !!float 30
+            size_download: !!float 77
+            speed_download: !!float 201
+            speed_upload: !!float 78
+            download_content_length: !!float 77
+            upload_content_length: !!float 30
+            starttransfer_time: 0.382816
+            redirect_time: !!float 0
+            redirect_url: ''
+            primary_ip: 3.140.41.83
+            certinfo: {  }
+            primary_port: 80
+            local_ip: 192.168.0.105
+            local_port: 57288
+            http_version: 2
+            protocol: 1
+            ssl_verifyresult: 0
+            scheme: HTTP
+            appconnect_time_us: 0
+            connect_time_us: 269923
+            namelookup_time_us: 167974
+            pretransfer_time_us: 270072
+            redirect_time_us: 0
+            starttransfer_time_us: 382816
+            total_time_us: 382870
+-
+    request:
+        method: PUT
+        url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/capabilities/disable'
+        headers:
+            Host: cloudpbxapidev.picallex.com
+            x-api-key: ''
+            content-type: application/json
+            accept: 'application/json, plain/text'
+        body: '{"capability":"inbound_calls"}'
+    response:
+        status:
+            http_version: '1.1'
+            code: '200'
+            message: OK
+        headers:
+            Date: 'Thu, 11 Nov 2021 14:34:17 GMT'
+            Content-Type: 'application/json; charset=utf-8'
+            Content-Length: '78'
+            Connection: keep-alive
+            Server: nginx/1.14.2
+            cache-control: 'max-age=0, private, must-revalidate'
+            content-security-policy: 'script-src ''self'''
+            x-frame-options: deny
+            x-request-id: FraEjVOsvc2gS5gAAFmh
+        body: '{"data":{"allowed":false,"capability":"inbound_calls","customer_id":2,"id":2}}'
+        curl_info:
+            url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/capabilities/disable'
+            content_type: 'application/json; charset=utf-8'
+            http_code: 200
+            header_size: 324
+            request_size: 272
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.362924
+            namelookup_time: 0.123496
+            connect_time: 0.222245
+            pretransfer_time: 0.222379
+            size_upload: !!float 30
+            size_download: !!float 78
+            speed_download: !!float 215
+            speed_upload: !!float 82
+            download_content_length: !!float 78
+            upload_content_length: !!float 30
+            starttransfer_time: 0.362867
+            redirect_time: !!float 0
+            redirect_url: ''
+            primary_ip: 52.15.238.158
+            certinfo: {  }
+            primary_port: 80
+            local_ip: 192.168.0.105
+            local_port: 34624
+            http_version: 2
+            protocol: 1
+            ssl_verifyresult: 0
+            scheme: HTTP
+            appconnect_time_us: 0
+            connect_time_us: 222245
+            namelookup_time_us: 123496
+            pretransfer_time_us: 222379
+            redirect_time_us: 0
+            starttransfer_time_us: 362867
+            total_time_us: 362924

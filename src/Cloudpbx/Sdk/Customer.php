@@ -72,4 +72,52 @@ final class Customer extends Api
 
         return $this->recordToModel($record, \Cloudpbx\Sdk\Model\Customer::class);
     }
+
+
+    /**
+     * @param integer $customer_id
+     * @return array<Model\Customer\Capability>
+     */
+    public function capabilities($customer_id)
+    {
+        Argument::isInteger($customer_id);
+
+        $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}/capabilities', ['{customer_id}' => $customer_id]);
+
+        $records = $this->protocol->list($query);
+
+        return $this->recordsToModel($records, Model\Customer\Capability::class);
+    }
+
+    /**
+     * @param integer $customer_id
+     * @param string $capability
+     * @return array<Model\Customer\Capability>
+     */
+    public function enable_capability($customer_id, $capability)
+    {
+        Argument::isInteger($customer_id);
+        Argument::isString($capability);
+
+        $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}/capabilities/enable', ['{customer_id}' => $customer_id]);
+        $record = $this->protocol->update($query, ['capability' => $capability]);
+
+        return $this->recordToModel($record, Model\Customer\Capability::class);
+    }
+
+    /**
+     * @param integer $customer_id
+     * @param string $capability
+     * @return array<Model\Customer\Capability>
+     */
+    public function disable_capability($customer_id, $capability)
+    {
+        Argument::isInteger($customer_id);
+        Argument::isString($capability);
+
+        $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}/capabilities/disable', ['{customer_id}' => $customer_id]);
+        $record = $this->protocol->update($query, ['capability' => $capability]);
+
+        return $this->recordToModel($record, Model\Customer\Capability::class);
+    }
 }
