@@ -32,14 +32,14 @@ interface Protocol
 
     /**
      * @param string $query
-     * @param array<string, mixed> $params
+     * @param array<string, mixed>|null $params
      * @return mixed
      */
     public function create($query, $params);
 
     /**
      * @param string $query
-     * @param array<string, mixed> $params
+     * @param array<string, mixed>|null $params
      * @return mixed
      */
     public function update($query, $params);

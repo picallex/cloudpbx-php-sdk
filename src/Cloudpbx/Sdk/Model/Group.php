@@ -36,7 +36,7 @@ final class Group extends \Cloudpbx\Sdk\Model
     public $customer;
 
     /**
-     * @var array<int>
+     * @var array<mixed>
      */
     public $users = [];
 

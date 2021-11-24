@@ -58,12 +58,13 @@ final class ProtocolHTTP implements \Cloudpbx\Sdk\Protocol
         return \strtr($url, $params);
     }
 
-    public function list($url)
+
+    public function list($query)
     {
         $request = Http\Implementation\RequestFromArray::build('GET', [
             'body' => null,
             'headers' => $this->setHeaders([]),
-            'url' => $this->api_base . $url
+            'url' => $this->api_base . $query
         ]);
 
         $response = $this->transport->sendRequest($request);
@@ -74,12 +75,12 @@ final class ProtocolHTTP implements \Cloudpbx\Sdk\Protocol
         return $data;
     }
 
-    public function one($url)
+    public function one($query)
     {
         $request = Http\Implementation\RequestFromArray::build('GET', [
             'body' => null,
             'headers' => $this->setHeaders([]),
-            'url' => $this->api_base . $url
+            'url' => $this->api_base . $query
         ]);
 
         $response = $this->transport->sendRequest($request);
@@ -90,24 +91,24 @@ final class ProtocolHTTP implements \Cloudpbx\Sdk\Protocol
         return $data;
     }
 
-    public function create($url, $params = null)
+    public function create($query, $params = null)
     {
-        return $this->doRequest('POST', $url, $params);
+        return $this->doRequest('POST', $query, $params);
     }
 
     /**
      * @param string $url
      * @param array<string,mixed> $params
-     * @return array<string, mixed>
+     * @return array<string, mixed>|null
      */
-    public function update($url, $params = null)
+    public function update($query, $params = null)
     {
-        return $this->doRequest('PUT', $url, $params);
+        return $this->doRequest('PUT', $query, $params);
     }
 
-    public function delete($url, $params = null)
+    public function delete($query, $params = null)
     {
-        $this->doRequest('DELETE', $url, $params, false);
+        $this->doRequest('DELETE', $query, $params, false);
     }
 
     /**

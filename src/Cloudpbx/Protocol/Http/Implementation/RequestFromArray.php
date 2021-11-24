@@ -55,7 +55,7 @@ class RequestFromArray implements \Cloudpbx\Protocol\Http\Request
     }
 
     /**
-     * @return mixed
+     * @return null|string
      */
     public function body()
     {

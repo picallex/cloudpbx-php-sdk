@@ -22,9 +22,9 @@ repos:
       language: system
       types: [php]
       pass_filenames: false
-    - id: phpstan
-      name: phpstan
-      entry: bash -c 'make phpstan'
+    - id: psalm
+      name: psalm
+      entry: bash -c 'make psalm'
       language: system
       types: [php]
       pass_filenames: false

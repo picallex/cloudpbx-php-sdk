@@ -3,7 +3,7 @@
 DOCKER_IMAGE=composer:2
 
 composer-init:
-	docker-compose run --rm app composer install
+	docker-compose run --rm app composer update
 
 fix:
 	docker-compose run --rm app composer run-script --dev fix src
@@ -22,5 +22,8 @@ test-core: composer-autoload
 composer-autoload:
 	docker-compose run --rm app composer dump-autoload
 
-phpstan:
-	docker-compose run --rm app composer run-script --dev phpstan
+psalm-init:
+	docker-compose run --rm app composer run-script --dev -- psalm --init
+
+psalm:
+	docker-compose run --rm app composer run-script --dev -- psalm

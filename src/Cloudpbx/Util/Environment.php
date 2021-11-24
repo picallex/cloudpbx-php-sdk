@@ -32,9 +32,9 @@ final class Environment
         $dotenv = \Dotenv\Dotenv::createImmutable($root, ".env.{$environment}");
         $dotenv->load();
 
-        $value = $_ENV[$name] ?? ($default ?? false);
+        $value = (string)($_ENV[$name] ?? ($default ?? ""));
 
-        if ($value === false && $default === null) {
+        if ($value === "" && $default === null) {
             throw new \RuntimeException("not found environment variable {$name}");
         }
 
