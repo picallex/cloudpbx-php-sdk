@@ -125,3 +125,66 @@
             redirect_time_us: 0
             starttransfer_time_us: 397847
             total_time_us: 397890
+-
+    request:
+        method: GET
+        url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/service/callcenter/queues/21/agents'
+        headers:
+            Host: cloudpbxapidev.picallex.com
+            x-api-key: ''
+            content-type: application/json
+            accept: 'application/json, plain/text'
+    response:
+        status:
+            http_version: '1.1'
+            code: '200'
+            message: OK
+        headers:
+            Date: 'Wed, 24 Nov 2021 22:28:35 GMT'
+            Content-Type: 'application/json; charset=utf-8'
+            Content-Length: '2746'
+            Connection: keep-alive
+            Server: nginx/1.14.2
+            cache-control: 'max-age=0, private, must-revalidate'
+            content-security-policy: 'script-src ''self'''
+            x-frame-options: deny
+            x-request-id: Frqb-sqaB49vHEsAAEAR
+        body: '{"data":[{"autologin":false,"customer_id":2,"id":217,"ring_timeout":0,"user_id":106},{"autologin":false,"customer_id":2,"id":221,"ring_timeout":0,"user_id":110},{"autologin":false,"customer_id":2,"id":224,"ring_timeout":0,"user_id":113},{"autologin":false,"customer_id":2,"id":229,"ring_timeout":0,"user_id":118},{"autologin":false,"customer_id":2,"id":230,"ring_timeout":0,"user_id":119},{"autologin":false,"customer_id":2,"id":232,"ring_timeout":0,"user_id":121},{"autologin":false,"customer_id":2,"id":235,"ring_timeout":0,"user_id":124},{"autologin":false,"customer_id":2,"id":239,"ring_timeout":0,"user_id":128},{"autologin":false,"customer_id":2,"id":244,"ring_timeout":0,"user_id":133},{"autologin":false,"customer_id":2,"id":211,"ring_timeout":0,"user_id":100},{"autologin":false,"customer_id":2,"id":218,"ring_timeout":0,"user_id":107},{"autologin":false,"customer_id":2,"id":223,"ring_timeout":0,"user_id":112},{"autologin":false,"customer_id":2,"id":226,"ring_timeout":0,"user_id":115},{"autologin":false,"customer_id":2,"id":231,"ring_timeout":0,"user_id":120},{"autologin":false,"customer_id":2,"id":240,"ring_timeout":0,"user_id":129},{"autologin":false,"customer_id":2,"id":245,"ring_timeout":0,"user_id":134},{"autologin":false,"customer_id":2,"id":213,"ring_timeout":0,"user_id":102},{"autologin":false,"customer_id":2,"id":219,"ring_timeout":0,"user_id":108},{"autologin":false,"customer_id":2,"id":227,"ring_timeout":0,"user_id":116},{"autologin":false,"customer_id":2,"id":233,"ring_timeout":0,"user_id":122},{"autologin":false,"customer_id":2,"id":236,"ring_timeout":0,"user_id":125},{"autologin":false,"customer_id":2,"id":238,"ring_timeout":0,"user_id":127},{"autologin":false,"customer_id":2,"id":241,"ring_timeout":0,"user_id":130},{"autologin":false,"customer_id":2,"id":242,"ring_timeout":0,"user_id":131},{"autologin":false,"customer_id":2,"id":246,"ring_timeout":0,"user_id":135},{"autologin":false,"customer_id":2,"id":214,"ring_timeout":0,"user_id":103},{"autologin":false,"customer_id":2,"id":220,"ring_timeout":0,"user_id":109},{"autologin":false,"customer_id":2,"id":212,"ring_timeout":0,"user_id":101},{"autologin":false,"customer_id":2,"id":215,"ring_timeout":0,"user_id":104},{"autologin":false,"customer_id":2,"id":216,"ring_timeout":0,"user_id":105},{"autologin":false,"customer_id":2,"id":222,"ring_timeout":0,"user_id":111},{"autologin":false,"customer_id":2,"id":225,"ring_timeout":0,"user_id":114},{"autologin":false,"customer_id":2,"id":228,"ring_timeout":0,"user_id":117},{"autologin":false,"customer_id":2,"id":234,"ring_timeout":0,"user_id":123},{"autologin":false,"customer_id":2,"id":237,"ring_timeout":0,"user_id":126},{"autologin":false,"customer_id":2,"id":243,"ring_timeout":0,"user_id":132}]}'
+        curl_info:
+            url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/service/callcenter/queues/21/agents'
+            content_type: 'application/json; charset=utf-8'
+            http_code: 200
+            header_size: 326
+            request_size: 237
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 1.160486
+            namelookup_time: 0.130625
+            connect_time: 0.285947
+            pretransfer_time: 0.286059
+            size_upload: !!float 0
+            size_download: !!float 2746
+            speed_download: !!float 2367
+            speed_upload: !!float 0
+            download_content_length: !!float 2746
+            upload_content_length: !!float -1
+            starttransfer_time: 1.034277
+            redirect_time: !!float 0
+            redirect_url: ''
+            primary_ip: 52.15.238.158
+            certinfo: {  }
+            primary_port: 80
+            local_ip: 192.168.0.105
+            local_port: 50974
+            http_version: 2
+            protocol: 1
+            ssl_verifyresult: 0
+            scheme: HTTP
+            appconnect_time_us: 0
+            connect_time_us: 285947
+            namelookup_time_us: 130625
+            pretransfer_time_us: 286059
+            redirect_time_us: 0
+            starttransfer_time_us: 1034277
+            total_time_us: 1160486

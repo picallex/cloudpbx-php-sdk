@@ -30,16 +30,7 @@ final class FollowMeEntry extends Api
 
         $records = $this->protocol->list($query);
 
-        return $this->recordsToModel(
-            $records,
-            Model\FollowMeEntry::class,
-            [
-                                         'transform' => [
-                                             [$this, 'append_customer_id'],
-                                             [$customer_id]
-                                         ],
-                                     ]
-        );
+        return $this->recordsToModel($records, Model\FollowMeEntry::class, $this->default_options($customer_id));
     }
 
     /**
@@ -63,11 +54,47 @@ final class FollowMeEntry extends Api
     }
 
     /**
+     * @param integer $customer_id
+     * @param integer $follow_me_id
+     * @param integer $callcenter_queue_id
+     * @param array{
+     *   priority: integer
+     * } $options
+     */
+    public function create_callcenter_queue($customer_id, $follow_me_id, $callcenter_queue_id, $options)
+    {
+        Argument::isInteger($customer_id);
+        Argument::isInteger($follow_me_id);
+        Argument::isInteger($callcenter_queue_id);
+        Argument::isParams($options);
+
+        $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}/follow_me/{follow_me_id}/entries/{callcenter_queue_id}/callcenter_queue', [
+            '{customer_id}' => $customer_id,
+            '{follow_me_id}' => $follow_me_id,
+            '{callcenter_queue_id}' => $callcenter_queue_id
+        ]);
+
+        $record = $this->protocol->create($query, ['options' => $options]);
+
+        return $this->recordToModel($record, Model\FollowMeEntry::class, $this->default_options($customer_id));
+    }
+
+    /**
      * @param array<string, mixed> $record
      * @param integer $customer_id
      */
     public function append_customer_id(&$record, $customer_id): void
     {
         $record['customer_id'] = $customer_id;
+    }
+
+    private function default_options($customer_id)
+    {
+        return [
+            'transform' => [
+                [$this, 'append_customer_id'],
+                [$customer_id]
+            ]
+        ];
     }
 }

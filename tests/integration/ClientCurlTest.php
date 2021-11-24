@@ -313,6 +313,20 @@ class ClientCurlTest extends TestCase
     }
 
     /**
+     * @vcr create_follow_me_entry_callcenter_queue
+     */
+    public function testCreateFollowMeEntryTypeCallcenterQueue(): void
+    {
+        $entry = $this->client->followMeEntries->create_callcenter_queue(self::$customer_id, self::$follow_me_id, self::$callcenter_queue_id,
+                                                                           ['priority' => 100]);
+
+        $this->assertTrue($entry->hasAttribute('id'));
+        $this->assertTrue($entry->hasAttribute('follow_me_id'));
+        $this->assertEquals(self::$callcenter_queue_id, $entry->callcenter_queue_id);
+        $this->assertEquals($entry->priority, 100);
+    }
+
+    /**
      * @vcr query_all_ivr_menu_by_customer
      */
     public function testQueryAllIvrMenu(): array
