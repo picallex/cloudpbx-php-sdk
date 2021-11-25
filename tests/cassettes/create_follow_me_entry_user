@@ -1,0 +1,65 @@
+
+-
+    request:
+        method: POST
+        url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/follow_me/3/entries/1/user'
+        headers:
+            Host: cloudpbxapidev.picallex.com
+            x-api-key: ''
+            content-type: application/json
+            accept: 'application/json, plain/text'
+        body: '{"options":{"priority":100}}'
+    response:
+        status:
+            http_version: '1.1'
+            code: '201'
+            message: Created
+        headers:
+            Date: 'Thu, 25 Nov 2021 14:24:47 GMT'
+            Content-Type: 'application/json; charset=utf-8'
+            Content-Length: '101'
+            Connection: keep-alive
+            Server: nginx/1.14.2
+            cache-control: 'max-age=0, private, must-revalidate'
+            content-security-policy: 'script-src ''self'''
+            x-frame-options: deny
+            x-request-id: FrrQKJ_A95vnj48AAKQB
+        body: '{"data":{"call_timeout":null,"follow_me_id":3,"id":36,"priority":100,"time_of_day":null,"user_id":1}}'
+        curl_info:
+            url: 'http://cloudpbxapidev.picallex.com/api/v1/management/customers/2/follow_me/3/entries/1/user'
+            content_type: 'application/json; charset=utf-8'
+            http_code: 201
+            header_size: 330
+            request_size: 277
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.434456
+            namelookup_time: 0.167455
+            connect_time: 0.282199
+            pretransfer_time: 0.282297
+            size_upload: !!float 28
+            size_download: !!float 101
+            speed_download: !!float 232
+            speed_upload: !!float 64
+            download_content_length: !!float 101
+            upload_content_length: !!float 28
+            starttransfer_time: 0.434401
+            redirect_time: !!float 0
+            redirect_url: ''
+            primary_ip: 52.15.238.158
+            certinfo: {  }
+            primary_port: 80
+            local_ip: 192.168.0.105
+            local_port: 44118
+            http_version: 2
+            protocol: 1
+            ssl_verifyresult: 0
+            scheme: HTTP
+            appconnect_time_us: 0
+            connect_time_us: 282199
+            namelookup_time_us: 167455
+            pretransfer_time_us: 282297
+            redirect_time_us: 0
+            starttransfer_time_us: 434401
+            total_time_us: 434456

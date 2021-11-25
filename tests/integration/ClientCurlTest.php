@@ -84,12 +84,14 @@ class ClientCurlTest extends TestCase
      * @vcr query_one_user_by_customer
      * @depends testQueryAllUsers
      */
-    public function testQueryOneUser(array $stack): void
+    public function testQueryOneUser(array $stack): array
     {
         [$last_customer, $last_user] = array_pop($stack);
         $user = $this->client->users->show($last_customer->id, $last_user->id);
 
         $this->assertEquals($user->id, $last_user->id);
+
+        return [$user];
     }
 
     /**
@@ -341,6 +343,22 @@ class ClientCurlTest extends TestCase
         $this->assertEquals(60, $entry->call_timeout);
         $this->assertEquals(100, $entry->priority);
         $this->assertEquals('999666555', $entry->dialout_number);
+    }
+
+    /**
+     * @vcr create_follow_me_entry_user
+     * @depends testQueryOneUser
+     */
+    public function testCreateFollowMeEntryTypeUser(array $stack): void
+    {
+        $user = array_pop($stack);
+
+        $entry = $this->client->followMeEntries->create_user(self::$customer_id, self::$follow_me_id, $user->id, ['priority' => 100]);
+
+        $this->assertTrue($entry->hasAttribute('id'));
+        $this->assertTrue($entry->hasAttribute('follow_me_id'));
+        $this->assertEquals($user->id, $entry->user_id);
+        $this->assertEquals($entry->priority, 100);
     }
 
     /**
