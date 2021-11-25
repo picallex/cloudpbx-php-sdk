@@ -1542,4 +1542,22 @@ class ClientCurlTest extends TestCase
         }
 
     }
+
+
+    /**
+     * @vcr update_follow_me_entry
+     * @depends testQueryOneUser
+     */
+    public function testUpdateFollowMeEntry(array $stack): void
+    {
+        $user = array_pop($stack);
+
+        $entry = $this->client->followMeEntries->create_user(self::$customer_id, self::$follow_me_id, $user->id, ['priority' => 100]);
+
+        $entry_updated = $this->client->followMeEntries->update(self::$customer_id, self::$follow_me_id, $entry->id, ['priority' => 999]);
+
+        $this->assertEquals($entry->id, $entry_updated->id);
+        $this->assertEquals(999, $entry_updated->priority);
+    }
+
 }

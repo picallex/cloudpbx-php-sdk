@@ -54,6 +54,37 @@ final class FollowMeEntry extends Api
     }
 
     /**
+     * See **ClientCurlTest** for details.
+     *
+     * @param int $customer_id
+     * @param int $follow_me_id
+     * @param int $id
+     * @param array{
+     *  priority: integer,
+     *  call_timeout: integer
+     * }|[] $options
+     *
+     * @return Model\FollowMeEntry
+     */
+    public function update($customer_id, $follow_me_id, $id, $options)
+    {
+        Argument::isInteger($customer_id);
+        Argument::isInteger($follow_me_id);
+        Argument::isInteger($id);
+        Argument::isParams($options);
+
+        $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}/follow_me/{follow_me_id}/entries/{id}', [
+            '{customer_id}' => $customer_id,
+            '{follow_me_id}' => $follow_me_id,
+            '{id}' => $id
+        ]);
+
+        $record = $this->protocol->update($query, ['follow_me_entry' => $options]);
+
+        return $this->recordToModel($record, Model\FollowMeEntry::class, $this->default_options($customer_id));
+    }
+
+    /**
      * @param integer $customer_id
      * @param integer $follow_me_id
      * @param integer $callcenter_queue_id
