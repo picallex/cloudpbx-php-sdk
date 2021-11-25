@@ -50,7 +50,7 @@ final class FollowMeEntry extends Api
 
         $record = $this->protocol->one($query);
 
-        return $this->recordToModel($record, Model\FollowMeEntry::class);
+        return $this->recordToModel($record, Model\FollowMeEntry::class, $this->default_options($customer_id));
     }
 
     /**
