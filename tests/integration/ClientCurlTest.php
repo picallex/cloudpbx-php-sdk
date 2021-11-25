@@ -1474,4 +1474,35 @@ class ClientCurlTest extends TestCase
         $this->assertEquals($cap_disabled->allowed, false);
     }
 
+
+    /**
+     * @vcr query_all_voicemails
+     */
+    public function testQueryAllVoicemail(): array
+    {
+        $voicemails = $this->client->voicemails->all(self::$customer_id);
+
+        $this->assertIsArray($voicemails);
+        $this->assertGreaterThan(0, count($voicemails));
+
+        $voicemail = $voicemails[0];
+        $this->assertTrue($voicemail->hasAttribute('id'));
+        $this->assertTrue($voicemail->hasAttribute('user_id'));
+
+        return [$voicemail];
+    }
+
+    /**
+     * @vcr query_one_voicemail
+     * @depends testQueryAllVoicemail
+     */
+    public function testQueryOneVoicemail(array $stack): void
+    {
+        $voicemail = array_pop($stack);
+
+        $entry = $this->client->voicemails->show(self::$customer_id, $voicemail->id);
+
+        $this->assertInstanceOf(\Cloudpbx\Sdk\Model\Voicemail::class, $entry);
+        $this->assertEquals($voicemail->id, $entry->id);
+    }
 }

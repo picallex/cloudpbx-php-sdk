@@ -21,6 +21,7 @@ use Cloudpbx\Util\Argument;
  * @property Blacklist $blacklists
  * @property Sound $sounds
  * @property CallcenterAgent $callcenterAgents
+ * @property Voicemail $voicemails
  */
 final class Client
 {
@@ -155,6 +156,14 @@ final class Client
     public function getCalleridGroups()
     {
         return CalleridGroup::fromTransport($this->protocol);
+    }
+
+    /**
+     * @return Voicemail
+     */
+    public function getVoicemails()
+    {
+        return Voicemail::fromTransport($this->protocol);
     }
 
     /**
