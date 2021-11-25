@@ -76,6 +76,11 @@ final class FollowMeEntry extends \Cloudpbx\Sdk\Model
     public $dialout_id = null;
 
     /**
+     * @var string|null
+     */
+    public $dialout_number = null;
+
+    /**
      * @internal use $belongs_to instead
      * @var integer
      */

@@ -59,9 +59,11 @@ final class FollowMeEntry extends Api
      * @param integer $callcenter_queue_id
      * @param array{
      *   priority: integer
-     * } $options
+     * }|[] $options
+     *
+     * @return Model\FollowMeEntry
      */
-    public function create_callcenter_queue($customer_id, $follow_me_id, $callcenter_queue_id, $options)
+    public function create_callcenter_queue($customer_id, $follow_me_id, $callcenter_queue_id, $options = [])
     {
         Argument::isInteger($customer_id);
         Argument::isInteger($follow_me_id);
@@ -75,6 +77,44 @@ final class FollowMeEntry extends Api
         ]);
 
         $record = $this->protocol->create($query, ['options' => $options]);
+
+        return $this->recordToModel($record, Model\FollowMeEntry::class, $this->default_options($customer_id));
+    }
+
+
+    /**
+     * @param integer $customer_id
+     * @param integer $follow_me_id
+     * @param integer $dialout_id
+     * @param string $dialout_number
+     * @param array{
+     *  priority: integer,
+     *  call_timeout: integer
+     * }|[] $options
+     *
+     * @return Model\FollowMeEntry
+     */
+    public function create_dialout($customer_id, $follow_me_id, $dialout_id, $dialout_number, $options = [])
+    {
+        Argument::isInteger($customer_id);
+        Argument::isInteger($follow_me_id);
+        Argument::isInteger($dialout_id);
+        Argument::isFormat($dialout_number, '/\d+/');
+        Argument::isParams($options);
+
+        $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}/follow_me/{follow_me_id}/entries/{dialout_id}/dialout', [
+            '{customer_id}' => $customer_id,
+            '{follow_me_id}' => $follow_me_id,
+            '{dialout_id}' => $dialout_id
+        ]);
+
+        $record = $this->protocol->create(
+            $query,
+            [
+                                              'dialout_number' => $dialout_number,
+                                              'options' => $options
+                                          ]
+        );
 
         return $this->recordToModel($record, Model\FollowMeEntry::class, $this->default_options($customer_id));
     }

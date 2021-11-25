@@ -327,6 +327,23 @@ class ClientCurlTest extends TestCase
     }
 
     /**
+     * @vcr create_follow_me_entry_type_dialout
+     * @depends testCreateDialout
+     */
+    public function testCreateFollowMeEntryTypeDialout(array $stack): void
+    {
+        $dialout = array_pop($stack);
+
+        $entry = $this->client->followMeEntries->create_dialout(self::$customer_id, self::$follow_me_id, $dialout->id, '999666555', ['priority' => 100, 'call_timeout' => 60]);
+
+        $this->assertTrue($entry->hasAttribute('id'));
+        $this->assertTrue($entry->hasAttribute('follow_me_id'));
+        $this->assertEquals(60, $entry->call_timeout);
+        $this->assertEquals(100, $entry->priority);
+        $this->assertEquals('999666555', $entry->dialout_number);
+    }
+
+    /**
      * @vcr query_all_ivr_menu_by_customer
      */
     public function testQueryAllIvrMenu(): array
@@ -902,7 +919,7 @@ class ClientCurlTest extends TestCase
      * @vcr create_dialout
      * @depends testQueryOneCustomer
      */
-    public function testCreateDialout(array $stack): void
+    public function testCreateDialout(array $stack): array
     {
         $customer = array_pop($stack);
 
@@ -922,6 +939,8 @@ class ClientCurlTest extends TestCase
         $this->assertEquals('1XXXXX.', $dialout->destination);
         $this->assertEquals('sequence', $dialout->gateway_strategy);
         $this->assertEquals('random', $dialout->callerid_strategy);
+
+        return [$dialout];
     }
 
 
