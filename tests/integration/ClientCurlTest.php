@@ -362,6 +362,22 @@ class ClientCurlTest extends TestCase
     }
 
     /**
+     * @vcr create_follow_me_entry_sound
+     * @depends testQueryAllSound
+     */
+    public function testCreateFollowMeEntryTypeSound(array $stack): void
+    {
+        $sound = array_pop($stack);
+
+        $entry = $this->client->followMeEntries->create_sound(self::$customer_id, self::$follow_me_id, $sound->id, ['priority' => 100]);
+
+        $this->assertTrue($entry->hasAttribute('id'));
+        $this->assertTrue($entry->hasAttribute('follow_me_id'));
+        $this->assertEquals($sound->id, $entry->sound_id);
+        $this->assertEquals($entry->priority, 100);
+    }
+
+    /**
      * @vcr query_all_ivr_menu_by_customer
      */
     public function testQueryAllIvrMenu(): array
@@ -504,7 +520,7 @@ class ClientCurlTest extends TestCase
     /**
      * @vcr query_all_sounds
      */
-    public function testQueryAllSound(): void
+    public function testQueryAllSound(): array
     {
         $sounds = $this->client->sounds->all(self::$customer_id);
 
@@ -521,6 +537,8 @@ class ClientCurlTest extends TestCase
         $new_sound = $this->client->sounds->show(self::$customer_id, $sound->id);
         $this->assertEquals($new_sound->id, $sound->id);
         $this->assertEquals($new_sound->customer_id, $sound->customer_id);
+
+        return [$new_sound];
     }
 
     /**

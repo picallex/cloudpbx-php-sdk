@@ -149,6 +149,35 @@ final class FollowMeEntry extends Api
     }
 
     /**
+     * @param integer $customer_id
+     * @param integer $follow_me_id
+     * @param integer $sound_id
+     * @param array{
+     *  priority: integer,
+     *  call_timeout: integer
+     * }|[] $options
+     *
+     * @return Model\FollowMeEntry
+     */
+    public function create_sound($customer_id, $follow_me_id, $sound_id, $options = [])
+    {
+        Argument::isInteger($customer_id);
+        Argument::isInteger($follow_me_id);
+        Argument::isInteger($sound_id);
+        Argument::isParams($options);
+
+        $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}/follow_me/{follow_me_id}/entries/{sound_id}/sound', [
+            '{customer_id}' => $customer_id,
+            '{follow_me_id}' => $follow_me_id,
+            '{sound_id}' => $sound_id
+        ]);
+
+        $record = $this->protocol->create($query, ['options' => $options]);
+
+        return $this->recordToModel($record, Model\FollowMeEntry::class, $this->default_options($customer_id));
+    }
+
+    /**
      * @param array<string, mixed> $record
      * @param integer $customer_id
      */
