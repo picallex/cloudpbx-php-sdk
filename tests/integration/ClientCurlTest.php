@@ -1522,4 +1522,24 @@ class ClientCurlTest extends TestCase
         $this->assertEquals($entry->priority, 100);
     }
 
+    /**
+     * @vcr delete_follow_me_entry
+     * @depends testQueryOneUser
+     */
+    public function testDeleteFollowMeEntry(array $stack): void
+    {
+        $user = array_pop($stack);
+
+        $entry = $this->client->followMeEntries->create_user(self::$customer_id, self::$follow_me_id, $user->id, ['priority' => 100]);
+
+
+        $this->client->followMeEntries->delete(self::$customer_id, self::$follow_me_id, $entry->id);
+        try {
+            $this->client->followmeEntries->show(self::$customer_id, self::$follow_me_id, $entry->id);
+            $this->fail("not show");
+        } catch (Exception $e) {
+            $this->assertInstanceOf(\Cloudpbx\Protocol\Error\NotFoundError::class, $e);
+        }
+
+    }
 }

@@ -178,6 +178,31 @@ final class FollowMeEntry extends Api
     }
 
     /**
+     * See **ClientCurlTest** for details.
+     *
+     * @param int $customer_id
+     * @param int $follow_me_id
+     * @param int $id
+     *
+     * @return void
+     */
+    public function delete($customer_id, $follow_me_id, $id)
+    {
+        Argument::isInteger($customer_id);
+        Argument::isInteger($id);
+
+        $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}/follow_me/{follow_me_id}/entries/{id}', [
+            '{customer_id}' => $customer_id,
+            '{follow_me_id}' => $follow_me_id,
+            '{id}' => $id
+        ]);
+
+        $this->protocol->delete($query);
+
+        return;
+    }
+
+    /**
      * @param integer $customer_id
      * @param integer $follow_me_id
      * @param integer $ivr_menu_id
