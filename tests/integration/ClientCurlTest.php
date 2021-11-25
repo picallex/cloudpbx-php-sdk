@@ -1505,4 +1505,21 @@ class ClientCurlTest extends TestCase
         $this->assertInstanceOf(\Cloudpbx\Sdk\Model\Voicemail::class, $entry);
         $this->assertEquals($voicemail->id, $entry->id);
     }
+
+    /**
+     * @vcr create_follow_me_entry_voicemail
+     * @depends testQueryAllVoicemail
+     */
+    public function testCreateFollowMeEntryTypeVoicemail(array $stack): void
+    {
+        $voicemail = array_pop($stack);
+
+        $entry = $this->client->followMeEntries->create_voicemail(self::$customer_id, self::$follow_me_id, $voicemail->user_id, ['priority' => 100]);
+
+        $this->assertTrue($entry->hasAttribute('id'));
+        $this->assertTrue($entry->hasAttribute('follow_me_id'));
+        $this->assertEquals($voicemail->id, $entry->voicemail_id);
+        $this->assertEquals($entry->priority, 100);
+    }
+
 }
