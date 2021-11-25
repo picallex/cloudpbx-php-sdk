@@ -378,6 +378,22 @@ class ClientCurlTest extends TestCase
     }
 
     /**
+     * @vcr create_follow_me_entry_ivr_menu
+     * @depends testQueryAllIvrMenu
+     */
+    public function testCreateFollowMeEntryTypeIvrMenu(array $stack): void
+    {
+        $ivrmenu = array_pop($stack);
+
+        $entry = $this->client->followMeEntries->create_ivr_menu(self::$customer_id, self::$follow_me_id, $ivrmenu->id, ['priority' => 100]);
+
+        $this->assertTrue($entry->hasAttribute('id'));
+        $this->assertTrue($entry->hasAttribute('follow_me_id'));
+        $this->assertEquals($ivrmenu->id, $entry->ivr_menu_id);
+        $this->assertEquals($entry->priority, 100);
+    }
+
+    /**
      * @vcr query_all_ivr_menu_by_customer
      */
     public function testQueryAllIvrMenu(): array
