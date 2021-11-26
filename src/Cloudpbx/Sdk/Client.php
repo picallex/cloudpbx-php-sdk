@@ -1,7 +1,6 @@
 <?php
 
-// This file is part of cloudpbx-php-sdk.  The COPYRIGHT file at the top level of
-// this repository contains the full copyright notices and license terms.
+// Copyright 2021 Picallex Holding Group. All rights reserved.
 //
 // @author (2021) Jovany Leandro G.C <jovany@picallex.com>
 
@@ -9,209 +8,95 @@ declare(strict_types=1);
 
 namespace Cloudpbx\Sdk;
 
-use Cloudpbx\Util\Inflector;
-use Cloudpbx\Util\Argument;
-
-/**
- * @property Customer $customers
- * @property User $users
- * @property CallcenterQueue $callcenterQueues
- * @property RouterDid $routerDids
- * @property FirewallIpSet $firewallIpSets
- * @property Blacklist $blacklists
- * @property Sound $sounds
- * @property CallcenterAgent $callcenterAgents
- * @property Voicemail $voicemails
- */
-final class Client
+interface Client
 {
-    /**
-     * @var \Cloudpbx\Sdk\Protocol
-     */
-    private $protocol;
-
-    /**
-     * @param \Cloudpbx\Sdk\Protocol $protocol
-     */
-    public function __construct($protocol)
-    {
-        $this->protocol = $protocol;
-    }
-
     /**
      * @return Customer
      */
-    public function getCustomers()
-    {
-        return Customer::fromTransport($this->protocol);
-    }
+    public function getCustomers();
 
     /**
      * @return User
      */
-    public function getUsers()
-    {
-        return User::fromTransport($this->protocol);
-    }
+    public function getUsers();
 
     /**
      * @return CallcenterQueue
      */
-    public function getCallcenterQueues()
-    {
-        return CallcenterQueue::fromTransport($this->protocol);
-    }
+    public function getCallcenterQueues();
 
     /**
      * @return CallcenterAgent
      */
-    public function getCallcenterAgents()
-    {
-        return CallcenterAgent::fromTransport($this->protocol);
-    }
+    public function getCallcenterAgents();
 
     /**
      * @return Dialout
      */
-    public function getDialouts()
-    {
-        return Dialout::fromTransport($this->protocol);
-    }
+    public function getDialouts();
 
     /**
      * @return RouterDid
      */
-    public function getRouterDids()
-    {
-        return RouterDid::fromTransport($this->protocol);
-    }
+    public function getRouterDids();
 
     /**
      * @return FirewallIpSet
      */
-    public function getFirewallIpSets()
-    {
-        return FirewallIpSet::fromTransport($this->protocol);
-    }
+    public function getFirewallIpSets();
 
     /**
      * @return FollowMe
      */
-    public function getFollowMes()
-    {
-        return FollowMe::fromTransport($this->protocol);
-    }
+    public function getFollowMes();
 
     /**
      * @return IvrMenu
      */
-    public function getIvrMenus()
-    {
-        return IvrMenu::fromTransport($this->protocol);
-    }
+    public function getIvrMenus();
 
     /**
      * @return IvrMenuEntry
      */
-    public function getIvrMenuEntries()
-    {
-        return IvrMenuEntry::fromTransport($this->protocol);
-    }
+    public function getIvrMenuEntries();
 
     /**
      * @return Blacklist
      */
-    public function getBlacklists()
-    {
-        return Blacklist::fromTransport($this->protocol);
-    }
+    public function getBlacklists();
 
     /**
      * @return FollowMeEntry
      */
-    public function getFollowMeEntries()
-    {
-        return FollowMeEntry::fromTransport($this->protocol);
-    }
+    public function getFollowMeEntries();
 
     /**
      * @return Sound
      */
-    public function getSounds()
-    {
-        return Sound::fromTransport($this->protocol);
-    }
+    public function getSounds();
 
     /**
      * @return Supervisor
      */
-    public function getSupervisors()
-    {
-        return Supervisor::fromTransport($this->protocol);
-    }
+    public function getSupervisors();
 
     /**
      * @return CalleridGroup
      */
-    public function getCalleridGroups()
-    {
-        return CalleridGroup::fromTransport($this->protocol);
-    }
+    public function getCalleridGroups();
 
     /**
      * @return Voicemail
      */
-    public function getVoicemails()
-    {
-        return Voicemail::fromTransport($this->protocol);
-    }
+    public function getVoicemails();
 
     /**
      * @return Callerid
      */
-    public function getCallerids()
-    {
-        return Callerid::fromTransport($this->protocol);
-    }
+    public function getCallerids();
 
     /**
      * @return Group
      */
-    public function getGroups()
-    {
-        return Group::fromTransport($this->protocol);
-    }
-
-    /**
-     * load relation.
-     *
-     * @param Model\Relation $relation
-     *
-     * @return Model
-     */
-    public function preload($relation)
-    {
-        # bit4bit: get by convention need a explict contract
-        $api_action = 'get' . ucfirst(Inflector::apify($relation->model));
-        $api_args = array_merge($relation->path_ids, [$relation->id]);
-
-        # this way allow pass phpstan
-        $api = $this->$api_action();
-        $call = function (...$params) use ($api) {
-            return $api->show(...$params);
-        };
-
-        return call_user_func_array($call, $api_args);
-    }
-
-    public function __get(string $name): object
-    {
-        $method = 'get'.ucfirst($name);
-
-        if (method_exists($this, $method)) {
-            return $this->$method();
-        }
-
-        throw new \RuntimeException('not found API ' . $name);
-    }
+    public function getGroups();
 }

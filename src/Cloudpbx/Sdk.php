@@ -26,7 +26,7 @@ final class Sdk
 
         $protocol = Protocol\ProtocolHTTP::createWithDefaultClient($api_base, $api_key);
 
-        $client =  new Sdk\Client($protocol);
+        $client =  new Sdk\Implementation\Client($protocol);
 
         return $client;
     }
