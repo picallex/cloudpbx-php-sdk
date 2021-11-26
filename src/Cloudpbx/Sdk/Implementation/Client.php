@@ -16,7 +16,6 @@ use Cloudpbx\Util\Argument;
 use Cloudpbx\Sdk\User;
 use Cloudpbx\Sdk\CallcenterQueue;
 use Cloudpbx\Sdk\RouterDid;
-use Cloudpbx\Sdk\FirewallIpSet;
 use Cloudpbx\Sdk\Blacklist;
 use Cloudpbx\Sdk\Sound;
 use Cloudpbx\Sdk\CallcenterAgent;
@@ -34,6 +33,7 @@ use Cloudpbx\Sdk\Model\Relation;
 
 // new layout
 use Cloudpbx\Sdk\Implementation\Customer;
+use Cloudpbx\Sdk\Implementation\FirewallIpSet;
 
 /**
  * @property Customer $customers
