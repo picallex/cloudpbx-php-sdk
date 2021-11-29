@@ -1560,4 +1560,49 @@ class ClientCurlTest extends TestCase
         $this->assertEquals(999, $entry_updated->priority);
     }
 
+    /**
+     *
+     * @vcr add_acl_ipv4_to_customer
+     * @depends testQueryOneCustomer
+     */
+    public function testAddAclIpv4toCustomer(array $stack): void
+    {
+        $customer = array_pop($stack);
+
+        $acl = $this->client->aclIpv4s->create($customer->id, '192.168.0.0/24');
+        $this->assertInstanceOf(\Cloudpbx\Sdk\Model\AclIpv4::class, $acl);
+        $this->assertEquals($customer->id, $acl->customer_id);
+        $this->assertEquals('192.168.0.0/24', $acl->cidr);
+    }
+
+    /**
+     *
+     * @vcr delete_acl_ipv4_from_customer
+     * @depends testQueryOneCustomer
+     */
+    public function testRemoveAclIpv4toCustomer(array $stack): void
+    {
+        $customer = array_pop($stack);
+
+        $this->client->aclIpv4s->create($customer->id, '192.167.0.0/24');
+
+        $this->client->aclIpv4s->delete($customer->id, '192.167.0.0/24');
+        $this->assertTrue(true);
+    }
+
+    /**
+     *
+     * @vcr list_acl_ipv4_from_customer
+     * @depends testQueryOneCustomer
+     */
+    public function testListAclIpv4toCustomer(array $stack): void
+    {
+        $customer = array_pop($stack);
+
+        $this->client->aclIpv4s->create($customer->id, '192.166.0.0/24');
+
+        $acls = $this->client->aclIpv4s->all($customer->id);
+        $this->assertIsArray($acls);
+        $this->assertGreaterThan(0, count($acls));
+    }
 }

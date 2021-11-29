@@ -34,6 +34,7 @@ use Cloudpbx\Sdk\Model\Relation;
 // new layout
 use Cloudpbx\Sdk\Implementation\Customer;
 use Cloudpbx\Sdk\Implementation\FirewallIpSet;
+use Cloudpbx\Sdk\Implementation\AclIpv4;
 
 /**
  * @property Customer $customers
@@ -203,6 +204,11 @@ final class Client implements \Cloudpbx\Sdk\Client
     public function getGroups()
     {
         return Group::fromTransport($this->protocol);
+    }
+
+    public function getAclIpv4s()
+    {
+        return AclIpv4::fromTransport($this->protocol);
     }
 
     /**

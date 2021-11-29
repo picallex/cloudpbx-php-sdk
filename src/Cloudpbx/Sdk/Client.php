@@ -99,4 +99,9 @@ interface Client
      * @return Group
      */
     public function getGroups();
+
+    /**
+     * @return AclIpv4
+     */
+    public function getAclIpv4s();
 }

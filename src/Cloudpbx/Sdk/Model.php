@@ -37,11 +37,12 @@ abstract class Model
      */
     public static function fromArray(array $metadata)
     {
-        Util\Argument::keyExists($metadata, static::$_primary_key);
-
         $obj = new static();
 
-        $obj->id = $metadata[static::$_primary_key];
+        if ($obj->id !== false) {
+            Util\Argument::keyExists($metadata, static::$_primary_key);
+            $obj->id = $metadata[static::$_primary_key];
+        }
 
         // populate only public fields
         $reflect = new \ReflectionClass($obj);
