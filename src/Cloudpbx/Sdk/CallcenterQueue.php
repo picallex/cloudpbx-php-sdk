@@ -153,4 +153,67 @@ final class CallcenterQueue extends Api
 
         return;
     }
+
+
+    /**
+     * See **ClientCurlTest** for details.
+     *
+     * @param int $customer_id
+     * @param int $callcenter_queue_id
+     * @param int $user_id
+     * @param array{
+     *  ring_timeout: integer,
+     *  autologin: bool
+     * }|[] $options
+     *
+     * @return \Cloudpbx\Sdk\Model\CallcenterAgent
+     */
+    public function callcenter_agent_attach($customer_id, $callcenter_queue_id, $user_id, $options = [])
+    {
+        Argument::isInteger($customer_id);
+        Argument::isInteger($callcenter_queue_id);
+        Argument::isInteger($user_id);
+        Argument::isParams($options);
+
+        $query = $this->protocol->prepareQuery(
+            '/api/v1/management/customers/{customer_id}/service/callcenter/queues/{callcenter_queue_id}/agents/put_user',
+            [
+                '{customer_id}' => $customer_id,
+                '{callcenter_queue_id}' => $callcenter_queue_id
+            ]
+        );
+
+        $agent_options = empty($options) ? [] : ['agent' => $options];
+        $record = $this->protocol->update($query, array_merge(['user' => ['id' => $user_id]], $agent_options));
+
+        return $this->recordToModel($record, Model\CallcenterAgent::class);
+    }
+
+    /**
+     * See **ClientCurlTest** for details.
+     *
+     * @param int $customer_id
+     * @param int $callcenter_queue_id
+     * @param int $user_id
+     *
+     * @return \Cloudpbx\Sdk\Model\CallcenterAgent
+     */
+    public function callcenter_agent_detach($customer_id, $callcenter_queue_id, $user_id)
+    {
+        Argument::isInteger($customer_id);
+        Argument::isInteger($callcenter_queue_id);
+        Argument::isInteger($user_id);
+
+        $query = $this->protocol->prepareQuery(
+            '/api/v1/management/customers/{customer_id}/service/callcenter/queues/{callcenter_queue_id}/agents/pop_user',
+            [
+                '{customer_id}' => $customer_id,
+                '{callcenter_queue_id}' => $callcenter_queue_id
+            ]
+        );
+
+        $record = $this->protocol->update($query, ['user' => ['id' => $user_id]]);
+
+        return $this->recordToModel($record, Model\CallcenterAgent::class);
+    }
 }

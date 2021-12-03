@@ -1605,4 +1605,60 @@ class ClientCurlTest extends TestCase
         $this->assertIsArray($acls);
         $this->assertGreaterThan(0, count($acls));
     }
+
+
+    /**
+     * @vcr attach_callcenter_agent
+     * @depends testQueryOneCustomer
+     */
+    public function testCallcenterQueueAttachCallcenterAgent(array $stack): void
+    {
+        $customer = array_pop($stack);
+        $user = $this->client->users->create($customer->id, [
+            'name' => 'attachuser5',
+            'password' => 'insecure537537*7OEouie',
+            'is_webrtc' => false
+        ]);
+        $queue = $this->client->callcenterQueues->create($customer->id, [
+            'name' => 'superqueueAttach5',
+            'strategy' => 'random', //round-robin, ring-all
+            'max_wait_time' => 5,
+            'description' => 'a super queue',
+            'alias' => 'queuesuper'
+        ]);
+
+        $agent = $this->client->callcenterQueues->callcenter_agent_attach($customer->id, $queue->id, $user->id, ['autologin' => true]);
+
+        $this->assertInstanceOf(\Cloudpbx\Sdk\Model\CallcenterAgent::class, $agent);
+        $this->assertEquals($customer->id, $agent->customer_id);
+        $this->assertEquals($user->id, $agent->user_id);
+        $this->assertEquals(true, $agent->autologin);
+    }
+
+    /**
+     * @vcr detach_callcenter_agent
+     * @depends testQueryOneCustomer
+     */
+    public function testCallcenterQueueDetachCallcenterAgent(array $stack): void
+    {
+        $customer = array_pop($stack);
+        $user = $this->client->users->create($customer->id, [
+            'name' => 'dettachuser5',
+            'password' => 'inoeusecure537537*7OEouie',
+            'is_webrtc' => false
+        ]);
+        $queue = $this->client->callcenterQueues->create($customer->id, [
+            'name' => 'superqueueDeattach5',
+            'strategy' => 'random', //round-robin, ring-all
+            'max_wait_time' => 5,
+            'description' => 'a super queue',
+            'alias' => 'queuesuper'
+        ]);
+
+        $agent_attached = $this->client->callcenterQueues->callcenter_agent_attach($customer->id, $queue->id, $user->id, ['autologin' => false]);
+
+        $agent = $this->client->callcenterQueues->callcenter_agent_detach($customer->id, $queue->id, $user->id);
+
+        $this->assertEquals($agent_attached->id, $agent->id);
+    }
 }
