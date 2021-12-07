@@ -1592,6 +1592,19 @@ class ClientCurlTest extends TestCase
 
     /**
      *
+     * @vcr delete_acl_ipv4_from_customer_not_exists
+     * @depends testQueryOneCustomer
+     */
+    public function testRemoveAclIpv4IfNotExistsThrowsException(array $stack): void
+    {
+        $customer = array_pop($stack);
+
+        $this->expectException(\Cloudpbx\Protocol\Error\NotFoundError::class);
+        $this->client->aclIpv4s->delete($customer->id, '190.167.0.0/24');
+    }
+
+    /**
+     *
      * @vcr list_acl_ipv4_from_customer
      * @depends testQueryOneCustomer
      */
