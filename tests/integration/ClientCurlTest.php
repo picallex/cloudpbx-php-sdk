@@ -152,6 +152,37 @@ class ClientCurlTest extends TestCase
     }
 
     /**
+     * @vcr update_callcenter_queue
+     * @depends testQueryOneCustomer
+     */
+    public function testUpdateCallcenterQueue(array $stack): void
+    {
+        $customer = array_pop($stack);
+
+        $queue = $this->client->callcenterQueues->create($customer->id, [
+            'name' => 'superqueuenew',
+            'description' => 'newqueue',
+            //strategy can be ring-all, longest-idle-agent, round-robin, top-down, agent-with-least-talk-time, agent-with-fewest-talk-time, sequentially-by-agent-order, random, ring-progressively
+            'strategy' => 'round-robin',
+            'max_wait_time' => 5,
+        ]);
+
+        $queue = $this->client->callcenterQueues->update($customer->id, $queue->id, [
+            'name' => 'superqueueupdated',
+            'description' => 'updated description',
+            //strategy can be ring-all, longest-idle-agent, round-robin, top-down, agent-with-least-talk-time, agent-with-fewest-talk-time, sequentially-by-agent-order, random, ring-progressively
+            'strategy' => 'ring-all',
+            'max_wait_time' => 5,
+        ]);
+
+        $this->assertInstanceOf(\Cloudpbx\Sdk\Model\CallcenterQueue::class, $queue);
+        $this->assertEquals('superqueueupdated', $queue->name);
+        $this->assertEquals('ring-all', $queue->strategy);
+        $this->assertEquals(5, $queue->max_wait_time);
+        $this->assertEquals('updated description', $queue->description);
+    }
+
+    /**
      * @vcr delete_callcenter_queue
      * @depends testQueryOneCustomer
      */

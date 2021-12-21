@@ -128,6 +128,45 @@ final class CallcenterQueue extends Api
         return $this->recordToModel($record, Model\CallcenterQueue::class);
     }
 
+
+    /**
+     * See **ClientCurlTest** for details.
+     *
+     * @param int $customer_id
+     * @param int $id
+     * @param array{
+     *  name: string,
+     *  description: string,
+     *  strategy: string,
+     *  moh_sound_id: int,
+     *  max_wait_time: int,
+     *  max_wait_time_with_no_agent: int,
+     *  max_wait_time_with_no_agent_time_reached: int, //seconds
+     *  discard_abandoned_after: int,
+     *  skip_agent_with_external_calls: bool,
+     * }|[] $params
+     *
+     * @return Model\CallcenterQueue
+     */
+    public function update($customer_id, $id, $params)
+    {
+        Argument::isInteger($customer_id);
+        Argument::isInteger($id);
+        Argument::isParams($params);
+
+        $query = $this->protocol->prepareQuery(
+            '/api/v1/management/customers/{customer_id}/service/callcenter/queues/{callcenter_queue_id}',
+            [
+                '{customer_id}' => $customer_id,
+                '{callcenter_queue_id}' => $id
+            ]
+        );
+
+        $record = $this->protocol->update($query, ['callcenter_queue' => $params]);
+
+        return $this->recordToModel($record, Model\CallcenterQueue::class);
+    }
+
     /**
      * See **ClientCurlTest** for details.
      *

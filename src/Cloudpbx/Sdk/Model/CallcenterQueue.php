@@ -47,9 +47,39 @@ final class CallcenterQueue extends \Cloudpbx\Sdk\Model
     public $strategy;
 
     /**
+     * @var int|null
+     */
+    public $moh_sound_id;
+
+    /**
+     * @var Relation|null
+     */
+    public $moh_sound;
+
+    /**
      * @var int
      */
     public $max_wait_time;
+
+    /**
+     * @var int
+     */
+    public $max_wait_time_with_no_agent;
+
+    /**
+     * @var int
+     */
+    public $max_wait_time_with_no_agent_time_reached;
+
+    /**
+     * @var int
+     */
+    public $discard_abandoned_after;
+
+    /**
+     * @var int
+     */
+    public $skip_agent_with_external_calls;
 
     public function __construct()
     {
@@ -58,5 +88,9 @@ final class CallcenterQueue extends \Cloudpbx\Sdk\Model
     protected function setup()
     {
         $this->customer = new Relation('customer', $this->customer_id);
+
+        if ($this->moh_sound_id) {
+            $this->moh_sound = new Relation('sound', $this->customer_id, [$this->moh_sound_id]);
+        }
     }
 }
