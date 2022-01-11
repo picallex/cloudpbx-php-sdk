@@ -32,6 +32,11 @@ final class Customer extends \Cloudpbx\Sdk\Model
     public $limit_external_calls;
 
     /**
+     * @var int
+     */
+    public $limit_inbound_external_calls;
+
+    /**
      * @var string
      */
     public $accountcode;
