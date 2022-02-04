@@ -34,4 +34,27 @@ final class CallcenterAgent extends Api
 
         return $this->recordsToModel($records, Model\CallcenterAgent::class);
     }
+
+    /**
+     * See **ClientCurlTest** for details.
+     *
+     * @param int $customer_id
+     * @param int $id
+     *
+     * @return void
+     */
+    public function delete($customer_id, $id)
+    {
+        Argument::isInteger($customer_id);
+        Argument::isInteger($id);
+
+        $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}/callcenter/agents/{id}', [
+            '{customer_id}' => $customer_id,
+            '{id}' => $id
+        ]);
+
+        $this->protocol->delete($query);
+
+        return;
+    }
 }

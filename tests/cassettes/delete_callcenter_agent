@@ -1,0 +1,256 @@
+
+-
+    request:
+        method: POST
+        url: 'https://apidev.myflexpbx.com/api/v1/management/customers/51/users'
+        headers:
+            Host: apidev.myflexpbx.com
+            x-api-key: ''
+            content-type: application/json
+            accept: 'application/json, plain/text'
+        body: '{"user":{"name":"userforcallcenteragentdelete","password":"inoeuse@oaOAEU*-eu\/20AOuo*"}}'
+    response:
+        status:
+            http_version: '2'
+            code: '201'
+            message: ''
+        headers:
+            date: 'Fri, 04 Feb 2022 20:51:31 GMT'
+            content-type: 'application/json; charset=utf-8'
+            content-length: '564'
+            server: nginx/1.18.0
+            apigw-requestid: NCO4_ifFCYcEJww=
+            cache-control: 'max-age=0, private, must-revalidate'
+            content-security-policy: 'script-src ''self'''
+            x-frame-options: deny
+            x-request-id: FtCwd281R8KiZ9MAABOC
+        body: '{"data":{"accountcode":null,"alias":"userforcallcenteragentdelete","allow_multiple_registrations":false,"available_on_sip_register":false,"caller_name":"Ext userforcallcenteragentdelete","caller_number":"userforcallcenteragentdelete","customer_id":51,"dialstring":"user/userforcallcenteragentdelete@phpsdk.myflexpbx.com","dnd_on_sip_unregister":true,"do_not_disturb":false,"enable_outbound_fakering":false,"follow_me_id":null,"force_contact":"none","id":1464,"is_webrtc":null,"name":"userforcallcenteragentdelete","password_mechanism":"plain","record_audio":null}}'
+        curl_info:
+            url: 'https://apidev.myflexpbx.com/api/v1/management/customers/51/users'
+            content_type: 'application/json; charset=utf-8'
+            http_code: 201
+            header_size: 332
+            request_size: 220
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.812765
+            namelookup_time: 0.164614
+            connect_time: 0.326197
+            pretransfer_time: 0.620907
+            size_upload: !!float 89
+            size_download: !!float 564
+            speed_download: !!float 694
+            speed_upload: !!float 109
+            download_content_length: !!float 564
+            upload_content_length: !!float 89
+            starttransfer_time: 0.620924
+            redirect_time: !!float 0
+            redirect_url: ''
+            primary_ip: 18.217.12.146
+            certinfo: {  }
+            primary_port: 443
+            local_ip: 192.168.0.105
+            local_port: 37654
+            http_version: 3
+            protocol: 2
+            ssl_verifyresult: 0
+            scheme: HTTPS
+            appconnect_time_us: 620802
+            connect_time_us: 326197
+            namelookup_time_us: 164614
+            pretransfer_time_us: 620907
+            redirect_time_us: 0
+            starttransfer_time_us: 620924
+            total_time_us: 812765
+-
+    request:
+        method: POST
+        url: 'https://apidev.myflexpbx.com/api/v1/management/customers/51/service/callcenter/queues'
+        headers:
+            Host: apidev.myflexpbx.com
+            x-api-key: ''
+            content-type: application/json
+            accept: 'application/json, plain/text'
+        body: '{"callcenter_queue":{"name":"superqueueDelete55","strategy":"random","max_wait_time":5,"description":"a super queue delete","alias":"queuesuperdelete5"}}'
+    response:
+        status:
+            http_version: '2'
+            code: '201'
+            message: ''
+        headers:
+            date: 'Fri, 04 Feb 2022 20:51:31 GMT'
+            content-type: 'application/json; charset=utf-8'
+            content-length: '457'
+            server: nginx/1.18.0
+            apigw-requestid: NCO5IgKLCYcEPTw=
+            cache-control: 'max-age=0, private, must-revalidate'
+            content-security-policy: 'script-src ''self'''
+            x-frame-options: deny
+            x-request-id: FtCwd6H495qxTt8AABSy
+        body: '{"data":{"alias":"queuesuperdelete5","customer_id":51,"description":"a super queue delete","discard_abandoned_after":900,"id":74,"max_wait_time":5,"max_wait_time_with_no_agent":90,"max_wait_time_with_no_agent_time_reached":5,"moh_sound_id":null,"moh_sound_usage":"callcenter_moh","name":"superqueueDelete55","skip_agent_with_external_calls":true,"strategy":"random","tier_rule_wait_multiply_level":false,"tier_rule_wait_second":30,"tier_rules_apply":false}}'
+        curl_info:
+            url: 'https://apidev.myflexpbx.com/api/v1/management/customers/51/service/callcenter/queues'
+            content_type: 'application/json; charset=utf-8'
+            http_code: 201
+            header_size: 332
+            request_size: 241
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.78863
+            namelookup_time: 0.103008
+            connect_time: 0.284329
+            pretransfer_time: 0.655223
+            size_upload: !!float 153
+            size_download: !!float 457
+            speed_download: !!float 579
+            speed_upload: !!float 194
+            download_content_length: !!float 457
+            upload_content_length: !!float 153
+            starttransfer_time: 0.655241
+            redirect_time: !!float 0
+            redirect_url: ''
+            primary_ip: 3.130.145.128
+            certinfo: {  }
+            primary_port: 443
+            local_ip: 192.168.0.105
+            local_port: 39588
+            http_version: 3
+            protocol: 2
+            ssl_verifyresult: 0
+            scheme: HTTPS
+            appconnect_time_us: 655119
+            connect_time_us: 284329
+            namelookup_time_us: 103008
+            pretransfer_time_us: 655223
+            redirect_time_us: 0
+            starttransfer_time_us: 655241
+            total_time_us: 788630
+-
+    request:
+        method: PUT
+        url: 'https://apidev.myflexpbx.com/api/v1/management/customers/51/service/callcenter/queues/74/agents/put_user'
+        headers:
+            Host: apidev.myflexpbx.com
+            x-api-key: ''
+            content-type: application/json
+            accept: 'application/json, plain/text'
+        body: '{"user":{"id":1464},"agent":{"autologin":false}}'
+    response:
+        status:
+            http_version: '2'
+            code: '200'
+            message: ''
+        headers:
+            date: 'Fri, 04 Feb 2022 20:51:32 GMT'
+            content-type: 'application/json; charset=utf-8'
+            content-length: '87'
+            server: nginx/1.18.0
+            apigw-requestid: NCO5Pi3kCYcEJ1g=
+            cache-control: 'max-age=0, private, must-revalidate'
+            content-security-policy: 'script-src ''self'''
+            x-frame-options: deny
+            x-request-id: FtCwd8vYAswqqxMAABOS
+        body: '{"data":{"autologin":false,"customer_id":51,"id":1635,"ring_timeout":0,"user_id":1464}}'
+        curl_info:
+            url: 'https://apidev.myflexpbx.com/api/v1/management/customers/51/service/callcenter/queues/74/agents/put_user'
+            content_type: 'application/json; charset=utf-8'
+            http_code: 200
+            header_size: 331
+            request_size: 258
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.729999
+            namelookup_time: 0.044798
+            connect_time: 0.265523
+            pretransfer_time: 0.554344
+            size_upload: !!float 48
+            size_download: !!float 87
+            speed_download: !!float 119
+            speed_upload: !!float 65
+            download_content_length: !!float 87
+            upload_content_length: !!float 48
+            starttransfer_time: 0.554362
+            redirect_time: !!float 0
+            redirect_url: ''
+            primary_ip: 3.17.252.238
+            certinfo: {  }
+            primary_port: 443
+            local_ip: 192.168.0.105
+            local_port: 54856
+            http_version: 3
+            protocol: 2
+            ssl_verifyresult: 0
+            scheme: HTTPS
+            appconnect_time_us: 554246
+            connect_time_us: 265523
+            namelookup_time_us: 44798
+            pretransfer_time_us: 554344
+            redirect_time_us: 0
+            starttransfer_time_us: 554362
+            total_time_us: 729999
+-
+    request:
+        method: DELETE
+        url: 'https://apidev.myflexpbx.com/api/v1/management/customers/51/callcenter/agents/1635'
+        headers:
+            Host: apidev.myflexpbx.com
+            x-api-key: ''
+            content-type: application/json
+            accept: 'application/json, plain/text'
+    response:
+        status:
+            http_version: '2'
+            code: '200'
+            message: ''
+        headers:
+            date: 'Fri, 04 Feb 2022 20:51:33 GMT'
+            content-type: 'application/json; charset=utf-8'
+            content-length: '87'
+            server: nginx/1.18.0
+            apigw-requestid: NCO5WjGpCYcEJQA=
+            cache-control: 'max-age=0, private, must-revalidate'
+            content-security-policy: 'script-src ''self'''
+            x-frame-options: deny
+            x-request-id: FtCwd_g64MT4ELUAABTC
+        body: '{"data":{"autologin":false,"customer_id":51,"id":1635,"ring_timeout":0,"user_id":1464}}'
+        curl_info:
+            url: 'https://apidev.myflexpbx.com/api/v1/management/customers/51/callcenter/agents/1635'
+            content_type: 'application/json; charset=utf-8'
+            http_code: 200
+            header_size: 331
+            request_size: 219
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.73309
+            namelookup_time: 0.090965
+            connect_time: 0.209247
+            pretransfer_time: 0.568944
+            size_upload: !!float 0
+            size_download: !!float 87
+            speed_download: !!float 118
+            speed_upload: !!float 0
+            download_content_length: !!float 87
+            upload_content_length: !!float -1
+            starttransfer_time: 0.733031
+            redirect_time: !!float 0
+            redirect_url: ''
+            primary_ip: 3.17.252.238
+            certinfo: {  }
+            primary_port: 443
+            local_ip: 192.168.0.105
+            local_port: 54858
+            http_version: 3
+            protocol: 2
+            ssl_verifyresult: 0
+            scheme: HTTPS
+            appconnect_time_us: 568811
+            connect_time_us: 209247
+            namelookup_time_us: 90965
+            pretransfer_time_us: 568944
+            redirect_time_us: 0
+            starttransfer_time_us: 733031
+            total_time_us: 733090
