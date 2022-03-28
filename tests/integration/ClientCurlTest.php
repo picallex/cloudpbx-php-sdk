@@ -1026,6 +1026,36 @@ class ClientCurlTest extends TestCase
         return [$dialout];
     }
 
+    /**
+     * @vcr update_dialout
+     * @depends testQueryOneCustomer
+     */
+    public function testUpdateDialout(array $stack): array
+    {
+        $customer = array_pop($stack);
+
+        $dialout = $this->client->dialouts->create($customer->id, [
+            'weight' => 100,
+            'strip' => '9999',
+            'prepend' => '88888',
+            'name' => 'international',
+            'destination' => '2XXXXXX.',
+            'gateway_strategy' => 'sequence',
+            'callerid_strategy' => 'random'
+        ]);
+        $updated_dialout = $this->client->dialouts->update($customer->id, $dialout->id, [
+            'weight' => 199,
+            'strip' => '555',
+            'prepend' => '666',
+        ]);
+
+        $this->assertInstanceOf(\Cloudpbx\Sdk\Model\Dialout::class, $dialout);
+
+        $this->assertEquals($updated_dialout->id, $dialout->id);
+        $this->assertEquals($updated_dialout->strip, '555');
+        $this->assertEquals($updated_dialout->prepend, '666');
+    }
+
 
     /**
      * @vcr delete_dialout
