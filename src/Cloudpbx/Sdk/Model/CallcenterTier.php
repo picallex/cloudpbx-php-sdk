@@ -45,6 +45,16 @@ final class CallcenterTier extends \Cloudpbx\Sdk\Model
      */
     public $callcenter_agent;
 
+    /**
+     * @var integer
+     */
+    public $level;
+
+    /**
+     * @var integer
+     */
+    public $position;
+
     public function __construct()
     {
     }

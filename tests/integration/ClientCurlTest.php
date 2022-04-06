@@ -1701,7 +1701,7 @@ class ClientCurlTest extends TestCase
             'alias' => 'queuesuper'
         ]);
 
-        $agent = $this->client->callcenterQueues->callcenter_agent_attach($customer->id, $queue->id, $user->id, ['autologin' => true]);
+        $agent = $this->client->callcenterQueues->callcenter_agent_attach($customer->id, $queue->id, $user->id, ['autologin' => true, 'level' => 1, 'position' => 2]);
 
         $this->assertInstanceOf(\Cloudpbx\Sdk\Model\CallcenterAgent::class, $agent);
         $this->assertEquals($customer->id, $agent->customer_id);

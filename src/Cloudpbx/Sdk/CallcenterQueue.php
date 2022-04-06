@@ -203,6 +203,8 @@ final class CallcenterQueue extends Api
      * @param array{
      *  ring_timeout: integer,
      *  autologin: bool
+     *  level: integer,
+     *  position: integer,
      * }|[] $options
      *
      * @return \Cloudpbx\Sdk\Model\CallcenterAgent
