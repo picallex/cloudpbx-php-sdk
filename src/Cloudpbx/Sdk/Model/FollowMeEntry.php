@@ -87,6 +87,12 @@ final class FollowMeEntry extends \Cloudpbx\Sdk\Model
     public $user_id = null;
 
     /**
+     * @internal use $belongs_to instead
+     * @var integer
+     */
+    public $ivr_menu_id = null;
+
+    /**
      * @var Relation
      *
      * @see \Cloudpbx\Sdk\Client::preload for loading this relation as model
@@ -107,7 +113,8 @@ final class FollowMeEntry extends \Cloudpbx\Sdk\Model
                 'user' => $this->user_id,
                 'dialout' => $this->dialout_id,
                 'callcenter_queue' => $this->callcenter_queue_id,
-                'follow_me' => $this->follow_me_id
+                'follow_me' => $this->follow_me_id,
+                'ivr_menu' => $this->ivr_menu_id
             ],
             [$this->customer_id]
         );
