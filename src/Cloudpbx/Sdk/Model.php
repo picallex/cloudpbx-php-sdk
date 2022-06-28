@@ -27,7 +27,7 @@ abstract class Model
     /**
      * @var string
      */
-    protected static $_primary_key = 'id';
+    protected $_primary_key = 'id';
 
     abstract public function __construct();
 
@@ -39,9 +39,9 @@ abstract class Model
     {
         $obj = new static();
 
-        if ($obj->id !== false) {
-            Util\Argument::keyExists($metadata, static::$_primary_key);
-            $obj->id = $metadata[static::$_primary_key];
+        if ($obj->id !== false && $obj->_primary_key !== null) {
+            Util\Argument::keyExists($metadata, $obj->_primary_key);
+            $obj->id = $metadata[$obj->_primary_key];
         }
 
         // populate only public fields

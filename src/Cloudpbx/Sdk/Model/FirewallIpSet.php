@@ -11,7 +11,6 @@ namespace Cloudpbx\Sdk\Model;
 
 final class FirewallIpSet extends \Cloudpbx\Sdk\Model
 {
-    protected static $_primary_key = 'cidr_block';
 
     /**
      * @var string
@@ -25,5 +24,6 @@ final class FirewallIpSet extends \Cloudpbx\Sdk\Model
 
     public function __construct()
     {
+        $this->_primary_key = 'cidr_block';
     }
 }

@@ -130,6 +130,28 @@ final class Dialout extends Api
         return;
     }
 
+    /**
+     * See **DialoutTest** for details.
+     *
+     * @param int $customer_id
+     *
+     * @return array<\Cloudpbx\Sdk\Model\Customer>
+     */
+    public function groups($customer_id)
+    {
+        Argument::isInteger($customer_id);
+
+        $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}/dialout_groups', [
+            '{customer_id}' => $customer_id
+        ]);
+
+        $records = $this->protocol->list(
+            $query
+        );
+
+        return $this->recordsToModel($records, \Cloudpbx\Sdk\Model\DialoutGroup::class);
+    }
+
 
     /**
      * See **ClientCurlTest** for details.
