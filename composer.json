@@ -24,10 +24,7 @@
         "phpunit/phpunit": "^9.5.4",
         "vimeo/psalm": "^4.13.1",
         "friendsofphp/php-cs-fixer": "^3.0",
-        "php-vcr/php-vcr": "^1.5",
-        "php-vcr/phpunit-testlistener-vcr": "^3.2",
-        "vlucas/phpdotenv": "^5.3",
-        "allejo/php-vcr-sanitizer": "^1.0"
+        "vlucas/phpdotenv": "^5.3"
     },
    "autoload": {
         "psr-4": {
