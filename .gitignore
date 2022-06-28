@@ -490,3 +490,5 @@ FodyWeavers.xsd
 *.tlog
 
 # End of https://www.toptal.com/developers/gitignore/api/phpunit,emacs,visualstudiocode,visualstudio,vim,phpcodesniffer,git
+#
+composer.lock
