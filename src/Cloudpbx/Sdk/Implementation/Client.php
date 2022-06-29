@@ -12,7 +12,6 @@ namespace Cloudpbx\Sdk\Implementation;
 use Cloudpbx\Util\Inflector;
 use Cloudpbx\Util\Argument;
 
-// backward compatbility
 use Cloudpbx\Sdk\User;
 use Cloudpbx\Sdk\CallcenterQueue;
 use Cloudpbx\Sdk\RouterDid;
@@ -30,12 +29,10 @@ use Cloudpbx\Sdk\FollowMe;
 use Cloudpbx\Sdk\IvrMenu;
 use Cloudpbx\Sdk\IvrMenuEntry;
 use Cloudpbx\Sdk\Supervisor;
+use Cloudpbx\Sdk\AclIpv4;
+use Cloudpbx\Sdk\Customer;
+use Cloudpbx\Sdk\FirewallIpSet;
 use Cloudpbx\Sdk\Model\Relation;
-
-// new layout
-use Cloudpbx\Sdk\Implementation\Customer;
-use Cloudpbx\Sdk\Implementation\FirewallIpSet;
-use Cloudpbx\Sdk\Implementation\AclIpv4;
 
 /**
  * @property Customer $customers

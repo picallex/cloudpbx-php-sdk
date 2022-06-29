@@ -9,28 +9,42 @@ declare(strict_types=1);
 
 namespace Cloudpbx\Sdk;
 
-interface AclIpv4
+use Cloudpbx\Util\Argument;
+
+class AclIpv4 extends \Cloudpbx\Sdk\Api
 {
-    /**
-     * @param int $customer_id
-     *
-     * @return array<\Cloudpbx\Sdk\Model\AclIpv4>
-     */
-    public function all($customer_id);
+    public function all($customer_id)
+    {
+        Argument::isInteger($customer_id);
 
-    /**
-     * @param int $customer_id
-     * @param string $cidr
-     *
-     * @return \Cloudpbx\Sdk\Model\AclIpv4
-     */
-    public function create($customer_id, $cidr);
+        $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}/acl_ipv4s', ['{customer_id}' => $customer_id]);
 
-    /**
-     * @param int $customer_id
-     * @param string $cidr
-     *
-     * @return void
-     */
-    public function delete($customer_id, $cidr);
+        $records = $this->protocol->list($query);
+
+        return $this->recordsToModel($records, \Cloudpbx\Sdk\Model\AclIpv4::class);
+    }
+
+    public function create($customer_id, $cidr)
+    {
+        Argument::isInteger($customer_id);
+        Argument::isString($cidr);
+
+        $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}/acl_ipv4s', ['{customer_id}' => $customer_id]);
+
+        $record = $this->protocol->create($query, ['cidr' => $cidr]);
+
+        return $this->recordToModel($record, \Cloudpbx\Sdk\Model\AclIpv4::class);
+    }
+
+    public function delete($customer_id, $cidr)
+    {
+        Argument::isInteger($customer_id);
+        Argument::isString($cidr);
+
+        $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}/acl_ipv4s', ['{customer_id}' => $customer_id]);
+
+        $this->protocol->delete($query, ['cidr' => $cidr]);
+
+        return;
+    }
 }
