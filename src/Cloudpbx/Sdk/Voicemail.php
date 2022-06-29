@@ -10,7 +10,7 @@ namespace Cloudpbx\Sdk;
 
 use Cloudpbx\Util\Argument;
 
-final class Voicemail extends Api
+class Voicemail extends Api
 {
     /**
      * @param int $customer_id

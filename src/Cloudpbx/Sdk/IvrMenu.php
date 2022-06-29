@@ -10,7 +10,7 @@ namespace Cloudpbx\Sdk;
 
 use Cloudpbx\Util\Argument;
 
-final class IvrMenu extends Api
+class IvrMenu extends Api
 {
     /**
      * @param int $customer_id

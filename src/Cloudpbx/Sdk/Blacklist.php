@@ -10,7 +10,7 @@ namespace Cloudpbx\Sdk;
 
 use Cloudpbx\Util\Argument;
 
-final class Blacklist extends Api
+class Blacklist extends Api
 {
     /**
      * @param int $customer_id

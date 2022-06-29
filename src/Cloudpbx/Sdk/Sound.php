@@ -13,7 +13,7 @@ use Cloudpbx\Util\Argument;
 /**
  * @phpstan-import-type RecordTransformer from Api
  */
-final class Sound extends Api
+class Sound extends Api
 {
     /**
      * @param int $customer_id

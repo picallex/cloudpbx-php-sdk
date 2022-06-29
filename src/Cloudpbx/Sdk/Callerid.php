@@ -10,7 +10,7 @@ namespace Cloudpbx\Sdk;
 
 use Cloudpbx\Util\Argument;
 
-final class Callerid extends Api
+class Callerid extends Api
 {
     /**
      * See **ClientCurlTest** for details.

@@ -10,7 +10,7 @@ namespace Cloudpbx\Sdk;
 
 use Cloudpbx\Util\Argument;
 
-final class CallcenterAgent extends Api
+class CallcenterAgent extends Api
 {
     /**
      * @param int $customer_id
