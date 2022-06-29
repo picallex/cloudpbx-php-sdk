@@ -24,6 +24,7 @@ use Cloudpbx\Sdk\FollowMeEntry;
 use Cloudpbx\Sdk\Group;
 use Cloudpbx\Sdk\CalleridGroup;
 use Cloudpbx\Sdk\Dialout;
+use Cloudpbx\Sdk\DialoutGroup;
 use Cloudpbx\Sdk\Callerid;
 use Cloudpbx\Sdk\FollowMe;
 use Cloudpbx\Sdk\IvrMenu;
@@ -46,6 +47,7 @@ use Cloudpbx\Sdk\Implementation\AclIpv4;
  * @property Sound $sounds
  * @property CallcenterAgent $callcenterAgents
  * @property Voicemail $voicemails
+ * @property DialoutGroup $dialoutGroups
  */
 final class Client implements \Cloudpbx\Sdk\Client
 {
@@ -100,6 +102,14 @@ final class Client implements \Cloudpbx\Sdk\Client
     public function getDialouts()
     {
         return Dialout::fromTransport($this->protocol);
+    }
+
+    /**
+     * @return DialoutGroup
+     */
+    public function getDialoutGroups()
+    {
+        return DialoutGroup::fromTransport($this->protocol);
     }
 
     /**

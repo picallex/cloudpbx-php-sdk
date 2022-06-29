@@ -36,6 +36,11 @@ interface Client
     public function getDialouts();
 
     /**
+     * @return DialoutGroup
+     */
+    public function getDialoutGroups();
+
+    /**
      * @return RouterDid
      */
     public function getRouterDids();
