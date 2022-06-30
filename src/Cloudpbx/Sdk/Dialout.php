@@ -101,6 +101,7 @@ final class Dialout extends Api
     }
 
     /**
+     * @deprecated since 0.2.9 please use DialoutGroup::detach_callerid_group
      * See **ClientCurlTest** for details.
      *
      * @param int $customer_id
@@ -112,26 +113,14 @@ final class Dialout extends Api
      */
     public function attach_callerid_group($customer_id, $group_id, $dialout_id, $callerid_group_id)
     {
-        Argument::isInteger($customer_id);
-        Argument::isInteger($group_id);
-        Argument::isInteger($dialout_id);
-        Argument::isInteger($callerid_group_id);
-
-        $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}/dialout_groups', [
-            '{customer_id}' => $customer_id
-        ]);
-
-        $record = $this->protocol->create($query, [
-            'group_id' => $group_id,
-            'dialout_id' => $dialout_id,
-            'callerid_group_id' => $callerid_group_id
-        ]);
-
+        $proxy = DialoutGroup::fromTransport($this->protocol);
+        $proxy->attach_callerid_group($customer_id, $group_id, $dialout_id, $callerid_group_id);
         return;
     }
 
     /**
-     * See **ClientCurlTest** for details.
+     * @deprecated since 0.2.9 please use DialoutGroup::detach_callerid_group
+     * See **DialoutTest** for details.
      *
      * @param int $customer_id
      * @param int $group_id
@@ -142,20 +131,8 @@ final class Dialout extends Api
      */
     public function detach_callerid_group($customer_id, $group_id, $dialout_id, $callerid_group_id)
     {
-        Argument::isInteger($customer_id);
-        Argument::isInteger($group_id);
-        Argument::isInteger($dialout_id);
-        Argument::isInteger($callerid_group_id);
-
-        $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}/dialout_groups', [
-            '{customer_id}' => $customer_id
-        ]);
-
-        $this->protocol->delete($query, [
-            'group_id' => $group_id,
-            'dialout_id' => $dialout_id,
-            'callerid_group_id' => $callerid_group_id
-        ]);
+        $proxy = DialoutGroup::fromTransport($this->protocol);
+        $proxy->detach_callerid_group($customer_id, $group_id, $dialout_id, $callerid_group_id);
 
         return;
     }
