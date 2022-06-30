@@ -95,4 +95,26 @@ final class DialoutGroup extends Api
 
         return;
     }
+
+    public function update($customer_id, $group_id, $dialout_id, $callerid_group_id, $params)
+    {
+        Argument::isInteger($customer_id);
+        Argument::isInteger($group_id);
+        Argument::isInteger($dialout_id);
+        Argument::isInteger($callerid_group_id);
+        Argument::isParams($params);
+
+        $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}/dialout_groups', [
+            '{customer_id}' => $customer_id
+        ]);
+
+        $params_update = array_merge($params, [
+            'group_id' => $group_id,
+            'dialout_id' => $dialout_id,
+            'callerid_group_id' => $callerid_group_id,
+        ]);
+        $record = $this->protocol->update($query, $params_update);
+
+        return $this->recordToModel($record, \Cloudpbx\Sdk\Model\DialoutGroup::class);
+    }
 }

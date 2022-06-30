@@ -75,4 +75,19 @@ class DialoutGroupTest extends ClientTestCase
         $diff_dgroups = count($end_dgroups) - count($initial_dgroups);
         $this->assertEquals(0, $diff_dgroups);
     }
+
+    public function testUpdateDialoutGroup(): void
+    {
+        $customer = $this->customer;
+        $group = $this->group;
+        $callerid_group = $this->callerid_group;
+        $dialout = $this->dialout;
+        $this->client->dialoutGroups->attach_callerid_group($customer->id, $group->id, $dialout->id, $callerid_group->id);
+
+        $this->client->dialoutGroups->update($customer->id, $group->id, $dialout->id, $callerid_group->id, ['strip' => '666999', 'prepend' => '777999']);
+
+        $dgroups = $this->client->dialoutGroups->all($customer->id);
+        $this->assertEquals('666999', $dgroups[0]->strip);
+        $this->assertEquals('777999', $dgroups[0]->prepend);
+    }
 }
