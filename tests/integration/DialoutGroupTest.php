@@ -41,6 +41,8 @@ class DialoutGroupTest extends ClientTestCase
         $cidgroup = $cidgroups[0];
 
         $this->assertTrue($cidgroup->hasAttribute('id'));
+        $this->assertTrue($cidgroup->hasAttribute('group_id'));
+        $this->assertEquals($group->id, $cidgroup->group->id);
     }
 
     public function testAttachToDialoutCalleridGroup(): void

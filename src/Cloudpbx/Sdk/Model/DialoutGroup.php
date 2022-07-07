@@ -48,6 +48,16 @@ final class DialoutGroup extends \Cloudpbx\Sdk\Model
      */
     public $callerid_group;
 
+    /**
+     * @var integer
+     */
+    public $group_id;
+
+    /**
+     * @var Relation
+     */
+    public $group;
+
     public function __construct()
     {
         $this->_primary_key = null;
@@ -56,5 +66,6 @@ final class DialoutGroup extends \Cloudpbx\Sdk\Model
     protected function setup()
     {
         $this->callerid_group = new Relation('callerid_group', $this->callerid_group_id);
+        $this->group = new Relation('group', $this->group_id);
     }
 }
