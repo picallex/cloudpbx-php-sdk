@@ -202,6 +202,25 @@ class FollowMeTest extends ClientTestCase
         $this->assertEquals($destination->id, $redirect->id);
     }
 
+    public function testCreateFollowMeEntryOnlyIfMatchConditions(): void
+    {
+        $customer = $this->customer;
+        $source = $this->client->followMes->create($customer->id, [
+            'name' => $this->generateRandomString(5),
+        ]);
+        $destination = $this->client->followMes->create($customer->id, [
+            'name' => $this->generateRandomString(5),
+            'ringback_type' => 'fake_ring',
+        ]);
+
+        $only_if_match_conditions = 'inbound_caller_id_number::^[^\\d]+$';
+        $entry = $this->client->followMeEntries->create_redirect($customer->id, $source->id, $destination->id, [
+            'priority' => 100, 'only_if_match_conditions' => $only_if_match_conditions
+        ]);
+
+        $this->assertEquals('inbound_caller_id_number::^[^\\d]+$', $entry->only_if_match_conditions);
+    }
+
     public function testUpdateFollowMeEntry(): void
     {
         $customer = $this->customer;

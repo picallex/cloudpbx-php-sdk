@@ -52,6 +52,11 @@ final class FollowMeEntry extends \Cloudpbx\Sdk\Model
     public $call_timeout;
 
     /**
+     * @var string
+     */
+    public $only_if_match_conditions;
+
+    /**
      * @internal use $belongs_to instead
      * @var integer
      */
