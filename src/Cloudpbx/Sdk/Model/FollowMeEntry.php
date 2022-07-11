@@ -93,6 +93,13 @@ final class FollowMeEntry extends \Cloudpbx\Sdk\Model
     public $ivr_menu_id = null;
 
     /**
+     * @internal use $belongs_to instead
+     * @var integer
+     */
+    public $redirect_follow_me_id = null;
+
+
+    /**
      * @var Relation
      *
      * @see \Cloudpbx\Sdk\Client::preload for loading this relation as model
@@ -108,15 +115,19 @@ final class FollowMeEntry extends \Cloudpbx\Sdk\Model
         $this->follow_me = new Relation('follow_me', $this->follow_me_id, [$this->customer_id]);
         $this->customer = new Relation('customer', $this->customer_id);
 
-        $this->belongs_to = Relation::fromDescriptor(
-            [
-                'user' => $this->user_id,
-                'dialout' => $this->dialout_id,
-                'callcenter_queue' => $this->callcenter_queue_id,
-                'follow_me' => $this->follow_me_id,
-                'ivr_menu' => $this->ivr_menu_id
-            ],
-            [$this->customer_id]
-        );
+        if ($this->redirect_follow_me_id) {
+            $this->belongs_to = new Relation('follow_me', $this->redirect_follow_me_id, [$this->customer_id]);
+        } else {
+            $this->belongs_to = Relation::fromDescriptor(
+                [
+                    'user' => $this->user_id,
+                    'dialout' => $this->dialout_id,
+                    'callcenter_queue' => $this->callcenter_queue_id,
+                    'follow_me' => $this->follow_me_id,
+                    'ivr_menu' => $this->ivr_menu_id
+                ],
+                [$this->customer_id]
+            );
+        }
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-// Copyright 2021 Picallex Holding Group. All rights reserved.
+// Copyright 2021 Picallex Holding Group. All rights rseerved.
 //
 // @author (2021) Jovany Leandro G.C <jovany@picallex.com>
 
@@ -283,6 +283,35 @@ class FollowMeEntry extends Api
             '{customer_id}' => $customer_id,
             '{follow_me_id}' => $follow_me_id,
             '{user_id}' => $user_id
+        ]);
+
+        $record = $this->protocol->create($query, ['options' => $options]);
+
+        return $this->recordToModel($record, Model\FollowMeEntry::class, $this->default_options($customer_id));
+    }
+
+    /**
+     * @param integer $customer_id
+     * @param integer $follow_me_id
+     * @param integer $destination_follow_me_id
+     * @param array{
+     *  priority: integer,
+     *  call_timeout: integer
+     * }|[] $options
+     *
+     * @return Model\FollowMeEntry
+     */
+    public function create_redirect($customer_id, $follow_me_id, $destination_follow_me_id, $options = [])
+    {
+        Argument::isInteger($customer_id);
+        Argument::isInteger($follow_me_id);
+        Argument::isInteger($destination_follow_me_id);
+        Argument::isParams($options);
+
+        $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}/follow_me/{follow_me_id}/entries/{destination_follow_me_id}/redirect_follow_me', [
+            '{customer_id}' => $customer_id,
+            '{follow_me_id}' => $follow_me_id,
+            '{destination_follow_me_id}' => $destination_follow_me_id
         ]);
 
         $record = $this->protocol->create($query, ['options' => $options]);

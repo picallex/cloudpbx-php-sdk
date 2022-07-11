@@ -178,6 +178,30 @@ class FollowMeTest extends ClientTestCase
         $this->assertEquals($entry->priority, 100);
     }
 
+    public function testCreateFollowMeEntryTypeRedirectl(): void
+    {
+        $customer = $this->customer;
+        $source = $this->client->followMes->create($customer->id, [
+            'name' => $this->generateRandomString(5),
+        ]);
+        $destination = $this->client->followMes->create($customer->id, [
+            'name' => $this->generateRandomString(5),
+            'ringback_type' => 'fake_ring',
+        ]);
+
+        $entry = $this->client->followMeEntries->create_redirect($customer->id, $source->id, $destination->id, ['priority' => 100]);
+
+        $this->assertTrue($entry->hasAttribute('id'));
+        $this->assertTrue($entry->hasAttribute('follow_me_id'));
+        $this->assertEquals($entry->priority, 100);
+        $this->assertEquals($source->id, $entry->follow_me_id);
+        $this->assertEquals($destination->id, $entry->redirect_follow_me_id);
+        // check cast of relation
+        $redirect = $this->client->preload($entry->belongs_to);
+        $this->assertInstanceOf(\Cloudpbx\Sdk\Model\FollowMe::class, $redirect);
+        $this->assertEquals($destination->id, $redirect->id);
+    }
+
     public function testUpdateFollowMeEntry(): void
     {
         $customer = $this->customer;
