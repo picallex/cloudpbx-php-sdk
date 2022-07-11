@@ -202,7 +202,7 @@ class CallcenterQueue extends Api
      * @param int $user_id
      * @param array{
      *  ring_timeout: integer,
-     *  autologin: bool
+     *  autologin: bool,
      *  level: integer,
      *  position: integer,
      * }|[] $options

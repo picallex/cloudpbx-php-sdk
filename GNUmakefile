@@ -27,3 +27,6 @@ psalm-init:
 
 psalm:
 	docker-compose run --rm app composer run-script --dev -- psalm
+
+commit:
+	docker-compose run --rm app composer run-script --dev -- commit

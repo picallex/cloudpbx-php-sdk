@@ -8,7 +8,11 @@
         "test": "./vendor/bin/phpunit",
         "lint": "./vendor/bin/php-cs-fixer fix --verbose --diff --dry-run",
         "fix": "./vendor/bin/php-cs-fixer fix --verbose --diff",
-        "psalm": "psalm"
+        "psalm": "psalm",
+        "commit": [
+            "psalm",
+            "./vendor/bin/phpunit"
+        ]
     },
     "authors": [
         {
