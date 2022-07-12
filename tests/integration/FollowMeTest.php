@@ -97,6 +97,10 @@ class FollowMeTest extends ClientTestCase
         $this->assertTrue($entry->hasAttribute('follow_me_id'));
         $this->assertEquals($user->id, $entry->user_id);
         $this->assertEquals($entry->priority, 100);
+
+        $relation = $this->client->preload($entry->belongs_to);
+        $this->assertInstanceOf(\Cloudpbx\Sdk\Model\User::class, $relation);
+        $this->assertEquals($user->id, $relation->id);
     }
 
     public function testCreateFollowMeEntryTypeSound(): void
@@ -126,6 +130,10 @@ class FollowMeTest extends ClientTestCase
         $this->assertEquals(60, $entry->call_timeout);
         $this->assertEquals(100, $entry->priority);
         $this->assertEquals('999666555', $entry->dialout_number);
+
+        $relation = $this->client->preload($entry->belongs_to);
+        $this->assertInstanceOf(\Cloudpbx\Sdk\Model\Dialout::class, $relation);
+        $this->assertEquals($dialout->id, $relation->id);
     }
 
     public function testCreateFollowMeEntryTypeIvrMenu(): void
@@ -140,6 +148,10 @@ class FollowMeTest extends ClientTestCase
         $this->assertTrue($entry->hasAttribute('follow_me_id'));
         $this->assertEquals($ivrmenu->id, $entry->ivr_menu_id);
         $this->assertEquals($entry->priority, 100);
+
+        $relation = $this->client->preload($entry->belongs_to);
+        $this->assertInstanceOf(\Cloudpbx\Sdk\Model\IvrMenu::class, $relation);
+        $this->assertEquals($ivrmenu->id, $relation->id);
     }
 
 
