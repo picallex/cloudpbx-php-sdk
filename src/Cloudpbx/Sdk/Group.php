@@ -174,4 +174,26 @@ class Group extends Api
 
         return;
     }
+
+    /**
+     * @param int $customer_id
+     * @param int $user_id
+     * @return array<\Cloudpbx\Sdk\Model\Group>
+     */
+    public function findByUser($customer_id, $user_id)
+    {
+        Argument::isInteger($customer_id);
+        Argument::isInteger($user_id);
+
+        $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}/groups?user_id={user_id}', [
+            '{customer_id}' => $customer_id,
+            '{user_id}' => $user_id
+        ]);
+
+        $records = $this->protocol->list(
+            $query
+        );
+
+        return $this->recordsToModel($records, Model\Group::class);
+    }
 }

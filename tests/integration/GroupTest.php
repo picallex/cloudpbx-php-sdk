@@ -98,6 +98,22 @@ class GroupTest extends ClientTestCase
         $this->assertEquals($user->id, $user_relation->id);
     }
 
+    public function testListGroupsOfUser(): void
+    {
+        $customer = $this->customer;
+        $user = $this->createDefaultUser($customer->id);
+        $group = $this->createDefaultGroup($customer->id);
+        $group2 = $this->createDefaultGroup($customer->id);
+
+        $this->client->groups->attach_user($customer->id, $group->id, $user->id);
+        $this->client->groups->attach_user($customer->id, $group2->id, $user->id);
+
+        $groups = $this->client->groups->findByUser($customer->id, $user->id);
+
+        $this->assertEquals($group->name, $groups[0]->name);
+        $this->assertEquals($group2->name, $groups[1]->name);
+    }
+
     public function testAttachDetachUserToOrFromGroup(): void
     {
         $customer = $this->customer;
