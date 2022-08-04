@@ -46,4 +46,22 @@ class VoicemailTest extends ClientTestCase
         $this->assertInstanceOf(\Cloudpbx\Sdk\Model\Voicemail::class, $entry);
         $this->assertEquals($voicemail->id, $entry->id);
     }
+
+    public function testCreateVoicemail(): void
+    {
+        $user = $this->createDefaultUser($this->customer->id);
+        $entry = $this->client->voicemails->create($this->customer->id,
+                                                   $user->id,
+                                                   'voicemail test',
+                                                   'voicemail@test.org',
+                                                   [
+                                                       'skip_greeting' => false,
+                                                       'password' => '123'
+                                                   ]);
+
+        $this->assertTrue($entry->hasAttribute('id'));
+        $this->assertEquals(false, $entry->skip_greeting);
+        $this->assertEquals('123', $entry->password);
+        $this->assertEquals('voicemail@test.org', $entry->mailto);
+    }
 }
