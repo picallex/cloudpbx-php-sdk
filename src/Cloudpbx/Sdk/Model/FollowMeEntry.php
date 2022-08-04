@@ -128,7 +128,8 @@ final class FollowMeEntry extends \Cloudpbx\Sdk\Model
                     'user' => $this->user_id,
                     'dialout' => $this->dialout_id,
                     'callcenter_queue' => $this->callcenter_queue_id,
-                    'ivr_menu' => $this->ivr_menu_id
+                    'ivr_menu' => $this->ivr_menu_id,
+                    'voicemail' => $this->voicemail_id
                 ],
                 [$this->customer_id]
             );

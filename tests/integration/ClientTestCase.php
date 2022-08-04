@@ -91,6 +91,19 @@ class ClientTestCase extends TestCase
         return $this->client->calleridGroups->create($customer_id, $nparams);
     }
 
+    protected function createDefaultVoicemail($customer_id, $user_id, $params = [])
+    {
+        return $this->client->voicemails->create($customer_id,
+                                                 $user_id,
+                                                 $this->generateRandomString(10),
+                                                 'domain@'.$this->generateRandomDomain(),
+                                                 [
+                                                     'skip_greeting' => false,
+                                                     'password' => '123'
+                                                 ]);
+
+    }
+
     protected function generateRandomName(): string
     {
         return $this->generateRandomString(10);
