@@ -68,6 +68,39 @@ class Sound extends Api
     }
 
     /**
+     * @return \Cloudpbx\Sdk\Model\User
+     */
+    public function create(int $customer_id, string $name, string $template, string $usage, string $soundpath)
+    {
+        Argument::isInteger($customer_id);
+        Argument::isString($name);
+        Argument::isString($template);
+        Argument::isString($usage);
+        Argument::isPath($soundpath);
+
+        $query = $this->protocol->prepareQuery(
+            '/api/v1/management/customers/{customer_id}/sounds?name={name}&template={template}&usage={usage}',
+            [
+                '{customer_id}' => $customer_id,
+                '{name}' => $name,
+                '{template}' => $template,
+                '{usage}' => $usage
+            ]);
+
+        $content = file_get_contents($soundpath);
+        $mime_type = mime_content_type($soundpath);
+        $record = $this->protocol->createWithRaw($query, $content, ['content-type' => $mime_type]);
+
+        return $this->recordToModel(
+            $record,
+            Model\Sound::class,
+            [
+                'transform' => $this->transform($customer_id)
+            ]
+        );
+    }
+
+    /**
      * append $customer_id to $record.
      *
      * @param integer $customer_id

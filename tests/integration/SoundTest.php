@@ -12,6 +12,11 @@ require_once('ClientTestCase.php');
 
 class SoundTest extends ClientTestCase
 {
+    protected function localSetUp(): void
+    {
+        $this->customer = $this->createDefaultCustomer();
+    }
+
     public function testQueryAllSound(): void
     {
         $this->markTestSkipped('need data in server');
@@ -32,5 +37,15 @@ class SoundTest extends ClientTestCase
         $new_sound = $this->client->sounds->show(self::$customer_id, $sound->id);
         $this->assertEquals($new_sound->id, $sound->id);
         $this->assertEquals($new_sound->customer_id, $sound->customer_id);
+    }
+
+    public function testCreateSound(): void
+    {
+        $entry = $this->client->sounds->create($this->customer->id, 'audio', 'default', 'ivr_exit', 'tests/integration/example.ogg');
+
+        $this->assertTrue($entry->hasAttribute('id'));
+        $this->assertEquals('ivr_exit', $entry->usage);
+        $this->assertEquals('default', $entry->template);
+        $this->assertEquals('audio', $entry->name);
     }
 }
