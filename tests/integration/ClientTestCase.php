@@ -104,6 +104,15 @@ class ClientTestCase extends TestCase
 
     }
 
+    protected function createDefaultSound($customer_id, $usage)
+    {
+        return $this->client->sounds->create($customer_id,
+                                             $this->generateRandomName(),
+                                             'default',
+                                             $usage,
+                                             'tests/integration/example.ogg');
+    }
+
     protected function generateRandomName(): string
     {
         return $this->generateRandomString(10);

@@ -105,11 +105,11 @@ class FollowMeTest extends ClientTestCase
 
     public function testCreateFollowMeEntryTypeSound(): void
     {
-        $this->markTestSkipped('need data in server');
         $customer = $this->customer;
-        $sound = /** not implemented **/
+        $sound = $this->createDefaultSound($customer->id, 'ivr_exit');
+        $me = $this->createDefaultFollowMe($customer->id);
 
-        $entry = $this->client->followMeEntries->create_sound(self::$customer_id, self::$follow_me_id, $sound->id, ['priority' => 100]);
+        $entry = $this->client->followMeEntries->create_sound($customer->id, $me->id, $sound->id, ['priority' => 100]);
 
         $this->assertTrue($entry->hasAttribute('id'));
         $this->assertTrue($entry->hasAttribute('follow_me_id'));
