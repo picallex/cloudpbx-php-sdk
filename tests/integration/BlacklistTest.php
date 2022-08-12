@@ -17,10 +17,26 @@ class BlacklistTest extends ClientTestCase
         $this->customer = $this->createDefaultCustomer();
     }
 
+    public function testBlockNumber(): void
+    {
+        $blacklist = $this->client->blacklists->create($this->customer->id, '123456789');
+
+        $this->assertEquals('123456789', $blacklist->number);
+        $this->assertEquals($this->customer->id, $blacklist->customer_id);
+    }
+
+   public function testUnblockNumber(): void
+    {
+        $blacklist = $this->client->blacklists->create($this->customer->id, '1234567899');
+
+        $this->assertNotThrowsException(function() use ($blacklist) {
+            $this->client->blacklists->delete($this->customer->id, $blacklist->id);
+        });
+    }
+
     public function testQueryAllBlacklist(): void
     {
-        $this->markTestSkipped('need data in server');
-        return;
+        $this->client->blacklists->create($this->customer->id, '1234567898');
 
         $lists = $this->client->blacklists->all($this->customer->id);
 

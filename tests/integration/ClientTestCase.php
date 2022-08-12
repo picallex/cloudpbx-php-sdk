@@ -161,6 +161,7 @@ class ClientTestCase extends TestCase
         return implode('', $coll);
     }
 
+    // TOMADO DE: cloudpbx-privatelink
     protected function assertThrowsException(string $klass, callable $fun): void
     {
         try {
@@ -172,4 +173,16 @@ class ClientTestCase extends TestCase
 
         $this->assertTrue(false, 'not throws exception wants: ' . $klass);
     }
+
+    // TOMADO DE: cloudpbx-privatelink
+    protected function assertNotThrowsException(callable $fun): void
+    {
+        try {
+            $fun();
+            $this->assertTrue(true);
+        } catch (\Throwable $ex) {
+            $this->assertTrue(false, 'not expected exception but got ' . get_class($ex) . ' with ' . $ex->getMessage());
+        }
+    }
+
 }
