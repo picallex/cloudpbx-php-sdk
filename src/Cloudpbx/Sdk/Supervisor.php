@@ -33,7 +33,38 @@ class Supervisor extends Api
     }
 
     /**
-     * See **ClientCurlTest** for details.
+     * See **SupervisorTest** for details.
+     *
+     * @param int $customer_id
+     * @param int $user_id
+     * @param string $authentication_code only digits 0-9
+     *
+     * @return void
+     */
+    public function create($customer_id, $user_id, $authentication_code)
+    {
+        Argument::isInteger($customer_id);
+        Argument::isInteger($user_id);
+        Argument::isDigits($authentication_code);
+
+        $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}/users/{user_id}/supervisors', [
+            '{customer_id}' => $customer_id,
+            '{user_id}' => $user_id
+        ]);
+
+        $record = $this->protocol->create($query,
+                                          [
+                                              'supervisor' => [
+                                                  'spy_authentication_code' => (string) $authentication_code,
+                                                  'spy_allow' => true
+                                              ]
+                                          ]);
+
+        return $this->recordToModel($record, Model\Supervisor::class);
+    }
+
+    /**
+     * See **SupervisorTest** for details.
      *
      * @param int $customer_id
      * @param int $user_id

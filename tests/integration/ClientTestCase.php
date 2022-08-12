@@ -138,4 +138,16 @@ class ClientTestCase extends TestCase
         $coll = array_rand($values, $nitems);
         return implode('', $coll);
     }
+
+    protected function assertThrowsException(string $klass, callable $fun): void
+    {
+        try {
+            $fun();
+        } catch (\Throwable $ex) {
+            $this->assertEquals($klass, get_class($ex));
+            return;
+        }
+
+        $this->assertTrue(false, 'not throws exception wants: ' . $klass);
+    }
 }

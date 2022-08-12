@@ -94,6 +94,16 @@ final class Argument
      *
      * @return void
      */
+    public static function isDigits($value)
+    {
+        self::assert(preg_match('/^\d+$/', (string)$value) === 1, 'expected digits');
+    }
+
+    /**
+     * @param mixed $value
+     *
+     * @return void
+     */
     public static function isString($value)
     {
         self::assert(gettype($value) === "string", 'expected string');
