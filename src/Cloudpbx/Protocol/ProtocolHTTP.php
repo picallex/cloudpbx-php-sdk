@@ -96,6 +96,11 @@ final class ProtocolHTTP implements \Cloudpbx\Sdk\Protocol
         return $this->doRequest('POST', $query, $params);
     }
 
+    public function createWithRaw($query, $content, $headers = [])
+    {
+        return $this->doRequest('POST', $query, $content, true, false, $headers);
+    }
+
     /**
      * @param string $url
      * @param array<string,mixed> $params
@@ -115,14 +120,22 @@ final class ProtocolHTTP implements \Cloudpbx\Sdk\Protocol
      * @param string $method
      * @param string $url
      * @param array<string,mixed>|null $params
+     * @param array<string,mixed>
      * @param boolean $must_process_data
      * @return array<string, mixed>|null
      */
-    private function doRequest($method, $url, $params = null, $must_process_data = true)
+    private function doRequest($method, $url, $params = null, $must_process_data = true, $encode_body = true, $headers = [])
     {
+        $body = null;
+        if ($encode_body) {
+            $body = !is_null($params) ? json_encode($params) : null;
+        } else {
+            $body = $params;
+        }
+
         $request = Http\Implementation\RequestFromArray::build($method, [
-            'body' => !is_null($params) ? json_encode($params) : null,
-            'headers' => $this->setHeaders([]),
+            'body' => $body,
+            'headers' => $this->setHeaders($headers),
             'url' => $this->api_base . $url
         ]);
 

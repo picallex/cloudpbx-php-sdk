@@ -51,4 +51,27 @@ class Voicemail extends Api
 
         return $this->recordToModel($record, Model\Voicemail::class);
     }
+
+    /**
+     *
+     * @return Model\Voicemail
+     */
+    public function create(int $customer_id, int $user_id, string $description, string $mailto, array $extras = [])
+    {
+        Argument::isInteger($customer_id);
+        Argument::isInteger($user_id);
+        Argument::isString($description);
+        Argument::isString($mailto);
+
+        $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}/users/{user_id}/voicemails',
+        [
+            '{customer_id}' => $customer_id,
+            '{user_id}' => $user_id
+        ]);
+
+        $params = array_merge($extras, ['description' => $description, 'mailto' => $mailto]);
+        $record = $this->protocol->create($query, ['voicemail' => $params]);
+
+        return $this->recordToModel($record, Model\Voicemail::class);
+    }
 }

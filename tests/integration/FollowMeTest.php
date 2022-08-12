@@ -105,11 +105,11 @@ class FollowMeTest extends ClientTestCase
 
     public function testCreateFollowMeEntryTypeSound(): void
     {
-        $this->markTestSkipped('need data in server');
         $customer = $this->customer;
-        $sound = /** not implemented **/
+        $sound = $this->createDefaultSound($customer->id, 'ivr_exit');
+        $me = $this->createDefaultFollowMe($customer->id);
 
-        $entry = $this->client->followMeEntries->create_sound(self::$customer_id, self::$follow_me_id, $sound->id, ['priority' => 100]);
+        $entry = $this->client->followMeEntries->create_sound($customer->id, $me->id, $sound->id, ['priority' => 100]);
 
         $this->assertTrue($entry->hasAttribute('id'));
         $this->assertTrue($entry->hasAttribute('follow_me_id'));
@@ -174,15 +174,12 @@ class FollowMeTest extends ClientTestCase
 
     public function testCreateFollowMeEntryTypeVoicemail(): void
     {
-        $this->markTestSkipped('need data in server');
         $customer = $this->customer;
-        $voicemail = /** data from server */
-        $me = $this->client->followMes->create($customer->id, [
-            'name' => $this->generateRandomString(5),
-            'ringback_type' => 'fake_ring',
-        ]);
+        $user = $this->createDefaultUser($customer->id);
+        $voicemail = $this->createDefaultVoicemail($customer->id, $user->id);
+        $me = $this->createDefaultFollowMe($customer->id);
 
-        $entry = $this->client->followMeEntries->create_voicemail(self::$customer_id, $me->id, $voicemail->user_id, ['priority' => 100]);
+        $entry = $this->client->followMeEntries->create_voicemail($customer->id, $me->id, $voicemail->user_id, ['priority' => 100]);
 
         $this->assertTrue($entry->hasAttribute('id'));
         $this->assertTrue($entry->hasAttribute('follow_me_id'));
