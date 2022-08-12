@@ -22,8 +22,8 @@ class VoicemailTest extends ClientTestCase
 
     public function testQueryAllVoicemail(): void
     {
-        $this->markTestSkipped('need data in server');
-        return;
+        $user = $this->createDefaultUser($this->customer->id);
+        $this->createDefaultVoicemail($this->customer->id, $user->id);
 
         $voicemails = $this->client->voicemails->all($this->customer->id);
 
@@ -38,8 +38,8 @@ class VoicemailTest extends ClientTestCase
 
     public function testQueryOneVoicemail(): void
     {
-        $this->markTestSkipped('need data in server');
-        return;
+        $user = $this->createDefaultUser($this->customer->id);
+        $voicemail = $this->createDefaultVoicemail($this->customer->id, $user->id);
 
         $entry = $this->client->voicemails->show($this->customer->id, $voicemail->id);
 
@@ -63,5 +63,28 @@ class VoicemailTest extends ClientTestCase
         $this->assertEquals(false, $entry->skip_greeting);
         $this->assertEquals('123', $entry->password);
         $this->assertEquals('voicemail@test.org', $entry->mailto);
+    }
+
+    public function testUpdateVoicemail(): void
+    {
+        $user = $this->createDefaultUser($this->customer->id);
+        $voicemail = $this->createDefaultVoicemail($this->customer->id, $user->id);
+        $updated_voicemail = $this->client->voicemails->update($this->customer->id, $user->id, $voicemail->id, [
+            'mailto' => 'bob@marley.org',
+            'password' => '123499'
+        ]);
+
+        $this->assertEquals($voicemail->id, $updated_voicemail->id);
+        $this->assertEquals('123499', $updated_voicemail->password);
+        $this->assertEquals('bob@marley.org', $updated_voicemail->mailto);
+    }
+
+    public function testDeleteVoicemail(): void
+    {
+        $user = $this->createDefaultUser($this->customer->id);
+        $voicemail = $this->createDefaultVoicemail($this->customer->id, $user->id);
+        $this->assertNotThrowsException(function () use ($voicemail) {
+            $this->client->voicemails->delete($voicemail->customer_id, $voicemail->user_id, $voicemail->id);
+        });
     }
 }

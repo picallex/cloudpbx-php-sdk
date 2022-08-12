@@ -53,6 +53,7 @@ class Voicemail extends Api
     }
 
     /**
+     * See **VoicemailTest** for details.
      *
      * @return Model\Voicemail
      */
@@ -73,5 +74,59 @@ class Voicemail extends Api
         $record = $this->protocol->create($query, ['voicemail' => $params]);
 
         return $this->recordToModel($record, Model\Voicemail::class);
+    }
+
+    /**
+     * See **VoicemailTest** for details.
+     *
+     * @param int $customer_id
+     * @param int $user_id
+     * @param int $voicemail_id
+     * @param array<string,mixed> $params
+     *
+     * @return Model\Voicemail
+     */
+    public function update(int $customer_id, int $user_id, int $voicemail_id, array $params = [])
+    {
+        Argument::isInteger($customer_id);
+        Argument::isParams($params);
+
+        $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}/users/{user_id}/voicemails/{voicemail_id}',
+        [
+            '{customer_id}' => $customer_id,
+            '{user_id}' => $user_id,
+            '{voicemail_id}' => $voicemail_id
+        ]);
+
+        $record = $this->protocol->update($query, ['voicemail' => $params]);
+
+        return $this->recordToModel($record, Model\Voicemail::class);
+    }
+
+    /**
+     * See **VoicemailTest** for details.
+     *
+     * @param int $customer_id
+     * @param int $user_id
+     * @param int $voicemail_id
+     *
+     * return void
+     */
+    public function delete(int $customer_id, int $user_id, int $voicemail_id)
+    {
+        Argument::isInteger($customer_id);
+        Argument::isInteger($user_id);
+        Argument::isInteger($voicemail_id);
+
+        $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}/users/{user_id}/voicemails/{voicemail_id}',
+        [
+            '{customer_id}' => $customer_id,
+            '{user_id}' => $user_id,
+            '{voicemail_id}' => $voicemail_id
+        ]);
+
+        $this->protocol->delete($query);
+
+        return;
     }
 }
