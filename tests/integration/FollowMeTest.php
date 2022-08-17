@@ -136,6 +136,25 @@ class FollowMeTest extends ClientTestCase
         $this->assertEquals($dialout->id, $relation->id);
     }
 
+    public function testCreateFollowMeEntryTypeDialoutWithMultipleNumbers(): void
+    {
+        $customer = $this->customer;
+        $me = $this->createDefaultFollowMe($customer->id);
+        $dialout = $this->createDefaultDialout($customer->id);
+
+        $entry = $this->client->followMeEntries->create_dialout($customer->id, $me->id, $dialout->id, '999666555,999555666', ['priority' => 100, 'call_timeout' => 60]);
+
+        $this->assertTrue($entry->hasAttribute('id'));
+        $this->assertTrue($entry->hasAttribute('follow_me_id'));
+        $this->assertEquals(60, $entry->call_timeout);
+        $this->assertEquals(100, $entry->priority);
+        $this->assertEquals('999666555,999555666', $entry->dialout_number);
+
+        $relation = $this->client->preload($entry->belongs_to);
+        $this->assertInstanceOf(\Cloudpbx\Sdk\Model\Dialout::class, $relation);
+        $this->assertEquals($dialout->id, $relation->id);
+    }
+
     public function testCreateFollowMeEntryTypeIvrMenu(): void
     {
         $customer = $this->customer;

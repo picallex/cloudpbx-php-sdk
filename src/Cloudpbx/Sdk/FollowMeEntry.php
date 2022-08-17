@@ -323,16 +323,18 @@ class FollowMeEntry extends Api
      * @param array<string, mixed> $record
      * @param integer $customer_id
      */
-    public function append_customer_id(&$record, $customer_id): void
+    public function apply_transform(&$record, $customer_id): void
     {
         $record['customer_id'] = $customer_id;
+        if (array_key_exists('dialout_number', $record))
+            $record['dialout_number'] = implode(',', $record['dialout_number']);
     }
 
     private function default_options($customer_id)
     {
         return [
             'transform' => [
-                [$this, 'append_customer_id'],
+                [$this, 'apply_transform'],
                 [$customer_id]
             ]
         ];
