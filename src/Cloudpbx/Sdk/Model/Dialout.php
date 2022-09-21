@@ -62,6 +62,16 @@ final class Dialout extends \Cloudpbx\Sdk\Model
     public $weight;
 
     /**
+     * @var integer
+     */
+    public $ring_timeout;
+
+    /**
+     * @var bool
+     */
+    public $allow_caller_id_from_sip_header;
+
+    /**
      * @var ?integer
      */
     public $callerid_group_id = null;

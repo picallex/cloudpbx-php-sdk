@@ -31,7 +31,9 @@ class DialoutTest extends ClientTestCase
             'name' => 'international',
             'destination' => '1XXXXX.',
             'gateway_strategy' => 'sequence',
-            'callerid_strategy' => 'random'
+            'callerid_strategy' => 'random',
+            'ring_timeout' => 66,
+            'allow_caller_id_from_sip_header' => true
         ]);
 
         $this->assertInstanceOf(\Cloudpbx\Sdk\Model\Dialout::class, $dialout);
@@ -40,6 +42,8 @@ class DialoutTest extends ClientTestCase
         $this->assertEquals('1XXXXX.', $dialout->destination);
         $this->assertEquals('sequence', $dialout->gateway_strategy);
         $this->assertEquals('random', $dialout->callerid_strategy);
+        $this->assertEquals(true, $dialout->allow_caller_id_from_sip_header);
+        $this->assertEquals(66, $dialout->ring_timeout);
     }
 
 
