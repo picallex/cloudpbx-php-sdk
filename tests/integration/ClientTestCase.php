@@ -113,6 +113,12 @@ class ClientTestCase extends TestCase
                                              'tests/integration/example.ogg');
     }
 
+    protected function createDefaultFollowMe($customer_id, $params = []) {
+        $nparams = array_merge(['name' => $this->generateRandomString(5),
+                                'ringback_type' => 'fake_ring'], $params);
+        return $this->client->followMes->create($customer_id, $nparams);
+    }
+
     protected function generateRandomName(): string
     {
         return $this->generateRandomString(10);

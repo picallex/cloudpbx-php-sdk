@@ -114,6 +114,50 @@ class IvrMenuTest extends ClientTestCase
         $this->assertTrue($entry->hasAttribute('action'));
     }
 
+    public function testCreateIvrMenuEntryFollowMe(): void
+    {
+        $followme = $this->createDefaultFollowMe($this->customer->id);
+        $menu = $this->createDefaultIvrMenu($this->customer->id);
+
+        $entry = $this->client->ivrMenuEntries->create_follow_me($this->customer->id, $menu->id, $followme->id, ['digits' => '3']);
+
+        $this->assertEquals($menu->id, $entry->ivr_menu_id);
+        $this->assertTrue($entry->hasAttribute('id'));
+        $this->assertTrue($entry->hasAttribute('digits'));
+        $this->assertTrue($entry->hasAttribute('param'));
+        $this->assertTrue($entry->hasAttribute('action'));
+    }
+
+
+    public function testCreateIvrMenuEntryPlayback(): void
+    {
+        $sound = $this->createDefaultSound($this->customer->id, 'ivr_entry');
+        $menu = $this->createDefaultIvrMenu($this->customer->id);
+
+        $entry = $this->client->ivrMenuEntries->create_playback($this->customer->id, $menu->id, $sound->id, ['digits' => '3']);
+
+        $this->assertEquals($menu->id, $entry->ivr_menu_id);
+        $this->assertTrue($entry->hasAttribute('id'));
+        $this->assertTrue($entry->hasAttribute('digits'));
+        $this->assertTrue($entry->hasAttribute('param'));
+        $this->assertTrue($entry->hasAttribute('action'));
+    }
+
+
+    public function testCreateIvrMenuEntrySubmenu(): void
+    {
+        $submenu = $this->createDefaultIvrMenu($this->customer->id);
+        $menu = $this->createDefaultIvrMenu($this->customer->id);
+
+        $entry = $this->client->ivrMenuEntries->create_submenu($this->customer->id, $menu->id, $submenu->id, ['digits' => '3']);
+
+        $this->assertEquals($menu->id, $entry->ivr_menu_id);
+        $this->assertTrue($entry->hasAttribute('id'));
+        $this->assertTrue($entry->hasAttribute('digits'));
+        $this->assertTrue($entry->hasAttribute('param'));
+        $this->assertTrue($entry->hasAttribute('action'));
+    }
+
     public function testUpdateIvrMenu(): void
     {
         $customer = $this->customer;

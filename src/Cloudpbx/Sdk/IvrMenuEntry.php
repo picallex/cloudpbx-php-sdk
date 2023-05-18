@@ -99,6 +99,84 @@ class IvrMenuEntry extends Api
     /**
      * @param integer $customer_id
      * @param integer $ivr_menu_id
+     * @param integer $follow_me_id
+     * @param array<string,mixed> $params
+     *
+     * @return Model\IvrMenuEntry
+     */
+    public function create_follow_me($customer_id, $ivr_menu_id, $follow_me_id, $params)
+    {
+        Argument::isInteger($customer_id);
+        Argument::isInteger($ivr_menu_id);
+        Argument::isInteger($follow_me_id);
+        Argument::isParams($params);
+
+        $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}/ivr_menus/{ivr_menu_id}/entry/{follow_me_id}/follow_me', [
+            '{customer_id}' => $customer_id,
+            '{ivr_menu_id}' => $ivr_menu_id,
+            '{follow_me_id}' => $follow_me_id
+        ]);
+
+        $record = $this->protocol->create($query, $params);
+
+        return $this->toModel($customer_id, $record);
+    }
+
+    /**
+     * @param integer $customer_id
+     * @param integer $ivr_menu_id
+     * @param integer $sound_id
+     * @param array<string,mixed> $params
+     *
+     * @return Model\IvrMenuEntry
+     */
+    public function create_playback($customer_id, $ivr_menu_id, $sound_id, $params)
+    {
+        Argument::isInteger($customer_id);
+        Argument::isInteger($ivr_menu_id);
+        Argument::isInteger($sound_id);
+        Argument::isParams($params);
+
+        $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}/ivr_menus/{ivr_menu_id}/entry/{sound_id}/playback', [
+            '{customer_id}' => $customer_id,
+            '{ivr_menu_id}' => $ivr_menu_id,
+            '{sound_id}' => $sound_id
+        ]);
+
+        $record = $this->protocol->create($query, $params);
+
+        return $this->toModel($customer_id, $record);
+    }
+
+    /**
+     * @param integer $customer_id
+     * @param integer $ivr_menu_id
+     * @param integer $submenu_id
+     * @param array<string,mixed> $params
+     *
+     * @return Model\IvrMenuEntry
+     */
+    public function create_submenu($customer_id, $ivr_menu_id, $submenu_id, $params)
+    {
+        Argument::isInteger($customer_id);
+        Argument::isInteger($ivr_menu_id);
+        Argument::isInteger($submenu_id);
+        Argument::isParams($params);
+
+        $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}/ivr_menus/{ivr_menu_id}/entry/{submenu_id}/submenu', [
+            '{customer_id}' => $customer_id,
+            '{ivr_menu_id}' => $ivr_menu_id,
+            '{submenu_id}' => $submenu_id
+        ]);
+
+        $record = $this->protocol->create($query, $params);
+
+        return $this->toModel($customer_id, $record);
+    }
+
+    /**
+     * @param integer $customer_id
+     * @param integer $ivr_menu_id
      * @param integer $id
      *
      * @return \Cloudpbx\Sdk\Model\IvrMenuEntry
