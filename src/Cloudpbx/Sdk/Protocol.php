@@ -39,6 +39,14 @@ interface Protocol
 
     /**
      * @param string $query
+     * @param mixed $content
+     * @param array<string, mixed> $headers
+     * @return mixed
+     */
+    public function createWithRaw($query, $content, $headers = []);
+
+    /**
+     * @param string $query
      * @param array<string, mixed>|null $params
      * @return mixed
      */

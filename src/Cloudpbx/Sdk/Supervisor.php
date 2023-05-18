@@ -39,7 +39,7 @@ class Supervisor extends Api
      * @param int $user_id
      * @param string $authentication_code only digits 0-9
      *
-     * @return void
+     * @return Model\Supervisor
      */
     public function create($customer_id, $user_id, $authentication_code)
     {
