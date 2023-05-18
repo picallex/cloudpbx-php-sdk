@@ -149,7 +149,21 @@ class IvrMenuTest extends ClientTestCase
         $submenu = $this->createDefaultIvrMenu($this->customer->id);
         $menu = $this->createDefaultIvrMenu($this->customer->id);
 
+
         $entry = $this->client->ivrMenuEntries->create_submenu($this->customer->id, $menu->id, $submenu->id, ['digits' => '3']);
+
+        $this->assertEquals($menu->id, $entry->ivr_menu_id);
+        $this->assertTrue($entry->hasAttribute('id'));
+        $this->assertTrue($entry->hasAttribute('digits'));
+        $this->assertTrue($entry->hasAttribute('param'));
+        $this->assertTrue($entry->hasAttribute('action'));
+    }
+
+    public function testCreateIvrMenuEntryTopMenu(): void
+    {
+        $menu = $this->createDefaultIvrMenu($this->customer->id);
+
+        $entry = $this->client->ivrMenuEntries->create_topmenu($this->customer->id, $menu->id, ['digits' => '3']);
 
         $this->assertEquals($menu->id, $entry->ivr_menu_id);
         $this->assertTrue($entry->hasAttribute('id'));
