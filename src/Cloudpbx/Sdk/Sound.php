@@ -85,7 +85,8 @@ class Sound extends Api
                 '{name}' => $name,
                 '{template}' => $template,
                 '{usage}' => $usage
-            ]);
+            ]
+        );
 
         $content = file_get_contents($soundpath);
         $mime_type = mime_content_type($soundpath);

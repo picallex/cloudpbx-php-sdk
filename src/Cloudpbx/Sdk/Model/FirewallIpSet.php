@@ -11,7 +11,6 @@ namespace Cloudpbx\Sdk\Model;
 
 final class FirewallIpSet extends \Cloudpbx\Sdk\Model
 {
-
     /**
      * @var string
      */

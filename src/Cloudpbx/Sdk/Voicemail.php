@@ -64,11 +64,13 @@ class Voicemail extends Api
         Argument::isString($description);
         Argument::isString($mailto);
 
-        $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}/users/{user_id}/voicemails',
-        [
+        $query = $this->protocol->prepareQuery(
+            '/api/v1/management/customers/{customer_id}/users/{user_id}/voicemails',
+            [
             '{customer_id}' => $customer_id,
             '{user_id}' => $user_id
-        ]);
+        ]
+        );
 
         $params = array_merge($extras, ['description' => $description, 'mailto' => $mailto]);
         $record = $this->protocol->create($query, ['voicemail' => $params]);
@@ -91,12 +93,14 @@ class Voicemail extends Api
         Argument::isInteger($customer_id);
         Argument::isParams($params);
 
-        $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}/users/{user_id}/voicemails/{voicemail_id}',
-        [
+        $query = $this->protocol->prepareQuery(
+            '/api/v1/management/customers/{customer_id}/users/{user_id}/voicemails/{voicemail_id}',
+            [
             '{customer_id}' => $customer_id,
             '{user_id}' => $user_id,
             '{voicemail_id}' => $voicemail_id
-        ]);
+        ]
+        );
 
         $record = $this->protocol->update($query, ['voicemail' => $params]);
 
@@ -118,12 +122,14 @@ class Voicemail extends Api
         Argument::isInteger($user_id);
         Argument::isInteger($voicemail_id);
 
-        $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}/users/{user_id}/voicemails/{voicemail_id}',
-        [
+        $query = $this->protocol->prepareQuery(
+            '/api/v1/management/customers/{customer_id}/users/{user_id}/voicemails/{voicemail_id}',
+            [
             '{customer_id}' => $customer_id,
             '{user_id}' => $user_id,
             '{voicemail_id}' => $voicemail_id
-        ]);
+        ]
+        );
 
         $this->protocol->delete($query);
 

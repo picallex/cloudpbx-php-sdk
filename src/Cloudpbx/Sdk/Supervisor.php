@@ -52,13 +52,15 @@ class Supervisor extends Api
             '{user_id}' => $user_id
         ]);
 
-        $record = $this->protocol->create($query,
-                                          [
+        $record = $this->protocol->create(
+            $query,
+            [
                                               'supervisor' => [
                                                   'spy_authentication_code' => (string) $authentication_code,
                                                   'spy_allow' => true
                                               ]
-                                          ]);
+                                          ]
+        );
 
         return $this->recordToModel($record, Model\Supervisor::class);
     }
