@@ -172,6 +172,21 @@ class IvrMenuTest extends ClientTestCase
         $this->assertTrue($entry->hasAttribute('action'));
     }
 
+    public function testCreateIvrMenuEntryVoicemail(): void
+    {
+        $user = $this->createDefaultUser($this->customer->id);
+        $voicemail = $this->createDefaultVoicemail($this->customer->id, $user->id);
+        $menu = $this->createDefaultIvrMenu($this->customer->id);
+
+        $entry = $this->client->ivrMenuEntries->create_voicemail($this->customer->id, $menu->id, $voicemail->id, ['digits' => '3']);
+
+        $this->assertEquals($menu->id, $entry->ivr_menu_id);
+        $this->assertTrue($entry->hasAttribute('id'));
+        $this->assertTrue($entry->hasAttribute('digits'));
+        $this->assertTrue($entry->hasAttribute('param'));
+        $this->assertTrue($entry->hasAttribute('action'));
+    }
+
     public function testUpdateIvrMenu(): void
     {
         $customer = $this->customer;
