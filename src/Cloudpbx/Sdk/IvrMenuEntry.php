@@ -73,6 +73,32 @@ class IvrMenuEntry extends Api
     /**
      * @param integer $customer_id
      * @param integer $ivr_menu_id
+     * @param integer $callcenter_queue_id
+     * @param array<string,mixed> $params
+     *
+     * @return Model\IvrMenuEntry
+     */
+    public function create_callcenter_queue($customer_id, $ivr_menu_id, $callcenter_queue_id, $params)
+    {
+        Argument::isInteger($customer_id);
+        Argument::isInteger($ivr_menu_id);
+        Argument::isInteger($callcenter_queue_id);
+        Argument::isParams($params);
+
+        $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}/ivr_menus/{ivr_menu_id}/entry/{callcenter_queue_id}/callcenter_queue', [
+            '{customer_id}' => $customer_id,
+            '{ivr_menu_id}' => $ivr_menu_id,
+            '{callcenter_queue_id}' => $callcenter_queue_id
+        ]);
+
+        $record = $this->protocol->create($query, $params);
+
+        return $this->toModel($customer_id, $record);
+    }
+
+    /**
+     * @param integer $customer_id
+     * @param integer $ivr_menu_id
      * @param integer $id
      *
      * @return \Cloudpbx\Sdk\Model\IvrMenuEntry
