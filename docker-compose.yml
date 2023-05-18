@@ -7,6 +7,7 @@ version: '3.4'
 services:
   app:
     working_dir: /usr/src
+    privileged: true
     volumes:
       - ./:/usr/src
     environment:
