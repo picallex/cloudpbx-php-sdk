@@ -85,4 +85,43 @@ class IvrMenuTest extends ClientTestCase
         $this->assertTrue($entry->hasAttribute('param'));
         $this->assertTrue($entry->hasAttribute('action'));
     }
+
+    public function testUpdateIvrMenu(): void
+    {
+        $customer = $this->customer;
+        $ivr = $this->createDefaultIvrMenu($customer->id);
+        $sound_greet_long = $this->createIvrSound($customer->id, 'ivr_greet_long');
+        $sound_greet_short = $this->createIvrSound($customer->id, 'ivr_greet_short');
+        $sound_invalid = $this->createIvrSound($customer->id, 'ivr_invalid');
+        $sound_exit = $this->createIvrSound($customer->id, 'ivr_exit');
+
+        $ivr_updated = $this->client->ivrMenus->update($customer->id, $ivr->id, [
+            'timeout' => 33,
+            'inter_digit_timeout' => 5,
+            'max_failures' => 3,
+            'digit_len' => '1',
+            'greet_long_sound_id' => $sound_greet_long->id,
+            'greet_short_sound_id' => $sound_greet_short->id,
+            'invalid_sound_id' => $sound_invalid->id,
+            'exit_sound_id' => $sound_exit->id
+        ]);
+
+        $this->assertInstanceOf(\Cloudpbx\Sdk\Model\IvrMenu::class, $ivr_updated);
+        $this->assertEquals($ivr->id, $ivr_updated->id);
+        $this->assertEquals(33, $ivr_updated->timeout);
+        $this->assertEquals(5, $ivr_updated->inter_digit_timeout);
+        $this->assertEquals(3, $ivr_updated->max_failures);
+        $this->assertEquals('1', $ivr_updated->digit_len);
+        $this->assertInstanceOf(\Cloudpbx\Sdk\Model\Sound::class, $this->client->preload($ivr_updated->greet_long_sound));
+        $this->assertTrue($ivr_updated->hasAttribute('greet_short_sound_id'));
+        $this->assertInstanceOf(\Cloudpbx\Sdk\Model\Sound::class, $this->client->preload($ivr_updated->greet_short_sound));
+        $this->assertTrue($ivr_updated->hasAttribute('invalid_sound_id'));
+        $this->assertInstanceOf(\Cloudpbx\Sdk\Model\Sound::class, $this->client->preload($ivr_updated->invalid_sound));
+        $this->assertTrue($ivr_updated->hasAttribute('exit_sound_id'));
+        $this->assertInstanceOf(\Cloudpbx\Sdk\Model\Sound::class, $this->client->preload($ivr_updated->exit_sound));
+    }
+
+    private function createIvrSound($customer_id, $section) {
+        return $this->client->sounds->create($customer_id, $this->generateRandomName(), 'default', $section, 'tests/integration/example.ogg');
+    }
 }
