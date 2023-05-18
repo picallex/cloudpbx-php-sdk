@@ -47,6 +47,32 @@ class IvrMenuEntry extends Api
     /**
      * @param integer $customer_id
      * @param integer $ivr_menu_id
+     * @param integer $user_id
+     * @param array<string,mixed> $params
+     *
+     * @return Model\IvrMenuEntry
+     */
+    public function create_user($customer_id, $ivr_menu_id, $user_id, $params)
+    {
+        Argument::isInteger($customer_id);
+        Argument::isInteger($ivr_menu_id);
+        Argument::isInteger($user_id);
+        Argument::isParams($params);
+
+        $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}/ivr_menus/{ivr_menu_id}/entry/{user_id}/user', [
+            '{customer_id}' => $customer_id,
+            '{ivr_menu_id}' => $ivr_menu_id,
+            '{user_id}' => $user_id
+        ]);
+
+        $record = $this->protocol->create($query, $params);
+
+        return $this->toModel($customer_id, $record);
+    }
+
+    /**
+     * @param integer $customer_id
+     * @param integer $ivr_menu_id
      * @param integer $id
      *
      * @return \Cloudpbx\Sdk\Model\IvrMenuEntry
@@ -62,5 +88,21 @@ class IvrMenuEntry extends Api
         $record = $this->protocol->one($query);
 
         return $this->recordToModel($record, \Cloudpbx\Sdk\Model\IvrMenuEntry::class);
+    }
+
+    private function toModel($customer_id, $record)
+    {
+        return $this->recordToModel(
+            $record,
+            Model\IvrMenuEntry::class,
+            [
+               'transform' => [
+                   function (&$record, $customer_id) {
+                       $record['customer_id'] = $customer_id;
+                   },
+                   [$customer_id]
+               ]
+            ]
+        );
     }
 }
