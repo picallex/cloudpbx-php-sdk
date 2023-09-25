@@ -86,10 +86,11 @@ class DialoutGroupTest extends ClientTestCase
         $dialout = $this->dialout;
         $this->client->dialoutGroups->attach_callerid_group($customer->id, $group->id, $dialout->id, $callerid_group->id);
 
-        $this->client->dialoutGroups->update($customer->id, $group->id, $dialout->id, $callerid_group->id, ['strip' => '666999', 'prepend' => '777999']);
+        $this->client->dialoutGroups->update($customer->id, $group->id, $dialout->id, $callerid_group->id, ['strip' => '666999', 'prepend' => '777999', 'minimal_call_duration_ms' => '1500']);
 
         $dgroups = $this->client->dialoutGroups->all($customer->id);
         $this->assertEquals('666999', $dgroups[0]->strip);
         $this->assertEquals('777999', $dgroups[0]->prepend);
+        $this->assertEquals('1500', $dgroups[0]->minimal_call_duration_ms);
     }
 }
