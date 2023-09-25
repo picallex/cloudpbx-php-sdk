@@ -54,6 +54,11 @@ final class DialoutGroup extends \Cloudpbx\Sdk\Model
     public $group_id;
 
     /**
+     * @var integer
+     */
+    public $minimal_call_duration_ms;
+
+    /**
      * @var Relation
      */
     public $group;
