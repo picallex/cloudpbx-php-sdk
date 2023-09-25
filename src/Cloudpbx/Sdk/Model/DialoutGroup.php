@@ -4,6 +4,7 @@
  * Copyright 2022 Picallex Holding Group. All rights reserved.
  *
  * @author (2022) Jovany Leandro G.C <jovany@picallex.com>
+ * @author (2023) Matias Damian Gomez <matias@picallex.com>
  */
 
 declare(strict_types=1);
