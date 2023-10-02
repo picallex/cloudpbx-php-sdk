@@ -75,10 +75,6 @@ final class RouterDid extends \Cloudpbx\Sdk\Model
     public function setup()
     {
         $relations = [
-            'user',
-            'ivr_menu',
-            'dialout',
-            'callcenter_queue',
             'follow_me'
         ];
 

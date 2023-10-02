@@ -38,48 +38,6 @@ class RouterDid extends Api
      * See **ClientCurlTest** for details.
      *
      * @param int $customer_id
-     * @param int $user_id
-     * @param string $did
-     *
-     * @return Model\RouterDid
-     */
-    public function route_to_user($customer_id, $user_id, $did)
-    {
-        return $this->route_to_resource('/api/v1/management/customers/{customer_id}/routers/dids/{resource_id}/user', $customer_id, $user_id, $did);
-    }
-
-    /**
-     * See **ClientCurlTest** for details.
-     *
-     * @param int $customer_id
-     * @param int $callcenter_queue_id
-     * @param string $did
-     *
-     * @return Model\RouterDid
-     */
-    public function route_to_callcenter_queue($customer_id, $callcenter_queue_id, $did)
-    {
-        return $this->route_to_resource('/api/v1/management/customers/{customer_id}/routers/dids/{resource_id}/callcenter_queue', $customer_id, $callcenter_queue_id, $did);
-    }
-
-    /**
-         * See **ClientCurlTest** for details.
-         *
-         * @param int $customer_id
-         * @param int $ivr_menu_id
-         * @param string $did
-         *
-         * @return Model\RouterDid
-         */
-    public function route_to_ivr_menu($customer_id, $ivr_menu_id, $did)
-    {
-        return $this->route_to_resource('/api/v1/management/customers/{customer_id}/routers/dids/{resource_id}/ivr_menu', $customer_id, $ivr_menu_id, $did);
-    }
-
-    /**
-     * See **ClientCurlTest** for details.
-     *
-     * @param int $customer_id
      * @param int $follow_me_id
      * @param string $did
      *
@@ -88,58 +46,6 @@ class RouterDid extends Api
     public function route_to_follow_me($customer_id, $follow_me_id, $did)
     {
         return $this->route_to_resource('/api/v1/management/customers/{customer_id}/routers/dids/{resource_id}/follow_me', $customer_id, $follow_me_id, $did);
-    }
-
-    /**
-     * See **ClientCurlTest** for details.
-     *
-     * @param int $customer_id
-     * @param int $dialout_id
-     * @param string $did
-     * @param string $destination_number
-     *
-     * @return Model\RouterDid
-     */
-    public function route_to_dialout($customer_id, $dialout_id, $did, $destination_number)
-    {
-        Argument::isInteger($customer_id);
-        Argument::isInteger($dialout_id);
-        Argument::isString($did);
-        Argument::isString($destination_number);
-
-        return $this->route_to_resource_with_body(
-            '/api/v1/management/customers/{customer_id}/routers/dids/{resource_id}/dialout',
-            ['{customer_id}' => $customer_id,
-                                         '{resource_id}' => $dialout_id],
-            ['did' => $did, 'destination_number' => $destination_number]
-        );
-    }
-
-
-    /**
-     * See **ClientCurlTest** for details.
-     *
-     * @param int $customer_id
-     * @param string $did
-     * @param string $destination
-     *
-     * @return Model\RouterDid
-     */
-    public function route_to_destination_number($customer_id, $did, $destination)
-    {
-        Argument::isInteger($customer_id);
-        Argument::isFormat($did, '/\d+/');
-        Argument::isFormat($destination, '/\d+/');
-
-        $url = $this->protocol->prepareQuery(
-            '/api/v1/management/customers/{customer_id}/routers/dids/destination',
-            [
-                '{customer_id}' => $customer_id,
-            ]
-        );
-
-        $record = $this->protocol->create($url, ['did' => $did, 'destination_number' => $destination]);
-        return $this->recordToModel($record, Model\RouterDid::class);
     }
 
     /**
