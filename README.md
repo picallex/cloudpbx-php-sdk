@@ -31,11 +31,9 @@ ver **tests/integration/ClientCurlTest.php** ejemplos de uso.
 
 # Contribuir
 
-inicializar composer
-
-~~~bash
-$ make composer-init
-~~~
+1. `make composer-init`
+2. `make test`
+3. again `.2`
 
 inicializar precommit
 
