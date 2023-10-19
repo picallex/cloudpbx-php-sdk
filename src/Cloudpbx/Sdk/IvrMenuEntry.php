@@ -3,6 +3,7 @@
 // Copyright 2021 Picallex Holding Group. All rights reserved.
 //
 // @author (2021) Jovany Leandro G.C <jovany@picallex.com>
+// @author (2023) Matias Damian Gomez <matias@picallex.com>
 
 declare(strict_types=1);
 
@@ -241,6 +242,26 @@ class IvrMenuEntry extends Api
         $record = $this->protocol->one($query);
 
         return $this->recordToModel($record, \Cloudpbx\Sdk\Model\IvrMenuEntry::class);
+    }
+
+    /**
+     * @param integer $customer_id
+     * @param integer $ivr_menu_id
+     * @param integer $id
+     *
+     * @return void
+     */
+    public function delete($customer_id, $ivr_menu_id, $id)
+    {
+        $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}/ivr_menus/{ivrmenu_id}/entries/{id}', [
+            '{customer_id}' => $customer_id,
+            '{ivrmenu_id}' => $ivr_menu_id,
+            '{id}' => $id
+        ]);
+
+        $this->protocol->delete($query);
+
+        return;
     }
 
     private function toModel($customer_id, $record)
