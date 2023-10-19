@@ -4,6 +4,7 @@
  * Copyright 2022 Picallex Holding Group. All rights reserved.
  *
  * @author (2022) Jovany Leandro G.C <jovany@picallex.com>
+ * @author (2023) Matias Damian Gomez <matias@picallex.com>
  */
 
 declare(strict_types=1);
@@ -220,6 +221,24 @@ class IvrMenuTest extends ClientTestCase
         $this->assertInstanceOf(\Cloudpbx\Sdk\Model\Sound::class, $this->client->preload($ivr_updated->invalid_sound));
         $this->assertTrue($ivr_updated->hasAttribute('exit_sound_id'));
         $this->assertInstanceOf(\Cloudpbx\Sdk\Model\Sound::class, $this->client->preload($ivr_updated->exit_sound));
+    }
+
+    public function testDeleteIvrMenuEntry(): void
+    {
+        $customer = $this->customer;
+        $user = $this->createDefaultUser($customer->id);
+        $menu = $this->createDefaultIvrMenu($customer->id);
+
+        $entry = $this->client->ivrMenuEntries->create_user($customer->id, $menu->id, $user->id, ['digits' => '3']);
+
+        $ivr_menu_entry_before_delete = $this->client->ivrMenuEntries->all($customer->id, $menu->id);
+
+        $this->client->ivrMenuEntries->delete($customer->id, $menu->id, $entry->id);
+
+        $ivr_menu_entry_after_delete = $this->client->ivrMenuEntries->all($customer->id, $menu->id);
+
+        $this->assertEquals(1, count($ivr_menu_entry_before_delete));
+        $this->assertEquals([], $ivr_menu_entry_after_delete);
     }
 
     private function createIvrSound($customer_id, $section) {
