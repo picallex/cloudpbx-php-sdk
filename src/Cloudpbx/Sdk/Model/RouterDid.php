@@ -74,23 +74,12 @@ final class RouterDid extends \Cloudpbx\Sdk\Model
 
     public function setup()
     {
-        $relations = [
-            'follow_me'
-        ];
-
-        foreach ($relations as $relation) {
-            $relation_field = "{$relation}_id";
-            $relation_id = $this->$relation_field;
-            if (!is_null($relation_id)) {
-                // ATTENTION(bit4bit): now this works because al relations only belongs to customer
-                $this->has_one = new Relation($relation, $relation_id, [$this->customer_id]);
-                break;
-            }
-        }
-
-        //@phpstan-ignore-next-line
-        if (is_null($this->has_one) && is_null($this->destination_number)) {
-            throw new \RuntimeException('not found a relation for has_one');
+        $relation = 'follow_me';
+        $relation_field = "{$relation}_id";
+        $relation_id = $this->$relation_field;
+        if (!is_null($relation_id)) {
+            // ATTENTION(bit4bit): now this works because al relations only belongs to customer
+            $this->has_one = new Relation($relation, $relation_id, [$this->customer_id]);
         }
     }
 }
