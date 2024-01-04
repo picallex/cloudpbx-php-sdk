@@ -1,9 +1,10 @@
 <?php
 
 /**
- * Copyright 2022 Picallex Holding Group. All rights reserved.
+ * Copyright 2024 Picallex Holding Group. All rights reserved.
  *
  * @author (2022) Jovany Leandro G.C <jovany@picallex.com>
+ * @author (2024) Matias Damian Gomez <matias@picallex.com>
  */
 
 declare(strict_types=1);
@@ -196,6 +197,23 @@ class CallcenterQueueTest extends ClientTestCase
         $this->assertTrue($tier->hasAttribute('customer_id'));
         $this->assertTrue($tier->hasAttribute('callcenter_queue_id'));
         $this->assertTrue($tier->hasAttribute('callcenter_agent_id'));
+    }
+
+    public function testQuerayAllAgentsCustomRingTimeout(): void
+    {
+        $customer = $this->customer;
+        $queue = $this->createDefaultCallcenterQueue($customer->id);
+        $this->createDefaultCallcenterAgent($customer->id, $queue->id, ['ring_timeout' => 30]);
+        $agents = $this->client->callcenterAgents->all($customer->id);
+
+        $this->assertIsArray($agents);
+        $this->assertGreaterThan(0, count($agents));
+
+        $agent = $agents[0];
+
+        $this->assertTrue($agent->hasAttribute('customer_id'));
+        $this->assertTrue($agent->hasAttribute('ring_timeout'));
+        $this->assertEquals(30, $agent->ring_timeout);
     }
 
     private function createDefaultCallcenterAgent($customer_id, $queue_id, $params = []) {
