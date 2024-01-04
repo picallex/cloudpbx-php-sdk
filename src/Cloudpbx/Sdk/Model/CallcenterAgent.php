@@ -40,6 +40,11 @@ final class CallcenterAgent extends \Cloudpbx\Sdk\Model
      */
     public $autologin;
 
+    /**
+     * @var integer
+     */
+    public $ring_timeout;
+
     public function __construct()
     {
     }
