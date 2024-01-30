@@ -66,6 +66,11 @@ final class User extends \Cloudpbx\Sdk\Model
      */
     public $available_on_sip_register;
 
+    /**
+     * @var boolean
+     */
+    public $enable_outbound_fakering;
+
     public function __construct()
     {
     }

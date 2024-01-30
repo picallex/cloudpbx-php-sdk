@@ -50,7 +50,8 @@ class UserTest extends ClientTestCase
             'caller_number' => 'caller-number',
             'dnd_on_sip_unregister' => true,
             'available_on_sip_register' => true,
-            'is_webrtc' => true
+            'is_webrtc' => true,
+            'enable_outbound_fakering' => true
         ]);
 
         $this->assertInstanceOf(\Cloudpbx\Sdk\Model\User::class, $user);
@@ -63,6 +64,7 @@ class UserTest extends ClientTestCase
         $this->assertEquals('caller-number', $user->caller_number);
         $this->assertEquals(true, $user->dnd_on_sip_unregister);
         $this->assertEquals(true, $user->available_on_sip_register);
+        $this->assertEquals(true, $user->enable_outbound_fakering);
     }
 
     public function testQueryAllUsers(): void
