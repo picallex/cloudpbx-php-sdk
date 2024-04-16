@@ -83,6 +83,7 @@ class UserTest extends ClientTestCase
         $this->assertTrue($user->hasAttribute('caller_number'));
         $this->assertTrue($user->hasAttribute('accountcode'));
         $this->assertTrue($user->hasAttribute('alias'));
+        $this->assertTrue($user->hasAttribute('do_not_disturb'));
     }
 
     public function testQueryOneUser(): void
