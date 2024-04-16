@@ -72,6 +72,11 @@ final class User extends \Cloudpbx\Sdk\Model
      */
     public $enable_outbound_fakering;
 
+    /**
+     * @var boolean
+     */
+    public $do_not_disturb;
+
     public function __construct()
     {
     }
