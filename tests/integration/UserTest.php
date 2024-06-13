@@ -26,14 +26,14 @@ class UserTest extends ClientTestCase
     {
         $customer_id = $this->customer->id;
         $user = $this->client->users->create($customer_id, [
-            'name' => 'simpon',
+            'name' => '234',
             'password' => $this->generateUserPassword(),
             'is_webrtc' => false
         ]);
 
         $this->assertInstanceOf(\Cloudpbx\Sdk\Model\User::class, $user);
         $this->assertTrue($user->id > 0);
-        $this->assertEquals('simpon', $user->name);
+        $this->assertEquals('234', $user->name);
         $this->assertEquals(false, $user->is_webrtc);
 
         return $user->id;
@@ -43,7 +43,7 @@ class UserTest extends ClientTestCase
     {
         $customer_id = $this->customer->id;
         $user = $this->client->users->create($customer_id, [
-            'name' => 'simpon5full',
+            'name' => '2312',
             'password' => $this->generateUserPassword(),
             'alias' => 'description',
             'accountcode' => 'invoice',
@@ -57,7 +57,7 @@ class UserTest extends ClientTestCase
 
         $this->assertInstanceOf(\Cloudpbx\Sdk\Model\User::class, $user);
         $this->assertTrue($user->id > 0);
-        $this->assertEquals('simpon5full', $user->name);
+        $this->assertEquals('2312', $user->name);
         $this->assertEquals(true, $user->is_webrtc);
         $this->assertEquals('description', $user->alias);
         $this->assertEquals('invoice', $user->accountcode);
