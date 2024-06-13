@@ -153,8 +153,21 @@ class ClientTestCase extends TestCase
         return $password;
     }
 
-    protected function generateRandomString($size) {
-        return $this->randomString(range(40, 90), $size);
+    protected function generateRandomString(int $size) {
+        return $this->randomNumberString(range(33, 126), $size);
+    }
+
+    private function randomNumberString(array $seeds, int $nitems): string
+    {
+        $seeds = array_filter($seeds, 'is_int');
+        $randomString = '';
+
+        for ($i = 0; $i < $nitems; $i++) {
+            $randomIndex = array_rand($seeds);
+            $randomString .= $seeds[$randomIndex];
+        }
+
+        return strlen($randomString) > 4 ? substr($randomString, 0, 4) : $randomString;
     }
 
     private function randomString($seeds, $nitems) {
