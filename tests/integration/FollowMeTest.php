@@ -279,4 +279,24 @@ class FollowMeTest extends ClientTestCase
         }
 
     }
+
+    public function testCreateAndUpdateFollowMe(): void
+    {
+        $customer = $this->customer;
+        $name = $this->generateRandomString(5);
+
+        $me = $this->client->followMes->create($customer->id, [
+            'name' => $name,
+            'ringback_type' => 'fake_ring',
+        ]);
+
+        $me = $this->client->followMes->update($customer->id, $me->id, [
+            'name' => '1999',
+        ]);
+
+        $this->assertInstanceOf(\Cloudpbx\Sdk\Model\FollowMe::class, $me);
+        $this->assertTrue($me->id > 0);
+        $this->assertEquals('1999', $me->name);
+        $this->assertEquals($customer->id, $me->customer_id);
+    }
 }
