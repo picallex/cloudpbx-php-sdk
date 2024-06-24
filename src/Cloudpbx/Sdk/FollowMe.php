@@ -101,4 +101,29 @@ class FollowMe extends Api
 
         return;
     }
+
+    /**
+     * See **ClientCurlTest** for details.
+     *
+     * @param int $customer_id
+     * @param int $id
+     * @param array<string,mixed> $params
+     *
+     * @return Model\FollowMe
+     */
+    public function update($customer_id, $id, $params)
+    {
+        Argument::isInteger($customer_id);
+        Argument::isInteger($id);
+        Argument::isParams($params);
+
+        $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}/follow_me/{id}', [
+            '{customer_id}' => $customer_id,
+            '{id}' => $id
+        ]);
+
+        $record = $this->protocol->update($query, ['follow_me' => $params]);
+
+        return $this->recordToModel($record, Model\FollowMe::class);
+    }
 }
