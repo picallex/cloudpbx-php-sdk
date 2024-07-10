@@ -105,6 +105,11 @@ final class FollowMeEntry extends \Cloudpbx\Sdk\Model
 
 
     /**
+     * @var Boolean
+    */
+    public $hangup_agent_ringing_outbound_calls;
+
+    /**
      * @var Relation
      *
      * @see \Cloudpbx\Sdk\Client::preload for loading this relation as model

@@ -299,4 +299,27 @@ class FollowMeTest extends ClientTestCase
         $this->assertEquals('1999', $me->name);
         $this->assertEquals($customer->id, $me->customer_id);
     }
+
+    public function testUpdateFollowMeEntryWithPriorityHangup(): void
+    {
+        $customer = $this->customer;
+        $me = $this->createDefaultFollowMe($customer->id);
+        $queue = $this->createDefaultCallcenterQueue($customer->id);
+
+        $entry = $this->client->followMeEntries->create_callcenter_queue(
+            $customer->id,
+            $me->id,
+            $queue->id,
+            [
+                'priority' => 100,
+                'hangup_agent_ringing_outbound_calls' => True
+            ]
+        );
+
+        $this->assertEquals(True, $entry->hangup_agent_ringing_outbound_calls);
+        $this->assertEquals(100, $entry->priority);
+        $this->assertTrue($entry->hasAttribute('id'));
+        $this->assertTrue($entry->hasAttribute('follow_me_id'));
+        $this->assertEquals($queue->id, $entry->callcenter_queue_id);
+    }
 }
