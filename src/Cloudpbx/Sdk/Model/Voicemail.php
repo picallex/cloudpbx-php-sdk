@@ -51,6 +51,11 @@ final class Voicemail extends \Cloudpbx\Sdk\Model
     public $description;
 
     /**
+     * @var array<mixed>
+     */
+    public $messages;
+
+    /**
      * @var bool
      */
     public $skip_greeting;
