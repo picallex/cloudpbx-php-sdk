@@ -1,8 +1,9 @@
 <?php
 
-// Copyright 2021 Picallex Holding Group. All rights reserved.
+// Copyright 2024 Picallex Holding Group. All rights reserved.
 //
-// @author (2021) Jovany Leandro G.C <jovany@picallex.com>
+// @author (2024) Jovany Leandro G.C <jovany@picallex.com>
+// @author (2024) Matias Damian Gomez <matias@picallex.com>
 
 declare(strict_types=1);
 
@@ -55,6 +56,11 @@ final class IvrMenu extends \Cloudpbx\Sdk\Model
      * @var string
      */
     public $digit_len;
+
+    /**
+     * @var string
+     */
+    public $greet_long_sound_usage;
 
     /**
      * @var integer
