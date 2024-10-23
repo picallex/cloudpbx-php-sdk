@@ -205,7 +205,8 @@ class IvrMenuTest extends ClientTestCase
             'greet_long_sound_id' => $sound_greet_long->id,
             'greet_short_sound_id' => $sound_greet_short->id,
             'invalid_sound_id' => $sound_invalid->id,
-            'exit_sound_id' => $sound_exit->id
+            'exit_sound_id' => $sound_exit->id,
+            'greet_long_sound_usage' => 'ivr_greet_long'
         ]);
 
         $this->assertInstanceOf(\Cloudpbx\Sdk\Model\IvrMenu::class, $ivr_updated);
@@ -214,6 +215,7 @@ class IvrMenuTest extends ClientTestCase
         $this->assertEquals(5, $ivr_updated->inter_digit_timeout);
         $this->assertEquals(3, $ivr_updated->max_failures);
         $this->assertEquals('1', $ivr_updated->digit_len);
+        $this->assertEquals('ivr_greet_long', $ivr_updated->greet_long_sound_usage);
         $this->assertInstanceOf(\Cloudpbx\Sdk\Model\Sound::class, $this->client->preload($ivr_updated->greet_long_sound));
         $this->assertTrue($ivr_updated->hasAttribute('greet_short_sound_id'));
         $this->assertInstanceOf(\Cloudpbx\Sdk\Model\Sound::class, $this->client->preload($ivr_updated->greet_short_sound));
