@@ -86,4 +86,16 @@ class Customer extends \Cloudpbx\Sdk\Api
 
         return $this->recordToModel($record, \Cloudpbx\Sdk\Model\Customer\Capability::class);
     }
+
+    public function status_report_did($customer_id, $did)
+    {
+        Argument::isInteger($customer_id);
+        Argument::isInteger($did);
+
+        $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}/status_reports/did/{did}', ['{customer_id}' => $customer_id, '{did}' => $did]);
+
+        $record = $this->protocol->one($query);
+
+        return new \Cloudpbx\Sdk\Model\Customer\StatusReportDid($record);
+    }
 }
