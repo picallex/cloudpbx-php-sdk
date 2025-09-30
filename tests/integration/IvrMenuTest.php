@@ -101,6 +101,19 @@ class IvrMenuTest extends ClientTestCase
         $this->assertTrue($entry->hasAttribute('action'));
     }
 
+    public function testCreateIvrMenuEntryUserRegex(): void
+    {
+        $menu = $this->createDefaultIvrMenu($this->customer->id);
+
+        $entry = $this->client->ivrMenuEntries->create_user_regex($this->customer->id, $menu->id, ['digits' => '/^1[0-9]$/']);
+
+        $this->assertEquals($menu->id, $entry->ivr_menu_id);
+        $this->assertTrue($entry->hasAttribute('id'));
+        $this->assertTrue($entry->hasAttribute('digits'));
+        $this->assertTrue($entry->hasAttribute('param'));
+        $this->assertTrue($entry->hasAttribute('action'));
+    }
+
     public function testCreateIvrMenuEntryCallcenterQueue(): void
     {
         $queue = $this->createDefaultCallcenterQueue($this->customer->id);
