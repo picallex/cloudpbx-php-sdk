@@ -22,6 +22,10 @@
         {
             "name": "Matias Damian Gomez",
             "email": "matias@picallex.com"
+        },
+        {
+            "name": "Agustin Sebastian Serra",
+            "email": "agustin@picallex.com"
         }
     ],
     "require": {
