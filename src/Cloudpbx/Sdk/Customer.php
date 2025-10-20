@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace Cloudpbx\Sdk;
 
 use Cloudpbx\Util\Argument;
+use Cloudpbx\Sdk\Model\Customer\StatusReportDid;
 
 class Customer extends \Cloudpbx\Sdk\Api
 {
@@ -96,6 +97,6 @@ class Customer extends \Cloudpbx\Sdk\Api
 
         $record = $this->protocol->one($query);
 
-        return new \Cloudpbx\Sdk\Model\Customer\StatusReportDid($record);
+        return new StatusReportDid($record);
     }
 }
