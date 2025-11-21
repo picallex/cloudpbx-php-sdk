@@ -322,4 +322,33 @@ class FollowMeTest extends ClientTestCase
         $this->assertTrue($entry->hasAttribute('follow_me_id'));
         $this->assertEquals($queue->id, $entry->callcenter_queue_id);
     }
+
+    public function testCreateFollowMeEntryTypeUserDynamic(): void
+    {
+        $customer = $this->customer;
+        $me = $this->createDefaultFollowMe($customer->id);
+
+        $endpoint = 'https://tuservicio.com/endpoint';
+        $apikey = '123456';
+        $options = [
+            'priority' => 99,
+            'call_timeout' => 5
+        ];
+
+        $entry = $this->client->followMeEntries->create_user_dynamic(
+            $customer->id,
+            $me->id,
+            $endpoint,
+            $apikey,
+            $options
+        );
+
+        $this->assertTrue($entry->hasAttribute('id'));
+        $this->assertTrue($entry->hasAttribute('follow_me_id'));
+        $this->assertEquals($me->id, $entry->follow_me_id);
+        $this->assertEquals($endpoint, $entry->endpoint);
+        $this->assertEquals($apikey, $entry->apikey);
+        $this->assertEquals($options['priority'], $entry->priority);
+        $this->assertEquals($options['call_timeout'], $entry->call_timeout);
+    }
 }
