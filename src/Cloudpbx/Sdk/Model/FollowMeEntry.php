@@ -134,7 +134,7 @@ final class FollowMeEntry extends \Cloudpbx\Sdk\Model
      *
      * @see \Cloudpbx\Sdk\Client::preload for loading this relation as model
      */
-    public $api_key;
+    public $apikey;
 
     public function __construct()
     {
