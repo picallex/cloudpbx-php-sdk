@@ -3,6 +3,7 @@
 // Copyright 2021 Picallex Holding Group. All rights reserved.
 //
 // @author (2021) Jovany Leandro G.C <jovany@picallex.com>
+// @author (2025) Matias Damian Gomez <matias@picallex.com>
 
 declare(strict_types=1);
 
@@ -10,6 +11,11 @@ namespace Cloudpbx\Sdk\Model;
 
 final class FollowMeEntry extends \Cloudpbx\Sdk\Model
 {
+    /**
+     * @internal use $belongs_to instead
+     * @var integer
+     */
+    public $user_dynamic_id = null;
     /**
      * @var integer
      */
@@ -116,6 +122,20 @@ final class FollowMeEntry extends \Cloudpbx\Sdk\Model
      */
     public $belongs_to;
 
+    /**
+     * @var Relation
+     *
+     * @see \Cloudpbx\Sdk\Client::preload for loading this relation as model
+     */
+    public $endpoint;
+
+    /**
+     * @var Relation
+     *
+     * @see \Cloudpbx\Sdk\Client::preload for loading this relation as model
+     */
+    public $api_key;
+
     public function __construct()
     {
     }
@@ -128,17 +148,22 @@ final class FollowMeEntry extends \Cloudpbx\Sdk\Model
         if ($this->redirect_follow_me_id) {
             $this->belongs_to = new Relation('follow_me', $this->redirect_follow_me_id, [$this->customer_id]);
         } else {
-            $this->belongs_to = Relation::fromDescriptor(
-                [
-                    'user' => $this->user_id,
-                    'dialout' => $this->dialout_id,
-                    'callcenter_queue' => $this->callcenter_queue_id,
-                    'ivr_menu' => $this->ivr_menu_id,
-                    'voicemail' => $this->voicemail_id,
-                    'sound' => $this->sound_id
-                ],
-                [$this->customer_id]
-            );
+            try {
+                $this->belongs_to = Relation::fromDescriptor(
+                    [
+                        'user' => $this->user_id,
+                        'user_dynamic' => $this->user_dynamic_id,
+                        'dialout' => $this->dialout_id,
+                        'callcenter_queue' => $this->callcenter_queue_id,
+                        'ivr_menu' => $this->ivr_menu_id,
+                        'voicemail' => $this->voicemail_id,
+                        'sound' => $this->sound_id
+                    ],
+                    [$this->customer_id]
+                );
+            } catch (\RuntimeException $e) {
+                $this->belongs_to = null;
+            }
         }
     }
 }
