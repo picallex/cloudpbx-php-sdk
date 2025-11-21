@@ -182,6 +182,40 @@ class FollowMeEntry extends Api
     /**
      * @param integer $customer_id
      * @param integer $follow_me_id
+     * @param string $endpoint
+     * @param string $api_key
+     * @param array{
+     *  priority: integer,
+     *  call_timeout: integer
+     * }|[] $options
+     *
+     * @return Model\FollowMeEntry
+     */
+    public function create_user_dynamic($customer_id, $follow_me_id, $endpoint, $api_key, $options = [])
+    {
+        Argument::isInteger($customer_id);
+        Argument::isInteger($follow_me_id);
+        Argument::isString($endpoint);
+        Argument::isString($api_key);
+        Argument::isParams($options);
+
+        $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}/follow_me/{follow_me_id}/entries/dynamic', [
+            '{customer_id}' => $customer_id,
+            '{follow_me_id}' => $follow_me_id
+        ]);
+
+        $record = $this->protocol->create($query, [
+            'endpoint' => $endpoint,
+            'apikey' => $api_key,
+            'options' => $options
+        ]);
+
+        return $this->recordToModel($record, Model\FollowMeEntry::class, $this->default_options($customer_id));
+    }
+
+    /**
+     * @param integer $customer_id
+     * @param integer $follow_me_id
      * @param integer $sound_id
      * @param array{
      *  priority: integer,
