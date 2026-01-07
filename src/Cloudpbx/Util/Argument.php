@@ -152,7 +152,7 @@ final class Argument
      */
     public static function isFormat($value, $format)
     {
-        self::assert(preg_match($format, $value), "expected format {$format}");
+        self::assert(preg_match($format, (string) $value), "expected format {$format}");
     }
 
     /**
