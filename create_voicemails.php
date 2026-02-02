@@ -3,8 +3,8 @@
 require __DIR__ . '/vendor/autoload.php';
 
 // ---- Configuracion ----
-$api_base    = ''; 
-$api_key     = '';                           
+$api_base = 'https://apidev.myflexpbx.com';
+$api_key  = 'hUku9AWVNog9pa193uCJF8f';                          
 $customer_id = 1387;                                  
 $csv_file    = __DIR__ . '/userTest.csv'; 
 $error_file  = __DIR__ . '/voicemails_fallidosTest.csv';
@@ -28,9 +28,24 @@ foreach ($users as $user) {
     $userMap[$user->name] = $user->id;
 }
 
-echo "Se encontraron " . count($userMap) . " usuarios.\n\n";
+echo "Se encontraron " . count($userMap) . " usuarios.\n";
 
-// 2. Leer el CSV
+// 2. Obtener voicemails existentes y construir set de user_ids que ya tienen voicemail
+echo "Obteniendo voicemails existentes...\n";
+
+$existingVoicemails = [];
+try {
+    $voicemails = $client->voicemails->all($customer_id);
+    foreach ($voicemails as $vm) {
+        $existingVoicemails[$vm->user_id] = true;
+    }
+} catch (\Exception $e) {
+    echo "WARNING: No se pudieron obtener voicemails existentes: " . $e->getMessage() . "\n";
+}
+
+echo "Se encontraron " . count($existingVoicemails) . " voicemails existentes.\n\n";
+
+// 3. Leer el CSV
 if (!file_exists($csv_file)) {
     echo "ERROR: No se encontro el archivo CSV: $csv_file\n";
     exit(1);
@@ -91,6 +106,16 @@ while (($row = fgetcsv($handle)) !== false) {
     }
 
     $user_id     = $userMap[$extension];
+
+    // Validar que no tenga voicemail ya creado
+    if (isset($existingVoicemails[$user_id])) {
+        $razon = "Ya tiene voicemail (user_id=$user_id)";
+        echo "[LINEA $line] SKIP: $razon (extension: $extension, nombre: $nombre)\n";
+        $fallidos[] = [$line, $nombre, $email, $extension, $razon];
+        $skipped++;
+        continue;
+    }
+
     $description = "Voicemail $extension - $nombre";
 
     echo "[LINEA $line] Creando voicemail para extension $extension (user_id=$user_id, email=$email)... ";
@@ -109,11 +134,10 @@ while (($row = fgetcsv($handle)) !== false) {
         $razon = $e->getMessage();
         echo "ERROR: $razon\n";
         $fallidos[] = [$line, $nombre, $email, $extension, $razon];
+        $errors++;
     }
 
     sleep(2);
-        $errors++;
-    }
 }
 
 fclose($handle);
