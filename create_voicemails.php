@@ -3,8 +3,8 @@
 require __DIR__ . '/vendor/autoload.php';
 
 // ---- Configuracion ----
-$api_base = 'https://apidev.myflexpbx.com';
-$api_key  = 'hUku9AWVNog9pa193uCJF8f';                          
+$api_base    = ''; 
+$api_key     = '';                           
 $customer_id = 1387;                                  
 $csv_file    = __DIR__ . '/userTest.csv'; 
 $error_file  = __DIR__ . '/voicemails_fallidosTest.csv';
