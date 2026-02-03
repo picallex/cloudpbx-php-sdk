@@ -1,0 +1,2 @@
+Linea,Nombre,Email,Extension,Razon
+2,Agustin,agustin@picallex.com,1071,"Cloudpbx\Protocol\Error\RequestError : request with http code 422 error please check arguments {""errors"":{""password"":[""can't be blank"",""can't be blank""]}}"
