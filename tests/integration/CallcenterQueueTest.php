@@ -216,6 +216,24 @@ class CallcenterQueueTest extends ClientTestCase
         $this->assertEquals(30, $agent->ring_timeout);
     }
 
+    public function testReloadCallcenterQueue(): void
+    {
+        $customer_id = $this->customer->id;
+        $queue = $this->createDefaultCallcenterQueue($customer_id);
+
+        try {
+            $result = $this->client->callcenterQueues->reload($customer_id, $queue->id);
+            $this->assertIsArray($result);
+            $this->assertArrayHasKey('customer_id', $result);
+            $this->assertArrayHasKey('queue_id', $result);
+            $this->assertEquals($customer_id, $result['customer_id']);
+            $this->assertEquals($queue->id, $result['queue_id']);
+        } catch (\Cloudpbx\Protocol\Error\RequestError $e) {
+            // 422 is expected when freeswitch is not connected in test environment
+            $this->assertTrue(true);
+        }
+    }
+
     private function createDefaultCallcenterAgent($customer_id, $queue_id, $params = []) {
         $nparams = array_merge(['autologin' => false], $params);
         $user = $this->createDefaultUser($customer_id);

@@ -195,6 +195,30 @@ class CallcenterQueue extends Api
 
 
     /**
+     * Reload a callcenter queue in FreeSWITCH.
+     *
+     * @param int $customer_id
+     * @param int $callcenter_queue_id
+     *
+     * @return array<string,mixed>
+     */
+    public function reload($customer_id, $callcenter_queue_id)
+    {
+        Argument::isInteger($customer_id);
+        Argument::isInteger($callcenter_queue_id);
+
+        $query = $this->protocol->prepareQuery(
+            '/api/v1/management/customers/{customer_id}/service/callcenter/queues/{callcenter_queue_id}/reload',
+            [
+                '{customer_id}' => $customer_id,
+                '{callcenter_queue_id}' => $callcenter_queue_id
+            ]
+        );
+
+        return $this->protocol->update($query, []);
+    }
+
+    /**
      * See **ClientCurlTest** for details.
      *
      * @param int $customer_id
