@@ -152,6 +152,8 @@ class ClientCurl implements Http\Client
         $curl_error = null;
 
         curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
 
         try {
             $output = $yield($ch);

@@ -1,0 +1,10 @@
+Nombre,CORREO AGENTE,COORDINADOR,USER COORDINADOR,CORREO COORDINADOR,LIDER DE OPERACIONES,CORREO LIDER,Extension,Queue,
+Agustin Serra,agustin@picallex.com,matias,matias,matias@picallex.com,lider,lider@ad.com,1071,8003
+Test User 1080,test1080@picallex.com,coord1,coord1,coord1@picallex.com,lider1,lider1@picallex.com,1080,8003
+Test User 1069,test1069@picallex.com,coord2,coord2,coord2@picallex.com,lider2,lider2@picallex.com,1069,8003
+Test User 2020,test2020@picallex.com,coord3,coord3,coord3@picallex.com,lider3,lider3@picallex.com,2020,8003
+,,,,,,,,,
+Fila Vacia Sin Datos,,,,,,,,,
+Sin Extension,sinext@picallex.com,coord,coord,coord@picallex.com,lider,lider@picallex.com,,8003
+Extension Invalida,invalida@picallex.com,coord,coord,coord@picallex.com,lider,lider@picallex.com,#N/A,8003
+Extension No Existe,noexiste@picallex.com,coord,coord,coord@picallex.com,lider,lider@picallex.com,9999,8003
