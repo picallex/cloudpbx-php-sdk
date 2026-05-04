@@ -3,7 +3,7 @@
 /**
  * Copyright 2022 Picallex Holding Group. All rights reserved.
  *
- * @author (2022) Jovany Leandro G.C <jovany@picallex.com>
+ * @author (2026) Agustin Serra <agustin@picallex.com>
  */
 
 declare(strict_types=1);
@@ -13,7 +13,7 @@ use PHPUnit\Framework\TestCase;
 use Cloudpbx\Protocol;
 use Cloudpbx\Util;
 
-class ProvisioningTest extends ClientTestCase
+final class ProvisioningTest extends ClientTestCase
 {
     public function testRunProvisioningForCustomer(): void
     {
