@@ -161,4 +161,42 @@ final class Dialout extends Api
 
         return $this->recordToModel($record, Model\Dialout::class);
     }
+
+    /**
+     * See **ClientCurlTest** for details.
+     *
+     * @param int $customer_id
+     * @param int $dialout_id
+     * @param string $strip
+     * @param string $prepend
+     * @param int $gateway_id
+     *
+     * @return Model\DialoutGateway
+     */
+    public function update_gateway($customer_id, $dialout_id, $strip, $prepend, $gateway_id)
+    {
+        Argument::isInteger($customer_id);
+        Argument::isInteger($dialout_id);
+        Argument::isString($strip);
+        Argument::isString($prepend);
+        Argument::isInteger($gateway_id);
+
+        $query = $this->protocol->prepareQuery(
+            '/api/v1/management/customers/{customer_id}/dialouts/{dialout_id}/gateways',
+            [
+                '{customer_id}' => $customer_id,
+                '{dialout_id}' => $dialout_id
+            ]
+        );
+
+        $record = $this->protocol->create($query, [
+            'dialout_gateway' => [
+                'strip'      => $strip,
+                'prepend'    => $prepend,
+                'gateway_id' => $gateway_id,
+            ]
+        ]);
+
+        return $this->recordToModel($record, Model\DialoutGateway::class);
+    }
 }

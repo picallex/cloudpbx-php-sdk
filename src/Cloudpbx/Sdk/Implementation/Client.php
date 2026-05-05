@@ -32,6 +32,7 @@ use Cloudpbx\Sdk\Supervisor;
 use Cloudpbx\Sdk\AclIpv4;
 use Cloudpbx\Sdk\Customer;
 use Cloudpbx\Sdk\FirewallIpSet;
+use Cloudpbx\Sdk\Provisioning;
 use Cloudpbx\Sdk\Model\Relation;
 
 /**
@@ -45,6 +46,7 @@ use Cloudpbx\Sdk\Model\Relation;
  * @property CallcenterAgent $callcenterAgents
  * @property Voicemail $voicemails
  * @property DialoutGroup $dialoutGroups
+ * @property Provisioning $provisioning
  */
 final class Client implements \Cloudpbx\Sdk\Client
 {
@@ -216,6 +218,14 @@ final class Client implements \Cloudpbx\Sdk\Client
     public function getAclIpv4s()
     {
         return AclIpv4::fromTransport($this->protocol);
+    }
+
+    /**
+     * @return Provisioning
+     */
+    public function getProvisioning()
+    {
+        return Provisioning::fromTransport($this->protocol);
     }
 
     /**

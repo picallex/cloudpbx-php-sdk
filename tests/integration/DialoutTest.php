@@ -136,4 +136,25 @@ class DialoutTest extends ClientTestCase
 
         $this->assertTrue(true);
     }
+
+    public function testUpdateDialoutGateway(): void
+    {
+        $customer_id = $this->customer->id;
+        $dialout = $this->createDefaultDialout($customer_id);
+        $gateway_id = (int)Util\Environment::get('test', 'cloudpbx_gateway_id');
+
+        $dialout_gateway = $this->client->dialouts->update_gateway(
+            $customer_id,
+            $dialout->id,
+            '9999',
+            '8888',
+            $gateway_id
+        );
+
+        $this->assertInstanceOf(\Cloudpbx\Sdk\Model\DialoutGateway::class, $dialout_gateway);
+        $this->assertTrue($dialout_gateway->id > 0);
+        $this->assertEquals($gateway_id, $dialout_gateway->gateway_id);
+        $this->assertEquals('9999', $dialout_gateway->strip);
+        $this->assertEquals('8888', $dialout_gateway->prepend);
+    }
 }
