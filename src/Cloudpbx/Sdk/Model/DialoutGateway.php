@@ -41,6 +41,16 @@ final class DialoutGateway extends \Cloudpbx\Sdk\Model
      */
     public $prepend;
 
+    /**
+     * @var integer
+     */
+    public $weight;
+
+    /**
+     * @var string|null
+     */
+    public $try_when_fail_with;
+
     public function __construct()
     {
     }
