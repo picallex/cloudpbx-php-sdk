@@ -31,7 +31,7 @@ final class Provisioning extends Api
             ['{customer_id}' => $customer_id]
         );
 
-        $record = $this->protocol->create($query, null);
+        $record = $this->protocol->create($query, []);
 
         return $this->recordToModel($record, Model\Provisioning::class);
     }
