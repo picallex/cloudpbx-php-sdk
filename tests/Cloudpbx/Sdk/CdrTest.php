@@ -58,9 +58,36 @@ class CdrTest extends TestCase
         return new Client(new ProtocolHTTP('https://api.example.com', 'KEY', $transport));
     }
 
+    /**
+     * respuesta real del endpoint (objeto en la raiz, sin envelope "data").
+     *
+     * @return array<string, mixed>
+     */
+    private function tracePayload()
+    {
+        return [
+            'agent' => null,
+            'answered' => false,
+            'audio_quality' => ['mos' => 4.5, 'rating' => 'Bueno', 'score_pct' => 100],
+            'direction' => 'inbound',
+            'duration_sec' => 22,
+            'ended_at' => '2026-06-15T22:06:58Z',
+            'events' => [
+                ['at' => '2026-06-15T22:06:36Z', 'description' => 'recibio una llamada entrante'],
+                ['at' => '2026-06-15T22:06:58Z', 'description' => 'colgada antes de ser atendida']
+            ],
+            'from' => '17863578926',
+            'hangup_cause' => 'NORMAL_CLEARING',
+            'recording' => 'cloudpbx-17863057605-06152026-xxxx.wav',
+            'started_at' => '2026-06-15T22:06:36Z',
+            'to' => '17863057605',
+            'type' => 'international'
+        ];
+    }
+
     public function testTraceBuildsQueryString(): void
     {
-        $transport = $this->fakeTransport(json_encode(['data' => []]));
+        $transport = $this->fakeTransport(json_encode([]));
         $client = $this->clientWith($transport);
 
         $client->cdr->trace('7569b9ab-4202-409f-a7a4-5bdbb757abe4', 1387);
@@ -72,37 +99,39 @@ class CdrTest extends TestCase
         );
     }
 
-    public function testTraceReturnsModelWithPayload(): void
+    public function testTraceMapsTypedFields(): void
     {
-        $payload = [
-            'recorduuid' => '7569b9ab-4202-409f-a7a4-5bdbb757abe4',
-            'customer_id' => 1387,
-            'duration' => 42,
-            'legs' => [['uuid' => 'a', 'state' => 'hangup']]
-        ];
-        $transport = $this->fakeTransport(json_encode(['data' => $payload]));
+        // este endpoint devuelve el objeto en la raiz, no envuelto en {"data": ...}
+        $transport = $this->fakeTransport(json_encode($this->tracePayload()));
         $client = $this->clientWith($transport);
 
-        $trace = $client->cdr->trace('7569b9ab-4202-409f-a7a4-5bdbb757abe4', 1387);
+        $trace = $client->cdr->trace('7da15607-bd5c-4da7-951a-cad9fb162712', 1387);
 
         $this->assertInstanceOf(\Cloudpbx\Sdk\Model\CdrTrace::class, $trace);
-        $this->assertEquals('7569b9ab-4202-409f-a7a4-5bdbb757abe4', $trace->recorduuid);
-        $this->assertEquals(1387, $trace->customer_id);
-        $this->assertEquals(42, $trace->data['duration']);
-        $this->assertEquals('hangup', $trace->data['legs'][0]['state']);
+        $this->assertEquals('inbound', $trace->direction);
+        $this->assertEquals('international', $trace->type);
+        $this->assertEquals('17863578926', $trace->from);
+        $this->assertEquals('17863057605', $trace->to);
+        $this->assertFalse($trace->answered);
+        $this->assertEquals(22, $trace->duration_sec);
+        $this->assertEquals('NORMAL_CLEARING', $trace->hangup_cause);
+        $this->assertEquals(4.5, $trace->audio_quality->mos);
+        $this->assertEquals('Bueno', $trace->audio_quality->rating);
+        $this->assertNull($trace->agent);
+        $this->assertCount(2, $trace->events);
+        $this->assertEquals('2026-06-15T22:06:36Z', $trace->events[0]['at']);
     }
 
-    public function testTraceKeepsIdentifiersWhenApiOmitsThem(): void
+    public function testTraceInjectsIdentifiersNotReturnedByApi(): void
     {
-        // backend returns trace data without echoing recorduuid/customer_id
-        $transport = $this->fakeTransport(json_encode(['data' => ['duration' => 10]]));
+        // el backend no devuelve recorduuid/customer_id en el payload
+        $transport = $this->fakeTransport(json_encode($this->tracePayload()));
         $client = $this->clientWith($transport);
 
-        $trace = $client->cdr->trace('7569b9ab-4202-409f-a7a4-5bdbb757abe4', 1387);
+        $trace = $client->cdr->trace('7da15607-bd5c-4da7-951a-cad9fb162712', 1387);
 
-        $this->assertEquals('7569b9ab-4202-409f-a7a4-5bdbb757abe4', $trace->recorduuid);
+        $this->assertEquals('7da15607-bd5c-4da7-951a-cad9fb162712', $trace->recorduuid);
         $this->assertEquals(1387, $trace->customer_id);
-        $this->assertEquals(10, $trace->data['duration']);
     }
 
     public function testTraceRejectsNonIntegerCustomerId(): void

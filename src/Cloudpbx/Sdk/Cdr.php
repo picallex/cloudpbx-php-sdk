@@ -32,7 +32,8 @@ class Cdr extends \Cloudpbx\Sdk\Api
             ]
         );
 
-        $record = $this->protocol->one($query);
+        // este endpoint no envuelve la respuesta en {"data": ...}, viene en la raiz
+        $record = $this->protocol->oneRaw($query);
 
         // keep query identifiers available even if the api does not echo them back
         $record = array_merge(
