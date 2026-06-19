@@ -35,6 +35,34 @@ class RouterDid extends Api
     }
 
     /**
+     * Agentes libres (disponibles) para asignar a un DID.
+     *
+     * GET /api/v1/management/customers/{customer_id}/routers/dids/{did}/agents_free
+     *
+     * El endpoint retorna un arreglo plano de identificadores de agente.
+     *
+     * @param int $customer_id
+     * @param string $did
+     *
+     * @return array<string>
+     */
+    public function agents_free($customer_id, $did)
+    {
+        Argument::isInteger($customer_id);
+        Argument::isFormat($did, '/\d+/');
+
+        $query = $this->protocol->prepareQuery(
+            '/api/v1/management/customers/{customer_id}/routers/dids/{did}/agents_free',
+            [
+                '{customer_id}' => $customer_id,
+                '{did}' => $did
+            ]
+        );
+
+        return $this->protocol->listRaw($query);
+    }
+
+    /**
      * See **ClientCurlTest** for details.
      *
      * @param int $customer_id
