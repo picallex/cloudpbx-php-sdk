@@ -109,4 +109,9 @@ interface Client
      * @return AclIpv4
      */
     public function getAclIpv4s();
+
+    /**
+     * @return Webphone
+     */
+    public function getWebphone();
 }
