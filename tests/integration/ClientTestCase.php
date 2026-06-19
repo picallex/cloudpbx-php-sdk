@@ -131,12 +131,7 @@ class ClientTestCase extends TestCase
 
     protected function generateRandomDomain(): string
     {
-        $topLevel = ['org', 'co', 'ar'];
-        $domain = $this->randomString(range(0, 99), 30)
-                . '.'
-                . $this->randomString($topLevel, 1);
-
-        return $domain;
+        return $this->randomString(range(0, 99), 8) . '.myflexpbx.com';
     }
 
     protected function generateUserPassword(): string
