@@ -62,6 +62,17 @@ class RouterDidTest extends ClientTestCase
         $this->assertTrue($relation->hasAttribute('id'));
     }
 
+    public function testAgentsFreeForDid(): void
+    {
+        $customer_id = $this->customer->id;
+        $did = $this->randomDid();
+        $this->aRoute($customer_id, $did);
+
+        $agents = $this->client->routerDids->agents_free($customer_id, $did);
+
+        $this->assertIsArray($agents);
+    }
+
     public function testDeleteRouterDid(): void
     {
         // Given

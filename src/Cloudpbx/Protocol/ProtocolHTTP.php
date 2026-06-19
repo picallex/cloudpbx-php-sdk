@@ -75,6 +75,21 @@ final class ProtocolHTTP implements \Cloudpbx\Sdk\Protocol
         return $data;
     }
 
+    public function listRaw($query)
+    {
+        $request = Http\Implementation\RequestFromArray::build('GET', [
+            'body' => null,
+            'headers' => $this->setHeaders([]),
+            'url' => $this->api_base . $query
+        ]);
+
+        $response = $this->transport->sendRequest($request);
+
+        $this->checkResponse($response);
+
+        return json_decode($response->body(), true) ?? [];
+    }
+
     public function one($query)
     {
         $request = Http\Implementation\RequestFromArray::build('GET', [

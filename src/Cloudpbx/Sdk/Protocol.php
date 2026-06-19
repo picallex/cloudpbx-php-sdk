@@ -25,6 +25,15 @@ interface Protocol
     public function list($query);
 
     /**
+     * Perform a GET and return the decoded body as-is, without unwrapping
+     * the `data` envelope. Use for endpoints that return a bare array.
+     *
+     * @param string $query
+     * @return Array<mixed>
+     */
+    public function listRaw($query);
+
+    /**
      * @param string $query
      * @return mixed
      */
