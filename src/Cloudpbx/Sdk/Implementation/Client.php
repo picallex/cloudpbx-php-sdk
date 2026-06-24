@@ -34,6 +34,7 @@ use Cloudpbx\Sdk\Customer;
 use Cloudpbx\Sdk\FirewallIpSet;
 use Cloudpbx\Sdk\Provisioning;
 use Cloudpbx\Sdk\Webphone;
+use Cloudpbx\Sdk\Cdr;
 use Cloudpbx\Sdk\Model\Relation;
 
 /**
@@ -49,6 +50,7 @@ use Cloudpbx\Sdk\Model\Relation;
  * @property DialoutGroup $dialoutGroups
  * @property Provisioning $provisioning
  * @property Webphone $webphone
+ * @property Cdr $cdr
  */
 final class Client implements \Cloudpbx\Sdk\Client
 {
@@ -236,6 +238,14 @@ final class Client implements \Cloudpbx\Sdk\Client
     public function getWebphone()
     {
         return Webphone::fromTransport($this->protocol);
+    }
+
+    /**
+     * @return Cdr
+     */
+    public function getCdr()
+    {
+        return Cdr::fromTransport($this->protocol);
     }
 
     /**

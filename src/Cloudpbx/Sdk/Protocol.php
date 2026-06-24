@@ -40,6 +40,14 @@ interface Protocol
     public function one($query);
 
     /**
+     * like one() but returns the full decoded body, without assuming a "data" envelope.
+     *
+     * @param string $query
+     * @return array<string, mixed>
+     */
+    public function oneRaw($query);
+
+    /**
      * @param string $query
      * @param array<string, mixed>|null $params
      * @return mixed

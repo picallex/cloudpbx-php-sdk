@@ -114,4 +114,9 @@ interface Client
      * @return Webphone
      */
     public function getWebphone();
+
+    /**
+     * @return Cdr
+     */
+    public function getCdr();
 }
