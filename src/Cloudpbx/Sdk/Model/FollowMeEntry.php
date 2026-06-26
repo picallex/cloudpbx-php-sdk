@@ -53,6 +53,11 @@ final class FollowMeEntry extends \Cloudpbx\Sdk\Model
     public $time_of_day;
 
     /**
+     * @var string
+     */
+    public $timezone;
+
+    /**
      * @var integer
      */
     public $call_timeout;

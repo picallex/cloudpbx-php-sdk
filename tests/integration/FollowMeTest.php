@@ -262,6 +262,21 @@ class FollowMeTest extends ClientTestCase
         $this->assertEquals(999, $entry_updated->priority);
     }
 
+    public function testUpdateFollowMeEntryTimezone(): void
+    {
+        $customer = $this->customer;
+        $user = $this->createDefaultUser($customer->id);
+        $me = $this->createDefaultFollowMe($customer->id);
+        $entry = $this->client->followMeEntries->create_user($customer->id, $me->id, $user->id, ['priority' => 100]);
+
+        $entry_updated = $this->client->followMeEntries->update($customer->id, $me->id, $entry->id, [
+            'timezone' => 'America/Bogota',
+        ]);
+
+        $this->assertEquals($entry->id, $entry_updated->id);
+        $this->assertEquals('America/Bogota', $entry_updated->timezone);
+    }
+
     public function testDeleteFollowMeEntry(): void
     {
         $customer = $this->customer;

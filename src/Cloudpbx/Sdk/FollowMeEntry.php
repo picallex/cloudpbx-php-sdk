@@ -61,7 +61,9 @@ class FollowMeEntry extends Api
      * @param int $id
      * @param array{
      *  priority: integer,
-     *  call_timeout: integer
+     *  call_timeout: integer,
+     *  time_of_day: string,
+     *  timezone: string
      * }|[] $options
      *
      * @return Model\FollowMeEntry
