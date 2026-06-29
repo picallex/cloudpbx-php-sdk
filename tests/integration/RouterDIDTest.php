@@ -73,6 +73,17 @@ class RouterDidTest extends ClientTestCase
         $this->assertIsArray($agents);
     }
 
+    public function testQueuesForDid(): void
+    {
+        $customer_id = $this->customer->id;
+        $did = $this->randomDid();
+        $this->aRoute($customer_id, $did);
+
+        $queues = $this->client->routerDids->queues($customer_id, $did);
+
+        $this->assertIsArray($queues);
+    }
+
     public function testDeleteRouterDid(): void
     {
         // Given
