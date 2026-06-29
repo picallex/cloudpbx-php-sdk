@@ -63,6 +63,34 @@ class RouterDid extends Api
     }
 
     /**
+     * Colas (queues) asociadas a un DID.
+     *
+     * GET /api/v1/management/customers/{customer_id}/routers/dids/{did}/queues
+     *
+     * El endpoint retorna un arreglo plano de objetos {queue_id, queue_name}.
+     *
+     * @param int $customer_id
+     * @param string $did
+     *
+     * @return array<array{queue_id: int, queue_name: string}>
+     */
+    public function queues($customer_id, $did)
+    {
+        Argument::isInteger($customer_id);
+        Argument::isFormat($did, '/\d+/');
+
+        $query = $this->protocol->prepareQuery(
+            '/api/v1/management/customers/{customer_id}/routers/dids/{did}/queues',
+            [
+                '{customer_id}' => $customer_id,
+                '{did}' => $did
+            ]
+        );
+
+        return $this->protocol->listRaw($query);
+    }
+
+    /**
      * See **ClientCurlTest** for details.
      *
      * @param int $customer_id
