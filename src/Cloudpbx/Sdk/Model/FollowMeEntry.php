@@ -136,6 +136,11 @@ final class FollowMeEntry extends \Cloudpbx\Sdk\Model
      */
     public $apikey;
 
+    /**
+     * @var array<string>
+     */
+    public $forward_headers = [];
+
     public function __construct()
     {
     }
