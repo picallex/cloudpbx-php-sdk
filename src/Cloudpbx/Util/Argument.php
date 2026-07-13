@@ -111,7 +111,7 @@ final class Argument
 
     public static function isPath($value)
     {
-        self::assert(file_exists($value) === true, "not found file at ${value}");
+        self::assert(file_exists($value) === true, "not found file at {$value}");
     }
 
     /**
