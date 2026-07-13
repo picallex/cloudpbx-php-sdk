@@ -111,7 +111,7 @@ final class IvrMenu extends \Cloudpbx\Sdk\Model
         $this->customer = new Relation('customer', $this->customer_id);
         $sounds_attr = ['greet_long_sound', 'greet_short_sound', 'invalid_sound', 'exit_sound'];
         foreach ($sounds_attr as $sound_attr) {
-            $sound_attr_id = "${sound_attr}_id";
+            $sound_attr_id = "{$sound_attr}_id";
             if ($this->{$sound_attr_id}) {
                 $this->{$sound_attr} = new Relation('sound', $this->{$sound_attr_id}, [$this->customer_id]);
             }
