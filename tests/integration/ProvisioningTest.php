@@ -29,4 +29,26 @@ final class ProvisioningTest extends ClientTestCase
         $this->assertNotEmpty($provisioning->domain);
         $this->assertNotEmpty($provisioning->switchname);
     }
+
+    public function testListAndShowProvisioningAttempts(): void
+    {
+        $customer = $this->createDefaultCustomer();
+        $this->client->provisioning->run($customer->id);
+
+        $attempts = $this->client->provisioning->attempts($customer->id);
+
+        $this->assertIsArray($attempts);
+        $this->assertNotEmpty($attempts);
+        $this->assertInstanceOf(\Cloudpbx\Sdk\Model\ProvisioningAttempt::class, $attempts[0]);
+        $this->assertEquals($customer->id, $attempts[0]->customer_id);
+
+        $attempt = $this->client->provisioning->attempt($customer->id, $attempts[0]->id);
+
+        $this->assertInstanceOf(\Cloudpbx\Sdk\Model\ProvisioningAttempt::class, $attempt);
+        $this->assertEquals($attempts[0]->id, $attempt->id);
+        $this->assertIsArray($attempt->steps);
+        $this->assertNotEmpty($attempt->steps);
+        $this->assertInstanceOf(\Cloudpbx\Sdk\Model\ProvisioningAttemptStep::class, $attempt->steps[0]);
+        $this->assertNotEmpty($attempt->steps[0]->name);
+    }
 }
