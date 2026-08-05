@@ -33,6 +33,25 @@ final class RequestError extends ProtocolError
         $this->message = (string)$this;
     }
 
+    /**
+     * @return int
+     */
+    public function httpCode()
+    {
+        return $this->http_code;
+    }
+
+    /**
+     * Cuerpo crudo de la respuesta, para que el llamador pueda mostrar el motivo
+     * que dio el servidor en vez del mensaje generico.
+     *
+     * @return string | null
+     */
+    public function response()
+    {
+        return $this->response;
+    }
+
     public function __toString()
     {
         return __CLASS__ ." : request with http code {$this->http_code} error please check arguments {$this->response}";
