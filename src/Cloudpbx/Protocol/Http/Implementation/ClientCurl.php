@@ -21,6 +21,7 @@ class ClientCurl implements Http\Client
             'GET' => 'curlGet',
             'POST' => 'curlPost',
             'PUT' => 'curlPut',
+            'PATCH' => 'curlPatch',
             'DELETE' => 'curlDelete'
         ];
 
@@ -86,6 +87,17 @@ class ClientCurl implements Http\Client
             $body,
             $this->curlOption(CURLOPT_POST, true)
         );
+    }
+
+    /**
+     * @param string $url
+     * @param array<string, mixed> $headers
+     * @param string | null $body
+     * @return array{0: string, 1: int}
+     */
+    private function curlPatch($url, $headers, $body = null)
+    {
+        return $this->curlRequest('PATCH', $url, $headers, $body);
     }
 
     /**

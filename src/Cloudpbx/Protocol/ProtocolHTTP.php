@@ -142,9 +142,52 @@ final class ProtocolHTTP implements \Cloudpbx\Sdk\Protocol
         return $this->doRequest('PUT', $query, $params);
     }
 
+    public function createRaw($query, $params)
+    {
+        return $this->doRequestRaw('POST', $query, $params);
+    }
+
+    public function updateRaw($query, $params)
+    {
+        return $this->doRequestRaw('PUT', $query, $params);
+    }
+
+    public function patchRaw($query, $params)
+    {
+        return $this->doRequestRaw('PATCH', $query, $params);
+    }
+
     public function delete($query, $params = null)
     {
         $this->doRequest('DELETE', $query, $params, false);
+    }
+
+    /**
+     * Perform a write request and return the full decoded body, without
+     * unwrapping the `data` envelope. Use for endpoints that answer with a
+     * bare object/array (e.g. the stir/shaken api).
+     *
+     * @param string $method
+     * @param string $url
+     * @param array<string,mixed>|null $params
+     * @return array<string, mixed>
+     */
+    private function doRequestRaw($method, $url, $params = null)
+    {
+        $body = !is_null($params) ? json_encode($params) : null;
+
+        $request = Http\Implementation\RequestFromArray::build($method, [
+            'body' => $body,
+            'headers' => $this->setHeaders([]),
+            'url' => $this->api_base . $url
+        ]);
+
+        $response = $this->transport->sendRequest($request);
+
+        $this->checkResponse($response);
+
+        $data = json_decode($response->body(), true);
+        return is_array($data) ? $data : [];
     }
 
     private function doRequest($method, $url, $params = null, $must_process_data = true, $encode_body = true, $headers = [])
