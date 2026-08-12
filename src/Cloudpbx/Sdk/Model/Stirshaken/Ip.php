@@ -67,6 +67,20 @@ final class Ip extends \Cloudpbx\Sdk\Model
     public $provider_prefix;
 
     /**
+     * customer de cloudpbx (myflexpbx) que origino esta IP.
+     *
+     * @var int|null
+     */
+    public $cloudpbx_customer_id;
+
+    /**
+     * recurso origen: 'dialout_group:{dialout_id}:{group_id}' | 'dialout:{id}'.
+     *
+     * @var string|null
+     */
+    public $source_ref;
+
+    /**
      * @var bool
      */
     public $is_active;

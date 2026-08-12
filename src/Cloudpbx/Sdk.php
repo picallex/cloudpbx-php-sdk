@@ -51,4 +51,19 @@ final class Sdk
 
         return new Sdk\Stirshaken\Implementation\Client($protocol);
     }
+
+    /**
+     * Orquestador que sincroniza prefijos de un customer de cloudpbx hacia
+     * las IPs de la plataforma stir/shaken.
+     *
+     * @param \Cloudpbx\Sdk\Client $cloudpbx
+     * @param \Cloudpbx\Sdk\Stirshaken\Client $stir
+     * @param null|callable(string): ?string $resolveIp
+     *
+     * @return \Cloudpbx\Sdk\Stirshaken\CustomerSync
+     */
+    public static function createCustomerSync($cloudpbx, $stir, $resolveIp = null)
+    {
+        return new Sdk\Stirshaken\CustomerSync($cloudpbx, $stir, $resolveIp);
+    }
 }
