@@ -43,7 +43,7 @@ class RequestFromArray implements \Cloudpbx\Protocol\Http\Request
     {
         Util\Argument::keyWithValue($value, 'headers');
         Util\Argument::keyWithValue($value, 'url');
-        Util\Argument::choice($method, ['GET', 'POST', 'PUT', 'DELETE']);
+        Util\Argument::choice($method, ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']);
 
         $obj = new self();
         $obj->body = $value['body'];

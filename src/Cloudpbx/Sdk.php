@@ -30,4 +30,40 @@ final class Sdk
 
         return $client;
     }
+
+    /**
+     * Create a client for the stir/shaken platform (ClearIP Cloud).
+     *
+     * Es un backend distinto al de cloudpbx: otra base_url y otra api_key,
+     * por eso se instancia su propio protocol y cliente.
+     *
+     * @param string $api_base
+     * @param string $api_key
+     *
+     * @return \Cloudpbx\Sdk\Stirshaken\Client
+     */
+    public static function createStirshakenClient($api_base, $api_key)
+    {
+        Util\Argument::isString($api_base);
+        Util\Argument::isString($api_key);
+
+        $protocol = Protocol\ProtocolHTTP::createWithDefaultClient($api_base, $api_key);
+
+        return new Sdk\Stirshaken\Implementation\Client($protocol);
+    }
+
+    /**
+     * Orquestador que sincroniza prefijos de un customer de cloudpbx hacia
+     * las IPs de la plataforma stir/shaken.
+     *
+     * @param \Cloudpbx\Sdk\Client $cloudpbx
+     * @param \Cloudpbx\Sdk\Stirshaken\Client $stir
+     * @param null|callable(string): ?string $resolveIp
+     *
+     * @return \Cloudpbx\Sdk\Stirshaken\CustomerSync
+     */
+    public static function createCustomerSync($cloudpbx, $stir, $resolveIp = null)
+    {
+        return new Sdk\Stirshaken\CustomerSync($cloudpbx, $stir, $resolveIp);
+    }
 }
