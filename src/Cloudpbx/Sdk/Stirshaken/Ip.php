@@ -21,13 +21,22 @@ use Cloudpbx\Sdk\Model;
 final class Ip extends \Cloudpbx\Sdk\Api
 {
     /**
+     * @param array<int>|null $customerIds  filtra por cloudpbx_customer_id (opcional)
+     *
      * @return array<Model\Stirshaken\Ip>
      */
-    public function all()
+    public function all($customerIds = null)
     {
-        $query = $this->protocol->prepareQuery('/api/v1/ips');
+        $path = '/api/v1/ips';
+        if (!empty($customerIds)) {
+            Argument::isArray($customerIds);
+            $parts = array_map(function ($id) {
+                return 'cloudpbx_customer_id=' . urlencode((string) $id);
+            }, $customerIds);
+            $path .= '?' . implode('&', $parts);
+        }
 
-        $records = $this->protocol->listRaw($query);
+        $records = $this->protocol->listRaw($this->protocol->prepareQuery($path));
 
         return $this->recordsToModel($records, Model\Stirshaken\Ip::class);
     }

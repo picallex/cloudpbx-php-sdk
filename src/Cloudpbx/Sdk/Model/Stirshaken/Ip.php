@@ -81,6 +81,13 @@ final class Ip extends \Cloudpbx\Sdk\Model
     public $source_ref;
 
     /**
+     * proveedores asignados (bulk): [{provider_id, provider_name, weight}, ...].
+     *
+     * @var array<int, array<string, mixed>>
+     */
+    public $providers = [];
+
+    /**
      * @var bool
      */
     public $is_active;
