@@ -119,4 +119,9 @@ interface Client
      * @return Cdr
      */
     public function getCdr();
+
+    /**
+     * @return NumberLookup
+     */
+    public function getNumberLookup();
 }
