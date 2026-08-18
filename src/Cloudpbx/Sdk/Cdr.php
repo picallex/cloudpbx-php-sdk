@@ -16,21 +16,37 @@ class Cdr extends \Cloudpbx\Sdk\Api
      *
      * @param string $recorduuid
      * @param int $customer_id
+     * @param string|null $from  RFC3339 UTC, filtra por start_at (opcional)
+     * @param string|null $to    RFC3339 UTC, filtra por start_at (opcional)
      *
      * @return \Cloudpbx\Sdk\Model\CdrTrace
      */
-    public function trace($recorduuid, $customer_id)
+    public function trace($recorduuid, $customer_id, $from = null, $to = null)
     {
         Argument::isString($recorduuid);
         Argument::isInteger($customer_id);
 
-        $query = $this->protocol->prepareQuery(
-            '/api/v1/root/cdr/trace?recorduuid={recorduuid}&customer_id={customer_id}',
-            [
-                '{recorduuid}' => urlencode($recorduuid),
-                '{customer_id}' => $customer_id
-            ]
-        );
+        $path = '/api/v1/root/cdr/trace?recorduuid={recorduuid}&customer_id={customer_id}';
+        $params = [
+            '{recorduuid}' => urlencode($recorduuid),
+            '{customer_id}' => $customer_id
+        ];
+
+        // sin from/to el backend usa un lookback por defecto de 20 dias, o sea
+        // no encuentra llamadas mas viejas que eso salvo que se pase from
+        if ($from !== null) {
+            Argument::isString($from);
+            $path .= '&from={from}';
+            $params['{from}'] = urlencode($from);
+        }
+
+        if ($to !== null) {
+            Argument::isString($to);
+            $path .= '&to={to}';
+            $params['{to}'] = urlencode($to);
+        }
+
+        $query = $this->protocol->prepareQuery($path, $params);
 
         // este endpoint no envuelve la respuesta en {"data": ...}, viene en la raiz
         $record = $this->protocol->oneRaw($query);

@@ -99,6 +99,36 @@ class CdrTest extends TestCase
         );
     }
 
+    public function testTraceAppendsDateRangeWhenGiven(): void
+    {
+        $transport = $this->fakeTransport(json_encode([]));
+        $client = $this->clientWith($transport);
+
+        $client->cdr->trace(
+            '7569b9ab-4202-409f-a7a4-5bdbb757abe4',
+            1387,
+            '2026-01-01T00:00:00Z',
+            '2026-01-31T23:59:59Z'
+        );
+
+        $this->assertEquals(
+            'https://api.example.com/api/v1/root/cdr/trace?recorduuid=7569b9ab-4202-409f-a7a4-5bdbb757abe4'
+            . '&customer_id=1387&from=2026-01-01T00%3A00%3A00Z&to=2026-01-31T23%3A59%3A59Z',
+            $transport->last_url
+        );
+    }
+
+    public function testTraceAppendsOnlyTheGivenDateBound(): void
+    {
+        $transport = $this->fakeTransport(json_encode([]));
+        $client = $this->clientWith($transport);
+
+        $client->cdr->trace('7569b9ab-4202-409f-a7a4-5bdbb757abe4', 1387, '2026-01-01T00:00:00Z');
+
+        $this->assertStringContainsString('&from=2026-01-01T00%3A00%3A00Z', $transport->last_url);
+        $this->assertStringNotContainsString('&to=', $transport->last_url);
+    }
+
     public function testTraceMapsTypedFields(): void
     {
         // este endpoint devuelve el objeto en la raiz, no envuelto en {"data": ...}
