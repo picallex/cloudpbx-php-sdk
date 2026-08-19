@@ -83,6 +83,19 @@ class CalleridTest extends ClientTestCase
         }
     }
 
+    public function testListCalleridByUser(): void
+    {
+        $customer = $this->customer;
+        $user = $this->createDefaultUser($customer->id);
+
+        $records = $this->client->callerids->allByUser($customer->id, $user->id);
+
+        $this->assertIsArray($records);
+        foreach ($records as $record) {
+            $this->assertInstanceOf(\Cloudpbx\Sdk\Model\UserCallerid::class, $record);
+        }
+    }
+
     public function testListCallerid(): void
     {
         $customer = $this->customer;
