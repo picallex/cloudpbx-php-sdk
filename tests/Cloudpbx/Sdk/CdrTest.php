@@ -129,6 +129,17 @@ class CdrTest extends TestCase
         $this->assertStringNotContainsString('&to=', $transport->last_url);
     }
 
+    public function testTraceRejectsToWithoutFrom(): void
+    {
+        // sin from el backend usa hoy-20dias, con lo cual un to viejo da 404
+        $this->expectException(\InvalidArgumentException::class);
+
+        $transport = $this->fakeTransport(json_encode([]));
+        $client = $this->clientWith($transport);
+
+        $client->cdr->trace('7569b9ab-4202-409f-a7a4-5bdbb757abe4', 1387, null, '2026-01-31T23:59:59Z');
+    }
+
     public function testTraceMapsTypedFields(): void
     {
         // este endpoint devuelve el objeto en la raiz, no envuelto en {"data": ...}
