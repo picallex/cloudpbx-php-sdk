@@ -34,6 +34,29 @@ class Callerid extends Api
 
 
     /**
+     * Callerids used by a user, with call counts in the last 24 hours.
+     *
+     * @param int $customer_id
+     * @param int $user_id
+     *
+     * @return array<Model\UserCallerid>
+     */
+    public function allByUser($customer_id, $user_id)
+    {
+        Argument::isInteger($customer_id);
+        Argument::isInteger($user_id);
+
+        $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}/users/by/{user_id}/callerids', [
+            '{customer_id}' => $customer_id,
+            '{user_id}' => $user_id
+        ]);
+
+        $records = $this->protocol->list($query);
+
+        return $this->recordsToModel($records, Model\UserCallerid::class);
+    }
+
+    /**
      * See **ClientCurlTest** for details.
      *
      * @param int $customer_id
