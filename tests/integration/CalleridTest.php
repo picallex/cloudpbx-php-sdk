@@ -86,9 +86,14 @@ class CalleridTest extends ClientTestCase
     public function testListCalleridByUser(): void
     {
         $customer = $this->customer;
-        $user = $this->createDefaultUser($customer->id);
 
-        $records = $this->client->callerids->allByUser($customer->id, $user->id);
+        // el backend resuelve la extension por su `name`; allByUser recibe un
+        // entero, asi que se crea la extension con un name numerico y se
+        // consulta con ese mismo valor. El customer es nuevo por test, no colisiona.
+        $extension = 4001;
+        $this->createDefaultUser($customer->id, ['name' => (string) $extension]);
+
+        $records = $this->client->callerids->allByUser($customer->id, $extension);
 
         $this->assertIsArray($records);
         foreach ($records as $record) {
