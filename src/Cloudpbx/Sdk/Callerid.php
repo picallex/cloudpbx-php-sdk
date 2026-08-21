@@ -36,19 +36,22 @@ class Callerid extends Api
     /**
      * Callerids used by a user, with call counts in the last 24 hours.
      *
+     * El backend resuelve la extension por su `name` (no por id):
+     * GET /users/by/{name}/callerids.
+     *
      * @param int $customer_id
-     * @param int $user_id
+     * @param string $name name de la extension (user)
      *
      * @return array<Model\UserCallerid>
      */
-    public function allByUser($customer_id, $user_id)
+    public function allByUser($customer_id, $name)
     {
         Argument::isInteger($customer_id);
-        Argument::isInteger($user_id);
+        Argument::isString($name);
 
-        $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}/users/by/{user_id}/callerids', [
+        $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}/users/by/{name}/callerids', [
             '{customer_id}' => $customer_id,
-            '{user_id}' => $user_id
+            '{name}' => rawurlencode($name)
         ]);
 
         $records = $this->protocol->list($query);

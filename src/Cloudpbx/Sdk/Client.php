@@ -119,4 +119,14 @@ interface Client
      * @return Cdr
      */
     public function getCdr();
+
+    /**
+     * @return SmartCallerid
+     */
+    public function getSmartCallerid();
+
+    /**
+     * @return CalleridReputation
+     */
+    public function getCalleridReputation();
 }

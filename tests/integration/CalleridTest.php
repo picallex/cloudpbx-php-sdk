@@ -88,7 +88,7 @@ class CalleridTest extends ClientTestCase
         $customer = $this->customer;
         $user = $this->createDefaultUser($customer->id);
 
-        $records = $this->client->callerids->allByUser($customer->id, $user->id);
+        $records = $this->client->callerids->allByUser($customer->id, $user->name);
 
         $this->assertIsArray($records);
         foreach ($records as $record) {
