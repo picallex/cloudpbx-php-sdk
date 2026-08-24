@@ -35,6 +35,8 @@ use Cloudpbx\Sdk\FirewallIpSet;
 use Cloudpbx\Sdk\Provisioning;
 use Cloudpbx\Sdk\Webphone;
 use Cloudpbx\Sdk\Cdr;
+use Cloudpbx\Sdk\SmartCallerid;
+use Cloudpbx\Sdk\CalleridReputation;
 use Cloudpbx\Sdk\Model\Relation;
 
 /**
@@ -51,6 +53,8 @@ use Cloudpbx\Sdk\Model\Relation;
  * @property Provisioning $provisioning
  * @property Webphone $webphone
  * @property Cdr $cdr
+ * @property SmartCallerid $smartCallerid
+ * @property CalleridReputation $calleridReputation
  */
 final class Client implements \Cloudpbx\Sdk\Client
 {
@@ -246,6 +250,22 @@ final class Client implements \Cloudpbx\Sdk\Client
     public function getCdr()
     {
         return Cdr::fromTransport($this->protocol);
+    }
+
+    /**
+     * @return SmartCallerid
+     */
+    public function getSmartCallerid()
+    {
+        return SmartCallerid::fromTransport($this->protocol);
+    }
+
+    /**
+     * @return CalleridReputation
+     */
+    public function getCalleridReputation()
+    {
+        return CalleridReputation::fromTransport($this->protocol);
     }
 
     /**
