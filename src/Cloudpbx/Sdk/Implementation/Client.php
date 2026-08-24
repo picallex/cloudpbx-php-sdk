@@ -35,6 +35,7 @@ use Cloudpbx\Sdk\FirewallIpSet;
 use Cloudpbx\Sdk\Provisioning;
 use Cloudpbx\Sdk\Webphone;
 use Cloudpbx\Sdk\Cdr;
+use Cloudpbx\Sdk\NumberLookup;
 use Cloudpbx\Sdk\Model\Relation;
 
 /**
@@ -51,6 +52,7 @@ use Cloudpbx\Sdk\Model\Relation;
  * @property Provisioning $provisioning
  * @property Webphone $webphone
  * @property Cdr $cdr
+ * @property NumberLookup $numberLookup
  */
 final class Client implements \Cloudpbx\Sdk\Client
 {
@@ -246,6 +248,14 @@ final class Client implements \Cloudpbx\Sdk\Client
     public function getCdr()
     {
         return Cdr::fromTransport($this->protocol);
+    }
+
+    /**
+     * @return NumberLookup
+     */
+    public function getNumberLookup()
+    {
+        return NumberLookup::fromTransport($this->protocol);
     }
 
     /**
