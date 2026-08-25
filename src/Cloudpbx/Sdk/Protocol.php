@@ -48,6 +48,15 @@ interface Protocol
     public function oneRaw($query);
 
     /**
+     * Perform a GET and return the response body verbatim, without decoding.
+     * Use for endpoints that answer with a binary payload instead of JSON.
+     *
+     * @param string $query
+     * @return string
+     */
+    public function download($query);
+
+    /**
      * @param string $query
      * @param array<string, mixed>|null $params
      * @return mixed
