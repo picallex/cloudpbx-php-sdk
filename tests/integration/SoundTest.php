@@ -48,4 +48,13 @@ class SoundTest extends ClientTestCase
         $this->assertEquals('default', $entry->template);
         $this->assertEquals('audio', $entry->name);
     }
+
+    public function testDownloadSound(): void
+    {
+        $sound = $this->createDefaultSound($this->customer->id, 'ivr_exit');
+
+        $content = $this->client->sounds->download($this->customer->id, $sound->id);
+
+        $this->assertEquals(file_get_contents('tests/integration/example.ogg'), $content);
+    }
 }

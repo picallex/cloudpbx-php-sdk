@@ -68,6 +68,27 @@ class Sound extends Api
     }
 
     /**
+     * Content of the sound audio file.
+     *
+     * @param int $customer_id
+     * @param int $id
+     *
+     * @return string
+     */
+    public function download($customer_id, $id)
+    {
+        Argument::isInteger($customer_id);
+        Argument::isInteger($id);
+
+        $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}/sounds/{sound_id}/download', [
+            '{customer_id}' => $customer_id,
+            '{sound_id}' => $id
+        ]);
+
+        return $this->protocol->download($query);
+    }
+
+    /**
      * @return \Cloudpbx\Sdk\Model\User
      */
     public function create(int $customer_id, string $name, string $template, string $usage, string $soundpath)
