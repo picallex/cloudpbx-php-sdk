@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files psalm-version="6.16.1@f1f5de594dc76faf8784e02d3dc4716c91c6f6ac">
+  <file src="src/Cloudpbx/Sdk/Model/FollowMeEntry.php">
+    <UndefinedDocblockClass>
+      <code><![CDATA[Boolean]]></code>
+    </UndefinedDocblockClass>
+  </file>
+  <file src="src/Cloudpbx/Sdk/Model/ProvisioningAttempt.php">
+    <InvalidArgument>
+      <code><![CDATA[$step]]></code>
+    </InvalidArgument>
+  </file>
+  <file src="src/Cloudpbx/Sdk/Stirshaken/CustomerSync.php">
+    <NoInterfaceProperties>
+      <code><![CDATA[$this->cloudpbx->customers]]></code>
+      <code><![CDATA[$this->cloudpbx->customers]]></code>
+      <code><![CDATA[$this->cloudpbx->dialoutGroups]]></code>
+      <code><![CDATA[$this->cloudpbx->dialouts]]></code>
+      <code><![CDATA[$this->stir->ips]]></code>
+      <code><![CDATA[$this->stir->ips]]></code>
+      <code><![CDATA[$this->stir->ips]]></code>
+      <code><![CDATA[$this->stir->ips]]></code>
+      <code><![CDATA[$this->stir->ips]]></code>
+      <code><![CDATA[$this->stir->ips]]></code>
+    </NoInterfaceProperties>
+  </file>
+</files>

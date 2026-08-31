@@ -492,3 +492,6 @@ FodyWeavers.xsd
 # End of https://www.toptal.com/developers/gitignore/api/phpunit,emacs,visualstudiocode,visualstudio,vim,phpcodesniffer,git
 #
 composer.lock
+
+# configuracion local de php-cs-fixer (pisa .php-cs-fixer.dist.php)
+.php-cs-fixer.php

@@ -2,8 +2,9 @@
 # this repository contains the full copyright notices and license terms.
 #
 # @author (2021) Jovany Leandro G.C <jovany@picallex.com>
-version: '3.4'
-
+#
+# La version de php se elige con PHP_VERSION (default 8.5), ej:
+#   PHP_VERSION=8.2 docker-compose -p sdk-php8.2 run --rm app composer update
 services:
   app:
     working_dir: /usr/src
@@ -14,4 +15,6 @@ services:
       HOME: /tmp
     build:
       context: .
+      args:
+        PHP_VERSION: ${PHP_VERSION:-8.5}
     network_mode:  host
