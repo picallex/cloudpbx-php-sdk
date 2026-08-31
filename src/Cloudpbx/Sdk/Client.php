@@ -36,6 +36,21 @@ interface Client
     public function getDialouts();
 
     /**
+     * @return DialoutGateway
+     */
+    public function getDialoutGateways();
+
+    /**
+     * @return Gateway
+     */
+    public function getGateways();
+
+    /**
+     * @return SwitchManager
+     */
+    public function getSwitchManager();
+
+    /**
      * @return DialoutGroup
      */
     public function getDialoutGroups();

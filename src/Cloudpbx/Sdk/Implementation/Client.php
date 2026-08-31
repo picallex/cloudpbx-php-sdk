@@ -23,6 +23,9 @@ use Cloudpbx\Sdk\FollowMeEntry;
 use Cloudpbx\Sdk\Group;
 use Cloudpbx\Sdk\CalleridGroup;
 use Cloudpbx\Sdk\Dialout;
+use Cloudpbx\Sdk\DialoutGateway;
+use Cloudpbx\Sdk\Gateway;
+use Cloudpbx\Sdk\SwitchManager;
 use Cloudpbx\Sdk\DialoutGroup;
 use Cloudpbx\Sdk\Callerid;
 use Cloudpbx\Sdk\FollowMe;
@@ -49,6 +52,9 @@ use Cloudpbx\Sdk\Model\Relation;
  * @property Sound $sounds
  * @property CallcenterAgent $callcenterAgents
  * @property Voicemail $voicemails
+ * @property DialoutGateway $dialoutGateways
+ * @property Gateway $gateways
+ * @property SwitchManager $switchManager
  * @property DialoutGroup $dialoutGroups
  * @property Provisioning $provisioning
  * @property Webphone $webphone
@@ -109,6 +115,30 @@ final class Client implements \Cloudpbx\Sdk\Client
     public function getDialouts()
     {
         return Dialout::fromTransport($this->protocol);
+    }
+
+    /**
+     * @return DialoutGateway
+     */
+    public function getDialoutGateways()
+    {
+        return DialoutGateway::fromTransport($this->protocol);
+    }
+
+    /**
+     * @return Gateway
+     */
+    public function getGateways()
+    {
+        return Gateway::fromTransport($this->protocol);
+    }
+
+    /**
+     * @return SwitchManager
+     */
+    public function getSwitchManager()
+    {
+        return SwitchManager::fromTransport($this->protocol);
     }
 
     /**
