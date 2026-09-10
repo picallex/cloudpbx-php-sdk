@@ -181,6 +181,15 @@ final class CustomerSync
             }
         }
 
+        // Reconciliacion: una fila ya existente con el mismo (ip, prefijo) -por ej.
+        // creada a mano- colisiona con el UNIQUE(ip_cidr, customer_prefix). En vez
+        // de fallar con 409, la adoptamos (update) para ponerla bajo el sync.
+        $adopt = (bool)($config['adopt_orphans'] ?? true);
+        $byIpPrefix = [];
+        foreach ($all_ips as $existing) {
+            $byIpPrefix[$this->ipPrefixKey($existing->ip_cidr, $existing->customer_prefix)] = $existing;
+        }
+
         $desired = $this->collectPrefixes($cid);
 
         // create / update / skip
@@ -202,7 +211,14 @@ final class CustomerSync
 
             try {
                 $current = $managed[$source_ref] ?? null;
-                if ($current === null) {
+                $orphan = $adopt && $current === null
+                    ? ($byIpPrefix[$this->ipPrefixKey($ip, $prefix)] ?? null)
+                    : null;
+                if ($current === null && $orphan !== null && $this->adoptable($orphan, $cid)) {
+                    $model = $dry_run ? $orphan : $this->stir->ips->update($orphan->id, $want);
+                    $this->addAction($summary, 'adopt', $source_ref, $prefix, $model);
+                    $ip_id = $orphan->id;
+                } elseif ($current === null) {
                     $model = $dry_run ? null : $this->stir->ips->create($want);
                     $this->addAction($summary, 'create', $source_ref, $prefix, $model);
                     $ip_id = $model !== null ? $model->id : null;
@@ -328,6 +344,34 @@ final class CustomerSync
             return true;
         }
         return false;
+    }
+
+    /**
+     * Clave (ip, prefijo) normalizada -sin CIDR- para detectar colisiones con el
+     * UNIQUE(ip_cidr, customer_prefix) del backend.
+     *
+     * @param mixed $ip_cidr
+     * @param mixed $prefix
+     *
+     * @return string
+     */
+    private function ipPrefixKey($ip_cidr, $prefix)
+    {
+        return (string)preg_replace('#/.*$#', '', (string)$ip_cidr) . '|' . (string)$prefix;
+    }
+
+    /**
+     * Una fila existente es adoptable si no la administra nadie (sin source_ref)
+     * o si ya pertenece a este customer. No robamos filas de otro customer.
+     *
+     * @param mixed $existing
+     * @param int $cid
+     *
+     * @return bool
+     */
+    private function adoptable($existing, $cid)
+    {
+        return empty($existing->source_ref) || (int)$existing->cloudpbx_customer_id === $cid;
     }
 
     /**

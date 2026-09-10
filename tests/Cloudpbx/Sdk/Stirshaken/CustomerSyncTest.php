@@ -178,6 +178,72 @@ class CustomerSyncTest extends TestCase
         $this->assertEquals('dialout:99', $actions['soft_delete']);  // el huerfano se soft-deletea
     }
 
+    public function testAdoptsExistingUnmanagedIpInsteadOfCreating(): void
+    {
+        // una IP creada A MANO (sin source_ref) ocupa el (ip, prefijo) del dialout:
+        // se adopta (update) en vez de crear -> evita el 409 del UNIQUE.
+        $transport = $this->routingTransport([
+            ['/dialout_groups', json_encode(['data' => []])],
+            ['/dialouts', json_encode(['data' => [['id' => 7, 'customer_id' => 123, 'prepend' => '8']]])],
+            ['/customers/', json_encode(['data' => ['id' => 123, 'domain' => 'cust.example.com']])],
+            ['/api/v1/ips', json_encode([
+                $this->existingIp(['id' => 'ip-manual', 'source_ref' => '', 'cloudpbx_customer_id' => 0]),
+            ])],
+        ]);
+        $sync = $this->syncWith($transport, function ($d) {
+            return '203.0.113.77';
+        });
+
+        $out = $sync->syncCustomer(123, ['dry_run' => true]);
+
+        $this->assertCount(1, $out['actions']);
+        $this->assertEquals('adopt', $out['actions'][0]['action']);
+        $this->assertEquals('dialout:7', $out['actions'][0]['source_ref']);
+        $this->assertEquals('8', $out['actions'][0]['prefix']);
+    }
+
+    public function testDoesNotAdoptRowOwnedByAnotherManagedCustomer(): void
+    {
+        // el (ip, prefijo) lo ocupa una fila administrada de OTRO customer:
+        // no se roba -> queda como create (que en real daria el 409 esperado).
+        $transport = $this->routingTransport([
+            ['/dialout_groups', json_encode(['data' => []])],
+            ['/dialouts', json_encode(['data' => [['id' => 7, 'customer_id' => 123, 'prepend' => '8']]])],
+            ['/customers/', json_encode(['data' => ['id' => 123, 'domain' => 'cust.example.com']])],
+            ['/api/v1/ips', json_encode([
+                $this->existingIp(['id' => 'ip-otro', 'source_ref' => 'dialout:99', 'cloudpbx_customer_id' => 999]),
+            ])],
+        ]);
+        $sync = $this->syncWith($transport, function ($d) {
+            return '203.0.113.77';
+        });
+
+        $out = $sync->syncCustomer(123, ['dry_run' => true]);
+
+        $this->assertCount(1, $out['actions']);
+        $this->assertEquals('create', $out['actions'][0]['action']);
+    }
+
+    public function testDoesNotAdoptWhenAdoptOrphansDisabled(): void
+    {
+        // con el flag adopt_orphans=false, no adopta aunque exista la fila manual.
+        $transport = $this->routingTransport([
+            ['/dialout_groups', json_encode(['data' => []])],
+            ['/dialouts', json_encode(['data' => [['id' => 7, 'customer_id' => 123, 'prepend' => '8']]])],
+            ['/customers/', json_encode(['data' => ['id' => 123, 'domain' => 'cust.example.com']])],
+            ['/api/v1/ips', json_encode([
+                $this->existingIp(['id' => 'ip-manual', 'source_ref' => '', 'cloudpbx_customer_id' => 0]),
+            ])],
+        ]);
+        $sync = $this->syncWith($transport, function ($d) {
+            return '203.0.113.77';
+        });
+
+        $out = $sync->syncCustomer(123, ['dry_run' => true, 'adopt_orphans' => false]);
+
+        $this->assertEquals('create', $out['actions'][0]['action']);
+    }
+
     public function testCreatePayloadIsOutboundProxyWithDescription(): void
     {
         // los dialouts son salientes: default outbound + proxy, description "{label}-{prefix}"
