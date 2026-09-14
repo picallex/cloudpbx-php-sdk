@@ -192,6 +192,12 @@ final class CustomerSync
 
         $desired = $this->collectPrefixes($cid);
 
+        // ids ya tocados en esta misma pasada (adopt/create/update/skip), para
+        // que el soft-delete de abajo -que trabaja con el snapshot de $managed
+        // tomado ANTES de este loop- no vuelva a apagar una fila que un source_ref
+        // distinto (mismo customer, mismo ip+prefijo) acaba de adoptar/reactivar.
+        $touchedIds = [];
+
         // create / update / skip
         foreach ($desired as $source_ref => $prefix) {
             $want = [
@@ -231,6 +237,9 @@ final class CustomerSync
                     $ip_id = $current->id;
                 }
 
+                if ($ip_id !== null) {
+                    $touchedIds[$ip_id] = true;
+                }
                 if ($ip_id !== null && !$dry_run) {
                     $this->reconcileProvider($ip_id, $config, $summary, $source_ref);
                 }
@@ -241,7 +250,7 @@ final class CustomerSync
 
         // soft-delete: IPs administradas cuyo source_ref ya no esta en cloudpbx.
         foreach ($managed as $source_ref => $existing) {
-            if (isset($desired[$source_ref]) || !$existing->is_active) {
+            if (isset($desired[$source_ref]) || !$existing->is_active || isset($touchedIds[$existing->id])) {
                 continue;
             }
             try {
@@ -400,7 +409,15 @@ final class CustomerSync
 
     /**
      * Junta los prefijos del customer indexados por source_ref.
-     * Prioriza dialout groups; si no hay ninguno con prepend, cae a dialouts.
+     * Por cada dialout usa el prepend de sus dialout_groups si tiene alguno;
+     * los dialouts sin ningun group con prepend caen a su propio prepend
+     * (un dialout con groups no tapa el prepend directo de otro dialout).
+     *
+     * Dedupe por prefijo: dentro de un mismo customer la IP es unica, asi que
+     * dos source_ref con el mismo prepend apuntan al mismo (ip, prefijo) en
+     * stir (UNIQUE ip_cidr+customer_prefix) -> se quedan compitiendo por la
+     * misma fila y se pisan el source_ref entre si en cada sync. Se guarda
+     * solo el primero (orden estable de la API) por prefijo.
      *
      * @param int $customer_id
      *
@@ -409,18 +426,23 @@ final class CustomerSync
     private function collectPrefixes($customer_id)
     {
         $prefixes = [];
+        $dialoutsWithGroupPrefix = [];
+        $seenPrefixes = [];
 
         foreach ($this->cloudpbx->dialoutGroups->all($customer_id) as $g) {
             if (!empty($g->prepend)) {
-                $prefixes["dialout_group:{$g->dialout_id}:{$g->group_id}"] = (string)$g->prepend;
+                $dialoutsWithGroupPrefix[$g->dialout_id] = true;
+                if (!isset($seenPrefixes[$g->prepend])) {
+                    $prefixes["dialout_group:{$g->dialout_id}:{$g->group_id}"] = (string)$g->prepend;
+                    $seenPrefixes[$g->prepend] = true;
+                }
             }
         }
 
-        if (!$prefixes) {
-            foreach ($this->cloudpbx->dialouts->all($customer_id) as $d) {
-                if (!empty($d->prepend)) {
-                    $prefixes["dialout:{$d->id}"] = (string)$d->prepend;
-                }
+        foreach ($this->cloudpbx->dialouts->all($customer_id) as $d) {
+            if (!empty($d->prepend) && !isset($dialoutsWithGroupPrefix[$d->id]) && !isset($seenPrefixes[$d->prepend])) {
+                $prefixes["dialout:{$d->id}"] = (string)$d->prepend;
+                $seenPrefixes[$d->prepend] = true;
             }
         }
 

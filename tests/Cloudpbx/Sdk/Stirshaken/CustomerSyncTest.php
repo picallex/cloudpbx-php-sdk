@@ -297,6 +297,90 @@ class CustomerSyncTest extends TestCase
         $this->assertContains('dialout:8', $refs);   // 6975#1 tambien entra
     }
 
+    public function testDialoutWithoutGroupsIsNotShadowedBySiblingWithGroups(): void
+    {
+        // dialout 12 tiene groups con prepend; dialout 7 (mismo customer) no tiene
+        // groups pero si prepend propio -> ambos deben sincronizarse, no solo el 12.
+        $transport = $this->routingTransport([
+            ['/dialout_groups', json_encode(['data' => [
+                ['dialout_id' => 12, 'group_id' => 34, 'callerid_group_id' => 1, 'prepend' => '9'],
+            ]])],
+            ['/dialouts', json_encode(['data' => [
+                ['id' => 7, 'customer_id' => 123, 'prepend' => '8'],
+            ]])],
+            ['/customers/', json_encode(['data' => ['id' => 123, 'domain' => 'cust.example.com']])],
+            ['/api/v1/ips', '[]'],
+        ]);
+        $sync = $this->syncWith($transport, function ($d) {
+            return '203.0.113.77';
+        });
+
+        $out = $sync->syncCustomer(123, ['dry_run' => true]);
+
+        $refs = array_column($out['actions'], 'source_ref');
+        $this->assertContains('dialout_group:12:34', $refs);
+        $this->assertContains('dialout:7', $refs);
+    }
+
+    public function testDedupesGroupsSharingTheSamePrefix(): void
+    {
+        // 4 groups del mismo dialout con el mismo prepend -> apuntan al mismo
+        // (ip, prefijo) en stir, solo debe quedar UN source_ref deseado.
+        $transport = $this->routingTransport([
+            ['/dialout_groups', json_encode(['data' => [
+                ['dialout_id' => 453, 'group_id' => 480, 'callerid_group_id' => 1, 'prepend' => '7062#'],
+                ['dialout_id' => 453, 'group_id' => 481, 'callerid_group_id' => 1, 'prepend' => '7062#'],
+                ['dialout_id' => 453, 'group_id' => 482, 'callerid_group_id' => 1, 'prepend' => '7062#'],
+                ['dialout_id' => 453, 'group_id' => 483, 'callerid_group_id' => 1, 'prepend' => '7062#'],
+            ]])],
+            ['/dialouts', json_encode(['data' => []])],
+            ['/customers/', json_encode(['data' => ['id' => 204, 'domain' => 'guildinllc.example.com']])],
+            ['/api/v1/ips', '[]'],
+        ]);
+        $sync = $this->syncWith($transport, function ($d) {
+            return '3.13.15.179';
+        });
+
+        $out = $sync->syncCustomer(204, ['dry_run' => true]);
+
+        $this->assertCount(1, $out['actions']);
+        $this->assertEquals('dialout_group:453:480', $out['actions'][0]['source_ref']);
+    }
+
+    public function testAdoptingWinningGroupDoesNotSoftDeleteItselfUnderOldSourceRef(): void
+    {
+        // migracion al dedupe: la fila ya existia con el source_ref de un group
+        // "perdedor" (482); el nuevo desired pide el group "ganador" (480), mismo
+        // ip+prefijo -> se adopta bajo 480 y NO debe soft-deletearse en la misma
+        // pasada (el snapshot de $managed todavia la indexa bajo la key vieja).
+        $transport = $this->routingTransport([
+            ['/dialout_groups', json_encode(['data' => [
+                ['dialout_id' => 453, 'group_id' => 480, 'callerid_group_id' => 1, 'prepend' => '7062#'],
+                ['dialout_id' => 453, 'group_id' => 481, 'callerid_group_id' => 1, 'prepend' => '7062#'],
+            ]])],
+            ['/dialouts', json_encode(['data' => []])],
+            ['/customers/', json_encode(['data' => ['id' => 204, 'domain' => 'guildinllc.example.com']])],
+            ['/api/v1/ips', json_encode([
+                $this->existingIp([
+                    'id' => 'ip-guildin',
+                    'ip_cidr' => '3.13.15.179/32',
+                    'customer_prefix' => '7062#',
+                    'cloudpbx_customer_id' => 204,
+                    'source_ref' => 'dialout_group:453:481',
+                ]),
+            ])],
+        ]);
+        $sync = $this->syncWith($transport, function ($d) {
+            return '3.13.15.179';
+        });
+
+        $out = $sync->syncCustomer(204, ['dry_run' => true]);
+
+        $actions = array_column($out['actions'], 'action', 'source_ref');
+        $this->assertArrayHasKey('dialout_group:453:480', $actions);
+        $this->assertArrayNotHasKey('dialout_group:453:481', $actions); // no soft_delete
+    }
+
     public function testSyncAllCustomersHonorsResolverAndEnabled(): void
     {
         $transport = $this->routingTransport([
