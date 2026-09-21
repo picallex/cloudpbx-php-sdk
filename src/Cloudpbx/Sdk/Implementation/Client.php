@@ -26,6 +26,7 @@ use Cloudpbx\Sdk\Dialout;
 use Cloudpbx\Sdk\DialoutGateway;
 use Cloudpbx\Sdk\Gateway;
 use Cloudpbx\Sdk\SwitchManager;
+use Cloudpbx\Sdk\Vpbx;
 use Cloudpbx\Sdk\DialoutGroup;
 use Cloudpbx\Sdk\Callerid;
 use Cloudpbx\Sdk\FollowMe;
@@ -55,6 +56,7 @@ use Cloudpbx\Sdk\Model\Relation;
  * @property DialoutGateway $dialoutGateways
  * @property Gateway $gateways
  * @property SwitchManager $switchManager
+ * @property Vpbx $vpbx
  * @property DialoutGroup $dialoutGroups
  * @property Provisioning $provisioning
  * @property Webphone $webphone
@@ -139,6 +141,14 @@ final class Client implements \Cloudpbx\Sdk\Client
     public function getSwitchManager()
     {
         return SwitchManager::fromTransport($this->protocol);
+    }
+
+    /**
+     * @return Vpbx
+     */
+    public function getVpbx()
+    {
+        return Vpbx::fromTransport($this->protocol);
     }
 
     /**
