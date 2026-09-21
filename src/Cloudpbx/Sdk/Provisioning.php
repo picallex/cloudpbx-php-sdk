@@ -37,6 +37,29 @@ final class Provisioning extends Api
     }
 
     /**
+     * Move a customer to a specific Freeswitch node (manual reassignment).
+     *
+     * @param int $customer_id
+     * @param int $freeswitch_id
+     *
+     * @return Model\Provisioning
+     */
+    public function move($customer_id, $freeswitch_id)
+    {
+        Argument::isInteger($customer_id);
+        Argument::isInteger($freeswitch_id);
+
+        $query = $this->protocol->prepareQuery(
+            '/api/v1/management/customers/{customer_id}/provisioning',
+            ['{customer_id}' => $customer_id]
+        );
+
+        $record = $this->protocol->patchRaw($query, ['freeswitch_id' => $freeswitch_id])['data'];
+
+        return $this->recordToModel($record, Model\Provisioning::class);
+    }
+
+    /**
      * List provisioning attempts for a customer (without steps).
      *
      * @param int $customer_id

@@ -51,6 +51,11 @@ interface Client
     public function getSwitchManager();
 
     /**
+     * @return Vpbx
+     */
+    public function getVpbx();
+
+    /**
      * @return DialoutGroup
      */
     public function getDialoutGroups();
