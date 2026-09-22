@@ -49,6 +49,48 @@ class Cdr extends \Cloudpbx\Sdk\Api
     }
 
     /**
+     * Search recent recording CDRs for a customer within a time window, via the
+     * optimized vip2phone endpoint (partition-pruned by from/to, read replica,
+     * ordered by most recent). Each row includes a `playback_url`. Read-only.
+     *
+     * Prefer this over search() for a live "recent calls" view: it is the
+     * recordings-oriented, optimized path (the rate limit lives on the actual
+     * recording playback, not on this search).
+     *
+     * Returns the decoded body as-is: `{total, total_rows, rows}`.
+     *
+     * @param int $customer_id
+     * @param string $from   RFC3339 UTC (required)
+     * @param string $to     RFC3339 UTC (required)
+     * @param int $offset     pagination offset (default 0)
+     * @param int $limit      page size (default 500, matches the api default)
+     *
+     * @return array<string, mixed>
+     */
+    public function recordingSearch($customer_id, $from, $to, $offset = 0, $limit = 500)
+    {
+        Argument::isInteger($customer_id);
+        Argument::isString($from);
+        Argument::isString($to);
+        Argument::isInteger($offset);
+        Argument::isInteger($limit);
+
+        $query = $this->protocol->prepareQuery(
+            '/api/v1/management/vendor/vip2phone/cdr/recording?customer_id={customer_id}&from={from}&to={to}&offset={offset}&limit={limit}',
+            [
+                '{customer_id}' => $customer_id,
+                '{from}' => urlencode($from),
+                '{to}' => urlencode($to),
+                '{offset}' => $offset,
+                '{limit}' => $limit,
+            ]
+        );
+
+        // rendered by CdrView, body at the root without a {"data": ...} envelope
+        return $this->protocol->oneRaw($query);
+    }
+
+    /**
      * trace a call detail record by its recorduuid.
      *
      * @param string $recorduuid

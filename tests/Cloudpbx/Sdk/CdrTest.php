@@ -202,4 +202,20 @@ class CdrTest extends TestCase
         $this->assertStringContainsString('offset=0', $transport->last_url);
         $this->assertStringContainsString('limit=5', $transport->last_url);
     }
+
+    public function testRecordingSearchBuildsQueryAndReturnsBareBody(): void
+    {
+        // rendered by CdrView, bare body without a {"data": ...} envelope
+        $body = ['total' => 3, 'total_rows' => 3, 'rows' => [['uuid' => 'a', 'playback_url' => 'https://x/a']]];
+        $transport = $this->fakeTransport(json_encode($body));
+        $client = $this->clientWith($transport);
+
+        $result = $client->cdr->recordingSearch(1387, '2026-09-20T00:00:00Z', '2026-09-22T00:00:00Z', 0, 50);
+
+        $this->assertSame($body, $result);
+        $this->assertStringContainsString('/api/v1/management/vendor/vip2phone/cdr/recording?', $transport->last_url);
+        $this->assertStringContainsString('customer_id=1387', $transport->last_url);
+        $this->assertStringContainsString('from=2026-09-20T00%3A00%3A00Z', $transport->last_url);
+        $this->assertStringContainsString('limit=50', $transport->last_url);
+    }
 }
