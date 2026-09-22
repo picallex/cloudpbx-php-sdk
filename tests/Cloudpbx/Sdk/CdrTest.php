@@ -185,4 +185,21 @@ class CdrTest extends TestCase
         /** @phpstan-ignore-next-line intentional wrong type */
         $client->cdr->trace('7569b9ab-4202-409f-a7a4-5bdbb757abe4', '1387');
     }
+
+    public function testSearchBuildsQueryAndReturnsBareBody(): void
+    {
+        // este endpoint devuelve el objeto en la raiz, no envuelto en {"data": ...}
+        $body = ['total' => 12, 'total_rows' => 2, 'rows' => [['uuid' => 'a'], ['uuid' => 'b']]];
+        $transport = $this->fakeTransport(json_encode($body));
+        $client = $this->clientWith($transport);
+
+        $result = $client->cdr->search(1387, '2026-09-15T00:00:00Z', '2026-09-22T00:00:00Z', 0, 5);
+
+        $this->assertSame($body, $result);
+        $this->assertStringContainsString('/api/v1/root/cdr/search?', $transport->last_url);
+        $this->assertStringContainsString('customer_id=1387', $transport->last_url);
+        $this->assertStringContainsString('from=2026-09-15T00%3A00%3A00Z', $transport->last_url);
+        $this->assertStringContainsString('offset=0', $transport->last_url);
+        $this->assertStringContainsString('limit=5', $transport->last_url);
+    }
 }

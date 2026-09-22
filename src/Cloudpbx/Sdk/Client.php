@@ -149,4 +149,9 @@ interface Client
      * @return CalleridReputation
      */
     public function getCalleridReputation();
+
+    /**
+     * @return Maintenance
+     */
+    public function getMaintenance();
 }

@@ -41,6 +41,7 @@ use Cloudpbx\Sdk\Webphone;
 use Cloudpbx\Sdk\Cdr;
 use Cloudpbx\Sdk\SmartCallerid;
 use Cloudpbx\Sdk\CalleridReputation;
+use Cloudpbx\Sdk\Maintenance;
 use Cloudpbx\Sdk\Model\Relation;
 
 /**
@@ -63,6 +64,7 @@ use Cloudpbx\Sdk\Model\Relation;
  * @property Cdr $cdr
  * @property SmartCallerid $smartCallerid
  * @property CalleridReputation $calleridReputation
+ * @property Maintenance $maintenance
  */
 final class Client implements \Cloudpbx\Sdk\Client
 {
@@ -306,6 +308,14 @@ final class Client implements \Cloudpbx\Sdk\Client
     public function getCalleridReputation()
     {
         return CalleridReputation::fromTransport($this->protocol);
+    }
+
+    /**
+     * @return Maintenance
+     */
+    public function getMaintenance()
+    {
+        return Maintenance::fromTransport($this->protocol);
     }
 
     /**
