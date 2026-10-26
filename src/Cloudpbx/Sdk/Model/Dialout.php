@@ -72,6 +72,20 @@ final class Dialout extends \Cloudpbx\Sdk\Model
     public $allow_caller_id_from_sip_header;
 
     /**
+     * lookup de operadora + filtro de callerids por reputacion
+     *
+     * @var bool
+     */
+    public $smart_callerid_enabled = false;
+
+    /**
+     * solo lookup de operadora, sin filtrar (smart_callerid_enabled lo implica)
+     *
+     * @var bool
+     */
+    public $number_lookup_enabled = false;
+
+    /**
      * @var ?integer
      */
     public $callerid_group_id = null;
