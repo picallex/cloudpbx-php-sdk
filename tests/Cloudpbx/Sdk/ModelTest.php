@@ -52,4 +52,14 @@ class ModelTest extends TestCase
         $instance = $model::fromArray(['id' => 3]);
         $this->assertEquals(3, $instance->id);
     }
+
+    public function testDialoutReadsSmartCalleridFlags(): void
+    {
+        $dialout = Model\Dialout::fromArray([
+            'id' => 42, 'customer_id' => 7,
+            'smart_callerid_enabled' => false, 'number_lookup_enabled' => true
+        ]);
+        $this->assertFalse($dialout->smart_callerid_enabled);
+        $this->assertTrue($dialout->number_lookup_enabled);
+    }
 }
