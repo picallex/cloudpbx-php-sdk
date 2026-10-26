@@ -64,6 +64,26 @@ class DialoutTest extends ClientTestCase
         $this->assertEquals($updated_dialout->prepend, '666');
     }
 
+    public function testUpdateDialoutSmartCalleridFlags(): void
+    {
+        $customer_id = $this->customer->id;
+        $dialout = $this->createDefaultDialout($customer_id);
+        $this->assertFalse($dialout->smart_callerid_enabled);
+        $this->assertFalse($dialout->number_lookup_enabled);
+
+        $this->client->dialouts->update($customer_id, $dialout->id, ['number_lookup_enabled' => true]);
+        $shown = $this->client->dialouts->show($customer_id, $dialout->id);
+        $this->assertTrue($shown->number_lookup_enabled);
+        $this->assertFalse($shown->smart_callerid_enabled);
+
+        // apagar uno no toca el otro
+        $this->client->dialouts->update($customer_id, $dialout->id, ['smart_callerid_enabled' => true]);
+        $this->client->dialouts->update($customer_id, $dialout->id, ['number_lookup_enabled' => false]);
+        $shown = $this->client->dialouts->show($customer_id, $dialout->id);
+        $this->assertTrue($shown->smart_callerid_enabled);
+        $this->assertFalse($shown->number_lookup_enabled);
+    }
+
     public function testDeleteDialout(): void
     {
         $customer_id = $this->customer->id;
