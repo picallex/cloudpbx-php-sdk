@@ -56,15 +56,23 @@ class Group extends Api
     /**
      * See **ClientCurlTest** for details.
      *
+     * un grupo no se puede crear sin caller ID group: `callerid_group_id` es obligatorio.
+     * la API no lo guarda con el grupo; el que llama lo asocia despues con
+     * `dialoutGroups->attach_callerid_group`.
+     *
      * @param int $customer_id
      * @param array<string,mixed> $params
      *
      * @return \Cloudpbx\Sdk\Model\Group
+     *
+     * @throws \InvalidArgumentException si falta `callerid_group_id`
      */
     public function create($customer_id, $params)
     {
         Argument::isInteger($customer_id);
         Argument::isParams($params);
+        Argument::keyExists($params, 'callerid_group_id');
+        Argument::isInteger($params['callerid_group_id']);
 
         $query = $this->protocol->prepareQuery('/api/v1/management/customers/{customer_id}/groups', [
             '{customer_id}' => $customer_id

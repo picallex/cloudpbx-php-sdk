@@ -51,6 +51,9 @@ class ClientTestCase extends TestCase
 
     protected function createDefaultGroup($customer_id, $params = [])
     {
+        if (!array_key_exists('callerid_group_id', $params)) {
+            $params['callerid_group_id'] = $this->createDefaultCalleridGroup($customer_id)->id;
+        }
         $nparams = array_merge(['name' => $this->generateRandomName(),
                                 'alias' => $this->generateRandomName()], $params);
         return $this->client->groups->create($customer_id, $nparams);
