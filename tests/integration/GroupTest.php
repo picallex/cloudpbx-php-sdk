@@ -28,24 +28,13 @@ class GroupTest extends ClientTestCase
         $alias = $this->generateRandomName();
         $group = $this->client->groups->create($customer->id, [
             'name' => $name,
-            'alias' => $alias,
-            'callerid_group_id' => $this->createDefaultCalleridGroup($customer->id)->id
+            'alias' => $alias
         ]);
 
         $this->assertInstanceOf(\Cloudpbx\Sdk\Model\Group::class, $group);
         $this->assertTrue($group->id > 0);
         $this->assertEquals($name, $group->name);
         $this->assertEquals($alias, $group->alias);
-    }
-
-    public function testCreateGroupWithoutCalleridGroupFails(): void
-    {
-        $this->expectException(\InvalidArgumentException::class);
-
-        $this->client->groups->create($this->customer->id, [
-            'name' => $this->generateRandomName(),
-            'alias' => $this->generateRandomName()
-        ]);
     }
 
     public function testUpdateGroup(): void
